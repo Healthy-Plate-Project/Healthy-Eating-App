@@ -1,8 +1,13 @@
 # Eat-Healthy
 
 ## Contributors 
-Robyn Graham
-Kimberly Rodriguez
+[Robyn Graham](https://github.com/robyng)
+
 
 [David Romero](https://github.com/Darolo13)
-[Kimberly Rodriguez](https://github.com/Kimberly-Rodriguez)
+
+
+[Matthew Elliott](https://github.com/MatteoThomas)
+
+
+[Paul George](https://github.com/PaulWGeorge)

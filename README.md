@@ -1,4 +1,4 @@
-# Eat-Healthy
+# Healthy-Plate
 
 ## Contributors 
 

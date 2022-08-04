@@ -47,11 +47,3 @@ To learn more about how to use this data, check out (API)
 [John Davis](https://github.com/johndavis92790)
 
 [Kimberly Rodriguez](https://github.com/Kimberly-Rodriguez)
-
-
-## Acknowledgements
-TBD
-
-
-
-

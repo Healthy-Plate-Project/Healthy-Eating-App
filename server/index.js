@@ -1,12 +1,12 @@
 const express = require("express");
 require('dotenv').config()
-// const cors = require('cors');
+const cors = require('cors');
 // const cookieParser = require('cookie-parser')
 // var bodyParser = require("body-parser");
 const path = require("path");
-// const routes = require("./routes");
+const routes = require("./routes");
 const router = require("express").Router();
-const db = require("./config/connection.tsx");
+const db = require("./config/connection");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -21,11 +21,11 @@ app.use(express.urlencoded({ extended: false }));
 //   })
 // );
 app.use(express.json());
-// app.use(cors({
-//   credentials: true,
-//   origin: ['http://localhost:3000']
-// }));
-// app.use(routes);
+app.use(cors({
+  credentials: true,
+  origin: ['http://localhost:3000']
+}));
+app.use(routes);
 
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {

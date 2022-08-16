@@ -18,7 +18,7 @@ function App() {
     return await getRestaurants(payload)
   }
   
-  // console.log(test())
+  console.log(test())
   return (
     <div className="App">
       <header className="App-header">

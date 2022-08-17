@@ -9,11 +9,9 @@ const App = () => {
     const payload = {
       latitude: '40.4865496',
       longitude: '-111.9164662',
-      radius: 20000,
-      keyword: 'thai',
+      radius: 50000,
       maxPrice: 3,
       minPrice: 2,
-      openNow: true,
     }
     return await getRestaurants(payload)
   }

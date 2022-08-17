@@ -21,7 +21,7 @@ async function getRestaurants(req: any) {
       radius: req.radius,
       type: 'restaurant',
      }); 
-    return(res.data.results)
+    return(res)
   } catch (err) {
     console.log(err);
   }

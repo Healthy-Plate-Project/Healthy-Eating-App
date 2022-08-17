@@ -18,7 +18,7 @@ const App = () => {
     return await getRestaurants(payload)
   }
   
-  // console.log(test())
+  console.log(test())
   return (
     <div>
       <Home/>

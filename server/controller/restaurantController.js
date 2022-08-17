@@ -25,6 +25,7 @@ const restaurantsController = {
       })
       .catch(function (error) {
         console.log(error);
+        res(error)
       });
   }
 }

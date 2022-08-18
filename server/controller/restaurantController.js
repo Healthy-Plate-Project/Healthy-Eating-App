@@ -1,5 +1,5 @@
 const axios = require('axios');
-const testSeeds = require('../seeds/testSeeds');
+const { testRestaurant, testRestaurants } = require('../seeds/testSeeds');
 
 const restaurantsController = {
   getRestaurants: async function (req, res) {
@@ -18,9 +18,28 @@ const restaurantsController = {
     //   url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C${longitude}${radius}${keyword}${maxPrice}${minPrice}${openNow}${rankByDistance}${type}&key=${apiKey}`,
     //   headers: {}
     // };
-    // console.log(config)
 
-    res.json(testSeeds)
+    res.json(testRestaurants)
+
+    // axios(config)
+    //   .then(function (response) {
+    //     console.log(response.data);
+    //     res.json(response.data);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //     res(error)
+    //   });
+  },
+  getRestaurant: async function (req, res) {
+    // const apiKey = process.env.GOOGLE_PLACES_APIKEY
+    // const config = {
+    //   method: 'GET',
+    //   url: `https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.params.restaurantId}&key=${apiKey}`,
+    //   headers: {}
+    // };
+
+    res.json(testRestaurant)
 
     // axios(config)
     //   .then(function (response) {

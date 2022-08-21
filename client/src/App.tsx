@@ -1,7 +1,14 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom'
+import {
+  Routes,
+  Route,
+} from "react-router";
+import GlobalStyle from './theme/globalStyle';
 import './App.css';
 import { getRestaurants } from './utils/serverCalls';
 import  { Home, Results }  from './pages'
+import { Navbar } from "./components"
 
 const App = () => {
 
@@ -19,10 +26,17 @@ const App = () => {
   }
   
   // console.log(test())
+  
   return (
-    <div>
-      <Home/>
-      <Results/>
+    <div className="App">
+      <GlobalStyle/>
+        <BrowserRouter>
+            <Routes>
+              <Route index element={<Home />}></Route>
+              <Route path="results" element={<Results />}></Route>
+            </Routes>
+          <Navbar/>
+      </BrowserRouter>
     </div>
   )
 }

@@ -1,13 +1,19 @@
 import styled from "styled-components";
 
-const HomeWrapper = styled.div`
+export const HomeWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  width: clamp(300px, 100%, 1000px);
-  height: 100vh;
-  padding: 1rem;
+  height: 90vh;
+  padding: 0 0 3rem 0;
 `;
 
-export default HomeWrapper;
+export const BackgroundImage = styled.img`
+  position: absolute;
+  z-index: 0;
+  bottom: -4rem;
+  width: clamp(290px, 130%, 600px);
+  filter: grayscale(1) invert(0) brightness(0.8) hue-rotate();
+  mix-blend-mode: darken;
+`;

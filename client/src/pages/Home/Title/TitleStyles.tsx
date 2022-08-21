@@ -6,8 +6,7 @@ const TitleStyled = styled.h1`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #efd7d7;
-  text-align: left;
+  color: #1f8b2e;
   font-size: 4.5rem;
   line-height: 4rem;
   padding: 5rem 0 0 0;

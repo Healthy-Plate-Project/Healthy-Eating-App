@@ -1,5 +1,5 @@
-import Search from "./search/Search";
-import Button from "./buttons/Button";
-import Input from "./input/Input";
+import Search from "./Search";
+import Button from "./Button";
+import Input from "./Input";
 
 export { Search, Button, Input };

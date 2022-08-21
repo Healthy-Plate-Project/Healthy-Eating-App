@@ -1,6 +1,6 @@
 import React from "react";
-import Input from "../input/Input";
-import Button from "../buttons/Button";
+import Input from "../Input";
+import Button from "../Button";
 import SearchWrapper from "./SearchStyles";
 
 const Search = () => (

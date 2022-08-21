@@ -18,10 +18,10 @@ const App = () => {
   
   console.log(test())
   return (
-    <div>
+    <>
       <Home/>
       <Results/>
-    </div>
+    </>
   )
 }
 

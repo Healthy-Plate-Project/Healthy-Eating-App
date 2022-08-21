@@ -1,4 +1,4 @@
-import Results from "./Results/Results";
-import Home from "./Home/Home";
+import Results from "./Results";
+import Home from "./Home";
 
 export { Results, Home };

@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-const ResultsStyled = styled.div`
-  background-color: aliceblue;
-`;
+const ResultsStyles = styled.div``;
 
-export default ResultsStyled;
+export default ResultsStyles;

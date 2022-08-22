@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { getRestaurant, getRestaurants } from './utils/serverCalls';
+import { getRestaurants } from './utils/serverCalls';
 import  { Home, Results }  from './pages'
 
 const App = () => {
@@ -16,20 +16,13 @@ const App = () => {
     return await getRestaurants(payload)
   }
   
-
-  async function getRestaurantTest() {
-    const payload = 'ChIJn58N1B9gUocRpAXOXPbFcOo'
-    return await getRestaurant(payload)
-  }
-
-  console.log(getRestaurantsTest())
-  console.log(getRestaurantTest())
-  
+  // console.log(test())
   return (
     <div>
       <Home/>
       <Results/>
     </div>
+    </>
   )
 }
 

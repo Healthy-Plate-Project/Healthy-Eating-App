@@ -1,13 +1,13 @@
 const express = require("express");
-require('dotenv').config()
-const cors = require('cors');
+require("dotenv").config({ path: "./.env" });
+const cors = require("cors");
 // const cookieParser = require('cookie-parser')
 // var bodyParser = require("body-parser");
 const path = require("path");
 const routes = require("./routes");
 const router = require("express").Router();
-const db = require("./config/connection");
 const PORT = process.env.PORT || 3001;
+const db = require("./config/connection");
 const app = express();
 
 // app.use(cookieParser());

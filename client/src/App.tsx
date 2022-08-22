@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import { getRestaurants } from './utils/serverCalls';
+import { getRestaurant, getRestaurants } from './utils/serverCalls';
 import  { Home, Results }  from './pages'
 
 const App = () => {
 
-  async function test() {
+  async function getRestaurantsTest() {
     const payload = {
       latitude: '40.4865496',
       longitude: '-111.9164662',
@@ -16,7 +16,15 @@ const App = () => {
     return await getRestaurants(payload)
   }
   
-  console.log(test())
+
+  async function getRestaurantTest() {
+    const payload = 'ChIJn58N1B9gUocRpAXOXPbFcOo'
+    return await getRestaurant(payload)
+  }
+
+  console.log(getRestaurantsTest())
+  console.log(getRestaurantTest())
+  
   return (
     <div>
       <Home/>

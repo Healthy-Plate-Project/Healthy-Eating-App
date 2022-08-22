@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ResultStyled = styled.div`
+const ResultStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +10,7 @@ export const ResultStyled = styled.div`
   gap: 1rem;
 `;
 
-export const ItemStyled = styled.div`
+const ItemStyled = styled.div`
   gap: 0.5rem;
   color: white;
   border: 1px white solid;
@@ -18,8 +18,10 @@ export const ItemStyled = styled.div`
   border-radius: 20px;
   width: 85vw;
 `;
-export const ItemDetail = styled.div`
+const ItemDetail = styled.div`
   display: flex;
   gap: 1rem;
   color: lightgrey;
 `;
+
+export { ResultStyled, ItemStyled, ItemDetail };

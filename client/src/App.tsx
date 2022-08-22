@@ -1,7 +1,14 @@
 import React from 'react';
 import './App.css';
-import { getRestaurants } from './utils/serverCalls';
+import { BrowserRouter } from 'react-router-dom'
+import {
+  Routes,
+  Route,
+} from "react-router";
+import { getRestaurants, getRestaurant } from './utils/serverCalls';
 import  { Home, Results }  from './pages'
+import GlobalStyle from './theme/globalStyle';
+import { Navbar } from './components';
 
 const App = () => {
 
@@ -15,14 +22,26 @@ const App = () => {
     }
     return await getRestaurants(payload)
   }
-  
-  // console.log(test())
+
+  async function getRestaurantTest() {
+    const payload = 'ChIJn58N1B9gUocRpAXOXPbFcOo'
+    return await getRestaurant(payload)
+  }
+
+  console.log(getRestaurantsTest())
+  console.log(getRestaurantTest())
+
   return (
-    <div>
-      <Home/>
-      <Results/>
+    <div className="App">
+      <GlobalStyle />
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Home />}></Route>
+          <Route path="results" element={<Results />}></Route>
+        </Routes>
+        <Navbar />
+      </BrowserRouter>
     </div>
-    </>
   )
 }
 

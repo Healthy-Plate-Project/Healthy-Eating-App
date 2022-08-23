@@ -1,5 +1,6 @@
-import Search from "./Search";
-import Button from "./Button";
-import Input from "./Input";
+import Search from "./search/Search";
+import Button from "./buttons/Button";
+import Input from "./input/Input";
+import Navbar from "./nav/Navbar";
 
-export { Search, Button, Input };
+export { Navbar, Search, Button, Input };

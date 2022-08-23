@@ -27,6 +27,16 @@ async function getRestaurants(req: any) {
   }
 }
 
+async function getRestaurant(restaurantId: any) {
+  try {
+    const res = await axios.post(`${apiServer()}/api/restaurant/${restaurantId}`);
+    return (res)
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export {
   getRestaurants,
+  getRestaurant,
 }

@@ -1,4 +1,5 @@
 const axios = require('axios');
+const Restaurant = require('../models/Restaurant');
 const { testRestaurant, testRestaurants } = require('../seeds/testSeeds');
 
 const restaurantsController = {
@@ -50,6 +51,15 @@ const restaurantsController = {
     //     console.log(error);
     //     res(error)
     //   });
+  },
+  saveRestaurant: async function (req, res) {
+    try {
+      console.log(req.body)
+      const data = await Restaurant.create(req.body);
+      res.json(data);
+    } catch (error) {
+      res.status(500).json(error);
+    }
   }
 }
 

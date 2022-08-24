@@ -21,12 +21,17 @@ app.use(express.urlencoded({ extended: false }));
 //   })
 // );
 app.use(express.json());
+
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000"],
+    origin: [
+      "http://localhost:3000",
+      "https://healthy-eating-project-359101.uc.r.appspot.com",
+    ],
   })
 );
+
 app.use(routes);
 
 // Serve up static assets
@@ -36,6 +41,7 @@ if (process.env.NODE_ENV === "production") {
   router.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
   });
+  app.use(routes);
 }
 
 db.once("open", () => {

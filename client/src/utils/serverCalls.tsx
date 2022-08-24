@@ -21,7 +21,16 @@ async function getRestaurants(req: any) {
       radius: req.radius,
       type: 'restaurant',
      }); 
-    return(res.data.results)
+    return(res)
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function getRestaurant(restaurantId: any) {
+  try {
+    const res = await axios.post(`${apiServer()}/api/restaurant/${restaurantId}`);
+    return (res)
   } catch (err) {
     console.log(err);
   }
@@ -29,4 +38,5 @@ async function getRestaurants(req: any) {
 
 export {
   getRestaurants,
+  getRestaurant,
 }

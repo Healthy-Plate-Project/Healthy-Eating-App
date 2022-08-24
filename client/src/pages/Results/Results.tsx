@@ -1,18 +1,8 @@
 import React from "react";
-// import { Link } from "react-router-dom";
-import { ResultsStyled, Main } from "./ResultsStyles";
-import { Search } from "../../components";
-import { Result } from "./Result";
+import ResultsStyled from "./ResultsStyles";
 
 const Results = () => {
-  return (
-    <ResultsStyled>
-      <Search />
-      <Main>
-        <Result />
-      </Main>
-    </ResultsStyled>
-  );
+  return <ResultsStyled>Results</ResultsStyled>;
 };
 
 export default Results;

@@ -1,11 +1,14 @@
 const router = require("express").Router();
 const {
   getRestaurants,
-  getRestaurant
+  getRestaurant,
+  saveRestaurant
 } = require("../../controller/restaurantController");
 
 router.route("/").post(getRestaurants);
 
-router.route("/:restaurantId").post(getRestaurant)
+router.route("/save").post(saveRestaurant);
+
+router.route("/:restaurantId").post(getRestaurant);
 
 module.exports = router;

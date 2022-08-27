@@ -1,8 +1,14 @@
 import React from "react";
-import ButtonStyles from "./ButtonStyles";
+import { ButtonStyles, AuthenticationButton } from "./ButtonStyles";
 
-function Button() {
+export default function Button() {
   return <ButtonStyles>Search</ButtonStyles>;
+};
+
+type AuthProps = {
+  content: string;
 }
 
-export default Button;
+export function AuthButton({ content }: AuthProps) {
+  return <AuthenticationButton>{content}</AuthenticationButton>;
+};

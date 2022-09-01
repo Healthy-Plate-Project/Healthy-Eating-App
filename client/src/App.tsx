@@ -11,6 +11,7 @@ import { Navbar } from './components';
 
 const App = () => {
 
+
   return (
     <div className="App">
       <GlobalStyle />

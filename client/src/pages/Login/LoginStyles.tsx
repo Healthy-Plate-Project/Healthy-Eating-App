@@ -99,4 +99,4 @@ const SignUp = styled.h4`
   cursor: pointer;
 `;
 
-export { MainContainer, InputContainer, WelcomeText, ButtonContainer, LoginWith, HorizontalDivider, IconsContainer, SignUp };
+export { MainContainer, InputContainer, WelcomeText, ButtonContainer, LoginWith, SignUp };

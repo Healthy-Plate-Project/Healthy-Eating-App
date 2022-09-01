@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router";
 import { getRestaurants, getRestaurant } from './utils/serverCalls';
-import  { Home, Results, NotFound }  from './pages'
+import  { Home, Results, NotFound, Review }  from './pages'
 import GlobalStyle from './theme/globalStyle';
 import { Navbar } from './components';
 

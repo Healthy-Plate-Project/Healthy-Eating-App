@@ -5,7 +5,7 @@ import {
   Routes,
   Route,
 } from "react-router";
-import  { Home, Results, NotFound }  from './pages'
+import  { Home, Results, Reviews, NotFound }  from './pages'
 import GlobalStyle from './theme/globalStyle';
 import { Navbar } from './components';
 
@@ -18,6 +18,7 @@ const App = () => {
         <Routes>
           <Route index element={<Home />}></Route>
           <Route path="results" element={<Results />}></Route>
+          <Route path="reviews" element={<Reviews />}></Route>
           <Route path="*" element={<NotFound />}></Route>
           
         </Routes>

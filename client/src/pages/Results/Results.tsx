@@ -1,5 +1,4 @@
 import React from "react";
-// import { Link } from "react-router-dom";
 import { ResultsStyles, Main } from "./ResultsStyles";
 import { Search } from "../../components";
 import { Result } from "./Result";

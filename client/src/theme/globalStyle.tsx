@@ -17,15 +17,15 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    line-height: .5rem;
+    /* line-height: .5rem; */
   }
 
   h2 {
-    line-height: .5rem;
+    /* line-height: .5rem; */
   }
 
   h3 {
-    line-height: .5rem;
+    font-size: .8rem;
   }
 `;
 

@@ -1,14 +1,11 @@
 import React from "react";
-import { ButtonStyles, AuthenticationButton } from "./ButtonStyles";
+import { ButtonStyles, LoginButtonStyles } from "./ButtonStyles";
 
-export default function Button() {
-  return <ButtonStyles>Search</ButtonStyles>;
-};
-
-type AuthProps = {
+type Props = {
   content: string;
+  name: string;
 }
 
-export function AuthButton({ content }: AuthProps) {
-  return <AuthenticationButton>{content}</AuthenticationButton>;
+export default function Button({ content, name }: Props) {
+  return <ButtonStyles id={name + "-btn"}>{content}</ButtonStyles >;
 };

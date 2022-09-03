@@ -8,18 +8,10 @@ import {
   ButtonContainer,
   SignUp
 } from "./LoginStyles";
-
-// react icons
-
-/*
-import { FaFacebookF, FaInstagram } from "react-icons/fa";
-import { BsGoogle } from "react-icons/bs";
-*/
+import { LoginInput } from "../../components/Input/InputStyles";
 
 // components
-import { LoginInput } from "../../components/Input/InputStyles";
-import { AuthButton } from "../../components/Button/Button";
-// import Icon from "../../components/Icon/Icon";
+import { Button } from '../../components';
 
 function Login() {
   /*
@@ -38,21 +30,8 @@ function Login() {
         <LoginInput type="password" placeholder="Password" />
       </InputContainer>
       <ButtonContainer>
-        <AuthButton content="Login" />
+        <Button content="Login" name="login" />
       </ButtonContainer>
-      {/* <LoginWith>OR LOGIN WITH</LoginWith>
-      <HorizontalDivider />
-      <IconsContainer>
-        <Icon color={FacebookBackground}>
-          <FaFacebookF />
-        </Icon>
-        <Icon color={InstagramBackground}>
-          <FaInstagram />
-        </Icon>
-        <Icon color={GoogleBackground}>
-          <BsGoogle />
-        </Icon>
-      </IconsContainer> */}
       <SignUp>Sign Up</SignUp>
     </MainContainer>
   )

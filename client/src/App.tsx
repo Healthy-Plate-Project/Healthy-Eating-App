@@ -5,7 +5,7 @@ import {
   Routes,
   Route,
 } from "react-router";
-import { Home, Results, NotFound, Login } from './pages'
+import { Home, Results, NotFound, Login, SignUp } from './pages'
 import GlobalStyle from './theme/globalStyle';
 import { Navbar } from './components';
 
@@ -22,6 +22,7 @@ const App = () => {
           <Route path="results" element={<Results />} />
           <Route path="*" element={<NotFound />} />
           <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
         </Routes>
         <Navbar />
       </BrowserRouter>

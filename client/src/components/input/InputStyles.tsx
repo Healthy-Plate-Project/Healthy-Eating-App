@@ -37,4 +37,8 @@ const LoginInput = styled.input`
   }
 `;
 
-export { InputStyled, LoginInput };
+const SignUpInput = styled(LoginInput)`
+  margin: 0.5rem;
+`;
+
+export { InputStyled, LoginInput, SignUpInput };

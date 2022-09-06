@@ -17,10 +17,11 @@ const App = () => {
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home />}></Route>
-          <Route path="results" element={<Results />}></Route>
-          <Route path="*" element={<NotFound />}></Route>
-          <Route path="login" element={<Login />}></Route>
+          <Route path="/" element={<App />} />
+          <Route index element={<Home />} />
+          <Route path="results" element={<Results />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="login" element={<Login />} />
         </Routes>
         <Navbar />
       </BrowserRouter>

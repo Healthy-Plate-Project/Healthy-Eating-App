@@ -7,5 +7,5 @@ type Props = {
 }
 
 export default function Button({ content, name }: Props) {
-  return <ButtonStyles id={name + "-btn"}>{content}</ButtonStyles >;
+  return <ButtonStyles id={name + "-button"}>{content}</ButtonStyles >;
 };

@@ -19,4 +19,16 @@ const ButtonStyles = styled.button`
   }
 `;
 
-export default ButtonStyles;
+const LoginButtonStyles = styled(ButtonStyles)`
+  background: linear-gradient(to right, #3b2b3b 0%, #5b4269d1 79%);
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  width: 65%;
+  height: 3rem;
+  border: none;
+  color: white;
+  border-radius: 2rem;
+  cursor: pointer;
+`;
+
+export { ButtonStyles, LoginButtonStyles };

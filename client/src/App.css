@@ -1,18 +1,11 @@
 /* HIDE RADIO */
-form.stars input[type=radio] {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-/* IMAGE STYLES */
-[type=radio]+img {
-    cursor: pointer;
+.stars {
+  cursor: pointer;
+  height: 25px;
 }
 
 /* CHECKED STYLES */
-[type=radio]:checked+img {
+.checked-star {
     background-color: gold;
 }
 

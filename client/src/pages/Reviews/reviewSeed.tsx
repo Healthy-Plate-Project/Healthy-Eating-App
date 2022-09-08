@@ -1,37 +1,56 @@
-export const reviewSeed = [
+import {A1, A2, A3, A4} from "../../assets/images/index"
+
+export const reviewsObj = [
+
   {
     user: "David",
-    rating: 3,
-    keyword: "ok",
-    value: "2",
-    reviewText: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old."
+    listImage: A1, 
+    alt: "Profile Picture",
+    listTitle: "Worst Restaurant Ever!",
+    listText: "You must first understand the difference between intrinsic elements and value-based elements. Given a JSX expression <expr />, expr may either refer to something intrinsic to the environment (e.g. a div or span in a DOM environment) or to a custom component that you created. This is important for two reasons", 
+    value: 3, 
+    rating: 4,
+    date: "5/5/20", 
   },
   {
     user: "Robyn",
+    listImage: A2, 
+    alt: "Profile Picture",
+    listTitle: "Best Restaurant Ever!",
+    listText: "You must first understand the difference between intrinsic elements and value-based elements. Given a JSX expression <expr />, expr may either refer to something intrinsic to the environment (e.g. a div or span in a DOM environment) or to a custom component that you created. This is important for two reasons", 
+    value: 2, 
     rating: 3,
-    keyword: "meh",
-    value: "5",
-    reviewText: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
-  },
+    date: "7/15/13", 
+   },
   {
     user: "Matt",
-    rating: 3,
-    keyword: "good",
-    value: "5",
-    reviewText: "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from."
+    listImage: A3, 
+    alt: "Profile Picture",
+    listTitle: "Only Place Open",
+    listText: "You must first understand the difference between intrinsic elements and value-based elements. Given a JSX expression <expr />, expr may either refer to something intrinsic to the environment (e.g. a div or span in a DOM environment) or to a custom component that you created. This is important for two reasons", 
+    value: 1, 
+    rating: 2,
+    date: "3/3/21", 
   },
   {
     user: "John",
-    rating: 5,
-    keyword: "great",
-    value: "4",
-    reviewText: "It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable."
+    listImage: A4, 
+    alt: "Profile Picture",
+    listTitle: "Not the Worst",
+    listText: "You must first understand the difference between intrinsic elements and value-based elements. Given a JSX expression <expr />, expr may either refer to something intrinsic to the environment (e.g. a div or span in a DOM environment) or to a custom component that you created. This is important for two reasons", 
+    value: 3, 
+    rating: 4,
+    date: "5/1/15", 
   },
   {
     user: "Kimberly",
-    rating: 5,
-    keyword: "great",
-    value: "4",
-    reviewText: "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. "
-},
+    listImage: A1, 
+    alt: "Profile Picture",
+    listTitle: "Best Restaurant Ever!",
+    listText: "You must first understand the difference between intrinsic elements and value-based elements. Given a JSX expression <expr />, expr may either refer to something intrinsic to the environment (e.g. a div or span in a DOM environment) or to a custom component that you created. This is important for two reasons", 
+    value: 3, 
+    rating: 4,
+    date: "11/6/18", 
+  },
 ];
+

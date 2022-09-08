@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router";
 import  { Home, Results, Reviews, NotFound }  from './pages'
-import GlobalStyle from './theme/globalStyle';
+import GlobalStyle from './styles/globalStyle';
 import { Navbar } from './components';
 
 const App = () => {
@@ -20,7 +20,6 @@ const App = () => {
           <Route path="results" element={<Results />}></Route>
           <Route path="reviews" element={<Reviews />}></Route>
           <Route path="*" element={<NotFound />}></Route>
-          
         </Routes>
         <Navbar />
       </BrowserRouter>

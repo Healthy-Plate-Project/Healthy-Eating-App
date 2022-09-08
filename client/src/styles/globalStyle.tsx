@@ -12,20 +12,23 @@ const GlobalStyle = createGlobalStyle`
     font-family: Open-Sans, Helvetica, Sans-Serif;
     color: white;
   };
+
   a {
     cursor: default;
   }
 
   h1 {
-    /* line-height: .5rem; */
+    display:inline
   }
 
   h2 {
-    /* line-height: .5rem; */
+
+    display:inline
   }
 
   h3 {
     font-size: .8rem;
+    display:inline
   }
 `;
 

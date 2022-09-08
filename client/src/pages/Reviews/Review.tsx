@@ -1,24 +1,52 @@
 import React from "react";
-import { ReviewStyled, ReviewText } from "./ReviewStyled";
-import  ReviewsStyled from "./ReviewsStyled"
-import { reviewSeed } from "./reviewSeed";
+import { ReviewWrapper } from "./ReviewsStyled";
+import {S} from "./ReviewsStyled"
+import { reviewsObj } from "./reviewSeed"
+   
+interface ListProps {
+        user?: string;
+        listImage?: string;
+        alt?: string;
+        listTitle?: string;
+        listText?: string,
+        value?: number;
+        rating?: number;
+        date?: String;
+        children?: React.ReactNode;
+      }
 
-const payloadList = reviewSeed.map(({ user, rating, keyword, value, reviewText }) => {
+
+const Review = () => {
+
+    {reviewsObj.map((list, index) => {
     return (
-        <>
-      <ReviewStyled key={user}>
-        <h1>{user}</h1>
-        <h2>{rating}</h2>
-        <h2>"{keyword}"</h2>
-        <h2>{value}</h2>
-        <ReviewText>
-            <h3>{reviewText}</h3>
-        </ReviewText>
-      </ReviewStyled>
-    </>
-    );
-  });
+        
+        <ul key={index}>
+          <S.List>  
+          <S.ListImage src={list.listImage} alt={list.alt} />
+          <div>Matt</div>  
+          <h3>{list.date}</h3>
+          <hr/>
 
-export const Review = () => {
-  return <ReviewsStyled>{payloadList}</ReviewsStyled>;
+          <S.ListTitle>
+          <h1>{list.listTitle}</h1>
+          </S.ListTitle>
+          
+          <S.ListBody>  
+          <p>         
+          {list.listText}
+          </p>
+          </S.ListBody>
+          <hr/>
+          
+          <S.ListLink>
+          <h3>value</h3><h2>{list.value}</h2>
+          <h3>rating</h3><h2>{list.rating}</h2>
+          </S.ListLink>
+          </S.List>
+        </ul>
+          );
+        })}
 };
+
+export default Review

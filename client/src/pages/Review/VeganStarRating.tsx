@@ -1,5 +1,7 @@
 import React from "react";
-import emptyStar from "./../../assets/images/white-background-star.png";
+// import emptyStar from "./../../assets/images/white-background-star.png";
+import goldStar from "./../../assets/images/gold-star.png";
+import whiteStar from "./../../assets/images/white-star.png";
 
 const VeganStarRating = (props: any) => {
 
@@ -15,11 +17,11 @@ const VeganStarRating = (props: any) => {
       const alt = `${i.toString()}-Vegan-Star-Rating`;
       if (i <= props.selectedVeganStarRating) {
         array.push(
-          <img className="stars checked-star" src={emptyStar} alt={alt} aria-label={alt} key={id} id={id} onClick={starRatingHandler} />
+          <img className="stars checked-star" src={goldStar} alt={alt} aria-label={alt} key={id} id={id} onClick={starRatingHandler} />
         )
       } else {
         array.push(
-          <img className="stars" src={emptyStar} alt={alt} aria-label={alt} key={id} id={id} onClick={starRatingHandler} />
+          <img className="stars" src={whiteStar} alt={alt} aria-label={alt} key={id} id={id} onClick={starRatingHandler} />
         )
       }
     }

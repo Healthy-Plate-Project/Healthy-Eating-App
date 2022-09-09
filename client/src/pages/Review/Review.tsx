@@ -14,7 +14,7 @@ const Review = () => {
   return (
     <div>
       <h1>Review for Business Name Placeholder</h1>
-      <form className="stars">
+      <form className="starForm">
         <h3>Rate this restaurant based on the special diet:</h3>
         <VeganStarRating
           selectedVeganStarRating={selectedVeganStarRating}

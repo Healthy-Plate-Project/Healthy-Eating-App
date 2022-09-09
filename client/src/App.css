@@ -1,39 +1,11 @@
-<<<<<<< HEAD
-/* RMG begin star styles */
-/* hides radio but still accessible by screen readers, avoiding display: none here. NOTE: if no position it shows gaps between stars */
-
-
-/* form.stars input[type=radio] {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-} */
-
-/* all input types with radio with an image change the cursor to make look clickable  */
-[type=radio]+img {
-    cursor: pointer;
-}
-
-/* selected radio button that is checked and applies style to its image */
-[type=radio]:checked+img {
-=======
-/* HIDE RADIO */
 .stars {
   cursor: pointer;
   height: 25px;
 }
 
-/* CHECKED STYLES */
-.checked-star {
->>>>>>> dfaac3b0613bc40967cdc36154d100d6649a2ef8
-    background-color: gold;
-}
 
 /*paragraph input on forms*/
 textarea.paragraph {
 width: 100%;
 height: 150px;
 }
-
-/*RMG end star styles*/

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* RMG begin star styles */
 /* hides radio but still accessible by screen readers, avoiding display: none here. NOTE: if no position it shows gaps between stars */
 
@@ -16,6 +17,16 @@
 
 /* selected radio button that is checked and applies style to its image */
 [type=radio]:checked+img {
+=======
+/* HIDE RADIO */
+.stars {
+  cursor: pointer;
+  height: 25px;
+}
+
+/* CHECKED STYLES */
+.checked-star {
+>>>>>>> dfaac3b0613bc40967cdc36154d100d6649a2ef8
     background-color: gold;
 }
 

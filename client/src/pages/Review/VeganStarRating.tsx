@@ -1,5 +1,4 @@
 import React from "react";
-// import emptyStar from "./../../assets/images/white-background-star.png";
 import goldStar from "./../../assets/images/gold-star.png";
 import whiteStar from "./../../assets/images/white-star.png";
 

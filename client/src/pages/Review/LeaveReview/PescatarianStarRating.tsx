@@ -1,19 +1,19 @@
 import React from "react";
-import goldStar from "./../../assets/images/gold-star.png";
-import whiteStar from "./../../assets/images/white-star.png";
+import goldStar from "../../../assets/images/gold-star.png";
+import whiteStar from "../../../assets/images/white-star.png";
 
-const NutFreeStarRating = (props: any) => {
+const PescatarianStarRating = (props: any) => {
   function starRatingHandler(event: any) {
     event.preventDefault();
-    props.setSelectedNutFreeStarRating(parseInt(event.target.id[0]));
+    props.setSelectedPescatarianStarRating(parseInt(event.target.id[0]));
   }
 
-  function renderNutFreeStars() {
+  function renderPescatarianStars() {
     const array = [];
     for (let i = 1; i <= 5; i++) {
-      const id = `${i.toString()}-NutFree-star-id`;
-      const alt = `${i.toString()}-NutFree-Star-Rating`;
-      if (i <= props.selectedNutFreeStarRating) {
+      const id = `${i.toString()}-Pescatarian-star-id`;
+      const alt = `${i.toString()}-Pescatarian-Star-Rating`;
+      if (i <= props.selectedPescatarianStarRating) {
         array.push(
           <img
             className="stars"
@@ -44,10 +44,10 @@ const NutFreeStarRating = (props: any) => {
 
   return (
     <div>
-      <h4>Nut Free Rating</h4>
-      {renderNutFreeStars()}
+      <h4>Pescatarian Rating</h4>
+      {renderPescatarianStars()}
     </div>
   );
 };
 
-export default NutFreeStarRating;
+export default PescatarianStarRating;

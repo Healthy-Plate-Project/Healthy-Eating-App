@@ -14,12 +14,13 @@ const ItemStyled = styled.div`
   gap: 0.5rem;
   color: white;
   border: 1px white solid;
-  padding: 0 1rem;
+  padding: 1rem;
   border-radius: 20px;
   width: 85vw;
 `;
 const ItemDetail = styled.div`
   display: flex;
+  padding: 2rem;
   gap: 1rem;
   color: lightgrey;
 `;

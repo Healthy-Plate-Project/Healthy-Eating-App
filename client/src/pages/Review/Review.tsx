@@ -4,7 +4,7 @@ import Textarea from "./ReviewStyles";
 import ButtonStyles from "../../components/buttons/ButtonStyles";
 import VegetarianStarRating from "./VegetarianStarRating";
 import PescatarianStarRating from "./PescatarianStarRating";
-import GlutenFreeStarRating from "./GluenFree";
+import GlutenFreeStarRating from "./GlutenFree";
 import DairyFreeStarRating from "./DairyFree";
 import NutFreeStarRating from "./NutFree";
 import OverallStarRating from "./OverallRating";

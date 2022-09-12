@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Input from "../input/Input";
-import Button from "../buttons/Button";
+import Input from "../Input/Input";
+import Button from "../Buttons/Button";
 import SearchWrapper from "./SearchStyles";
 
 const Search = () => (

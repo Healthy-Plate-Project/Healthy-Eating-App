@@ -1,8 +1,8 @@
 import React from "react";
-import ButtonStyles from "./ButtonStyles";
+import ButtonStyled from "./ButtonStyles";
 
 function Button() {
-  return <ButtonStyles>Search</ButtonStyles>;
+  return <ButtonStyled>Search</ButtonStyled>;
 }
 
 export default Button;

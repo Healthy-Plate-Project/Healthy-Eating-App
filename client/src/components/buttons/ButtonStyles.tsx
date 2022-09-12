@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const ButtonStyles = styled.button`
+const ButtonStyled = styled.button`
   border: none;
   border-radius: 50px;
   height: 3rem;
@@ -19,4 +19,4 @@ const ButtonStyles = styled.button`
   }
 `;
 
-export default ButtonStyles;
+export default ButtonStyled;

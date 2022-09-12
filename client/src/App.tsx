@@ -1,10 +1,13 @@
-import React from "react";
-import "./App.css";
-import { BrowserRouter } from "react-router-dom";
-import { Routes, Route } from "react-router";
-import { Home, Results, NotFound, Review } from "./pages";
-import GlobalStyle from "./theme/globalStyle";
-import { Navbar } from "./components";
+import React from 'react';
+import './App.css';
+import { BrowserRouter } from 'react-router-dom'
+import {
+  Routes,
+  Route,
+} from "react-router";
+import { Home, Results, NotFound, Login } from './pages'
+import GlobalStyle from './theme/globalStyle';
+import { Navbar } from './components';
 
 const App = () => {
   return (
@@ -12,10 +15,11 @@ const App = () => {
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home />}></Route>
-          <Route path="results" element={<Results />}></Route>
-          <Route path="*" element={<NotFound />}></Route>
-          <Route path="review" element={<Review />}></Route>
+          <Route path="/" element={<App />} />
+          <Route index element={<Home />} />
+          <Route path="results" element={<Results />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="login" element={<Login />} />
         </Routes>
         <Navbar />
       </BrowserRouter>

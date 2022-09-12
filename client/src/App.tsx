@@ -10,8 +10,6 @@ import GlobalStyle from './theme/globalStyle';
 import { Navbar } from './components';
 
 const App = () => {
-
-
   return (
     <div className="App">
       <GlobalStyle />
@@ -26,7 +24,7 @@ const App = () => {
         <Navbar />
       </BrowserRouter>
     </div>
-  )
-}
+  );
+};
 
 export default App;

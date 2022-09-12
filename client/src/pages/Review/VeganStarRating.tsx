@@ -16,7 +16,7 @@ const VeganStarRating = (props: any) => {
       const alt = `${i.toString()}-Vegan-Star-Rating`;
       if (i <= props.selectedVeganStarRating) {
         array.push(
-          <img className="stars checked-star" src={goldStar} alt={alt} aria-label={alt} key={id} id={id} onClick={starRatingHandler} />
+          <img className="stars" src={goldStar} alt={alt} aria-label={alt} key={id} id={id} onClick={starRatingHandler} />
         )
       } else {
         array.push(

@@ -7,21 +7,10 @@ declare module 'axios' {
   }
 }
 
-async function getRestaurants(req: any) {
+async function getRestaurants(req: any): Promise<any>{
   try {
-    const res = await axios.post(`${apiServer()}/api/restaurant`, { 
-      latitude: req.latitude,
-      longitude: req.longitude,
-      maxPrice: req.maxPrice,
-      minPrice: req.minPrice,
-      keyword: req.keyword,
-      openNow: req.openNow,
-      // TODO: use this to setup pagination
-      // pageToken: req.pageToken,
-      radius: req.radius,
-      type: 'restaurant',
-     }); 
-    return(res)
+    const res = await axios.post(`${apiServer()}/api/restaurant`, { req }); 
+    return(res.data)
   } catch (err) {
     console.log(err);
   }
@@ -30,7 +19,7 @@ async function getRestaurants(req: any) {
 async function getRestaurant(restaurantId: any) {
   try {
     const res = await axios.post(`${apiServer()}/api/restaurant/${restaurantId}`);
-    return (res)
+    return (res.data)
   } catch (err) {
     console.log(err);
   }
@@ -39,7 +28,7 @@ async function getRestaurant(restaurantId: any) {
 async function saveRestaurant(req: any) {
   try {
     const res = await axios.post(`${apiServer()}/api/restaurant/save`, req);
-    return (res)
+    return (res.data)
   } catch (err) {
     console.log(err);
   }

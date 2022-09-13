@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import VeganStarRating from "./VeganStarRating";
 import Textarea from "./ReviewStyles";
-import Button from "../../components/Button/Button";
+import Button from "../../../components/Button/Button";
 import VegetarianStarRating from "./VegetarianStarRating";
 import PescatarianStarRating from "./PescatarianStarRating";
 import GlutenFreeStarRating from "./GlutenFree";

@@ -36,7 +36,7 @@ const restaurantsController = {
     // const apiKey = process.env.GOOGLE_PLACES_APIKEY
     // const config = {
     //   method: 'GET',
-    //   url: `https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.params.restaurantId}&key=${apiKey}`,
+    //   url: `https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.params.placeId}&key=${apiKey}`,
     //   headers: {}
     // };
 

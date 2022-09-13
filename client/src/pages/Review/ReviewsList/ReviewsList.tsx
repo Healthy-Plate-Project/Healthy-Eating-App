@@ -22,30 +22,3 @@ function ReviewsList(props: any) {
 }
 
 export default ReviewsList;
-
-// function ReviewsList() {
-//   return (
-//     <>
-//       {ReviewsSeed.map(({ rating, accuracy, value, reviewText }) => (
-//         <ReviewsWrapper>
-//           <ReviewList>
-//             <h3>
-//               Rating <h2>{rating}</h2>
-//             </h3>
-//             <h3>
-//               Accuracy <h2>{accuracy}</h2>
-//             </h3>
-//             <h3>
-//               Value <h2>{value}</h2>
-//             </h3>
-//           </ReviewList>
-//           <ReviewList>
-//             <div>
-//               <p>{reviewText}</p>
-//             </div>
-//           </ReviewList>
-//         </ReviewsWrapper>
-//       ))}
-//     </>
-//   );
-// }

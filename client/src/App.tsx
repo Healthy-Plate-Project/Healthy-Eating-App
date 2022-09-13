@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom'
 import {
@@ -11,6 +11,19 @@ import { Navbar } from './components';
 
 const App = () => {
 
+  const [currentUserEmail, setCurrentUserEmail] = useState('');
+  useEffect(() => {
+    (
+      async () => {
+        const response = await fetch("/api/user/user", {
+          headers: { "Content-Type": "application/json" },
+          credentials: 'include'
+        });
+        const content = await response.json();
+        setCurrentUserEmail(content.username);
+      }
+    )();
+  });
 
   return (
     <div className="App">
@@ -21,9 +34,9 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="results" element={<Results />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="login" element={<Login />} />
+          <Route path="login" element={<Login currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} />} />
         </Routes>
-        <Navbar />
+        <Navbar currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} />
       </BrowserRouter>
     </div>
   )

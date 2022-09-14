@@ -19,8 +19,8 @@ const App = () => {
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
-          <Route index element={<Home />} />
+          {/* <Route exact path="/" element={<App />} /> */}
+          <Route path="/" element={<Home />} />
           <Route path="results" element={<Results />} />
           <Route path="review" element={<Review />} />
           <Route path="reviews" element={<ReviewsListParent />} />

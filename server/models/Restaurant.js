@@ -5,7 +5,7 @@ const restaurantSchema = new Schema(
     place_id: {
       type: String
     },
-    restaurantName: {
+    restaurant_name: {
       type: String
     },
     longitude: {
@@ -14,12 +14,9 @@ const restaurantSchema = new Schema(
     latitude: {
       type: String
     },
-    photoReference: {
+    photo_reference: {
       type: String 
     },
-    category: {
-      type: String
-    }
   },
   {
     toJSON: {

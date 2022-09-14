@@ -5,9 +5,16 @@ import {
   Routes,
   Route,
 } from "react-router";
-import { Home, Results, NotFound, Login } from './pages'
-import GlobalStyle from './theme/globalStyle';
-import { Navbar } from './components';
+import {
+  Home,
+  Results,
+  NotFound,
+  Login,
+  Review,
+  ReviewsListParent,
+} from "./pages";
+import GlobalStyle from "./theme/globalStyle";
+import { Navbar } from "./components";
 
 const App = () => {
 
@@ -30,16 +37,18 @@ const App = () => {
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
-          <Route index element={<Home />} />
+          {/* <Route exact path="/" element={<App />} /> */}
+          <Route path="/" element={<Home />} />
           <Route path="results" element={<Results />} />
+          <Route path="review" element={<Review />} />
+          <Route path="reviews" element={<ReviewsListParent />} />
           <Route path="*" element={<NotFound />} />
           <Route path="login" element={<Login currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} />} />
         </Routes>
         <Navbar currentUserEmail={currentUserEmail} setCurrentUserEmail={setCurrentUserEmail} />
       </BrowserRouter>
     </div>
-  )
-}
+  );
+};
 
 export default App;

@@ -4,7 +4,17 @@ import { convertMilesToMeters } from "../../utils/helpers";
 import { getRestaurant, getRestaurants, saveRestaurant } from "../../utils/serverCalls";
 import NavbarStyled from "./NavbarStyles";
 
-const Navbar = () => {
+export function Navbar(props: any) {
+
+  const logout = async () => {
+    await fetch("/api/user/logout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: 'include'
+    });
+    props.setCurrentUserEmail('');
+  }
+
   async function testAPICalls() {
     const getRestaurantsResults = await getRestaurants({
       latitude: '40.4865496',
@@ -31,6 +41,7 @@ const Navbar = () => {
     console.log(getRestaurantResults.result)
     console.log(saveRestaurantResults)
   }
+
   return (
     <NavbarStyled>
       <Link to="/">Home</Link>
@@ -39,5 +50,3 @@ const Navbar = () => {
     </NavbarStyled>
   )
 }
-
-export default Navbar;

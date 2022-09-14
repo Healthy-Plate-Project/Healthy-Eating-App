@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // styled components
 import {
@@ -12,8 +12,9 @@ import { LoginInput } from "../../components/Input/InputStyles";
 
 // components
 import { Button } from '../../components';
+import { Navigate } from 'react-router-dom';
 
-function Login() {
+function Login(props: any) {
   /*
   const FacebookBackground =
     "linear-gradient(to right, #0546A0 0%, #0546A0 40%, #663FB6 100%)";
@@ -22,12 +23,38 @@ function Login() {
   const GoogleBackground =
     "linear-gradient(to right, #4285F4 5%, #DB4437 25%, #F4B400 75%, #0F9D58 100%)";
     */
+
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [redirect, setRedirect] = useState(false)
+
+  const submit = async(e: Event) => {
+    e.preventDefault();
+
+    fetch("/api/user/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: 'include',
+      body: JSON.stringify({
+        password,
+        email,
+      }),
+    }).then((res) => {
+      props.setCurrentUserEmail(email);
+      setRedirect(true);
+    });
+  }
+
+  if (redirect) {
+    return <Navigate to='/' />;
+  }
+
   return (
     <MainContainer>
       <WelcomeText>Sign in</WelcomeText>
       <InputContainer>
-        <LoginInput type="text" placeholder="Email" />
-        <LoginInput type="password" placeholder="Password" />
+        <LoginInput type="text" placeholder="Email" onChange={e => setEmail(e.target.value)} />
+        <LoginInput type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
       </InputContainer>
       <ButtonContainer>
         <Button content="Login" name="login" />

@@ -8,7 +8,7 @@ const restaurantSchema = new Schema(
       trim: true,
       required: true,
     },
-    restaurantName: {
+    restaurant_name: {
       type: String,
       required: true,
     },
@@ -20,13 +20,10 @@ const restaurantSchema = new Schema(
       type: String,
       required: true,
     },
-    photoReference: {
+    photo_reference: {
       type: String,
       trim: true,
     },
-    category: {
-      type: String
-    }
   },
   {
     toJSON: {

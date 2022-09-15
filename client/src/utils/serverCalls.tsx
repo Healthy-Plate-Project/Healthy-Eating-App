@@ -7,63 +7,7 @@ declare module 'axios' {
   }
 }
 
-export async function getRestaurants(req: any) {
-  try {
-    const res = await axios.post(`${apiServer()}/api/restaurant`, { 
-      latitude: req.latitude,
-      longitude: req.longitude,
-      maxPrice: req.maxPrice,
-      minPrice: req.minPrice,
-      keyword: req.keyword,
-      openNow: req.openNow,
-      // TODO: use this to setup pagination
-      // pageToken: req.pageToken,
-      radius: req.radius,
-      type: 'restaurant',
-     }); 
-    return(res)
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-export async function getRestaurant(placeId: any) {
-  try {
-    const res = await axios.post(`${apiServer()}/api/restaurant/${placeId}`);
-    return (res)
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-export async function saveRestaurant(req: any) {
-  try {
-    const res = await axios.post(`${apiServer()}/api/restaurant/save`, req);
-    return (res)
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-export async function createReview(req: any) {
-  try {
-    const res = await axios.post(`${apiServer()}/api/review`, req);
-    return (res)
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-export async function updateReview(reviewId: string, req: any) {
-  try {
-    const res = await axios.put(`${apiServer()}/api/review/${reviewId}`, req);
-    return (res)
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-export async function deleteReview(reviewId: string) {
+async function getRestaurants(reviewId: any): Promise<any>{
   try {
     const res = await axios.delete(`${apiServer()}/api/review/${reviewId}`);
     return (res)

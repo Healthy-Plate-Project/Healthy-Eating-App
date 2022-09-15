@@ -23,12 +23,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors({
   credentials: true,
-  origin: ['http://localhost:3000', 'https://healthy-eating-project-359101.uc.r.appspot.com']
+  origin: ['http://localhost:3000', 'https://healthy-eating-project-359101.uc.r.appspot.com/']
 }));
 app.use(routes);
 
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
+  console.log('john test');
   app.use(express.static(path.join(__dirname, "../client/build")));
 
   router.get("*", (req, res) => {

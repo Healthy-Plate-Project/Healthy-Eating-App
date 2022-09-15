@@ -7,35 +7,38 @@ declare module 'axios' {
   }
 }
 
-async function getRestaurants(req: any): Promise<any>{
+async function getRestaurants(reviewId: any): Promise<any>{
   try {
-    const res = await axios.post(`${apiServer()}/api/restaurant`, { req }); 
-    return(res.data)
+    const res = await axios.delete(`${apiServer()}/api/review/${reviewId}`);
+    return (res)
   } catch (err) {
     console.log(err);
   }
 }
 
-async function getRestaurant(restaurantId: any) {
+export async function getReview(reviewId: string) {
   try {
-    const res = await axios.post(`${apiServer()}/api/restaurant/${restaurantId}`);
-    return (res.data)
+    const res = await axios.get(`${apiServer()}/api/review/${reviewId}`);
+    return (res)
   } catch (err) {
     console.log(err);
   }
 }
 
-async function saveRestaurant(req: any) {
+export async function getReviewsByUser(userId: string) {
   try {
-    const res = await axios.post(`${apiServer()}/api/restaurant/save`, req);
-    return (res.data)
+    const res = await axios.get(`${apiServer()}/api/review/user/${userId}`);
+    return (res)
   } catch (err) {
     console.log(err);
   }
 }
 
-export {
-  getRestaurants,
-  getRestaurant,
-  saveRestaurant
+export async function getReviewsByRestaurant(placeId: string) {
+  try {
+    const res = await axios.get(`${apiServer()}/api/review/restaurant/${placeId}`);
+    return (res)
+  } catch (err) {
+    console.log(err);
+  }
 }

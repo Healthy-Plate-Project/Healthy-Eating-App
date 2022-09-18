@@ -53,7 +53,7 @@ const MainContainer = styled.div`
 `;
 
 const WelcomeText = styled.h2`
-  margin: 3rem 0 4rem 0;
+  margin: 3rem 0 5rem 0;
 `;
 
 const InputContainer = styled.div`
@@ -63,6 +63,7 @@ const InputContainer = styled.div`
   align-items: center;
   height: 20%;
   width: 100%;
+  margin: 1rem;
 `;
 
 const ButtonContainer = styled.div`

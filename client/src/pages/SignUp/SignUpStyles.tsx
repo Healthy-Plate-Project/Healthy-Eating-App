@@ -63,7 +63,7 @@ const InputContainer = styled.div`
   align-items: center;
   height: 20%;
   width: 100%;
-  margin: 1rem;
+  margin: 3rem;
 `;
 
 const ButtonContainer = styled.div`

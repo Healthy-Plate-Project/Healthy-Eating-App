@@ -42,20 +42,22 @@ function SignUp() {
     return <Navigate to='/login' />;
   }
   return (
-    <MainContainer>
-      <WelcomeText>Sign Up</WelcomeText>
-      <InputContainer>
-        <SignUpInput type="text" placeholder="Username" onChange={e => setUsername(e.target.value)} />
-        <SignUpInput type="text" placeholder="First Name" onChange={e => setFirstName(e.target.value)} />
-        <SignUpInput type="text" placeholder="Last Name" onChange={e => setLastName(e.target.value)} />
-        <SignUpInput type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} />
-        <SignUpInput type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
-      </InputContainer>
-      <ButtonContainer>
-        <Button content="Sign Up" name="signup" />
-      </ButtonContainer>
-      <Login>Have an account? <a href="login">login</a></Login>
-    </MainContainer>
+    <form>
+      <MainContainer>
+        <WelcomeText>Sign Up</WelcomeText>
+        <InputContainer>
+          <SignUpInput type="text" placeholder="Username" onChange={e => setUsername(e.target.value)} />
+          <SignUpInput type="text" placeholder="First Name" onChange={e => setFirstName(e.target.value)} />
+          <SignUpInput type="text" placeholder="Last Name" onChange={e => setLastName(e.target.value)} />
+          <SignUpInput type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} />
+          <SignUpInput type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+        </InputContainer>
+        <ButtonContainer>
+          <Button type="submit" content="Sign Up" name="signup" />
+        </ButtonContainer>
+        <Login>Have an account? <a href="login">login</a></Login>
+      </MainContainer>
+    </form>
   )
 }
 

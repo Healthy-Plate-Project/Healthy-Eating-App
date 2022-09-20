@@ -10,11 +10,11 @@ const {
 
 router.route("/").post(createReview);
 
-router.route("/:ReviewId").put(updateReview);
+router.route("/:reviewId").put(updateReview);
 
-router.route("/:ReviewId").delete(deleteReview);
+router.route("/:reviewId").delete(deleteReview);
 
-router.route("/:ReviewId").get(getReview);
+router.route("/:reviewId").get(getReview);
 
 router.route("/user/:userId").get(getReviewsByUser);
 

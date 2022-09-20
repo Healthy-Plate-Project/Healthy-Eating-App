@@ -5,10 +5,10 @@ const {
   saveRestaurant
 } = require("../../controller/restaurantController");
 
-router.route("/").post(getRestaurants);
+router.route("/").get(getRestaurants);
 
 router.route("/save").post(saveRestaurant);
 
-router.route("/:placeId").post(getRestaurant);
+router.route("/:placeId").get(getRestaurant);
 
 module.exports = router;

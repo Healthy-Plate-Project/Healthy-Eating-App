@@ -1,19 +1,19 @@
 import React from "react";
-import goldStar from "./../../assets/images/gold-star.png";
-import whiteStar from "./../../assets/images/white-star.png";
+import goldStar from "../../../assets/images/gold-star.png";
+import whiteStar from "../../../assets/images/white-star.png";
 
-const GlutenFreeStarRating = (props: any) => {
+const OverallStarRating = (props: any) => {
   function starRatingHandler(event: any) {
     event.preventDefault();
-    props.setSelectedGlutenFreeStarRating(parseInt(event.target.id[0]));
+    props.setSelectedOverallStarRating(parseInt(event.target.id[0]));
   }
 
-  function renderGlutenFreeStars() {
+  function renderOverallStars() {
     const array = [];
     for (let i = 1; i <= 5; i++) {
-      const id = `${i.toString()}-GlutenFree-star-id`;
-      const alt = `${i.toString()}-GlutenFree-Star-Rating`;
-      if (i <= props.selectedGlutenFreeStarRating) {
+      const id = `${i.toString()}-Overall-star-id`;
+      const alt = `${i.toString()}-Overall-Star-Rating`;
+      if (i <= props.selectedOverallStarRating) {
         array.push(
           <img
             className="stars"
@@ -44,10 +44,10 @@ const GlutenFreeStarRating = (props: any) => {
 
   return (
     <div>
-      <h4>Gluten Free Rating</h4>
-      {renderGlutenFreeStars()}
+      <h4>Overall Rating</h4>
+      {renderOverallStars()}
     </div>
   );
 };
 
-export default GlutenFreeStarRating;
+export default OverallStarRating;

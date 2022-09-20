@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cors({
   credentials: true,
-  origin: ['http://localhost:3000', 'https://healthy-eating-project-359101.uc.r.appspot.com']
+  origin: ['http://localhost:3000', 'https://healthy-eating-project-359101.uc.r.appspot.com/']
 }));
 
 // APIRoutes

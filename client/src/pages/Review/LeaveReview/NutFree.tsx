@@ -1,19 +1,19 @@
 import React from "react";
-import goldStar from "./../../assets/images/gold-star.png";
-import whiteStar from "./../../assets/images/white-star.png";
+import goldStar from "../../../assets/images/gold-star.png";
+import whiteStar from "../../../assets/images/white-star.png";
 
-const OverallStarRating = (props: any) => {
+const NutFreeStarRating = (props: any) => {
   function starRatingHandler(event: any) {
     event.preventDefault();
-    props.setSelectedOverallStarRating(parseInt(event.target.id[0]));
+    props.setSelectedNutFreeStarRating(parseInt(event.target.id[0]));
   }
 
-  function renderOverallStars() {
+  function renderNutFreeStars() {
     const array = [];
     for (let i = 1; i <= 5; i++) {
-      const id = `${i.toString()}-Overall-star-id`;
-      const alt = `${i.toString()}-Overall-Star-Rating`;
-      if (i <= props.selectedOverallStarRating) {
+      const id = `${i.toString()}-NutFree-star-id`;
+      const alt = `${i.toString()}-NutFree-Star-Rating`;
+      if (i <= props.selectedNutFreeStarRating) {
         array.push(
           <img
             className="stars"
@@ -44,10 +44,10 @@ const OverallStarRating = (props: any) => {
 
   return (
     <div>
-      <h4>Overall Rating</h4>
-      {renderOverallStars()}
+      <h4>Nut Free Rating</h4>
+      {renderNutFreeStars()}
     </div>
   );
 };
 
-export default OverallStarRating;
+export default NutFreeStarRating;

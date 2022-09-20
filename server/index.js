@@ -1,3 +1,4 @@
+//Initialization
 const express = require("express");
 require("dotenv").config({ path: "./.env" });
 const cors = require("cors");
@@ -10,7 +11,8 @@ const PORT = process.env.PORT || 3001;
 const db = require("./config/connection");
 const app = express();
 
-// app.use(cookieParser());
+// Middleware for parsing application/json and urlencoded data --- app.use(cookieParser());
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(bodyParser.json({ limit: "50mb" }));
 // app.use(
@@ -20,11 +22,13 @@ app.use(express.urlencoded({ extended: false }));
 //     parameterLimit: 50000,
 //   })
 // );
-app.use(express.json());
+
 app.use(cors({
   credentials: true,
   origin: ['http://localhost:3000', 'https://healthy-eating-project-359101.uc.r.appspot.com']
 }));
+
+// APIRoutes
 app.use(routes);
 
 // Serve up static assets
@@ -37,6 +41,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(routes);
 }
 
+// Listener
 db.once("open", () => {
   app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);

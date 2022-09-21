@@ -8,9 +8,9 @@ steps:
     - 'MONGODB_URI=${_MONGODB_URI}'
     - 'GOOGLE_PLACES_APIKEY=${_GOOGLE_PLACES_APIKEY}'
 - name: "gcr.io/cloud-builders/gcloud"
-  args: ["app", "deploy", "app.yaml", "-v"]
-- name: "gcr.io/cloud-builders/gcloud"
-  args: ["app", "services", "--project", "${PROJECT_ID}", "set-traffic", "--splits", "${_GAE_TRAFFIC}"]
+  args: ["app", "deploy", "app.yaml"]
+# - name: "gcr.io/cloud-builders/gcloud"
+#   args: ["app", "services", "--project", "${PROJECT_ID}", "set-traffic", "--splits", "${_GAE_TRAFFIC}"]
 timeout: "1600s"
 options:
   logging: CLOUD_LOGGING_ONLY

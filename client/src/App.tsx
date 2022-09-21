@@ -1,32 +1,59 @@
-import React from 'react';
-import './App.css';
-import { BrowserRouter } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router";
 import {
-  Routes,
-  Route,
-} from "react-router";
-import { Home, Results, NotFound, Login } from './pages'
-import GlobalStyle from './theme/globalStyle';
-import { Navbar } from './components';
+  Home,
+  Result,
+  NotFound,
+  Login,
+  Review,
+  ReviewsListParent,
+} from "./pages";
+import GlobalStyle from "./theme/globalStyle";
+import { Navbar } from "./components";
 
 const App = () => {
-
+  const [currentUserEmail, setCurrentUserEmail] = useState("");
+  useEffect(() => {
+    (async () => {
+      const response = await fetch("/api/user/user", {
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+      const content = await response.json();
+      setCurrentUserEmail(content.username);
+    })();
+  });
 
   return (
     <div className="App">
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
-          <Route index element={<Home />} />
-          <Route path="results" element={<Results />} />
+          {/* <Route exact path="/" element={<App />} /> */}
+          <Route path="/" element={<Home />} />
+          <Route path="results" element={<Result />} />
+          <Route path="review" element={<Review />} />
+          <Route path="reviews" element={<ReviewsListParent />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="login" element={<Login />} />
+          <Route
+            path="login"
+            element={
+              <Login
+                currentUserEmail={currentUserEmail}
+                setCurrentUserEmail={setCurrentUserEmail}
+              />
+            }
+          />
         </Routes>
-        <Navbar />
+        <Navbar
+          currentUserEmail={currentUserEmail}
+          setCurrentUserEmail={setCurrentUserEmail}
+        />
       </BrowserRouter>
     </div>
-  )
-}
+  );
+};
 
 export default App;

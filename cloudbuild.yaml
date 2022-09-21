@@ -3,8 +3,6 @@ steps:
   args: ['install']
 - name: 'gcr.io/cloud-builders/npm'
   args: ["run", "create-env"]
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['run', 'build']
   env:
     - 'NODE_ENV=${_NODE_ENV}'
     - 'MONGODB_URI=${_MONGODB_URI}'

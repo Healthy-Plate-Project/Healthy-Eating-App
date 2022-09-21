@@ -2,6 +2,7 @@ runtime: nodejs14
 
 instance_class: F1
 
+handlers:
 # Serve all static files with urls ending with a file extension
   - url: /(.*\..+)$
     static_files: client/build/\1

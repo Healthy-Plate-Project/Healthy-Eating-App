@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const NavbarStyled = styled.nav`
   position: absolute;
-  bottom: 4rem;
+  bottom: 3rem;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -21,10 +21,12 @@ export const NavbarStyled = styled.nav`
     color: aliceblue;
     transition: all 0.3s;
   }
+
   & a:hover {
     color: lightgray;
     transition: all 0.3s;
   }
+
   & a:active {
     color: black;
     transition: all 0.3s;

@@ -11,7 +11,8 @@
     "build": "cd client && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "npm run build && gcloud app deploy",
-    "demoDeploy": "npm run build && gcloud app deploy demo.yaml"
+    "demoDeploy": "npm run build && gcloud app deploy demo.yaml",
+    "create-env": "printenv > .env"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,8 @@
     "@types/node": "^18.6.3",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
-    "concurrently": "^7.3.0"
+    "concurrently": "^7.3.0",
+    "dotenv": "^16.0.2"
   },
   "devDependencies": {
     "ts-node": "^10.9.1",

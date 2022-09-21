@@ -1,0 +1,12 @@
+steps:
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+- name: 'gcr.io/cloud-builders/npm'
+  args: ["run", "create-env"]
+  env:
+    - 'NODE_ENV=${_NODE_ENV}'
+    - 'MONGODB_URI=${_MONGODB_URI}'
+    - 'GOOGLE_PLACES_APIKEY=${_GOOGLE_PLACES_APIKEY}'
+- name: "gcr.io/cloud-builders/gcloud"
+  args: ["app", "deploy", "api.yaml", "-v", "$_GAE_VERSION"]
+timeout: "1600s"

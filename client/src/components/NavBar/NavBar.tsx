@@ -2,11 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { convertMilesToMeters } from "../../utils/helpers";
 import {
+  createReview,
+  deleteReview,
   getRestaurant,
   getRestaurants,
+  getReview,
+  getReviewsByRestaurant,
+  getReviewsByUser,
   saveRestaurant,
+  updateReview,
 } from "../../utils/serverCalls";
-import { NavbarStyled, StyledButton } from "./NavbarStyles";
+import NavbarStyled from "./NavbarStyles";
 
 export function Navbar(props: any) {
   const logout = async () => {
@@ -23,9 +29,9 @@ export function Navbar(props: any) {
       latitude: "40.4865496",
       longitude: "-111.9164662",
       keyword: "thai",
-      maxPrice: 3,
-      minPrice: 2,
-      openNow: true,
+      max_price: 3,
+      min_price: 2,
+      open_now: true,
       radius: convertMilesToMeters(10),
       // TODO: use this to setup pagination
       // pageToken: req.pageToken,
@@ -35,13 +41,49 @@ export function Navbar(props: any) {
     );
     const saveRestaurantResults = await saveRestaurant({
       place_id: "testID1",
-      restaurantName: "testName",
+      restaurant_name: "testName",
       longitude: "testLong",
       latitude: "testLat",
-      photoReference: "testPhoto",
+      photo_reference: "testPhoto",
     });
-    console.log(getRestaurantsResults.results);
-    console.log(getRestaurantResults.result);
+    const createRestaurantReview = await createReview({
+      place_id: "ChIJn58N1B9gUocRpAXOXPbFcOo",
+      user_id: "ChIJn58N1B9gUocRpAXOXPbFcOo",
+      review_text: "This is a test",
+      overall_rating: 5,
+      dairy_free_rating: 5,
+      gluten_free_rating: undefined,
+      nut_free_rating: undefined,
+      pescatarian_rating: undefined,
+      vegan_rating: 3,
+      vegatarian_rating: undefined,
+    });
+    const updateRestaurantReview = await updateReview(
+      "ChIJn58N1B9gUocRpAXOXPbFcOo",
+      {
+        gluten_free_rating: 5,
+        vegan_rating: 3,
+      }
+    );
+    const deleteRestaurantReview = await deleteReview(
+      "ChIJn58N1B9gUocRpAXOXPbFcOo"
+    );
+    const getRestaurantReview = await getReview("ChIJn58N1B9gUocRpAXOXPbFcOo");
+    const getRestaurantReviewsByUser = await getReviewsByUser(
+      "ChIJn58N1B9gUocRpAXOXPbFcOo"
+    );
+    const getRestaurantReviewsByRestaurant = await getReviewsByRestaurant(
+      "ChIJn58N1B9gUocRpAXOXPbFcOo"
+    );
+
+    console.log(getRestaurantReviewsByRestaurant);
+    console.log(getRestaurantReviewsByUser);
+    console.log(getRestaurantReview);
+    console.log(deleteRestaurantReview);
+    console.log(updateRestaurantReview);
+    console.log(createRestaurantReview);
+    console.log(getRestaurantsResults);
+    console.log(getRestaurantResults);
     console.log(saveRestaurantResults);
   }
 

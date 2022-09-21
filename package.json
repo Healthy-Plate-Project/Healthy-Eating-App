@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "16.x.x"
+  },
   "scripts": {
     "start": "node server/index.js",
     "develop": "npm i && concurrently \"cd server && npm start\" \"cd client && npm start\" ",
@@ -10,8 +13,14 @@
     "seeds": "cd server && node seeds/index.js && cd ..",
     "build": "cd client && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "npm run build && gcloud app deploy",
-    "demoDeploy": "npm run build && gcloud app deploy demo.yaml"
+    "demoDeploy": "npm run build && gcloud app deploy demo.yaml",
+    "create-env": "printenv > .env",
+    "prepare": "npm run gcp-build",
+    "pretest": "npm run gcp-build",
+    "posttest": "npm run lint",
+    "lint": "tslint -p .",
+    "gcp-build": "cd client && tsc -p .",
+    "deploy": "gcloud app deploy"
   },
   "repository": {
     "type": "git",

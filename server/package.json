@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "create-env": "printenv > .env",
-    "install": "npm i"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",

@@ -11,7 +11,8 @@
     "build": "cd client && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "npm run build && gcloud app deploy",
-    "demoDeploy": "npm run build && gcloud app deploy demo.yaml"
+    "demoDeploy": "npm run build && gcloud app deploy demo.yaml",
+    "create-env": "printenv > .env"
   },
   "repository": {
     "type": "git",

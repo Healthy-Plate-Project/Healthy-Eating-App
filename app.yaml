@@ -4,9 +4,9 @@ instance_class: F1
 
 # Serve all static files with urls ending with a file extension
   - url: /(.*\..+)$
-    static_files: build/\1
-    upload: build/(.*\..+)$
+    static_files: client/build/\1
+    upload: client/build/(.*\..+)$
     # catch all handlers to index.html
   - url: /.*
-    static_files: build/index.html
-    upload: build/index.html
+    static_files: client/build/index.html
+    upload: client/build/index.html

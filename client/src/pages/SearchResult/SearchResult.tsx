@@ -1,6 +1,6 @@
 import React from "react";
-import { ResultStyled, ItemStyled, ItemDetail } from "./ResultStyled";
-import { resultSeed } from "../Results/resultSeed";
+import { ResultStyled, ItemStyled, ItemDetail } from "./SearchResultStyled";
+import { resultSeed } from "./searchResultSeed";
 
 const payloadList = resultSeed.map(({ name, distance, keyword, price }) => {
   return (

@@ -91,7 +91,9 @@ export function Navbar(props: any) {
     <NavbarStyled>
       <Link to="/">Home</Link>
       <Link to="results">Results</Link>
-      <button onClick={testAPICalls}>Test API Calls</button>
+      <Link to="review">Review</Link>
+      <Link to="reviews">Reviews</Link>
+      <StyledButton onClick={testAPICalls}>Test API</StyledButton>
     </NavbarStyled>
   );
 }

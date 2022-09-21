@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router";
 import {
   Home,
-  Results,
+  Result,
   NotFound,
   Login,
   Review,
@@ -33,7 +33,7 @@ const App = () => {
         <Routes>
           {/* <Route exact path="/" element={<App />} /> */}
           <Route path="/" element={<Home />} />
-          <Route path="results" element={<Results />} />
+          <Route path="results" element={<Result />} />
           <Route path="review" element={<Review />} />
           <Route path="reviews" element={<ReviewsListParent />} />
           <Route path="*" element={<NotFound />} />

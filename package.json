@@ -8,7 +8,7 @@
     "develop": "npm i && concurrently \"cd server && npm start\" \"cd client && npm local\" ",
     "install": "cd server && npm i && cd ../client && npm i",
     "seeds": "cd server && node seeds/index.js && cd ..",
-    "build": "cd client && npm run build",
+    "build": "cd client && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "npm run build && gcloud app deploy",
     "demoDeploy": "npm run build && gcloud app deploy demo.yaml",

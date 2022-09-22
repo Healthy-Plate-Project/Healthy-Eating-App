@@ -12,7 +12,7 @@ import {
   saveRestaurant,
   updateReview,
 } from "../../utils/serverCalls";
-import NavbarStyled from "./NavbarStyles";
+import { NavbarStyled, StyledButton } from "./NavbarStyles";
 
 export function Navbar(props: any) {
   const logout = async () => {

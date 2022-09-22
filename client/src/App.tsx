@@ -12,6 +12,7 @@ import {
 } from "./pages";
 import GlobalStyle from "./theme/globalStyle";
 import { Navbar } from "./components";
+import { SingleResultPage } from "./pages/SingleResult/SingleResult";
 
 const App = () => {
   const [currentUserEmail, setCurrentUserEmail] = useState("");
@@ -34,6 +35,7 @@ const App = () => {
           {/* <Route exact path="/" element={<App />} /> */}
           <Route path="/" element={<Home />} />
           <Route path="results" element={<Result />} />
+          <Route path="single-result/:place_id" element={<SingleResultPage />} />
           <Route path="review" element={<Review />} />
           <Route path="reviews" element={<ReviewsListParent />} />
           <Route path="*" element={<NotFound />} />

@@ -35,6 +35,7 @@ export const NavbarStyled = styled.nav`
 
 export const StyledButton = styled.div`
   color: #bec0c0;
+  cursor: pointer;
 
   & a {
     text-decoration: none;

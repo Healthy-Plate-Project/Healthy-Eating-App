@@ -1,6 +1,6 @@
 const testRestaurant = {
   "html_attributions": [],
-    "result": {
+  "result": {
     "address_components": [
       {
         "long_name": "#101",
@@ -71,114 +71,114 @@ const testRestaurant = {
         ]
       }
     ],
-      "adr_address": "<span class=\"street-address\">1201 Wilmington Ave #101</span>, <span class=\"locality\">Salt Lake City</span>, <span class=\"region\">UT</span> <span class=\"postal-code\">84106</span>, <span class=\"country-name\">USA</span>",
-        "business_status": "OPERATIONAL",
-          "formatted_address": "1201 Wilmington Ave #101, Salt Lake City, UT 84106, USA",
-            "formatted_phone_number": "(385) 322-1140",
-              "geometry": {
+    "adr_address": "<span class=\"street-address\">1201 Wilmington Ave #101</span>, <span class=\"locality\">Salt Lake City</span>, <span class=\"region\">UT</span> <span class=\"postal-code\">84106</span>, <span class=\"country-name\">USA</span>",
+    "business_status": "OPERATIONAL",
+    "formatted_address": "1201 Wilmington Ave #101, Salt Lake City, UT 84106, USA",
+    "formatted_phone_number": "(385) 322-1140",
+    "geometry": {
       "location": {
         "lat": 40.7234936,
-          "lng": -111.8565592
+        "lng": -111.8565592
       },
       "viewport": {
         "northeast": {
           "lat": 40.7247386802915,
-            "lng": -111.8553322697085
+          "lng": -111.8553322697085
         },
         "southwest": {
           "lat": 40.7220407197085,
-            "lng": -111.8580302302915
+          "lng": -111.8580302302915
         }
       }
     },
     "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-      "icon_background_color": "#FF9E67",
-        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
-          "international_phone_number": "+1 385-322-1140",
-            "name": "Spitz - Sugarhouse - Mediterranean Restaurant",
-              "opening_hours": {
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "international_phone_number": "+1 385-322-1140",
+    "name": "Spitz - Sugarhouse - Mediterranean Restaurant",
+    "opening_hours": {
       "open_now": true,
-        "periods": [
-          {
-            "close": {
-              "day": 0,
-              "time": "2200"
-            },
-            "open": {
-              "day": 0,
-              "time": "1100"
-            }
+      "periods": [
+        {
+          "close": {
+            "day": 0,
+            "time": "2200"
           },
-          {
-            "close": {
-              "day": 1,
-              "time": "2200"
-            },
-            "open": {
-              "day": 1,
-              "time": "1100"
-            }
-          },
-          {
-            "close": {
-              "day": 2,
-              "time": "2200"
-            },
-            "open": {
-              "day": 2,
-              "time": "1100"
-            }
-          },
-          {
-            "close": {
-              "day": 3,
-              "time": "2200"
-            },
-            "open": {
-              "day": 3,
-              "time": "1100"
-            }
-          },
-          {
-            "close": {
-              "day": 4,
-              "time": "2200"
-            },
-            "open": {
-              "day": 4,
-              "time": "1100"
-            }
-          },
-          {
-            "close": {
-              "day": 5,
-              "time": "2200"
-            },
-            "open": {
-              "day": 5,
-              "time": "1100"
-            }
-          },
-          {
-            "close": {
-              "day": 6,
-              "time": "2200"
-            },
-            "open": {
-              "day": 6,
-              "time": "1100"
-            }
+          "open": {
+            "day": 0,
+            "time": "1100"
           }
-        ],
-          "weekday_text": [
-            "Monday: 11:00 AM – 10:00 PM",
-            "Tuesday: 11:00 AM – 10:00 PM",
-            "Wednesday: 11:00 AM – 10:00 PM",
-            "Thursday: 11:00 AM – 10:00 PM",
-            "Friday: 11:00 AM – 10:00 PM",
-            "Saturday: 11:00 AM – 10:00 PM",
-            "Sunday: 11:00 AM – 10:00 PM"
-          ]
+        },
+        {
+          "close": {
+            "day": 1,
+            "time": "2200"
+          },
+          "open": {
+            "day": 1,
+            "time": "1100"
+          }
+        },
+        {
+          "close": {
+            "day": 2,
+            "time": "2200"
+          },
+          "open": {
+            "day": 2,
+            "time": "1100"
+          }
+        },
+        {
+          "close": {
+            "day": 3,
+            "time": "2200"
+          },
+          "open": {
+            "day": 3,
+            "time": "1100"
+          }
+        },
+        {
+          "close": {
+            "day": 4,
+            "time": "2200"
+          },
+          "open": {
+            "day": 4,
+            "time": "1100"
+          }
+        },
+        {
+          "close": {
+            "day": 5,
+            "time": "2200"
+          },
+          "open": {
+            "day": 5,
+            "time": "1100"
+          }
+        },
+        {
+          "close": {
+            "day": 6,
+            "time": "2200"
+          },
+          "open": {
+            "day": 6,
+            "time": "1100"
+          }
+        }
+      ],
+      "weekday_text": [
+        "Monday: 11:00 AM – 10:00 PM",
+        "Tuesday: 11:00 AM – 10:00 PM",
+        "Wednesday: 11:00 AM – 10:00 PM",
+        "Thursday: 11:00 AM – 10:00 PM",
+        "Friday: 11:00 AM – 10:00 PM",
+        "Saturday: 11:00 AM – 10:00 PM",
+        "Sunday: 11:00 AM – 10:00 PM"
+      ]
     },
     "photos": [
       {
@@ -262,78 +262,78 @@ const testRestaurant = {
         "width": 3024
       }
     ],
-      "place_id": "ChIJn58N1B9gUocRpAXOXPbFcOo",
-        "plus_code": {
+    "place_id": "ChIJn58N1B9gUocRpAXOXPbFcOo",
+    "plus_code": {
       "compound_code": "P4FV+99 Salt Lake City, UT, USA",
-        "global_code": "85GCP4FV+99"
+      "global_code": "85GCP4FV+99"
     },
     "price_level": 2,
-      "rating": 4.4,
-        "reference": "ChIJn58N1B9gUocRpAXOXPbFcOo",
-          "reviews": [
-            {
-              "author_name": "Skowsari",
-              "author_url": "https://www.google.com/maps/contrib/116680313662052253843/reviews",
-              "language": "en",
-              "profile_photo_url": "https://lh3.googleusercontent.com/a-/AFdZucrSGdrbLH48YsIo48rUKAZQALcTKAqWcMVN81bqHA=s128-c0x00000000-cc-rp-mo",
-              "rating": 5,
-              "relative_time_description": "2 months ago",
-              "text": "Today was one of those days where everything falls apart no matter the plan in place. By the end of the day and with an hour to kill, I couldn’t have chosen a better spot! The food here is killer and always on point but the atmosphere, customer service, cleanliness and timely matter is what has won me over. I will be a loyal customer to this Spitz location for as long as I am a Salt Lake City resident and beyond. Thank you Sheri for your suggestions and detailed explanation in the food and drink items as well as patience. The bearded gentleman that assisted in my order was just as pleasant and knowledgeable. The food here was full flavor and perfectly portioned with each item. I ordered the Berlin Bowl with lamb and beef döner and no bite was without a flavor and texture filled delight! Paired perfect with my white wine Sangria. Thank you Spitz for dinner! See you soon🙏🏼",
-              "time": 1653101590
-            },
-            {
-              "author_name": "Kiana Rose",
-              "author_url": "https://www.google.com/maps/contrib/105284864320900328390/reviews",
-              "language": "en",
-              "profile_photo_url": "https://lh3.googleusercontent.com/a-/AFdZucrpW59ByvoLrmXFxx7fJcgp761P4DdnD_wJPD05iQ=s128-c0x00000000-cc-rp-mo",
-              "rating": 1,
-              "relative_time_description": "8 months ago",
-              "text": "Normally I love this place for their gluten free options. But the older man who took my order was absolutely unbelievable. He made incredibly inappropriate comments about me and my friend's body- multiple times when we were ordering.\nI will definitely never return to this location.",
-              "time": 1639790355
-            },
-            {
-              "author_name": "Rob Nixon",
-              "author_url": "https://www.google.com/maps/contrib/117445397473414960323/reviews",
-              "language": "en",
-              "profile_photo_url": "https://lh3.googleusercontent.com/a/AItbvml7M8f1VHCNQ_9T0DyJwBPoOqbx-ZIg8pHiQjue7cI=s128-c0x00000000-cc-rp-mo-ba3",
-              "rating": 5,
-              "relative_time_description": "a year ago",
-              "text": "Try the Dog-uitos!",
-              "time": 1598415659
-            },
-            {
-              "author_name": "Rob Stephenson",
-              "author_url": "https://www.google.com/maps/contrib/104647011682395667673/reviews",
-              "language": "en",
-              "profile_photo_url": "https://lh3.googleusercontent.com/a-/AFdZucrk5KqJK3_SBYHCmrc0QlJxMoBkHX1467fQEpPsug=s128-c0x00000000-cc-rp-mo-ba5",
-              "rating": 4,
-              "relative_time_description": "3 weeks ago",
-              "text": "Beautiful little Mediterranean cafe. The food and service was great too. I like the selection of beers on tap, and will try to make it back to try some of them. A very casual atmosphere to relax and meet with friends. It’s located in the heart of Sugarhouse. Walking distance to the park. Great area to walk and explore.",
-              "time": 1659027785
-            },
-            {
-              "author_name": "A Lauren",
-              "author_url": "https://www.google.com/maps/contrib/107105494026619582505/reviews",
-              "language": "en",
-              "profile_photo_url": "https://lh3.googleusercontent.com/a-/AFdZucoNyX-oCLi-jWY5A9mnq3x5hjM3ZC1dCFW6aeJgXho=s128-c0x00000000-cc-rp-mo-ba2",
-              "rating": 5,
-              "relative_time_description": "a month ago",
-              "text": "Fresh, good portion size, and quick service. I ordered the medi bowl and an Arnold Palmer drink. I liked it so much, I went to the downtown location the next day and had the same thing. Very good!!\n\nBoth locations are walkable. It’s best if you’re on foot. But, if you drive, there are parking spots nearby. Photos are from the Sugarhouse location.",
-              "time": 1658175019
-            }
-          ],
-            "types": [
-              "meal_takeaway",
-              "restaurant",
-              "point_of_interest",
-              "food",
-              "establishment"
-            ],
-              "url": "https://maps.google.com/?cid=16893219864176362916",
-                "user_ratings_total": 1476,
-                  "utc_offset": -360,
-                    "vicinity": "1201 Wilmington Avenue #101, Salt Lake City",
-                      "website": "https://spitz-restaurant.com/mediterranean-food-sugarhouse-restaurant-bar/"
+    "rating": 4.4,
+    "reference": "ChIJn58N1B9gUocRpAXOXPbFcOo",
+    "reviews": [
+      {
+        "author_name": "Skowsari",
+        "author_url": "https://www.google.com/maps/contrib/116680313662052253843/reviews",
+        "language": "en",
+        "profile_photo_url": "https://lh3.googleusercontent.com/a-/AFdZucrSGdrbLH48YsIo48rUKAZQALcTKAqWcMVN81bqHA=s128-c0x00000000-cc-rp-mo",
+        "rating": 5,
+        "relative_time_description": "2 months ago",
+        "text": "Today was one of those days where everything falls apart no matter the plan in place. By the end of the day and with an hour to kill, I couldn’t have chosen a better spot! The food here is killer and always on point but the atmosphere, customer service, cleanliness and timely matter is what has won me over. I will be a loyal customer to this Spitz location for as long as I am a Salt Lake City resident and beyond. Thank you Sheri for your suggestions and detailed explanation in the food and drink items as well as patience. The bearded gentleman that assisted in my order was just as pleasant and knowledgeable. The food here was full flavor and perfectly portioned with each item. I ordered the Berlin Bowl with lamb and beef döner and no bite was without a flavor and texture filled delight! Paired perfect with my white wine Sangria. Thank you Spitz for dinner! See you soon🙏🏼",
+        "time": 1653101590
+      },
+      {
+        "author_name": "Kiana Rose",
+        "author_url": "https://www.google.com/maps/contrib/105284864320900328390/reviews",
+        "language": "en",
+        "profile_photo_url": "https://lh3.googleusercontent.com/a-/AFdZucrpW59ByvoLrmXFxx7fJcgp761P4DdnD_wJPD05iQ=s128-c0x00000000-cc-rp-mo",
+        "rating": 1,
+        "relative_time_description": "8 months ago",
+        "text": "Normally I love this place for their gluten free options. But the older man who took my order was absolutely unbelievable. He made incredibly inappropriate comments about me and my friend's body- multiple times when we were ordering.\nI will definitely never return to this location.",
+        "time": 1639790355
+      },
+      {
+        "author_name": "Rob Nixon",
+        "author_url": "https://www.google.com/maps/contrib/117445397473414960323/reviews",
+        "language": "en",
+        "profile_photo_url": "https://lh3.googleusercontent.com/a/AItbvml7M8f1VHCNQ_9T0DyJwBPoOqbx-ZIg8pHiQjue7cI=s128-c0x00000000-cc-rp-mo-ba3",
+        "rating": 5,
+        "relative_time_description": "a year ago",
+        "text": "Try the Dog-uitos!",
+        "time": 1598415659
+      },
+      {
+        "author_name": "Rob Stephenson",
+        "author_url": "https://www.google.com/maps/contrib/104647011682395667673/reviews",
+        "language": "en",
+        "profile_photo_url": "https://lh3.googleusercontent.com/a-/AFdZucrk5KqJK3_SBYHCmrc0QlJxMoBkHX1467fQEpPsug=s128-c0x00000000-cc-rp-mo-ba5",
+        "rating": 4,
+        "relative_time_description": "3 weeks ago",
+        "text": "Beautiful little Mediterranean cafe. The food and service was great too. I like the selection of beers on tap, and will try to make it back to try some of them. A very casual atmosphere to relax and meet with friends. It’s located in the heart of Sugarhouse. Walking distance to the park. Great area to walk and explore.",
+        "time": 1659027785
+      },
+      {
+        "author_name": "A Lauren",
+        "author_url": "https://www.google.com/maps/contrib/107105494026619582505/reviews",
+        "language": "en",
+        "profile_photo_url": "https://lh3.googleusercontent.com/a-/AFdZucoNyX-oCLi-jWY5A9mnq3x5hjM3ZC1dCFW6aeJgXho=s128-c0x00000000-cc-rp-mo-ba2",
+        "rating": 5,
+        "relative_time_description": "a month ago",
+        "text": "Fresh, good portion size, and quick service. I ordered the medi bowl and an Arnold Palmer drink. I liked it so much, I went to the downtown location the next day and had the same thing. Very good!!\n\nBoth locations are walkable. It’s best if you’re on foot. But, if you drive, there are parking spots nearby. Photos are from the Sugarhouse location.",
+        "time": 1658175019
+      }
+    ],
+    "types": [
+      "meal_takeaway",
+      "restaurant",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ],
+    "url": "https://maps.google.com/?cid=16893219864176362916",
+    "user_ratings_total": 1476,
+    "utc_offset": -360,
+    "vicinity": "1201 Wilmington Avenue #101, Salt Lake City",
+    "website": "https://spitz-restaurant.com/mediterranean-food-sugarhouse-restaurant-bar/"
   },
   "status": "OK"
 }

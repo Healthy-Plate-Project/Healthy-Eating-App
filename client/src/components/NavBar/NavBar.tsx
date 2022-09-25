@@ -76,15 +76,15 @@ export function Navbar(props: any) {
       "ChIJn58N1B9gUocRpAXOXPbFcOo"
     );
 
-    console.log(getRestaurantReviewsByRestaurant);
-    console.log(getRestaurantReviewsByUser);
-    console.log(getRestaurantReview);
-    console.log(deleteRestaurantReview);
-    console.log(updateRestaurantReview);
-    console.log(createRestaurantReview);
-    console.log(getRestaurantsResults);
-    console.log(getRestaurantResults);
-    console.log(saveRestaurantResults);
+    // console.log(getRestaurantReviewsByRestaurant);
+    // console.log(getRestaurantReviewsByUser);
+    // console.log(getRestaurantReview);
+    // console.log(deleteRestaurantReview);
+    // console.log(updateRestaurantReview);
+    // console.log(createRestaurantReview);
+    // console.log(getRestaurantsResults);
+    // console.log(getRestaurantResults);
+    // console.log(saveRestaurantResults);
   }
 
   return (
@@ -93,7 +93,8 @@ export function Navbar(props: any) {
       <Link to="results">Results</Link>
       <Link to="review">Review</Link>
       <Link to="reviews">Reviews</Link>
-      <StyledButton onClick={testAPICalls}>Test API</StyledButton>
+      <StyledButton onClick={() => testAPICalls()}>Test API</StyledButton>
+      <Link to={"/single-result/ChIJn58N1B9gUocRpAXOXPbFcOo"}>Single Result</Link>
     </NavbarStyled>
   );
 }

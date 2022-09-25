@@ -7,7 +7,7 @@ declare module 'axios' {
   }
 }
 
-const apiFlag = false;
+const apiFlag = true;
 
 export async function getRestaurants(req: any) {
   if (!apiFlag) {

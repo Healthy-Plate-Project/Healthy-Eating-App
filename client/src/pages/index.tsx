@@ -1,7 +1,8 @@
-import Results from "./Results";
+import { Result } from "./SearchResult/SearchResult";
 import Home from "./Home";
 import NotFound from "./NotFound/NotFound";
 import Login from "./Login/Login";
-import SignUp from "./SignUp/SignUp";
+import Review from "./Review/LeaveReview/Review";
+import ReviewsListParent from "./Review/ReviewsList/ReviewsListParent";
 
-export { Results, Home, NotFound, Login, SignUp };
+export { Result, Home, NotFound, Login, Review, ReviewsListParent };

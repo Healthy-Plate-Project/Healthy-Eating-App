@@ -3,23 +3,27 @@ const { Schema, model } = require("mongoose");
 const restaurantSchema = new Schema(
   {
     place_id: {
-      type: String
+      type: String,
+      unique: true,
+      trim: true,
+      required: true,
     },
-    restaurantName: {
-      type: String
+    restaurant_name: {
+      type: String,
+      required: true,
     },
     longitude: {
-      type: String
+      type: String,
+      required: true,
     },
     latitude: {
-      type: String
+      type: String,
+      required: true,
     },
-    photoReference: {
-      type: String 
+    photo_reference: {
+      type: String,
+      trim: true,
     },
-    category: {
-      type: String
-    }
   },
   {
     toJSON: {

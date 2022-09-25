@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonStyles, LoginButtonStyles } from "./ButtonStyles";
+import { ButtonStyled } from "./ButtonStyles";
 
 type Props = {
   content: string;
@@ -8,5 +8,5 @@ type Props = {
 }
 
 export default function Button(props: Props) {
-  return <ButtonStyles id={props.name + "-button"}>{props.content}</ButtonStyles >;
+  return <ButtonStyled id={props.name + "-button"}>{props.content}</ButtonStyled >;
 };

@@ -6,17 +6,17 @@ const restaurantsController = {
   getRestaurants: async function (req, res) {
     // const latitude = req.body.latitude
     // const longitude = req.body.longitude
-    // let radius, keyword, maxPrice, minPrice, openNow, rankByDistance, type;
+    // type = 'restaurant'
+    // let radius, keyword, max_price, min_price, open_now;
     // req.body.radius ? radius = `&radius=${req.body.radius}` : radius = ''
     // req.body.keyword ? keyword = `&keyword=${req.body.keyword}` : keyword = ''
-    // req.body.maxPrice ? maxPrice = `&maxprice=${req.body.maxPrice}` : maxPrice = ''
-    // req.body.minPrice ? minPrice = `&minprice=${req.body.minPrice}` : minPrice = ''
-    // req.body.openNow ? openNow = `&opennow=${req.body.openNow}` : openNow = ''
-    // req.body.type ? type = `&type=${req.body.type}` : type = ''
+    // req.body.max_price ? max_price = `&max_price=${req.body.max_price}` : max_price = ''
+    // req.body.min_price ? min_price = `&min_price=${req.body.min_price}` : min_price = ''
+    // req.body.open_now ? open_now = `&open_now=${req.body.open_now}` : open_now = ''
     // const apiKey = process.env.GOOGLE_PLACES_APIKEY
     // const config = {
     //   method: 'GET',
-    //   url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C${longitude}${radius}${keyword}${maxPrice}${minPrice}${openNow}${rankByDistance}${type}&key=${apiKey}`,
+    //   url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C${longitude}${radius}${keyword}${max_price}${min_price}${open_now}${type}&key=${apiKey}`,
     //   headers: {}
     // };
 
@@ -33,10 +33,10 @@ const restaurantsController = {
     //   });
   },
   getRestaurant: async function (req, res) {
-    // const apiKey = process.env.GOOGLE_PLACES_APIKEY
+    // const api_key = process.env.GOOGLE_PLACES_APIKEY
     // const config = {
     //   method: 'GET',
-    //   url: `https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.params.restaurantId}&key=${apiKey}`,
+    //   url: `https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.params.placeId}&key=${api_key}`,
     //   headers: {}
     // };
 

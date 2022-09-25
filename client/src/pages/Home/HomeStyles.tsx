@@ -5,15 +5,16 @@ const HomeWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90vh;
-  padding: 0 0 3rem 0;
+  width: clamp(290px, 100%, 600px);
+  height: 100%;
+  margin: 0 auto;
 `;
 
 const BackgroundImage = styled.img`
   position: absolute;
   z-index: 0;
-  bottom: -4rem;
-  width: clamp(290px, 130%, 600px);
+  bottom: -1rem;
+  width: clamp(290px, 100%, 400px);
   filter: grayscale(1) invert(0) brightness(0.8) hue-rotate();
   mix-blend-mode: darken;
 `;

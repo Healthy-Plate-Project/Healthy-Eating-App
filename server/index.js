@@ -1,5 +1,5 @@
 const express = require("express");
-require("dotenv").config({ path: "./.env" });
+require("dotenv").config({ path: "../.env" });
 const cors = require("cors");
 // const cookieParser = require('cookie-parser')
 // var bodyParser = require("body-parser");
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors({
   credentials: true,
-  origin: ['http://localhost:3000', 'https://healthy-eating-project-359101.uc.r.appspot.com']
+  origin: ['http://localhost:3000', 'https://healthy-eating-project-359101.uc.r.appspot.com/']
 }));
 app.use(routes);
 

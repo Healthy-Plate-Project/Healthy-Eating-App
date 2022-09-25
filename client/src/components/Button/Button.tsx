@@ -7,6 +7,6 @@ type Props = {
   type: string;
 }
 
-export default function Button({ content, name }: Props) {
-  return <ButtonStyles id={name + "-button"}>{content}</ButtonStyles >;
+export default function Button(props: Props) {
+  return <ButtonStyles id={props.name + "-button"}>{props.content}</ButtonStyles >;
 };

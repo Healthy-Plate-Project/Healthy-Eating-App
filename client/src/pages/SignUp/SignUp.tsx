@@ -18,8 +18,8 @@ function SignUp() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
   const [redirect, setRedirect] = useState(false)
 
   const submit = async (e: Event) => {
@@ -31,8 +31,8 @@ function SignUp() {
         username,
         email,
         password,
-        firstName,
-        lastName
+        first_name,
+        last_name
       }),
     });
     setRedirect(true)
@@ -55,7 +55,7 @@ function SignUp() {
         <ButtonContainer>
           <Button type="submit" content="Sign Up" name="signup" />
         </ButtonContainer>
-        <Login>Have an account? <a href="login">login</a></Login>
+        <Login>Have an account? <a href="login">Login</a></Login>
       </MainContainer>
     </form>
   )

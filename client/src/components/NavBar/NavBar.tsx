@@ -94,9 +94,11 @@ export function Navbar(props: any) {
       <Link to="review">Review</Link>
       <Link to="reviews">Reviews</Link>
       <StyledButton onClick={() => testAPICalls()}>Test API</StyledButton>
+
       <Link to={"/single-result/ChIJn58N1B9gUocRpAXOXPbFcOo"}>
         Single Result
       </Link>
+
     </NavbarStyled>
   );
 }

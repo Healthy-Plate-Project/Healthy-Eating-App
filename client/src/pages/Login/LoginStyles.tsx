@@ -16,6 +16,48 @@ const MainContainer = styled.div`
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 0.4rem;
+
+  button {
+    border: none;
+    border-radius: 50px;
+    height: 3rem;
+    width: 18rem;
+    color: #f2f2f2;
+    background-color: rgb(48, 48, 48);
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.5s;
+    &:active {
+      background-color: #4f4f4f;
+      box-shadow: 0px 5px 10px #696969;
+      transition: all 0.3s;
+      transform: scale(101%);
+    }
+  }
+  input {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2rem;
+    width: 80%;
+    height: 3rem;
+    padding: 1rem;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    &:focus {
+      display: inline-block;
+      box-shadow: 0 8px 32px 0 rgba(49, 48, 49, 0.562);
+      backdrop-filter: blur(12rem);
+      border-radius: 2rem;
+      border: none;
+    }
+    &::placeholder {
+      color: white;
+      font-weight: 100;
+      font-size: 1rem;
+    }
+  }
   @media only screen and (max-width: 320px) {
     width: 80vw;
     height: 90vh;

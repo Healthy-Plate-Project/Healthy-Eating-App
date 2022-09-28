@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import VeganStarRating from "./VeganStarRating";
 import Textarea from "./ReviewStyles";
-import Button from "../../../components/Button/Button";
 import VegetarianStarRating from "./VegetarianStarRating";
 import PescatarianStarRating from "./PescatarianStarRating";
 import GlutenFreeStarRating from "./GlutenFree";
@@ -68,7 +67,7 @@ const Review = () => {
         <h3>How was your experience?</h3>
         <Textarea name="review" id="review" aria-label="review"></Textarea>
 
-        <Button>Submit</Button>
+        <button className="review-submit-button">Submit</button>
       </form>
     </div>
   );

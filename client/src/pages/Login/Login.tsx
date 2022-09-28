@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 // styled components
 import {
@@ -6,13 +6,11 @@ import {
   WelcomeText,
   InputContainer,
   ButtonContainer,
-  SignUp
+  SignUp,
 } from "./LoginStyles";
-import { LoginInput } from "../../components/Input/InputStyles";
 
 // components
-import { Button } from '../../components';
-import { Navigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
 
 function Login(props: any) {
   /*
@@ -24,17 +22,17 @@ function Login(props: any) {
     "linear-gradient(to right, #4285F4 5%, #DB4437 25%, #F4B400 75%, #0F9D58 100%)";
     */
 
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [redirect, setRedirect] = useState(false)
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
-  const submit = async(e: Event) => {
+  const submit = async (e: Event) => {
     e.preventDefault();
 
     fetch("/api/user/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      credentials: 'include',
+      credentials: "include",
       body: JSON.stringify({
         password,
         email,
@@ -43,25 +41,33 @@ function Login(props: any) {
       props.setCurrentUserEmail(email);
       setRedirect(true);
     });
-  }
+  };
 
   if (redirect) {
-    return <Navigate to='/' />;
+    return <Navigate to="/" />;
   }
 
   return (
     <MainContainer>
       <WelcomeText>Sign in</WelcomeText>
       <InputContainer>
-        <LoginInput type="text" placeholder="Email" onChange={e => setEmail(e.target.value)} />
-        <LoginInput type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+        <input
+          type="text"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
       </InputContainer>
       <ButtonContainer>
-        <Button content="Login" name="login" />
+        <button className="login">Login</button>
       </ButtonContainer>
       <SignUp>Sign Up</SignUp>
     </MainContainer>
-  )
+  );
 }
 
-export default Login
+export default Login;

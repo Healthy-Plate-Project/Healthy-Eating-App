@@ -1,5 +1,6 @@
 import React from "react";
-import { Search } from "../../components/index";
+
+import { Link } from "react-router-dom";
 import HomeTitle from "./Title/Title";
 import { HomeWrapper, BackgroundImage } from "./HomeStyles";
 import people from "../../assets/images/people.svg";
@@ -9,7 +10,10 @@ const Home = () => {
     <HomeWrapper>
       <BackgroundImage src={people} />
       <HomeTitle />
-      <Search />
+      <input className="home-search-input" />
+      <Link to="results">
+        <button className="search-button">Search</button>
+      </Link>
     </HomeWrapper>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import VeganStarRating from "./VeganStarRating";
-import Textarea from "./ReviewStyles";
-import Button from "../../../components/Button/Button";
+import { Textarea, Wrapper } from "./ReviewStyles";
 import VegetarianStarRating from "./VegetarianStarRating";
 import PescatarianStarRating from "./PescatarianStarRating";
 import GlutenFreeStarRating from "./GlutenFree";
@@ -26,51 +25,53 @@ const Review = () => {
     useState<number>();
 
   return (
-    <div>
-      <h1>Review for Business Name Placeholder</h1>
-      <form>
-        <h3>What is your overall rating for this restaurant?</h3>
-        <OverallStarRating
-          selectedOverallStarRating={selectedOverallStarRating}
-          setSelectedOverallStarRating={setSelectedOverallStarRating}
-        ></OverallStarRating>
-        <h3>Rate this restaurant based on the special diet:</h3>
-        <VeganStarRating
-          selectedVeganStarRating={selectedVeganStarRating}
-          setSelectedVeganStarRating={setSelectedVeganStarRating}
-        ></VeganStarRating>
+    <Wrapper>
+      <div>
+        <h1>Review for Business Name Placeholder</h1>
+        <form>
+          <h3>What is your overall rating for this restaurant?</h3>
+          <OverallStarRating
+            selectedOverallStarRating={selectedOverallStarRating}
+            setSelectedOverallStarRating={setSelectedOverallStarRating}
+          ></OverallStarRating>
+          <h3>Rate this restaurant based on the special diet:</h3>
+          <VeganStarRating
+            selectedVeganStarRating={selectedVeganStarRating}
+            setSelectedVeganStarRating={setSelectedVeganStarRating}
+          ></VeganStarRating>
 
-        <VegetarianStarRating
-          selectedVegetarianStarRating={selectedVegetarianStarRating}
-          setSelectedVegetarianStarRating={setSelectedVegetarianStarRating}
-        ></VegetarianStarRating>
+          <VegetarianStarRating
+            selectedVegetarianStarRating={selectedVegetarianStarRating}
+            setSelectedVegetarianStarRating={setSelectedVegetarianStarRating}
+          ></VegetarianStarRating>
 
-        <PescatarianStarRating
-          selectedPescatarianStarRating={selectedPescatarianStarRating}
-          setSelectedPescatarianStarRating={setSelectedPescatarianStarRating}
-        ></PescatarianStarRating>
+          <PescatarianStarRating
+            selectedPescatarianStarRating={selectedPescatarianStarRating}
+            setSelectedPescatarianStarRating={setSelectedPescatarianStarRating}
+          ></PescatarianStarRating>
 
-        <GlutenFreeStarRating
-          selectedGlutenFreeStarRating={selectedGlutenFreeStarRating}
-          setSelectedGlutenFreeStarRating={setSelectedGlutenFreeStarRating}
-        ></GlutenFreeStarRating>
+          <GlutenFreeStarRating
+            selectedGlutenFreeStarRating={selectedGlutenFreeStarRating}
+            setSelectedGlutenFreeStarRating={setSelectedGlutenFreeStarRating}
+          ></GlutenFreeStarRating>
 
-        <DairyFreeStarRating
-          selectedDairyFreeStarRating={selectedDairyFreeStarRating}
-          setSelectedDairyFreeStarRating={setSelectedDairyFreeStarRating}
-        ></DairyFreeStarRating>
+          <DairyFreeStarRating
+            selectedDairyFreeStarRating={selectedDairyFreeStarRating}
+            setSelectedDairyFreeStarRating={setSelectedDairyFreeStarRating}
+          ></DairyFreeStarRating>
 
-        <NutFreeStarRating
-          selectedNutFreeStarRating={selectedNutFreeStarRating}
-          setSelectedNutFreeStarRating={setSelectedNutFreeStarRating}
-        ></NutFreeStarRating>
+          <NutFreeStarRating
+            selectedNutFreeStarRating={selectedNutFreeStarRating}
+            setSelectedNutFreeStarRating={setSelectedNutFreeStarRating}
+          ></NutFreeStarRating>
 
-        <h3>How was your experience?</h3>
-        <Textarea name="review" id="review" aria-label="review"></Textarea>
+          <h3>How was your experience?</h3>
+          <Textarea name="review" id="review" aria-label="review"></Textarea>
 
-        <Button>Submit</Button>
-      </form>
-    </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </Wrapper>
   );
 };
 

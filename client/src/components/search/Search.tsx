@@ -9,7 +9,7 @@ const Search = () => (
     <Input />
     <Link to="results">
       {" "}
-      <Button content="Search" name="search" />
+      <Button type="submit" content="Search" name="search" />
     </Link>
   </SearchWrapper>
 );

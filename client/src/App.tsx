@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router";
 import {
   Home,
+  AdvancedSearch,
   Result,
   NotFound,
   Login,
@@ -34,8 +35,12 @@ const App = () => {
         <Routes>
           {/* <Route exact path="/" element={<App />} /> */}
           <Route path="/" element={<Home />} />
+          <Route path="advanced-search" element={<AdvancedSearch />} />
           <Route path="results" element={<Result />} />
-          <Route path="single-result/:place_id" element={<SingleResultPage />} />
+          <Route
+            path="single-result/:place_id"
+            element={<SingleResultPage />}
+          />
           <Route path="review" element={<Review />} />
           <Route path="reviews" element={<ReviewsListParent />} />
           <Route path="*" element={<NotFound />} />

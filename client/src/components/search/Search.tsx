@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Input from "../Input/Input";
+import Input from "../input/Input";
 import Button from "../Button/Button";
 import SearchWrapper from "./SearchStyles";
 

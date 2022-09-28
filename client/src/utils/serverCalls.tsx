@@ -9,16 +9,16 @@ declare module 'axios' {
 
 const apiFlag = true;
 
-export async function getRestaurants(req: any) {
+export async function getRestaurants(payload: any) {
   if (!apiFlag) {
     return undefined;
   }
-    try {
-      const res = await axios.get(`${apiServer()}/api/restaurant`, req);
-      return res.data;
-    } catch (err) {
-      console.log(err);
-    }
+  try {
+    const res = await axios.post(`${apiServer()}/api/restaurant`, payload);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export async function getRestaurant(placeId: any) {
@@ -26,7 +26,7 @@ export async function getRestaurant(placeId: any) {
     return undefined;
   }
   try {
-    const res = await axios.get(`${apiServer()}/api/restaurant/${placeId}`);
+    const res = await axios.post(`${apiServer()}/api/restaurant/${placeId}`);
     return (res.data)
   } catch (err) {
     console.log(err);

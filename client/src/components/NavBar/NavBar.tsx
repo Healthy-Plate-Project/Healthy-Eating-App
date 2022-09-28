@@ -12,7 +12,7 @@ import {
   saveRestaurant,
   updateReview,
 } from "../../utils/serverCalls";
-import NavbarStyled from "./NavbarStyles";
+import { NavbarStyled, StyledButton } from "./NavbarStyles";
 
 export function Navbar(props: any) {
   const logout = async () => {
@@ -76,22 +76,24 @@ export function Navbar(props: any) {
       "ChIJn58N1B9gUocRpAXOXPbFcOo"
     );
 
-    console.log(getRestaurantReviewsByRestaurant);
-    console.log(getRestaurantReviewsByUser);
-    console.log(getRestaurantReview);
-    console.log(deleteRestaurantReview);
-    console.log(updateRestaurantReview);
-    console.log(createRestaurantReview);
-    console.log(getRestaurantsResults);
-    console.log(getRestaurantResults);
-    console.log(saveRestaurantResults);
+    // console.log(getRestaurantReviewsByRestaurant);
+    // console.log(getRestaurantReviewsByUser);
+    // console.log(getRestaurantReview);
+    // console.log(deleteRestaurantReview);
+    // console.log(updateRestaurantReview);
+    // console.log(createRestaurantReview);
+    // console.log(getRestaurantsResults);
+    // console.log(getRestaurantResults);
+    // console.log(saveRestaurantResults);
   }
 
   return (
     <NavbarStyled>
       <Link to="/">Home</Link>
       <Link to="results">Results</Link>
-      <button onClick={testAPICalls}>Test API Calls</button>
+      <Link to="review">Review</Link>
+      <Link to="reviews">Reviews</Link>
+      <StyledButton onClick={() => testAPICalls()}>Test API</StyledButton>
     </NavbarStyled>
   );
 }

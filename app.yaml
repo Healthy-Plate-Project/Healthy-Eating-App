@@ -2,7 +2,12 @@ runtime: nodejs14
 
 instance_class: F1
 
-env_variables:
-  GOOGLE_PLACES_APIKEY: "AIzaSyC_oRYpmsi4vtq36cZuHX4AbnKR0WoIrpc"
-  MONGODB_URI: "mongodb+srv://healthy-eating-app:3jlitPen3jTs4qxU@healthy-eating-app.7niarno.mongodb.net/?retryWrites=true&w=majority"
-  NODE_ENV: "production"
+handlers:
+# Serve all static files with urls ending with a file extension
+  - url: /(.*\..+)$
+    static_files: client/build/\1
+    upload: client/build/(.*\..+)$
+    # catch all handlers to index.html
+  - url: /.*
+    static_files: client/build/index.html
+    upload: client/build/index.html

@@ -1,6 +1,6 @@
 //Initialization
 const express = require("express");
-require("dotenv").config({ path: "./.env" });
+require("dotenv").config({ path: "../.env" });
 const cors = require("cors");
 // const cookieParser = require('cookie-parser')
 // var bodyParser = require("body-parser");

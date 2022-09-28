@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const NavbarStyled = styled.nav`
-  position: absolute;
+  position: fixed;
   bottom: 3rem;
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: center;
   height: 1.5rem;
   font-size: 1.5rem;

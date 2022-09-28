@@ -1,12 +1,12 @@
 import React from "react";
-import { ButtonStyled, LoginButtonStyles } from "./ButtonStyles";
+import { ButtonStyled } from "./ButtonStyles";
 
 type Props = {
-  children?: any;
-  content?: string;
-  name?: string;
+  content: string;
+  name: string;
+  type: string;
 }
 
-export default function Button({ content, name }: Props) {
-  return <ButtonStyled id={name + "-button"}>{content}</ButtonStyled >;
+export default function Button(props: Props) {
+  return <ButtonStyled id={props.name + "-button"}>{props.content}</ButtonStyled >;
 };

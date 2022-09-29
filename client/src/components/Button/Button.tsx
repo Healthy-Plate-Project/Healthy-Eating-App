@@ -1,7 +1,8 @@
 import React from "react";
-import { ButtonStyled, LoginButtonStyles } from "./ButtonStyles";
+import { ButtonStyled } from "./ButtonStyles";
 
 type Props = {
+<<<<<<< HEAD
   children?: any;
   content?: string;
   name?: string;
@@ -15,3 +16,13 @@ export default function Button({ content, name, onClick }: Props) {
     </ButtonStyled>
   );
 }
+=======
+  content: string;
+  name: string;
+  type: string;
+}
+
+export default function Button(props: Props) {
+  return <ButtonStyled id={props.name + "-button"}>{props.content}</ButtonStyled >;
+};
+>>>>>>> develop

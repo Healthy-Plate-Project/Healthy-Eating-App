@@ -5,8 +5,13 @@ type Props = {
   children?: any;
   content?: string;
   name?: string;
-}
-
-export default function Button({ content, name }: Props) {
-  return <ButtonStyled id={name + "-button"}>{content}</ButtonStyled >;
+  onClick?: any;
 };
+
+export default function Button({ content, name, onClick }: Props) {
+  return (
+    <ButtonStyled onClick={onClick} id={name + "-button"}>
+      {content}
+    </ButtonStyled>
+  );
+}

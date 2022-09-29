@@ -8,7 +8,7 @@ import {
   ButtonContainer,
   SignUp,
 } from "./LoginStyles";
-import { LoginInput } from "../../components/input/InputStyles";
+import { LoginInput } from "../../components/Input/InputStyles";
 
 // components
 import { Navigate } from "react-router-dom";

@@ -1,5 +1,5 @@
 import React from "react";
-import { AdvancedSearchForm } from "./Form";
+import { useForm } from "./useForm";
 import {
   AdvancedSearchWrapper,
   Keyword,
@@ -13,9 +13,7 @@ import price_icon from "../../assets/images/price_icon.png";
 
 const AdvancedSearch = () => {
   // getting the event handlers from our custom hook
-  const { onChange, onSubmit, values } = AdvancedSearchForm(
-    advancedSearchCallback
-  );
+  const { onChange, onSubmit, values } = useForm(advancedSearchCallback);
   // a submit function that will execute upon form submission
   async function advancedSearchCallback() {
     console.log(values);
@@ -85,7 +83,7 @@ const AdvancedSearch = () => {
               onChange={onChange}
               type="radio"
               name="distance"
-              id="fifteen"
+              id="twenty"
               value={20}
             />
             <label htmlFor="twenty">20</label>

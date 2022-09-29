@@ -14,7 +14,6 @@ import { LoginInput } from "../../components/Input/InputStyles";
 import { Navigate } from "react-router-dom";
 
 function Login(props: any) {
-
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [redirect, setRedirect] = useState(false);
@@ -41,44 +40,34 @@ function Login(props: any) {
   }
 
   return (
-<<<<<<< HEAD
-    <MainContainer>
-      <WelcomeText>Sign in</WelcomeText>
-      <InputContainer>
-        <LoginInput
-          type="text"
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <LoginInput
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </InputContainer>
-      <ButtonContainer>
-        <SignUp>
-          <button>Sign Up</button>
-        </SignUp>
-      </ButtonContainer>
-    </MainContainer>
-  );
-=======
     <form>
       <MainContainer>
         <WelcomeText>Login</WelcomeText>
         <InputContainer>
-          <LoginInput type="email" name="login-email-input" placeholder="Email" onChange={e => setEmail(e.target.value)} />
-          <LoginInput type="password" name="login-password-input" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+          <LoginInput
+            type="email"
+            name="login-email-input"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <LoginInput
+            type="password"
+            name="login-password-input"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </InputContainer>
         <ButtonContainer>
-          <Button type="submit" content="Login" name="login" />
+          <button type="submit" name="login">
+            Login
+          </button>
         </ButtonContainer>
-        <SignUp>Create an Account? <a href="signup">Sign Up</a> </SignUp>
+        <SignUp>
+          Create an Account? <a href="signup">Sign Up</a>{" "}
+        </SignUp>
       </MainContainer>
     </form>
-  )
->>>>>>> develop
+  );
 }
 
 export default Login;

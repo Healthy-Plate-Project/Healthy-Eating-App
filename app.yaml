@@ -1,13 +1,13 @@
-runtime: nodejs14
+runtime: nodejs16
 
 instance_class: F1
 
-handlers:
-# Serve all static files with urls ending with a file extension
-  - url: /(.*\..+)$
-    static_files: client/build/\1
-    upload: client/build/(.*\..+)$
-    # catch all handlers to index.html
-  - url: /.*
-    static_files: client/build/index.html
-    upload: client/build/index.html
+# handlers:
+#   # Serve all static files with urls ending with a file extension
+#   - url: /(.*\..+)$
+#     static_files: client/build/\1
+#     upload: client/build/(.*\..+)$
+#     # catch all handlers to index.html
+#   - url: /.*
+#     static_files: client/build/index.html
+#     upload: client/build/index.html

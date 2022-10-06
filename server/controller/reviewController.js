@@ -11,8 +11,10 @@ const reviewController = {
   },
   updateReview: async function (req, res) {
     try {
-      console.log(req.body)
-      const data = await Review.findOneAndUpdate(req.params, req.body);
+      const data = await Review.findOneAndUpdate(
+        { _id: req.params.reviewId },
+        req.body, 
+        { returnOriginal: false });
       res.json(data);
     } catch (error) {
       res.status(500).json(error);
@@ -20,17 +22,17 @@ const reviewController = {
   },
   deleteReview: async function (req, res) {
     try {
-      console.log(req.body)
-      const data = await Review.findOneAndDelete(req.params);
-      res.json(data);
+      const data = await Review.findOneAndDelete({ _id: req.params.reviewId });
+      res.json({
+        message: `Review ID# ${data._id} Deleted!`
+      });
     } catch (error) {
       res.status(500).json(error);
     }
   },
   getReview: async function (req, res) {
     try {
-      console.log(req.body)
-      const data = await Review.findOne(req.params);
+      const data = await Review.findOne({ _id: req.params.reviewId });
       res.json(data);
     } catch (error) {
       res.status(500).json(error);
@@ -38,8 +40,7 @@ const reviewController = {
   },
   getReviewsByUser: async function (req, res) {
     try {
-      console.log(req.body)
-      const data = await Review.find({ user_id: req.params });
+      const data = await Review.find({ user_id: req.params.userId });
       res.json(data);
     } catch (error) {
       res.status(500).json(error);
@@ -47,8 +48,7 @@ const reviewController = {
   },
   getReviewsByRestaurant: async function (req, res) {
     try {
-      console.log(req.body)
-      const data = await Review.find({ place_id: req.params });
+      const data = await Review.find({ place_id: req.params.placeId });
       res.json(data);
     } catch (error) {
       res.status(500).json(error);

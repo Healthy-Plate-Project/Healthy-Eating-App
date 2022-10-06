@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Input from "../Input/Input";
-import Button from "../Button/Button";
+import Input from "../input/Input";
 import SearchWrapper from "./SearchStyles";
 import { convertMilesToMeters } from "../../utils/helpers";
+import Button from "../Button/Button";
 
 export default function Search() {
   const [search, setSearch] = useState("" as string | undefined);

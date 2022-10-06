@@ -16,6 +16,7 @@ const MainContainer = styled.div`
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 0.4rem;
+
   @media only screen and (max-width: 320px) {
     width: 80vw;
     height: 90vh;
@@ -71,6 +72,24 @@ const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  button {
+    border: none;
+    border-radius: 50px;
+    height: 3rem;
+    width: 300px;
+    color: #f2f2f2;
+    background-color: rgb(48, 48, 48);
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.5s;
+    &:active {
+      background-color: #4f4f4f;
+      box-shadow: 0px 5px 10px #696969;
+      transition: all 0.3s;
+      transform: scale(101%);
+    }
+  }
 `;
 
 const LoginWith = styled.h5`

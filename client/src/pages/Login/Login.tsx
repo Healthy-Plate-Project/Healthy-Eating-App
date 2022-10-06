@@ -8,12 +8,14 @@ import {
   ButtonContainer,
   SignUp,
 } from "./LoginStyles";
-import { LoginInput } from "../../components/Input/InputStyles";
+import { LoginInput } from "../../components/input/InputStyles";
 
 // components
 import { Navigate } from "react-router-dom";
 
 function Login(props: any) {
+
+
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [redirect, setRedirect] = useState(false);
@@ -40,33 +42,28 @@ function Login(props: any) {
   }
 
   return (
-    <form>
-      <MainContainer>
-        <WelcomeText>Login</WelcomeText>
-        <InputContainer>
-          <LoginInput
-            type="email"
-            name="login-email-input"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <LoginInput
-            type="password"
-            name="login-password-input"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </InputContainer>
-        <ButtonContainer>
-          <button type="submit" name="login">
-            Login
-          </button>
-        </ButtonContainer>
+
+    <MainContainer>
+      <WelcomeText>Sign in</WelcomeText>
+      <InputContainer>
+        <LoginInput
+          type="text"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <LoginInput
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </InputContainer>
+      <ButtonContainer>
+        {/* <button className="login" /> */}
         <SignUp>
-          Create an Account? <a href="signup">Sign Up</a>{" "}
+          <button>Sign Up</button>
         </SignUp>
-      </MainContainer>
-    </form>
+      </ButtonContainer>
+    </MainContainer>
   );
 }
 

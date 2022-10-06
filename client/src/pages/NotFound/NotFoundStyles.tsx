@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-/*paragraph input on forms*/
-export const Textarea = styled.textarea`
-  width: 100%;
-  height: 50px;
-`;
-
 export const Wrapper = styled.div`
   h1 {
     margin: 20px 0;

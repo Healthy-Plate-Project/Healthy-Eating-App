@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Input from "../Input/Input";
-import Button from "../Button/Button";
+import Input from "../input/Input";
 import SearchWrapper from "./SearchStyles";
 import { convertMilesToMeters } from "../../utils/helpers";
+import Button from "../Button/Button";
 
 export default function Search() {
-
   const [search, setSearch] = useState("" as string | undefined);
 
   // function to get the current location of user, uses GPS if on a mobile device
@@ -19,7 +18,9 @@ export default function Search() {
       let url = `results/${latitude}/${longitude}/${open_now}/${radius}`;
       setSearch(url as string);
     }
-    function error() { return "Error: Geolocation server is down" };
+    function error() {
+      return "Error: Geolocation server is down";
+    }
     if (!navigator.geolocation) {
       return "Error: Geolocation is not supported by your browser";
     } else {
@@ -33,13 +34,13 @@ export default function Search() {
       let path = `${search}`;
       navigate(path);
     } else {
-      console.log('ERROR')
+      console.log("ERROR");
     }
   };
 
   return (
     <SearchWrapper>
-      <Input /> <Button content="Search" name="search" />
+      <Input /> <Button type="submit" content="Search" name="search" />
       <button
         name="current-location-search-button"
         onClick={() => getCurrentPos().then(() => routeChange())}

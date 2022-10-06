@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 // styled components
 import {
@@ -6,19 +6,19 @@ import {
   WelcomeText,
   InputContainer,
   ButtonContainer,
-  SignUp
+  SignUp,
 } from "./LoginStyles";
-import { LoginInput } from "../../components/Input/InputStyles";
+import { LoginInput } from "../../components/input/InputStyles";
 
 // components
-import { Button } from '../../components';
-import { Navigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
 
 function Login(props: any) {
 
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [redirect, setRedirect] = useState(false)
+
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   const submit = async (e: Event) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ function Login(props: any) {
     fetch("/api/user/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      credentials: 'include',
+      credentials: "include",
       body: JSON.stringify({
         password,
         email,
@@ -35,27 +35,36 @@ function Login(props: any) {
       props.setCurrentUserEmail(email);
       setRedirect(true);
     });
-  }
+  };
 
   if (redirect) {
-    return <Navigate to='/' />;
+    return <Navigate to="/" />;
   }
 
   return (
-    <form>
-      <MainContainer>
-        <WelcomeText>Login</WelcomeText>
-        <InputContainer>
-          <LoginInput type="email" name="login-email-input" placeholder="Email" onChange={e => setEmail(e.target.value)} />
-          <LoginInput type="password" name="login-password-input" placeholder="Password" onChange={e => setPassword(e.target.value)} />
-        </InputContainer>
-        <ButtonContainer>
-          <Button type="submit" content="Login" name="login" />
-        </ButtonContainer>
-        <SignUp>Create an Account? <a href="signup">Sign Up</a> </SignUp>
-      </MainContainer>
-    </form>
-  )
+
+    <MainContainer>
+      <WelcomeText>Sign in</WelcomeText>
+      <InputContainer>
+        <LoginInput
+          type="text"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <LoginInput
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </InputContainer>
+      <ButtonContainer>
+        {/* <button className="login" /> */}
+        <SignUp>
+          <button>Sign Up</button>
+        </SignUp>
+      </ButtonContainer>
+    </MainContainer>
+  );
 }
 
-export default Login
+export default Login;

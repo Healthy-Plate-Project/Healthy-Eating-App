@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router";
 import {
   Home,
+  AdvancedSearch,
   Result,
   NotFound,
   Login,
@@ -34,6 +35,7 @@ const App = () => {
         <Routes>
           {/* <Route exact path="/" element={<App />} /> */}
           <Route path="/" element={<Home />} />
+          <Route path="advanced-search" element={<AdvancedSearch />} />
           <Route
             path="/results/:latitude/:longitude/:open_now/:radius"
             element={<Result />}

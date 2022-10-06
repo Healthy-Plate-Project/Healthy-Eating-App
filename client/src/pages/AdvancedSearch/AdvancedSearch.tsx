@@ -44,13 +44,7 @@ const AdvancedSearch = () => {
               onChange={onChange}
               placeholder="city, state, zip"
             />
-            <input
-              type="radio"
-              onChange={onChange}
-              id="current-radio"
-              value="current location data"
-            />
-            <label htmlFor="current-radio">Use Current</label>
+            <button>Use Current Location</button>
           </Location>
 
           <Distance>
@@ -61,14 +55,6 @@ const AdvancedSearch = () => {
               name="distance"
               id="one"
               value={1}
-            />
-            <label htmlFor="one">1</label>
-            <input
-              onChange={onChange}
-              type="radio"
-              name="distance"
-              id="five"
-              value={5}
             />
             <label htmlFor="five">5</label>
             <input

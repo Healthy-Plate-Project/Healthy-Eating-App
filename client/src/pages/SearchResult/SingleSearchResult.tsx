@@ -18,7 +18,7 @@ export interface SingleRestaurantData {
   url: string;
   website: string;
   opening_hours: {
-    weekday_text: [string]
+    weekday_text: [string];
   };
   special_diet_ratings?: {
     dairy_free?: number;
@@ -54,7 +54,7 @@ export function SingleSearchResultPage() {
 
   return (
     <>
-      <p>Restaurant Name: {restaurantData.name}</p>
+      <h1>Restaurant Name: {restaurantData.name}</h1>
       <p>Restaurant Place_id: {restaurantData.place_id}</p>
       <p>Restaurant Price Level: {restaurantData.price_level}</p>
       <p>Restaurant Address: {restaurantData.vicinity}</p>

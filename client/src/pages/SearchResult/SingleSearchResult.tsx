@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getRestaurant } from "../../utils/serverCalls";
+import { H1, HeartEmpty } from "./RobynStyles";
+import heartEmpty from "../../assets/images/heart-empty.png";
+import HeartFavorite from "./HeartFavorite";
 
 export interface SingleRestaurantData {
   name: string;
@@ -52,10 +55,20 @@ export function SingleSearchResultPage() {
   // look at this object in the console to see what data is available to use
   // console.log(restaurantData);
 
+  // default should be no, not favorited. use boolean. yes is selected.
+  const [selectedHeart, setSelectedHeart] = useState<number>();
+
   return (
     <>
-      <h1>Restaurant Name: {restaurantData.name}</h1>
+      <H1>
+        {restaurantData.name}
+        <HeartFavorite
+          selectedHeart={selectedHeart}
+          setSelectedHeart={setSelectedHeart}
+        ></HeartFavorite>
+      </H1>
       <p>Restaurant Place_id: {restaurantData.place_id}</p>
+      {/* add $$$$ symbol */}
       <p>Restaurant Price Level: {restaurantData.price_level}</p>
       <p>Restaurant Address: {restaurantData.vicinity}</p>
       <p>Restaurant Phone: {restaurantData.formatted_phone_number}</p>

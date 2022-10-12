@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    cursor: default;
+    cursor: pointer;
   }
 
   h1 {

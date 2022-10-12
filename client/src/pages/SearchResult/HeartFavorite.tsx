@@ -17,7 +17,6 @@ const HeartFavorite = (props: any) => {
       if (i <= props.selectedHeart) {
         array.push(
           <img
-            className="stars"
             src={heartFull}
             alt={alt}
             aria-label={alt}

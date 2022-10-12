@@ -91,7 +91,6 @@ export function Navbar(props: any) {
     <NavbarStyled>
       <Link to="/">Home</Link>
       <Link to="advanced-search">Advanced Search</Link>
-      <Link to="results">Results</Link>
       <Link to="review">Review</Link>
       <Link to="reviews">Reviews</Link>
       <StyledButton onClick={() => testAPICalls()}>Test API</StyledButton>

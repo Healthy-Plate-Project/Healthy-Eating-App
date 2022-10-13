@@ -5,8 +5,10 @@ type Props = {
   content: string;
   name: string;
   type: string;
-}
+};
 
 export default function Button(props: Props) {
-  return <ButtonStyled id={props.name + "-button"}>{props.content}</ButtonStyled >;
-};
+  return (
+    <ButtonStyled id={props.name + "-button"}>{props.content}</ButtonStyled>
+  );
+}

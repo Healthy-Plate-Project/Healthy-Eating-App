@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Input from "../input/Input";
+import Input from "../Input/Input";
 import SearchWrapper from "./SearchStyles";
 import { convertMilesToMeters } from "../../utils/helpers";
 import Button from "../Button/Button";

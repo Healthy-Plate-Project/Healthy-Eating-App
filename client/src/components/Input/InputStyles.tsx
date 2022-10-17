@@ -29,7 +29,7 @@ const LoginInput = styled.input`
     border: none;
   }
   &::placeholder {
-    color: white;
+    color: var(--light);
     font-weight: 100;
     font-size: 1rem;
   }

@@ -2,14 +2,21 @@ import styled from "styled-components";
 
 export const NavbarStyled = styled.nav`
   position: absolute;
-  bottom: 3rem;
+  bottom: 1rem;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: center;
-  height: 1.5rem;
-  font-size: 1.5rem;
-  width: 90%;
+  align-items: right;
+  font-size: 1.3rem;
+  width: clamp(290px, 95%, 350px);
+  background-color: var(--primary);
+  padding: 0.5rem;
+  border-radius: 10px;
+
+  p {
+    display: flex;
+    flex-direction: column;
+  }
 
   & a {
     text-decoration: none;

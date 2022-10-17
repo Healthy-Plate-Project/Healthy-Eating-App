@@ -1,23 +1,32 @@
 import styled from "styled-components";
 
 const ButtonStyled = styled.button`
+  color: var(--dark);
+  background-color: var(--secondary);
   border: none;
   border-radius: 50px;
   height: 3rem;
-  width: 300px;
-  color: #f2f2f2;
-  background-color: rgb(48, 48, 48);
-  /* color: rgb(109, 139, 104); */
+  width: fit-content;
+  padding: 1rem 1.5rem;
   font-weight: 700;
   font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
   transition: all 0.5s;
+
+  &:hover {
+    background-color: var(--primary-400);
+  }
+
   &:active {
-    background-color: #4f4f4f;
+    background-color: var(--primary-600);
     box-shadow: 0px 5px 10px #696969;
     transition: all 0.3s;
     transform: scale(101%);
   }
 `;
+
+const SecondaryButtonStyled = styled(ButtonStyled)``;
 
 const LoginButtonStyles = styled(ButtonStyled)`
   background: linear-gradient(to right, #3b2b3b 0%, #5b4269d1 79%);

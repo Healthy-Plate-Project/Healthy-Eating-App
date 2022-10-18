@@ -5,7 +5,7 @@ import { H1, H3, HeartEmpty, Wrapper, Dollar } from "./RobynStyles";
 import heartEmpty from "../../assets/images/heart-empty.png";
 import dollarEmpty from "../../assets/images/dollar-empty.png";
 import dollarFilled from "../../assets/images/dollar-filled.png";
-import HeartFavorite from "./HeartFavorite";
+// import HeartFavorite from "./HeartFavorite";
 import { Button } from "../../components";
 
 export interface SingleRestaurantData {
@@ -59,17 +59,19 @@ export function SingleSearchResultPage() {
   // console.log(restaurantData);
 
   // default should be no, not favorited. use boolean. yes is selected.
-  const [selectedHeart, setSelectedHeart] = useState<number>();
+  const [selectedHeart, setSelectedHeart] = useState();
 
   return (
     <>
       <Wrapper>
         <H1>
           {restaurantData.name}
-          <HeartFavorite
-            selectedHeart={selectedHeart}
-            setSelectedHeart={setSelectedHeart}
-          ></HeartFavorite>
+          {/* <HeartFavorite */}
+          {/* selectedHeart={selectedHeart}
+          
+           setSelectedHeart={setSelectedHeart}
+           >
+           </HeartFavorite>*/}
         </H1>
         {/* <p>Restaurant Place_id: {restaurantData.place_id}</p> */}
         {/* add $$$$ symbol */}

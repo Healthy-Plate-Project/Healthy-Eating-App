@@ -7,7 +7,7 @@ import people from "../../assets/images/people.svg";
 const Home = () => {
   return (
     <HomeWrapper>
-      <BackgroundImage src={people} />
+      {/* <BackgroundImage src={people} /> */}
       <HomeTitle />
       <Search />
     </HomeWrapper>

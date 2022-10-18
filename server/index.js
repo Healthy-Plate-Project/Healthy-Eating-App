@@ -10,6 +10,9 @@ const PORT = process.env.PORT || 3001;
 const db = require("./config/connection");
 const app = express();
 
+const testAPI = true
+module.exports = testAPI;
+
 // app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 // app.use(bodyParser.json({ limit: "50mb" }));

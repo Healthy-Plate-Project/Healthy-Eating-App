@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router";
 import {
@@ -14,6 +13,7 @@ import {
 import GlobalStyle from "./theme/globalStyle";
 import { Navbar } from "./components";
 import { SingleSearchResultPage } from "./pages/SearchResult/SingleSearchResult";
+import "./App.css";
 
 const App = () => {
   const [currentUserEmail, setCurrentUserEmail] = useState("");

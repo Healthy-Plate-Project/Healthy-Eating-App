@@ -1,15 +1,15 @@
 import styled from "styled-components";
+import DefaultButton from "./DefaultButton";
 
-const ButtonStyled = styled.button`
-  color: var(--dark);
-  background-color: var(--secondary);
+const PrimaryButton = styled(DefaultButton)`
+  color: var(--light);
+  background-color: var(--primary);
   border: none;
   border-radius: 50px;
-  height: 3rem;
   width: fit-content;
-  padding: 1rem 1.5rem;
+  padding: 0.7rem 1rem;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 3px;
   transition: all 0.5s;
@@ -20,15 +20,31 @@ const ButtonStyled = styled.button`
 
   &:active {
     background-color: var(--primary-600);
+    box-shadow: 0px 2px 5px #69696990;
+    transition: all 0.3s;
+    transform: scale(101%);
+  }
+`;
+
+const SearchButton = styled(PrimaryButton)`
+  color: var(--light);
+  background-color: var(--primary);
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: var(--primary-400);
+    transition: all 0.3s;
+  }
+
+  &:active {
+    background-color: var(--primary-600);
     box-shadow: 0px 5px 10px #696969;
     transition: all 0.3s;
     transform: scale(101%);
   }
 `;
 
-const SecondaryButtonStyled = styled(ButtonStyled)``;
-
-const LoginButtonStyles = styled(ButtonStyled)`
+const LoginButtonStyles = styled(DefaultButton)`
   background: linear-gradient(to right, #3b2b3b 0%, #5b4269d1 79%);
   text-transform: uppercase;
   letter-spacing: 0.2rem;
@@ -40,4 +56,4 @@ const LoginButtonStyles = styled(ButtonStyled)`
   cursor: pointer;
 `;
 
-export { ButtonStyled, LoginButtonStyles };
+export { PrimaryButton, SearchButton, LoginButtonStyles };

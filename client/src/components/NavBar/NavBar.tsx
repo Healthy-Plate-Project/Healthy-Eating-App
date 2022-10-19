@@ -91,17 +91,16 @@ export function Navbar(props: any) {
     <NavbarStyled>
       <details>
         <summary>menu</summary>
-        <p>
-          <Link to="/">Home</Link>
-          <Link to="advanced-search">Advanced Search</Link>
-          <Link to="results">Results</Link>
-          <Link to="review">Review</Link>
-          <Link to="reviews">Reviews</Link>
-          <StyledButton onClick={() => testAPICalls()}>Test API</StyledButton>
-          <Link to={"/single-result/ChIJn58N1B9gUocRpAXOXPbFcOo"}>
-            Single Result
-          </Link>
-        </p>
+
+        <Link to="/">Home</Link>
+        <Link to="advanced-search">Advanced Search</Link>
+        <Link to="results">Results</Link>
+        <Link to="review">Review</Link>
+        <Link to="reviews">Reviews</Link>
+        <StyledButton onClick={() => testAPICalls()}>Test API</StyledButton>
+        <Link to={"/single-result/ChIJn58N1B9gUocRpAXOXPbFcOo"}>
+          Single Result
+        </Link>
       </details>
     </NavbarStyled>
   );

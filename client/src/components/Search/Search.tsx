@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Input from "../Input/Input";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SearchWrapper from "./SearchStyles";
 import { convertMilesToMeters } from "../../utils/helpers";
-// import Button from "../Button/Button";
-import ButtonStyled from "../Button/Button";
+import {
+  PrimaryButton,
+  SearchButton,
+  PrimaryInput,
+  SmallInput,
+} from "../index";
 
 export default function Search() {
   const [search, setSearch] = useState("" as string | undefined);
@@ -41,16 +44,15 @@ export default function Search() {
 
   return (
     <SearchWrapper>
-      <Input />
-      <ButtonStyled type="submit" content="Search" name="search">
-        Search
-      </ButtonStyled>
-      <ButtonStyled
+      <PrimaryInput placeholder="Primary input" />
+      <SmallInput placeholder="Small input" />
+      <SearchButton>Search</SearchButton>
+      <PrimaryButton
         name="current-location-search-button"
         onClick={() => getCurrentPos().then(() => routeChange())}
       >
         GPS Location Search
-      </ButtonStyled>
+      </PrimaryButton>
     </SearchWrapper>
   );
 }

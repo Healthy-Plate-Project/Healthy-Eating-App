@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getRestaurant } from "../../utils/serverCalls";
-import { H1, H3, HeartEmpty, Wrapper, Dollar } from "./RobynStyles";
-import heartEmpty from "../../assets/images/heart-empty.png";
+import { H1, H3, HeartIcon, Wrapper, Dollar } from "./SingleSearchResultStyles";
+import heartEmpty from "../../assets/images/heart-empty.svg";
+import heartFilled from "../../assets/images/heart-filled.svg";
 import dollarEmpty from "../../assets/images/dollar-empty.png";
 import dollarFilled from "../../assets/images/dollar-filled.png";
-// import HeartFavorite from "./HeartFavorite";
 import { Button } from "../../components";
 
 export interface SingleRestaurantData {
@@ -58,20 +58,22 @@ export function SingleSearchResultPage() {
   // look at this object in the console to see what data is available to use
   // console.log(restaurantData);
 
-  // default should be no, not favorited. use boolean. yes is selected.
-  const [selectedHeart, setSelectedHeart] = useState();
+  // default should be no, not favorited. use boolean type. True is selected.
+  const [heart, setHeart] = useState<boolean>(false);
+  const prevState = "";
 
   return (
     <>
       <Wrapper>
         <H1>
           {restaurantData.name}
-          {/* <HeartFavorite */}
-          {/* selectedHeart={selectedHeart}
-          
-           setSelectedHeart={setSelectedHeart}
-           >
-           </HeartFavorite>*/}
+          <span onClick={() => setHeart((prevState) => !prevState)}>
+            {heart ? (
+              <HeartIcon src={heartFilled} />
+            ) : (
+              <HeartIcon src={heartEmpty} />
+            )}{" "}
+          </span>
         </H1>
         {/* <p>Restaurant Place_id: {restaurantData.place_id}</p> */}
         {/* add $$$$ symbol */}

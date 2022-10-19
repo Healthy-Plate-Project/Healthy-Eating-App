@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
   text-align: left;
 `;
 
-// Don't need HeartCheck anymore
-// export const HeartCheck = styled.input.attrs({ type: "checkbox" })`
-//   content: url("../../assets/images/heart-empty.png");
-// `;
+export const HeartIcon = styled.img`
+  margin: 0 10px;
+  height: 35px;
+`;

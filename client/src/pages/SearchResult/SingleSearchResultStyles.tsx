@@ -1,3 +1,4 @@
+import { FaTheRedYeti } from "react-icons/fa";
 import styled from "styled-components";
 
 export const H1 = styled.h1`
@@ -20,4 +21,10 @@ export const Wrapper = styled.div`
 export const HeartIcon = styled.img`
   margin: 0 10px;
   height: 35px;
+`;
+
+//*not in use yet, see app.css *//
+export const DollarStyle = styled.img`
+  height: 20px;
+  margin: 0 1px;
 `;

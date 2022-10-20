@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getRestaurant } from "../../utils/serverCalls";
-import { H1, H3, HeartIcon, Wrapper, Dollar } from "./SingleSearchResultStyles";
+import {
+  H1,
+  H3,
+  HeartIcon,
+  Wrapper,
+  DollarStyle,
+} from "./SingleSearchResultStyles";
 import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
 import dollarFilled from "../../assets/images/green-dollar.svg";
-import { Button } from "../../components";
+// import { Button } from "../../components";
 
 export interface SingleRestaurantData {
   name: string;
@@ -61,6 +67,25 @@ export function SingleSearchResultPage() {
   const [heart, setHeart] = useState<boolean>(false);
   const prevState = "";
 
+  // BEGIN DOLLAR DYNAMICS
+  let dollarAPI = restaurantData.price_level;
+
+  // add esclamation point at end of parent here to remove TS error "object possibly null" to say that i'm sure dollar id exists
+  let parent = document.getElementById("dollar")!,
+    imageSrc = dollarFilled,
+    img;
+
+  // repeat dollar signs based on dollarAPI number.
+  for (let i = 2; i <= dollarAPI; i++) {
+    img = new Image();
+    img.src = imageSrc;
+    img.alt = "icon";
+    img.className = "myDollar";
+    parent.appendChild(img);
+  }
+
+  console.log("dollarAPI: " + dollarAPI);
+
   return (
     <>
       <Wrapper>
@@ -76,12 +101,7 @@ export function SingleSearchResultPage() {
         </H1>
         {/* <p>Restaurant Place_id: {restaurantData.place_id}</p> */}
         {/* add $$$$ symbol */}
-
-        <p>
-          {restaurantData.price_level}
-          <Dollar src={dollarFilled} />
-          <Dollar src={dollarFilled} />
-        </p>
+        <span id="dollar"></span>
         <p>
           <a href={restaurantData.url} rel="noreferrer" target="_blank">
             {restaurantData.vicinity}

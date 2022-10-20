@@ -7,7 +7,7 @@ const SearchWrapper = styled.div`
   gap: 1.5rem;
   padding: 2.5rem 0;
 
-  input {
+  /* input {
     border-radius: 50px;
     border: 1px var(--primary) solid;
     height: 3rem;
@@ -15,7 +15,7 @@ const SearchWrapper = styled.div`
     font-family: "Montserrat", sans-serif;
     font-size: 1rem;
     padding: 0 0 0 1rem;
-  }
+  } */
 
   /* button {
     border: none;

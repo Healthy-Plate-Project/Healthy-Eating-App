@@ -9,7 +9,8 @@ import {
   Distance,
   Form,
 } from "./AdvancedSearchStyles";
-import price_icon from "../../assets/images/price_icon.png";
+import { PriceIcon, LikeIcon, DirectionsIcon } from "../../assets/icons";
+import { SearchButton } from "../../components";
 
 const AdvancedSearch = () => {
   // getting the event handlers from our custom hook
@@ -24,7 +25,7 @@ const AdvancedSearch = () => {
       <Form onSubmit={onSubmit}>
         <fieldset>
           <legend>
-            <h1>AdvancedSearch</h1>
+            <h3>Advanced Search</h3>
           </legend>
           <Keyword>
             <h2>Keyword</h2>
@@ -44,7 +45,7 @@ const AdvancedSearch = () => {
               onChange={onChange}
               placeholder="city, state, zip"
             />
-            <button>Use Current Location</button>
+            <SearchButton>Use Current Location</SearchButton>
           </Location>
 
           <Distance>
@@ -79,19 +80,19 @@ const AdvancedSearch = () => {
             <h2>Price</h2>
             <label>
               <input type="radio" name="price" value={1} />
-              <img src={price_icon} />
+              <img src={PriceIcon} />
             </label>
             <label>
               <input type="radio" name="price" value={2} />
-              <img src={price_icon} />
+              <img src={PriceIcon} />
             </label>
             <label>
               <input type="radio" name="price" value={3} />
-              <img src={price_icon} />
+              <img src={PriceIcon} />
             </label>
             <label>
               <input type="radio" name="price" value={4} />
-              <img src={price_icon} />
+              <img src={PriceIcon} />
             </label>
           </Price>
 
@@ -100,7 +101,7 @@ const AdvancedSearch = () => {
             <input type="radio" onChange={onChange} name="open" value="true" />
             <label htmlFor="open" />
           </Open>
-          <button type="submit">Search</button>
+          <SearchButton type="submit">Search</SearchButton>
         </fieldset>
       </Form>
     </AdvancedSearchWrapper>

@@ -1,13 +1,27 @@
 import styled from "styled-components";
+import DefaultInput from "./DefaultInput";
 
-const InputStyled = styled.input`
+const PrimaryInput = styled(DefaultInput)`
+  /* outline: 3px var(--secondary-600) solid; */
   border-radius: 50px;
   border: none;
   height: 3rem;
-  background-color: white;
-  font-family: "Montserrat", sans-serif;
+  color: var(--dark-600);
+  background-color: var(--light-600);
+  font-size: 1.5rem;
+  padding: 0 0.8rem;
+  &:focus {
+    background-color: var(--accent-two);
+    outline: none;
+  }
+  ::placeholder {
+    color: var(--dark-800);
+  }
+`;
+
+const SmallInput = styled(PrimaryInput)`
+  height: 2rem;
   font-size: 1rem;
-  padding: 0 0 0 1rem;
 `;
 
 const LoginInput = styled.input`
@@ -39,4 +53,4 @@ const SignUpInput = styled(LoginInput)`
   margin: 0.5rem;
 `;
 
-export { InputStyled, LoginInput, SignUpInput };
+export { PrimaryInput, SmallInput, LoginInput, SignUpInput };

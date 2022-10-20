@@ -17,23 +17,10 @@ const ReviewList = styled.ul`
   :nth-child(1) {
     text-align: right;
   }
-
-  h2 {
-    color: #f2f2f2;
-    line-height: 1.5rem;
-  }
-  h3 {
-    line-height: 1.5rem;
-  }
-  p {
-    color: #f2f2f2;
-    font-size: 1.2rem;
-  }
 `;
 
 const ReviewsListParent = styled.div`
   width: 100%;
-  color: white;
 `;
 
 export { ReviewsWrapper, ReviewList, ReviewsListParent };

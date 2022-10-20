@@ -13,9 +13,7 @@ function ReviewsList(props: any) {
         <h2>{props.reviewInfo.value}</h2>
       </ReviewList>
       <ReviewList>
-        <div>
-          <p>{props.reviewInfo.reviewText}</p>
-        </div>
+        <p>{props.reviewInfo.reviewText}</p>
       </ReviewList>
     </ReviewsWrapper>
   );

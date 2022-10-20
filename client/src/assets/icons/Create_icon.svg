@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;}
+	.st3{stroke:#000000;stroke-width:2;stroke-miterlimit:10;}
+</style>
+<g id="Layer_1">
+	<g id="pencil">
+		<path class="st0" d="M58.3,9.2l-0.9-1c-2.2-2.4-6-2.5-8.3-0.3L29.4,25.8l-3.2,10.8c0,0,13.5-1.6,14-2.5l17.9-16.6
+			C60.4,15.2,60.5,11.5,58.3,9.2z"/>
+		<line class="st0" x1="53" y1="22.5" x2="44.2" y2="12.4"/>
+		<line class="st0" x1="56" y1="19.6" x2="47.2" y2="9.4"/>
+		<polyline class="st0" points="40.2,34.1 35,31.3 34.8,28.8 47.8,17.5 		"/>
+		<polyline class="st1" points="34.8,28.8 31.6,28.4 31.2,24.5 		"/>
+		<polyline class="st2" points="28.5,36.3 28.6,34.6 26.9,34.3 		"/>
+	</g>
+</g>
+<g id="Layer_2">
+	<g>
+		<path class="st3" d="M38.2,8.7L9.5,11.9L9.1,8.8l26.4-3c0.8-0.1,1.6,0.4,1.9,1.1L38.2,8.7z"/>
+	</g>
+	<g>
+		<line class="st2" x1="8.4" y1="8.4" x2="6.1" y2="11.1"/>
+	</g>
+	<g>
+		<line class="st2" x1="8.6" y1="10.6" x2="6.6" y2="13"/>
+	</g>
+	<path d="M47.5,50.5L47.5,50.5c0.1,0.5-0.2,1-0.6,1.1l-25,6.2c-1.2,0.3-2.3-0.4-2.7-1.6L7.4,12.3c0-0.2,0.1-0.3,0.2-0.3L35,9.3l0,0
+		h1.9l-0.2-1.2l-0.3-0.9L6,9.5C5.2,9.5,4.7,10.3,4.9,11l13,47.8c0.3,1,1.3,1.6,2.3,1.4l27.9-6.9c1.2-0.3,1.9-1.5,1.6-2.7L49.5,50
+		c-0.1-0.4-0.4-0.6-0.8-0.6h-0.3C47.8,49.4,47.4,49.9,47.5,50.5z"/>
+	<path d="M46.3,30h-1c-0.4,0-0.6,0.3-0.5,0.7L49.1,45c0.4,1.3-0.4,2.8-1.8,3.1l-23.1,5.7c-1.3,0.3-2.6-0.5-3-1.7L9.5,9.9
+		C9.4,9.6,9.7,9.3,10,9.2l25.1-2.5c1.1-0.1,2.2,0.6,2.5,1.6l2.3,6.9c0.1,0.4,0.5,0.5,0.8,0.3l0.8-0.6c0.2-0.1,0.3-0.4,0.2-0.6
+		l-2.8-8.5c-0.3-0.8-1.1-1.4-2-1.3L8,7C7.2,7.1,6.7,7.9,6.9,8.7l13,46.3c0.3,1,1.3,1.6,2.3,1.4l27.6-6.8c1.4-0.3,2.2-1.7,1.8-3.1
+		l-4.8-16C46.7,30.2,46.5,30,46.3,30z"/>
+	<line class="st1" x1="14.6" y1="16.6" x2="36.6" y2="13.8"/>
+	<line class="st1" x1="15.9" y1="21.6" x2="31.7" y2="19.6"/>
+	<line class="st1" x1="17.5" y1="26.3" x2="26.4" y2="25.2"/>
+</g>
+</svg>

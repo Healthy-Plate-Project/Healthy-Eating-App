@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 
 :root {
+  //colors
   --primary: #ff7b7b;
   --primary-400: #e57676;
   --primary-600:#FFC0C0;
@@ -10,11 +11,28 @@ const GlobalStyle = createGlobalStyle`
   --secondary-400: #44E78E;
   --secondary-600: #c0ffdc;
   --accent-one: #3f76a6;
-  --accent-two: #e7ff39;
-  --accent-two-400: #CEE330;
-  --accent-two-600: #CEE330;
-  --light: #e7ebf4;
+  --accent-one-400: #27537a;
+  --accent-one-600: #a6c5e0;
+  --accent-two: #d5e942;
+  --accent-two-400: #bad206;
+  --accent-two-600: #e7f582;
+  --light: #dfe4ee;
+  --light-400: #cecedc;
+  --light-600: #f0f5ff;
   --dark: #3b3b41;
+  --dark-400: #1f1f24;
+  --dark-600: #5c5c5c;
+  --dark-800: #9b9b9b;
+  --white:#ffffff;
+  --black:#000000;
+
+  //font size
+--xs: .5rem;
+--sm: 1rem;
+--md: 1.5rem;
+--lg: 2rem;
+--xl:2.5;
+
 }
 
 * {
@@ -28,6 +46,7 @@ body {
   font-family: "Comfortaa", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--light);
 }
 
 code {
@@ -40,7 +59,6 @@ code {
   align-items: center;
   height: 100vh;
   background-color: var(--light);
-  color: white;
 }
 
 a {
@@ -48,22 +66,34 @@ a {
 }
 
 h1 {
-  font-weight: Bold;
+  color: var(--primary);
+  font-weight: bold;
   font-size: 3rem;
   line-height: 3rem;
   letter-spacing: -4px;
-  color: var(--primary)
 }
 
 h2 {
-  font-weight: Bold;
+  color: var(--primary);
+  font-weight: bold;
   font-size: 2.5rem;
   letter-spacing: -2px;
 }
 
 h3 {
-  font-weight: Bold;
+  color: var(--primary);
+  font-weight: bold;
   font-size: 2rem;
+}
+
+input {
+  font-family: "Comfortaa", sans-serif;
+}
+
+p {
+  font-weight: Bold;
+  font-size: 1.3rem;
+  color: var(--dark)
 }
 
 .title {
@@ -87,8 +117,8 @@ h3 {
 .body {
   font-weight: Bold;
   font-size: 1.3rem;
+  color: var(--dark)
 }
-
 `;
 
 export default GlobalStyle;

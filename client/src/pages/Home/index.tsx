@@ -2,12 +2,12 @@ import React from "react";
 import { Search } from "../../components/index";
 import HomeTitle from "./Title/Title";
 import { HomeWrapper, BackgroundImage } from "./HomeStyles";
-import people from "../../assets/images/people.svg";
+import mascot from "./Images/mascot_color_no_outline.svg";
 
 const Home = () => {
   return (
     <HomeWrapper>
-      {/* <BackgroundImage src={people} /> */}
+      <BackgroundImage src={mascot} />
       <HomeTitle />
       <Search />
     </HomeWrapper>

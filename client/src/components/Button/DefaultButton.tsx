@@ -1,5 +1,4 @@
 import React from "react";
-import { ButtonStyled } from "./ButtonStyles";
 
 type ButtonProps = {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -12,9 +11,10 @@ type ButtonProps = {
   data?: object;
 };
 
-export default function Button({
-  children,
+export default function DefaultButton({
   onClick,
+  children,
+  name,
   variant,
   type,
   content,
@@ -24,14 +24,9 @@ export default function Button({
 }: ButtonProps) {
   return (
     <>
-      <ButtonStyled
-        className={`button ${variant}` + (disabled ? " disabled" : "")}
-        onClick={onClick}
-        // disabled={disabled}
-        {...rest}
-      >
+      <button className={`${variant}button`} onClick={onClick} {...rest}>
         {children}
-      </ButtonStyled>
+      </button>
     </>
   );
 }

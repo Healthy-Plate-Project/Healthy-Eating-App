@@ -11,12 +11,12 @@ const HomeWrapper = styled.div`
 `;
 
 const BackgroundImage = styled.img`
-  position: absolute;
+  /* position: absolute;
   z-index: 0;
-  bottom: -1rem;
+  bottom: -1rem; */
   width: clamp(290px, 100%, 400px);
-  filter: grayscale(1) invert(0) brightness(0.8) hue-rotate();
-  mix-blend-mode: darken;
+  /* filter: grayscale(0) invert(1) brightness(1) hue-rotate(0.5); */
+  /* mix-blend-mode: darken; */
 `;
 
 export { HomeWrapper, BackgroundImage };

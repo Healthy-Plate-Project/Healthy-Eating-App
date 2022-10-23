@@ -1,4 +1,3 @@
-import { FaTheRedYeti } from "react-icons/fa";
 import styled from "styled-components";
 
 export const H1 = styled.h1`

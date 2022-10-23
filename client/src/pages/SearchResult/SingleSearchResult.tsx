@@ -75,8 +75,9 @@ export function SingleSearchResultPage() {
     imageSrc = dollarFilled,
     img;
 
+  let test = 4;
   // repeat dollar signs based on dollarAPI number.
-  for (let i = 2; i <= dollarAPI; i++) {
+  for (let i = 0; i <= dollarAPI; i++) {
     img = new Image();
     img.src = imageSrc;
     img.alt = "icon";
@@ -85,6 +86,7 @@ export function SingleSearchResultPage() {
   }
 
   console.log("dollarAPI: " + dollarAPI);
+  console.log("Test: " + test);
 
   return (
     <>
@@ -96,12 +98,14 @@ export function SingleSearchResultPage() {
               <HeartIcon src={heartFilled} />
             ) : (
               <HeartIcon src={heartEmpty} />
-            )}{" "}
+            )}
           </span>
         </H1>
         {/* <p>Restaurant Place_id: {restaurantData.place_id}</p> */}
         {/* add $$$$ symbol */}
-        <span id="dollar"></span>
+        <div>
+          <span id="dollar"></span>
+        </div>
         <p>
           <a href={restaurantData.url} rel="noreferrer" target="_blank">
             {restaurantData.vicinity}

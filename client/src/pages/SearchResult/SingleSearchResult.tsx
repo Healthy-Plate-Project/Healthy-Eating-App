@@ -5,7 +5,6 @@ import { H1, H3, HeartIcon, Wrapper, Dollar } from "./SingleSearchResultStyles";
 import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
 import dollarFilled from "../../assets/images/green-dollar.svg";
-import { Button } from "../../components";
 
 export interface SingleRestaurantData {
   name: string;

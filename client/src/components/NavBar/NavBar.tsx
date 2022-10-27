@@ -93,10 +93,14 @@ export function Navbar(props: any) {
         <summary>menu</summary>
 
         <Link to="/">Home</Link>
+        <br />
         <Link to="advanced-search">Advanced Search</Link>
-        <Link to="results">Results</Link>
+        <br />
         <Link to="review">Review</Link>
         <Link to="reviews">Reviews</Link>
+        <br />
+        <Link to="login">Login</Link>
+        <Link to="sign-up">Sign Up</Link>
         <StyledButton onClick={() => testAPICalls()}>Test API</StyledButton>
         <Link to={"/single-result/ChIJn58N1B9gUocRpAXOXPbFcOo"}>
           Single Result

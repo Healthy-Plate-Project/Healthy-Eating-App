@@ -6,7 +6,8 @@ import {
   H3,
   HeartIcon,
   Wrapper,
-  DollarStyle,
+  PriceContainer,
+  PriceIconStyled,
 } from "./SingleSearchResultStyles";
 import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
@@ -53,6 +54,8 @@ export function SingleSearchResultPage() {
       try {
         const data = await getRestaurant(place_id);
         setRestaurantData(data.result);
+        setPrice(data.result.price_level);
+        // add heart api later
       } catch (err) {
         console.log(err);
       }
@@ -66,27 +69,18 @@ export function SingleSearchResultPage() {
   // default should be no, not favorited. use boolean type. True is selected.
   const [heart, setHeart] = useState<boolean>(false);
   const prevState = "";
-
-  // BEGIN DOLLAR DYNAMICS
+  // dollar
   let dollarAPI = restaurantData.price_level;
-
-  // add esclamation point at end of parent here to remove TS error "object possibly null" to say that i'm sure dollar id exists
-  let parent = document.getElementById("dollar")!,
-    imageSrc = dollarFilled,
-    img;
-
-  let test = 4;
-  // repeat dollar signs based on dollarAPI number.
-  for (let i = 0; i <= dollarAPI; i++) {
-    img = new Image();
-    img.src = imageSrc;
-    img.alt = "icon";
-    img.className = "myDollar";
-    parent.appendChild(img);
-  }
-
   console.log("dollarAPI: " + dollarAPI);
-  console.log("Test: " + test);
+
+  const [price, setPrice] = useState(0);
+  function priceLevel() {
+    const array = [];
+    for (let i = 1; i <= dollarAPI; i++) {
+      array.push(<PriceIconStyled src={dollarFilled} />);
+    }
+    return array;
+  }
 
   return (
     <>
@@ -101,11 +95,7 @@ export function SingleSearchResultPage() {
             )}
           </span>
         </H1>
-        {/* <p>Restaurant Place_id: {restaurantData.place_id}</p> */}
-        {/* add $$$$ symbol */}
-        <div>
-          <span id="dollar"></span>
-        </div>
+        <PriceContainer>{priceLevel()}</PriceContainer>
         <p>
           <a href={restaurantData.url} rel="noreferrer" target="_blank">
             {restaurantData.vicinity}

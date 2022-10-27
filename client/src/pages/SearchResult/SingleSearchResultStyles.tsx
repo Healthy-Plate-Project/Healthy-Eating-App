@@ -22,8 +22,11 @@ export const HeartIcon = styled.img`
   height: 35px;
 `;
 
-//*not in use yet, see app.css *//
-export const DollarStyle = styled.img`
+export const PriceContainer = styled.div`
+  margin-bottom: 5px;
+`;
+
+export const PriceIconStyled = styled.img`
   height: 20px;
   margin: 0 1px;
 `;

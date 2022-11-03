@@ -101,42 +101,16 @@ export function Navbar(props: any) {
         ></MenuButton>
       </ButtonWrapper>
 
-      <NavMenu>
-        <div
-          onClick={() => {
-            setIsNavExpanded(!isNavExpanded);
-          }}
-          className={isNavExpanded ? "expanded" : ""}
-        >
-          <ul>
-            <li>
-              {" "}
-              <Link to={"/single-result/ChIJn58N1B9gUocRpAXOXPbFcOo"}>
-                Single Result
-              </Link>
-            </li>
-            <li>
-              <Link to="advanced-search">Advanced Search</Link>
-            </li>
-            <li>
-              <Link to="results">Results</Link>
-            </li>
-            <li>
-              {" "}
-              <Link to="review">Review</Link>
-            </li>
-            <li>
-              {" "}
-              <Link to="reviews">Reviews</Link>
-            </li>
-            {/* <StyledButton onClick={() => testAPICalls()}>Test API</StyledButton> */}
-            <li>
-              {" "}
-              <Link to="/">Home</Link>
-            </li>
-          </ul>
-        </div>
-      </NavMenu>
+        <Link to="/">Home</Link>
+        <Link to="advanced-search">Advanced Search</Link>
+        <Link to="results">Results</Link>
+        <Link to="review">Review</Link>
+        <Link to="reviews">Reviews</Link>
+        <StyledButton onClick={() => testAPICalls()}>Test API</StyledButton>
+        <Link to={"/single-result/ChIJn58N1B9gUocRpAXOXPbFcOo"}>
+          Single Result
+        </Link>
+      </details>
     </NavbarStyled>
   );
 }

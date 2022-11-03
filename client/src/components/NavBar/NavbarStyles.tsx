@@ -1,66 +1,79 @@
 import styled from "styled-components";
 
 export const NavbarStyled = styled.nav`
-  position: sticky;
+  width: 100%;
+  color: var(--primary-600);
+  padding: 0;
+  margin: 0;
+`;
+
+export const ButtonWrapper = styled.div`
+  position: fixed;
   bottom: 1rem;
-  /* display: flex;
-  flex-direction: column; */
-  flex-wrap: wrap;
-  font-size: 2.3rem;
-  width: clamp(290px, 90%, 350px);
-  background-color: var(--primary);
-  padding: 0.5rem;
-  border-radius: 10px;
-  color: var(--light-600);
+  right: 1rem;
+  z-index: 2;
+  padding: 0;
+  margin: 0;
+`;
 
-  & details {
-    font-size: var(--md);
+export const NavMenu = styled.div`
+  & ul {
+    background-color: var(--secondary);
+    display: none;
+    height: 0%;
+    width: 0;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    z-index: 1;
   }
 
-  & summary {
+  & li {
+    list-style-type: none;
     font-size: var(--lg);
+    text-align: center;
+    width: 100%;
+    transition: all 0.5s;
+    padding: 0;
+    margin: 0;
   }
 
-  & a {
+  & li a {
     text-decoration: none;
-    padding: 0 1rem;
+    display: block;
+    color: var(--accent-one-400);
+    padding: 1.5rem 0;
+  }
+
+  & li:hover {
+    color: var(--accent-one);
+    background-color: var(--primary-600);
+    width: 100%;
     transition: all 0.5s;
   }
 
-  & a:visited {
-    color: aliceblue;
-    transition: all 0.3s;
-  }
-
-  & a:hover {
-    color: lightgray;
-    transition: all 0.3s;
-  }
-
-  & a:active {
-    color: black;
-    transition: all 0.3s;
+  .expanded ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    width: 100%;
+    padding: 0 0 4rem;
+    margin: 0;
   }
 `;
 
 export const StyledButton = styled.div`
-  color: var(--light-600);
   cursor: pointer;
-
   & a {
     text-decoration: none;
-    padding: 0 1rem;
-    transition: all 0.5s;
   }
-
   & a:visited {
-    transition: all 0.3s;
   }
   & a:hover {
-    transition: all 0.3s;
   }
   & a:active {
     color: var(--accent-two);
-    transition: all 0.3s;
   }
 `;

@@ -1,32 +1,129 @@
 import styled from "styled-components";
 import DefaultButton from "./DefaultButton";
+import {
+  CreateIcon,
+  HomeIcon,
+  DirectionsIcon,
+  LikeIcon,
+  PriceIcon,
+  SearchIcon,
+  StarIcon,
+  TimerIcon,
+  DeleteIcon,
+  EditIcon,
+} from "../../assets/icons/index"; // const DeleteIcon = require("../../assets/icons/Delete_icon.svg") as string;
 
-const PrimaryButton = styled(DefaultButton)`
+const Button = styled(DefaultButton)`
+  cursor: pointer;
+  color: var(--white);
+  background-color: var(--secondary);
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  width: fit-content;
+  white-space: nowrap;
+  transition: 0.3s ease-in-out;
+  box-shadow: inset 0px -20px 19px -15px #48e38e;
+
+  /* icon */
+  &:before {
+    width: 1.2rem;
+    position: relative;
+    display: inline-block;
+    padding: 0 0.5rem 0 0;
+    mix-blend-mode: lighten;
+    filter: invert(1);
+    vertical-align: middle;
+  }
+
+  &:hover {
+    transition: 0.3s ease-in-out;
+    box-shadow: inset 0px -20px 19px -15px #48e38e;
+    transform: scale(1.02);
+  }
+
+  &:focus {
+    box-shadow: inset 0px -20px 19px -15px #48e38e;
+  }
+
+  &:active {
+    box-shadow: inset 0px 20px 19px -15px #44e78ecc;
+    transform: scale(0.98);
+    transition: 0.2s;
+  }
+`;
+
+const SearchButton = styled(Button)`
+  color: var(--light-600);
+  background-color: var(--primary);
+  transition: all 0.3s;
+  box-shadow: inset 0px -20px 19px -15px #e57676;
+
+  /* icon */
+  &:before {
+    content: url(${SearchIcon});
+  }
+
+  &:hover {
+    box-shadow: inset 0px -20px 19px -15px var(--primary);
+  }
+
+  &:focus {
+    box-shadow: inset 0px -20px 19px -15px var(--primary-400);
+  }
+
+  &:active {
+    box-shadow: inset 0px 20px 19px -15px #ff7b7b;
+  }
+`;
+
+const MenuButton = styled(Button)`
+  color: var(--light-600);
+  background-color: var(--primary);
+  transition: all 0.3s;
+  box-shadow: inset 0px -20px 19px -15px #e57676;
+
+  /* icon */
+  &:before {
+    content: url(${StarIcon});
+  }
+
+  &:hover {
+    box-shadow: inset 0px -20px 19px -15px var(--accent-two);
+  }
+
+  &:focus {
+    box-shadow: inset 0px -20px 19px -15px var(--accent-two);
+  }
+
+  &:active {
+    box-shadow: inset 0px 20px 19px -15px #ff7b7b;
+  }
+`;
+
+const DangerButton = styled(Button)`
   color: var(--light);
   background-color: var(--primary);
-  border: none;
-  border-radius: 50px;
-  width: fit-content;
-  padding: 0.7rem 1rem;
-  font-weight: 700;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  transition: all 0.5s;
+  transition: all 0.3s;
 
   &:hover {
     background-color: var(--primary-400);
+    transition: all 0.3s;
   }
 
   &:active {
     background-color: var(--primary-600);
-    box-shadow: 0px 2px 5px #69696990;
+    box-shadow: 0px 5px 10px #696969;
     transition: all 0.3s;
     transform: scale(101%);
   }
 `;
 
-const SearchButton = styled(PrimaryButton)`
+const PillButton = styled(Button)`
   color: var(--light);
   background-color: var(--primary);
   transition: all 0.3s;
@@ -56,4 +153,11 @@ const LoginButtonStyles = styled(DefaultButton)`
   cursor: pointer;
 `;
 
-export { PrimaryButton, SearchButton, LoginButtonStyles };
+export {
+  Button,
+  SearchButton,
+  MenuButton,
+  DangerButton,
+  PillButton,
+  LoginButtonStyles,
+};

@@ -1,8 +1,10 @@
 import { Navbar } from "./NavBar/NavBar";
 import Search from "./Search/Search";
 import {
-  PrimaryButton,
+  Button,
   SearchButton,
+  DangerButton,
+  PillButton,
   LoginButtonStyles,
 } from "./Button/ButtonStyles";
 import { PrimaryInput, SmallInput } from "./Input/InputStyles";
@@ -10,8 +12,10 @@ import { PrimaryInput, SmallInput } from "./Input/InputStyles";
 export {
   Navbar,
   Search,
+  Button,
   SearchButton,
-  PrimaryButton,
+  DangerButton,
+  PillButton,
   LoginButtonStyles,
   PrimaryInput,
   SmallInput,

@@ -3,21 +3,9 @@ import styled from "styled-components";
 export const AdvancedSearchWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 95%;
-  height: 90%;
   align-items: center;
   justify-content: center;
-  accent-color: black;
-
-  h1 {
-    padding: 1rem;
-    display: inline;
-  }
-
-  h2 {
-    margin: 0.5rem;
-    display: inline;
-  }
+  accent-color: var(--accent-one);
 
   input {
     border-radius: 50px;

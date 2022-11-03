@@ -29,9 +29,13 @@ const App = () => {
   });
 
   return (
-    <div className="App">
+    <div className="app">
       <GlobalStyle />
       <BrowserRouter>
+        <Navbar
+          currentUserEmail={currentUserEmail}
+          setCurrentUserEmail={setCurrentUserEmail}
+        />
         <Routes>
           {/* <Route exact path="/" element={<App />} /> */}
           <Route path="/" element={<Home />} />
@@ -57,10 +61,6 @@ const App = () => {
             }
           />
         </Routes>
-        <Navbar
-          currentUserEmail={currentUserEmail}
-          setCurrentUserEmail={setCurrentUserEmail}
-        />
       </BrowserRouter>
     </div>
   );

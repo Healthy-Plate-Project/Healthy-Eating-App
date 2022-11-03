@@ -10,7 +10,7 @@ import {
   Form,
 } from "./AdvancedSearchStyles";
 import { PriceIcon, LikeIcon, DirectionsIcon } from "../../assets/icons";
-import { SearchButton } from "../../components";
+import { Button, PrimaryInput, SmallInput } from "../../components";
 
 const AdvancedSearch = () => {
   // getting the event handlers from our custom hook
@@ -29,23 +29,21 @@ const AdvancedSearch = () => {
           </legend>
           <Keyword>
             <h2>Keyword</h2>
-            <input
-              name="keyword"
-              className="keyword-input"
+            <PrimaryInput
               onChange={onChange}
+              className="keyword-input keyword"
               placeholder="vegan, gluten-free, etc."
             />
           </Keyword>
 
           <Location>
             <h2>Location</h2>
-            <input
-              name="location"
-              className="location-input"
+            <SmallInput
               onChange={onChange}
+              className="location-input location"
               placeholder="city, state, zip"
             />
-            <SearchButton>Use Current Location</SearchButton>
+            <Button>Use Current Location</Button>
           </Location>
 
           <Distance>
@@ -101,7 +99,7 @@ const AdvancedSearch = () => {
             <input type="radio" onChange={onChange} name="open" value="true" />
             <label htmlFor="open" />
           </Open>
-          <SearchButton type="submit">Search</SearchButton>
+          <Button type="submit">Search</Button>
         </fieldset>
       </Form>
     </AdvancedSearchWrapper>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { convertMilesToMeters } from "../../utils/helpers";
 import {
@@ -12,9 +12,12 @@ import {
   saveRestaurant,
   updateReview,
 } from "../../utils/serverCalls";
-import { NavbarStyled, StyledButton } from "./NavbarStyles";
+import { NavbarStyled, NavMenu, ButtonWrapper } from "./NavbarStyles";
+import { MenuButton } from "../../components/Button/ButtonStyles";
 
 export function Navbar(props: any) {
+  const [isNavExpanded, setIsNavExpanded] = useState<boolean>(false);
+
   const logout = async () => {
     await fetch("/api/user/logout", {
       method: "POST",
@@ -89,19 +92,51 @@ export function Navbar(props: any) {
 
   return (
     <NavbarStyled>
-      <details>
-        <summary>menu</summary>
+      <ButtonWrapper>
+        <MenuButton
+          className="menu-button"
+          onClick={() => {
+            setIsNavExpanded(!isNavExpanded);
+          }}
+        ></MenuButton>
+      </ButtonWrapper>
 
-        <Link to="/">Home</Link>
-        <Link to="advanced-search">Advanced Search</Link>
-        <Link to="results">Results</Link>
-        <Link to="review">Review</Link>
-        <Link to="reviews">Reviews</Link>
-        <StyledButton onClick={() => testAPICalls()}>Test API</StyledButton>
-        <Link to={"/single-result/ChIJn58N1B9gUocRpAXOXPbFcOo"}>
-          Single Result
-        </Link>
-      </details>
+      <NavMenu>
+        <div
+          onClick={() => {
+            setIsNavExpanded(!isNavExpanded);
+          }}
+          className={isNavExpanded ? "expanded" : ""}
+        >
+          <ul>
+            <li>
+              {" "}
+              <Link to={"/single-result/ChIJn58N1B9gUocRpAXOXPbFcOo"}>
+                Single Result
+              </Link>
+            </li>
+            <li>
+              <Link to="advanced-search">Advanced Search</Link>
+            </li>
+            <li>
+              <Link to="results">Results</Link>
+            </li>
+            <li>
+              {" "}
+              <Link to="review">Review</Link>
+            </li>
+            <li>
+              {" "}
+              <Link to="reviews">Reviews</Link>
+            </li>
+            {/* <StyledButton onClick={() => testAPICalls()}>Test API</StyledButton> */}
+            <li>
+              {" "}
+              <Link to="/">Home</Link>
+            </li>
+          </ul>
+        </div>
+      </NavMenu>
     </NavbarStyled>
   );
 }

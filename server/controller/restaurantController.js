@@ -1,11 +1,11 @@
 const axios = require('axios');
 const Restaurant = require('../models/Restaurant');
 const { testRestaurant, testRestaurants } = require('../seeds/testSeeds');
-const testAPI = require('../index');
+const getTestAPI = require('../index');
 
 const restaurantsController = {
   getRestaurants: async function (req, res) {
-    if (testAPI) {
+    if (getTestAPI.testAPI) {
       res.json(testRestaurants)
     } else {
       const latitude = req.body.latitude
@@ -33,7 +33,7 @@ const restaurantsController = {
     }
   },
   getRestaurant: async function (req, res) {
-    if (testAPI) {
+    if (getTestAPI.testAPI) {
       res.json(testRestaurant)
     } else {
       const api_key = process.env.GOOGLE_PLACES_APIKEY

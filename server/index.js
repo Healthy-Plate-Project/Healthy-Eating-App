@@ -10,8 +10,7 @@ const PORT = process.env.PORT || 3001;
 const db = require("./config/connection");
 const app = express();
 
-const testAPI = true
-module.exports = testAPI;
+exports.testAPI = true;
 
 // app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { apiServer } from './helpers';
+import GoogleTestPhoto from "./TestPhotos/GoogleTestPhoto.jpg";
 
 declare module 'axios' {
   export interface AxiosRequestConfig {
@@ -114,5 +115,22 @@ export async function getReviewsByRestaurant(placeId: string) {
     return (res)
   } catch (err) {
     console.log(err);
+  }
+}
+
+export async function getGooglePhoto(req: any) {
+  if (!apiFlag) {
+    return undefined;
+  }
+  const testPhotoData = true;
+  if (testPhotoData) {
+    return GoogleTestPhoto;
+  } else {
+    try {
+      const res = await axios.post(`${apiServer()}/api/photo/google`, req);
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

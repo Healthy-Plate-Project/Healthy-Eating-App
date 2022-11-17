@@ -54,8 +54,8 @@ export function SingleSearchResultPage() {
       try {
         const data = await getRestaurant(place_id);
         setRestaurantData(data.result);
-        setPrice(data.result.price_level);
-        // add heart api later
+
+        // TODO: add heart api later
       } catch (err) {
         console.log(err);
       }
@@ -68,12 +68,10 @@ export function SingleSearchResultPage() {
 
   // default should be no, not favorited. use boolean type. True is selected.
   const [heart, setHeart] = useState<boolean>(false);
-  const prevState = "";
+
   // dollar
   let dollarAPI = restaurantData.price_level;
-  console.log("dollarAPI: " + dollarAPI);
 
-  const [price, setPrice] = useState(0);
   function priceLevel() {
     const array = [];
     for (let i = 1; i <= dollarAPI; i++) {

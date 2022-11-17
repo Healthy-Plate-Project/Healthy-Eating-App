@@ -1,22 +1,21 @@
 const axios = require('axios');
 const Restaurant = require('../models/Restaurant');
 const { testRestaurant, testRestaurants } = require('../seeds/testSeeds');
-const testAPI = require('../index');
+const getTestAPI = require('../index');
 
 const restaurantsController = {
   getRestaurants: async function (req, res) {
-    if (testAPI) {
+    if (getTestAPI.testAPI) {
       res.json(testRestaurants)
     } else {
       const latitude = req.body.latitude
       const longitude = req.body.longitude
       const type = '$type=restaurant'
-      let radius, keyword, max_price, min_price, open_now;
-      req.body.radius ? radius = `&radius=${req.body.radius}` : radius = ''
-      req.body.keyword ? keyword = `&keyword=${req.body.keyword}` : keyword = ''
-      req.body.max_price ? max_price = `&maxprice=${req.body.max_price}` : max_price = ''
-      req.body.min_price ? min_price = `&minprice=${req.body.min_price}` : min_price = ''
-      req.body.open_now ? open_now = `&opennow=${req.body.open_now}` : open_now = ''
+      const radius = req.body.radius ? `&radius=${req.body.radius}` : ''
+      const keyword = req.body.keyword ? `&keyword=${req.body.keyword}` : ''
+      const max_price = req.body.max_price ? `&maxprice=${req.body.max_price}` : ''
+      const min_price = req.body.min_price ? `&minprice=${req.body.min_price}` : ''
+      const open_now = req.body.open_now ? `&opennow=${req.body.open_now}` : ''
       const apiKey = process.env.GOOGLE_PLACES_APIKEY
       const config = {
         method: 'GET',
@@ -34,7 +33,7 @@ const restaurantsController = {
     }
   },
   getRestaurant: async function (req, res) {
-    if (testAPI) {
+    if (getTestAPI.testAPI) {
       res.json(testRestaurant)
     } else {
       const api_key = process.env.GOOGLE_PLACES_APIKEY

@@ -9,6 +9,7 @@ import {
   Login,
   Review,
   ReviewsListParent,
+  SignUp,
 } from "./pages";
 import GlobalStyle from "./theme/globalStyle";
 import { Navbar } from "./components";
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="review" element={<Review />} />
           <Route path="reviews" element={<ReviewsListParent />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="sign-up" element={<SignUp />} />
           <Route
             path="login"
             element={

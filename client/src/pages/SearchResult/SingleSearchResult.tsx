@@ -12,7 +12,7 @@ import {
 import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
 import dollarFilled from "../../assets/images/green-dollar.svg";
-// import { Button } from "../../components";
+import GooglePhoto from "../../components/Photo/Photo";
 
 export interface SingleRestaurantData {
   name: string;
@@ -82,6 +82,12 @@ export function SingleSearchResultPage() {
 
   return (
     <>
+      <GooglePhoto
+        photo_reference="AeJbb3c-bgyYnUUax8v4YhTdizGrze2zoTIi1t8p624sCqGNL5miCczS2411Vtwmk6TOanPRSuMI7v0TNA9nqAUgO5jd-TzceKD2w7winlJ7yaKlqZ1dCnfcJP9Qi6RqOAcrcYZpQbjx4aIveUeSQ5tCqMaQFFSn7pYiyH21bldC_oB75p50"
+        max_height="500"
+        max_width="500"
+        alt="Test Photo"
+      ></GooglePhoto>
       <Wrapper>
         <H1>
           {restaurantData.name}

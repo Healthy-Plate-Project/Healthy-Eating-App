@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getRestaurant } from "../../utils/serverCalls";
-import { H1, H3, HeartIcon, Wrapper, Dollar } from "./SingleSearchResultStyles";
+import {
+  H1,
+  H3,
+  HeartIcon,
+  Wrapper,
+  PriceContainer,
+  PriceIconStyled,
+} from "./SingleSearchResultStyles";
 import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
 import dollarFilled from "../../assets/images/green-dollar.svg";
@@ -47,6 +54,8 @@ export function SingleSearchResultPage() {
       try {
         const data = await getRestaurant(place_id);
         setRestaurantData(data.result);
+
+        // TODO: add heart api later
       } catch (err) {
         console.log(err);
       }
@@ -59,7 +68,17 @@ export function SingleSearchResultPage() {
 
   // default should be no, not favorited. use boolean type. True is selected.
   const [heart, setHeart] = useState<boolean>(false);
-  const prevState = "";
+
+  // dollar
+  let dollarAPI = restaurantData.price_level;
+
+  function priceLevel() {
+    const array = [];
+    for (let i = 1; i <= dollarAPI; i++) {
+      array.push(<PriceIconStyled src={dollarFilled} />);
+    }
+    return array;
+  }
 
   return (
     <>
@@ -77,17 +96,10 @@ export function SingleSearchResultPage() {
               <HeartIcon src={heartFilled} />
             ) : (
               <HeartIcon src={heartEmpty} />
-            )}{" "}
+            )}
           </span>
         </H1>
-        {/* <p>Restaurant Place_id: {restaurantData.place_id}</p> */}
-        {/* add $$$$ symbol */}
-
-        <p>
-          {restaurantData.price_level}
-          <Dollar src={dollarFilled} />
-          <Dollar src={dollarFilled} />
-        </p>
+        <PriceContainer>{priceLevel()}</PriceContainer>
         <p>
           <a href={restaurantData.url} rel="noreferrer" target="_blank">
             {restaurantData.vicinity}

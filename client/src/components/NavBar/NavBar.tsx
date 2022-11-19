@@ -4,6 +4,7 @@ import { convertMilesToMeters } from "../../utils/helpers";
 import {
   createReview,
   deleteReview,
+  getLocation,
   getRestaurant,
   getRestaurants,
   getReview,
@@ -12,7 +13,7 @@ import {
   saveRestaurant,
   updateReview,
 } from "../../utils/serverCalls";
-import { NavbarStyled, NavMenu, ButtonWrapper } from "./NavbarStyles";
+import { NavbarStyled, NavMenu, ButtonWrapper, StyledButton } from "./NavbarStyles";
 import { MenuButton } from "../../components/Button/ButtonStyles";
 
 export function Navbar(props: any) {
@@ -78,6 +79,7 @@ export function Navbar(props: any) {
     const getRestaurantReviewsByRestaurant = await getReviewsByRestaurant(
       "ChIJn58N1B9gUocRpAXOXPbFcOo"
     );
+    // const testGetLocation = await getLocation("350 State St, Salt Lake City, UT 84103");
 
     // console.log(getRestaurantReviewsByRestaurant);
     // console.log(getRestaurantReviewsByUser);
@@ -88,6 +90,7 @@ export function Navbar(props: any) {
     // console.log(getRestaurantsResults);
     // console.log(getRestaurantResults);
     // console.log(saveRestaurantResults);
+    // console.log(testGetLocation);
   }
 
   return (
@@ -110,7 +113,6 @@ export function Navbar(props: any) {
         <Link to={"/single-result/ChIJn58N1B9gUocRpAXOXPbFcOo"}>
           Single Result
         </Link>
-      </details>
     </NavbarStyled>
   );
 }

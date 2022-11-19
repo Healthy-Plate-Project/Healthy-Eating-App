@@ -3,6 +3,7 @@ const userController = require("./userController");
 const reviewController = require("./reviewController");
 const favRestaurantController = require("./favRestaurantController");
 const photoController = require("./photoController");
+const locationController = require("./locationController");
 
 module.exports = {
   restaurantController,
@@ -10,4 +11,5 @@ module.exports = {
   reviewController,
   favRestaurantController,
   photoController,
+  locationController,
 };

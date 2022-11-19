@@ -34,18 +34,6 @@ export async function getRestaurant(placeId: any) {
   }
 }
 
-export async function saveRestaurant(req: any) {
-  if (!apiFlag) {
-    return undefined;
-  }
-  try {
-    const res = await axios.post(`${apiServer()}/api/restaurant/save`, req);
-    return res;
-  } catch (err) {
-    console.log(err);
-  }
-}
-
 export async function createReview(req: any) {
   if (!apiFlag) {
     return undefined;
@@ -131,6 +119,48 @@ export async function getGooglePhoto(req: any) {
     } else {
       return res.data;
     }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function saveFavRestaurant(userId: string, placeId: string) {
+  if (!apiFlag) {
+    return undefined;
+  }
+  try {
+    const res = await axios.post(
+      `${apiServer()}/api/fav-restaurant/${userId}/${placeId}`
+    );
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function getFavRestaurantsByUser(userId: string) {
+  if (!apiFlag) {
+    return undefined;
+  }
+  try {
+    const res = await axios.get(
+      `${apiServer()}/api/fav-restaurant/${userId}`
+    );
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function deleteFavRestaurantByUser(userId: string, placeId: string) {
+  if (!apiFlag) {
+    return undefined;
+  }
+  try {
+    const res = await axios.delete(
+      `${apiServer()}/api/fav-restaurant/${userId}/${placeId}`
+    );
+    return res;
   } catch (err) {
     console.log(err);
   }

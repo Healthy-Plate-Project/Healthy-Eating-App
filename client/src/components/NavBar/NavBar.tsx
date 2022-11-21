@@ -73,6 +73,7 @@ export function Navbar(props: any) {
     const getRestaurantReviewsByRestaurant = await getReviewsByRestaurant(
       "ChIJn58N1B9gUocRpAXOXPbFcOo"
     );
+
     // const saveFavRestaurantTest = await saveFavRestaurant(
     //   "testUser-4",
     //   "ChIJKTBP7wT1UocRwf-mwBQv_Y"

@@ -32,8 +32,8 @@ const restaurantSchema = new Schema(
     },
     id: false,
   }
-)
+);
 
-const Restaurant = model("Restaurant", restaurantSchema)
+const Restaurant = model("Restaurant", restaurantSchema);
 
-module.exports = Restaurant
+module.exports = Restaurant;

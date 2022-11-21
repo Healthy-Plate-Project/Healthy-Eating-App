@@ -72,9 +72,8 @@ export function Result() {
           <h2>{place.price_level}</h2>
         </ItemDetail>
       </ItemStyled>
-    );}
-  );
+    );
+  });
 
   return <ResultStyled>{payloadList}</ResultStyled>;
-  
 }

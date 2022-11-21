@@ -2,7 +2,7 @@ const router = require("express").Router();
 const {
   getRestaurants,
   getRestaurant,
-  saveRestaurant
+  saveRestaurant,
 } = require("../../controller/restaurantController");
 
 router.route("/").post(getRestaurants);

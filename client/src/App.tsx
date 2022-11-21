@@ -12,7 +12,7 @@ import {
   SignUp,
 } from "./pages";
 import GlobalStyle from "./theme/globalStyle";
-import { Navbar } from "./components";
+import { Navbar, RestaurantsResult } from "./components";
 import { SingleSearchResultPage } from "./pages/SearchResult/SingleSearchResult";
 import "./App.css";
 
@@ -42,7 +42,7 @@ const App = () => {
             element={<Result />}
           />
           <Route
-            path="/single-result/:place_id"
+            path="/single-results/:place_id"
             element={<SingleSearchResultPage />}
           />
           <Route path="review" element={<Review />} />
@@ -57,6 +57,10 @@ const App = () => {
                 setCurrentUserEmail={setCurrentUserEmail}
               />
             }
+          />
+          <Route
+            path="/multiple-results/:latitude/:longitude/:keyword/:min_price/:max_price/:radius/:open_now"
+            element={<RestaurantsResult />}
           />
         </Routes>
         <Navbar

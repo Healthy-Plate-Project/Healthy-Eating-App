@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { apiServer } from './helpers';
+import axios from "axios";
+import { apiServer } from "./helpers";
 
-declare module 'axios' {
+declare module "axios" {
   export interface AxiosRequestConfig {
     payload: any;
   }
@@ -27,7 +27,7 @@ export async function getRestaurant(placeId: any) {
   }
   try {
     const res = await axios.post(`${apiServer()}/api/restaurant/${placeId}`);
-    return (res.data)
+    return res.data;
   } catch (err) {
     console.log(err);
   }
@@ -39,7 +39,7 @@ export async function saveRestaurant(req: any) {
   }
   try {
     const res = await axios.post(`${apiServer()}/api/restaurant/save`, req);
-    return (res)
+    return res;
   } catch (err) {
     console.log(err);
   }
@@ -51,7 +51,7 @@ export async function createReview(req: any) {
   }
   try {
     const res = await axios.post(`${apiServer()}/api/review`, req);
-    return (res)
+    return res;
   } catch (err) {
     console.log(err);
   }
@@ -63,7 +63,7 @@ export async function updateReview(reviewId: string, req: any) {
   }
   try {
     const res = await axios.put(`${apiServer()}/api/review/${reviewId}`, req);
-    return (res)
+    return res;
   } catch (err) {
     console.log(err);
   }
@@ -75,7 +75,7 @@ export async function deleteReview(reviewId: string) {
   }
   try {
     const res = await axios.delete(`${apiServer()}/api/review/${reviewId}`);
-    return (res)
+    return res;
   } catch (err) {
     console.log(err);
   }
@@ -87,7 +87,7 @@ export async function getReview(reviewId: string) {
   }
   try {
     const res = await axios.get(`${apiServer()}/api/review/${reviewId}`);
-    return (res)
+    return res;
   } catch (err) {
     console.log(err);
   }
@@ -99,7 +99,7 @@ export async function getReviewsByUser(userId: string) {
   }
   try {
     const res = await axios.get(`${apiServer()}/api/review/user/${userId}`);
-    return (res)
+    return res;
   } catch (err) {
     console.log(err);
   }
@@ -110,8 +110,10 @@ export async function getReviewsByRestaurant(placeId: string) {
     return undefined;
   }
   try {
-    const res = await axios.get(`${apiServer()}/api/review/restaurant/${placeId}`);
-    return (res)
+    const res = await axios.get(
+      `${apiServer()}/api/review/restaurant/${placeId}`
+    );
+    return res;
   } catch (err) {
     console.log(err);
   }

@@ -10,10 +10,12 @@ const PORT = process.env.PORT || 3001;
 const db = require("./config/connection");
 const app = express();
 
-const testAPI = true
+const testAPI = true;
 module.exports = testAPI;
 
 // app.use(cookieParser());
+
+// Express middleware
 app.use(express.urlencoded({ extended: false }));
 // app.use(bodyParser.json({ limit: "50mb" }));
 // app.use(
@@ -24,10 +26,17 @@ app.use(express.urlencoded({ extended: false }));
 //   })
 // );
 app.use(express.json());
-app.use(cors({
-  credentials: true,
-  origin: ['http://localhost:3000', 'https://healthy-eating-project-359101.uc.r.appspot.com/']
-}));
+app.use(
+  cors({
+    credentials: true,
+    origin: [
+      "http://localhost:3000",
+      "https://healthy-eating-project-359101.uc.r.appspot.com/",
+    ],
+  })
+);
+
+//routes
 app.use(routes);
 
 // Serve up static assets

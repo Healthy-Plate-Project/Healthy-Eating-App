@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import { convertMilesToMeters } from "../../utils/helpers";
 import {
   createReview,
+  deleteFavRestaurantByUser,
   deleteReview,
+  getFavRestaurantsByUser,
   getRestaurant,
   getRestaurants,
   getReview,
   getReviewsByRestaurant,
   getReviewsByUser,
-  saveRestaurant,
+  saveFavRestaurant,
   updateReview,
 } from "../../utils/serverCalls";
 import { NavbarStyled, NavMenu, ButtonWrapper, StyledButton } from "./NavbarStyles";
@@ -77,6 +79,7 @@ export function Navbar(props: any) {
     // const getRestaurantReviewsByRestaurant = await getReviewsByRestaurant(
     //   "ChIJJbvRDqpjUocRxTf5zYtwZ18"
     // );
+
     // console.log(getRestaurantReviewsByRestaurant);
     // console.log(getRestaurantReviewsByUser);
     // console.log(getRestaurantReview);
@@ -85,7 +88,9 @@ export function Navbar(props: any) {
     // console.log(createRestaurantReview);
     // console.log(getRestaurantsResults);
     // console.log(getRestaurantResults);
-    // console.log(saveRestaurantResults);
+    // console.log(saveFavRestaurantTest);
+    // console.log(getFavRestaurantsByUserTest);
+    // console.log(deleteFavRestaurantByUserTest);
   }
 
   return (
@@ -108,6 +113,7 @@ export function Navbar(props: any) {
       <Link to={"/single-result/ChIJn58N1B9gUocRpAXOXPbFcOo"}>
         Single Result
       </Link>
+
     </NavbarStyled>
   );
 }

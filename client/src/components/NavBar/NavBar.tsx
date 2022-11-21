@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import { convertMilesToMeters } from "../../utils/helpers";
 import {
   createReview,
+  deleteFavRestaurantByUser,
   deleteReview,
-  getLocation,
+  getFavRestaurantsByUser,
   getRestaurant,
   getRestaurants,
   getReview,
   getReviewsByRestaurant,
   getReviewsByUser,
-  saveRestaurant,
+  saveFavRestaurant,
   updateReview,
 } from "../../utils/serverCalls";
 import { NavbarStyled, NavMenu, ButtonWrapper, StyledButton } from "./NavbarStyles";
@@ -43,13 +44,6 @@ export function Navbar(props: any) {
     const getRestaurantResults = await getRestaurant(
       "ChIJn58N1B9gUocRpAXOXPbFcOo"
     );
-    const saveRestaurantResults = await saveRestaurant({
-      place_id: "testID1",
-      restaurant_name: "testName",
-      longitude: "testLong",
-      latitude: "testLat",
-      photo_reference: "testPhoto",
-    });
     const createRestaurantReview = await createReview({
       place_id: "ChIJn58N1B9gUocRpAXOXPbFcOo",
       user_id: "ChIJn58N1B9gUocRpAXOXPbFcOo",
@@ -79,7 +73,18 @@ export function Navbar(props: any) {
     const getRestaurantReviewsByRestaurant = await getReviewsByRestaurant(
       "ChIJn58N1B9gUocRpAXOXPbFcOo"
     );
-    // const testGetLocation = await getLocation("350 State St, Salt Lake City, UT 84103");
+
+    // const saveFavRestaurantTest = await saveFavRestaurant(
+    //   "testUser-4",
+    //   "ChIJKTBP7wT1UocRwf-mwBQv_Y"
+    // );
+    // const getFavRestaurantsByUserTest = await getFavRestaurantsByUser(
+    //   "testUser-4"
+    // );
+    // const deleteFavRestaurantByUserTest = await deleteFavRestaurantByUser(
+    //   "testUser-4",
+    //   "ChIJKTBP7wT1UocRwf-mwBQv_Y"
+    // );
 
     // console.log(getRestaurantReviewsByRestaurant);
     // console.log(getRestaurantReviewsByUser);
@@ -89,8 +94,9 @@ export function Navbar(props: any) {
     // console.log(createRestaurantReview);
     // console.log(getRestaurantsResults);
     // console.log(getRestaurantResults);
-    // console.log(saveRestaurantResults);
-    // console.log(testGetLocation);
+    // console.log(saveFavRestaurantTest);
+    // console.log(getFavRestaurantsByUserTest);
+    // console.log(deleteFavRestaurantByUserTest);
   }
 
   return (

@@ -135,3 +135,18 @@ export async function getGooglePhoto(req: any) {
     console.log(err);
   }
 }
+
+export async function getLocation(inputString: string) {
+  if (!apiFlag) {
+    return undefined;
+  }
+  try {
+    const req: any = {
+      location: inputString,
+    };
+    const res = await axios.post(`${apiServer()}/api/location`, req);
+    return res.data.results[0].geometry.location;
+  } catch (err) {
+    console.log(err);
+  }
+}

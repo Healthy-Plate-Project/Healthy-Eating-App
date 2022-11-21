@@ -1,5 +1,5 @@
 import React from "react";
-import { Search } from "../../components/index";
+import Search from "../../components/Search/SearchStyles";
 import HomeTitle from "./Title/Title";
 import { HomeWrapper, BackgroundImage } from "./HomeStyles";
 import mascot from "./Images/mascot_color_no_outline.svg";

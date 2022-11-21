@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router";
-import {
-  Home,
-  AdvancedSearch,
-  Result,
-  NotFound,
-  Login,
-  Review,
-  ReviewsListParent,
-  SignUp,
-} from "./pages";
+import Home from "./pages/Home";
+import SignUp from "./pages/SignUp/SignUp";
+import AdvancedSearch from "./pages/AdvancedSearch/AdvancedSearch";
+import { Result } from "./pages/SearchResult/SearchResult";
+import NotFound from "./pages/NotFound/NotFound";
+import Login from "./pages/Login/Login";
+import Review from "./pages/Review/ReviewsList/SingleReview";
+import ReviewsListParent from "./pages/Review/ReviewsList/ReviewsListParent";
+
 import GlobalStyle from "./theme/globalStyle";
-import { Navbar } from "./components";
+import { Navbar } from "./components/NavBar/NavBar";
 import { SingleSearchResultPage } from "./pages/SearchResult/SingleSearchResult";
 import "./App.css";
 

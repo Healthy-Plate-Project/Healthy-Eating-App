@@ -10,7 +10,8 @@ import {
   Form,
 } from "./AdvancedSearchStyles";
 import { PriceIcon, LikeIcon, DirectionsIcon } from "../../assets/icons";
-import { Button, PrimaryInput, SmallInput } from "../../components";
+import { Button } from "../../components/Button/ButtonStyles";
+import { PrimaryInput, SmallInput } from "../../components/Input/InputStyles";
 
 const AdvancedSearch = () => {
   // getting the event handlers from our custom hook

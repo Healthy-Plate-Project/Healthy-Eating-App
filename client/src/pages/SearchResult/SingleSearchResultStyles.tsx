@@ -21,3 +21,12 @@ export const HeartIcon = styled.img`
   margin: 0 10px;
   height: 35px;
 `;
+
+export const PriceContainer = styled.div`
+  margin-bottom: 5px;
+`;
+
+export const PriceIconStyled = styled.img`
+  height: 20px;
+  margin: 0 1px;
+`;

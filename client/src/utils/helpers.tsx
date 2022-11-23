@@ -4,7 +4,7 @@ function apiServer() {
   if (slice === 'http://localhost:3000') {
     return 'http://localhost:3001'
   } else {
-    return "https://dragon-fruit-app.herokuapp.com/";
+    return "https://dragon-fruit-app.herokuapp.com";
   }
 }
 

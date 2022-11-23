@@ -11,7 +11,7 @@ import {
 
 // components
 import { SignUpInput } from "../../components/Input/InputStyles";
-import { LoginButtonStyles } from "../../components";
+import { LoginButtonStyles } from "../../components/Button/ButtonStyles";
 import { Navigate } from "react-router-dom";
 
 function SignUp() {

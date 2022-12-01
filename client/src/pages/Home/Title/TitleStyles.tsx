@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 const TitleStyled = styled.div`
   text-align: left;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import DefaultButton from "./DefaultButton";
 
 const PrimaryButton = styled(DefaultButton)`

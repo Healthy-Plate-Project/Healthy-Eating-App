@@ -9,7 +9,7 @@ const router = require("express").Router();
 const PORT = process.env.PORT || 3001;
 const db = require("./config/connection");
 const app = express();
-
+// Please change export.testAPI back to true after testing. Do not push false in the develop branch! Use this to test the real live API.
 exports.testAPI = true;
 
 // app.use(cookieParser());
@@ -23,10 +23,15 @@ app.use(express.urlencoded({ extended: false }));
 //   })
 // );
 app.use(express.json());
-app.use(cors({
-  credentials: true,
-  origin: ['http://localhost:3000', 'https://healthy-eating-project-359101.uc.r.appspot.com/']
-}));
+app.use(
+  cors({
+    credentials: true,
+    origin: [
+      "http://localhost:3000",
+      "https://healthy-eating-project-359101.uc.r.appspot.com/",
+    ],
+  })
+);
 app.use(routes);
 
 // Serve up static assets

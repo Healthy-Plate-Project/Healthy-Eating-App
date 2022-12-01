@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router";
-import {
-  Home,
-  AdvancedSearch,
-  Result,
-  NotFound,
-  Login,
-  Review,
-  ReviewsListParent,
-  SignUp,
-} from "./pages";
+import Home from "./pages/Home";
+import SignUp from "./pages/SignUp/SignUp";
+import AdvancedSearch from "./pages/AdvancedSearch/AdvancedSearch";
+import { Result } from "./pages/SearchResult/SearchResult";
+import NotFound from "./pages/NotFound/NotFound";
+import Login from "./pages/Login/Login";
+import Review from "./pages/Review/ReviewsList/SingleReview";
+import ReviewsListParent from "./pages/Review/ReviewsList/ReviewsListParent";
+
 import GlobalStyle from "./theme/globalStyle";
 import { Navbar, RestaurantsResults } from "./components";
 import { SingleSearchResultPage } from "./pages/SearchResult/SingleSearchResult";
@@ -30,9 +29,13 @@ const App = () => {
   });
 
   return (
-    <div className="App">
+    <div className="app">
       <GlobalStyle />
       <BrowserRouter>
+        <Navbar
+          currentUserEmail={currentUserEmail}
+          setCurrentUserEmail={setCurrentUserEmail}
+        />
         <Routes>
           {/* <Route exact path="/" element={<App />} /> */}
           <Route path="/" element={<Home />} />
@@ -63,10 +66,6 @@ const App = () => {
             element={<RestaurantsResults />}
           />
         </Routes>
-        <Navbar
-          currentUserEmail={currentUserEmail}
-          setCurrentUserEmail={setCurrentUserEmail}
-        />
       </BrowserRouter>
     </div>
   );

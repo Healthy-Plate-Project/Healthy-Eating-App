@@ -10,8 +10,7 @@ const PORT = process.env.PORT || 3001;
 const db = require("./config/connection");
 const app = express();
 
-const testAPI = true;
-module.exports = testAPI;
+exports.testAPI = true;
 
 // app.use(cookieParser());
 
@@ -31,12 +30,11 @@ app.use(
     credentials: true,
     origin: [
       "http://localhost:3000",
-      "https://healthy-eating-project-359101.uc.r.appspot.com/",
+      "https://healthy-eating-project-359101.uc.r.appspot.com",
+      "https://dragon-fruit-app.herokuapp.com",
     ],
   })
 );
-
-//routes
 app.use(routes);
 
 // Serve up static assets

@@ -4,7 +4,7 @@ function apiServer() {
   if (slice === "http://localhost:3000") {
     return "http://localhost:3001";
   } else {
-    return "https://healthy-eating-project-359101.uc.r.appspot.com";
+    return "https://dragon-fruit-app.herokuapp.com";
   }
 }
 

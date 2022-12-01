@@ -2,12 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchWrapper from "./SearchStyles";
 import { convertMilesToMeters } from "../../utils/helpers";
-import {
-  PrimaryButton,
-  SearchButton,
-  PrimaryInput,
-  SmallInput,
-} from "../index";
+import { SearchButton } from "../Button/ButtonStyles";
+import { PrimaryInput, SmallInput } from "../Input/InputStyles";
 
 export default function Search() {
   const [search, setSearch] = useState("" as string | undefined);
@@ -47,12 +43,12 @@ export default function Search() {
       <PrimaryInput placeholder="Primary input" />
       <SmallInput placeholder="Small input" />
       <SearchButton>Search</SearchButton>
-      <PrimaryButton
+      <SearchButton
         name="current-location-search-button"
         onClick={() => getCurrentPos().then(() => routeChange())}
       >
         GPS Location Search
-      </PrimaryButton>
+      </SearchButton>
     </SearchWrapper>
   );
 }

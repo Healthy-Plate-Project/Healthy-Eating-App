@@ -1,5 +1,6 @@
 import axios from "axios";
 import { apiServer } from "./helpers";
+import GoogleTestPhoto from "./TestPhotos/GoogleTestPhoto.jpg";
 
 declare module "axios" {
   export interface AxiosRequestConfig {
@@ -28,18 +29,6 @@ export async function getRestaurant(placeId: any) {
   try {
     const res = await axios.post(`${apiServer()}/api/restaurant/${placeId}`);
     return res.data;
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-export async function saveRestaurant(req: any) {
-  if (!apiFlag) {
-    return undefined;
-  }
-  try {
-    const res = await axios.post(`${apiServer()}/api/restaurant/save`, req);
-    return res;
   } catch (err) {
     console.log(err);
   }
@@ -112,6 +101,65 @@ export async function getReviewsByRestaurant(placeId: string) {
   try {
     const res = await axios.get(
       `${apiServer()}/api/review/restaurant/${placeId}`
+    );
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function getGooglePhoto(req: any) {
+  if (!apiFlag) {
+    return undefined;
+  }
+  try {
+    const res = await axios.post(`${apiServer()}/api/photo/google`, req);
+    if (res.data === "TESTPHOTO") {
+      return GoogleTestPhoto;
+    } else {
+      return res.data;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function saveFavRestaurant(userId: string, placeId: string) {
+  if (!apiFlag) {
+    return undefined;
+  }
+  try {
+    const res = await axios.post(
+      `${apiServer()}/api/fav-restaurant/${userId}/${placeId}`
+    );
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function getFavRestaurantsByUser(userId: string) {
+  if (!apiFlag) {
+    return undefined;
+  }
+  try {
+    const res = await axios.get(`${apiServer()}/api/fav-restaurant/${userId}`);
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function deleteFavRestaurantByUser(
+  userId: string,
+  placeId: string
+) {
+  if (!apiFlag) {
+    return undefined;
+  }
+  try {
+    const res = await axios.delete(
+      `${apiServer()}/api/fav-restaurant/${userId}/${placeId}`
     );
     return res;
   } catch (err) {

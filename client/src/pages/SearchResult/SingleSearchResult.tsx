@@ -13,9 +13,13 @@ import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
 import dollarFilled from "../../assets/images/green-dollar.svg";
 import GooglePhoto from "../../components/Photo/Photo";
-
+interface RestaurantPhoto {
+  photo_reference: string;
+}
 export interface SingleRestaurantData {
   name: string;
+  photo_reference: string;
+  photos: [RestaurantPhoto];
   place_id: string;
   geometry: {
     location: {
@@ -49,11 +53,17 @@ export function SingleSearchResultPage() {
     {} as SingleRestaurantData
   );
 
+  const [restaurantPhotos, setRestaurantPhotos] = useState(
+    [] as RestaurantPhoto[]
+  );
+
   useEffect(() => {
     async function fetchData() {
       try {
         const data = await getRestaurant(place_id);
         setRestaurantData(data.result);
+
+        setRestaurantPhotos(data.result.photos);
 
         // TODO: add heart api later
       } catch (err) {
@@ -62,7 +72,7 @@ export function SingleSearchResultPage() {
     }
     fetchData();
   }, [place_id]);
-
+  console.log(restaurantPhotos);
   // look at this object in the console to see what data is available to use
   // console.log(restaurantData);
 
@@ -80,10 +90,12 @@ export function SingleSearchResultPage() {
     return array;
   }
 
+  function getRestaurantPhotos() {}
+
   return (
     <>
       <GooglePhoto
-        photo_reference="AeJbb3c-bgyYnUUax8v4YhTdizGrze2zoTIi1t8p624sCqGNL5miCczS2411Vtwmk6TOanPRSuMI7v0TNA9nqAUgO5jd-TzceKD2w7winlJ7yaKlqZ1dCnfcJP9Qi6RqOAcrcYZpQbjx4aIveUeSQ5tCqMaQFFSn7pYiyH21bldC_oB75p50"
+        photo_reference={restaurantData.photo_reference}
         max_height="500"
         max_width="500"
         alt="Test Photo"
@@ -117,6 +129,17 @@ export function SingleSearchResultPage() {
         <div>
           <H3>Photos</H3>
           <hr />
+          <>
+            {restaurantPhotos.map((photo, i) => {
+              <GooglePhoto
+                photo_reference={photo.photo_reference}
+                max_height="200"
+                max_width="200"
+                alt="test"
+                key={`${restaurantData.name} - ${i}`}
+              ></GooglePhoto>;
+            })}
+          </>
         </div>
         <div>
           <H3>User Reviews</H3>

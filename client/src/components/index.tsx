@@ -7,7 +7,7 @@ import {
   LoginButtonStyles,
 } from "./Button/ButtonStyles";
 import { PrimaryInput, SmallInput } from "./Input/InputStyles";
-import { RestaurantsResult } from "./RestaurantsResults/RestaurantsResults";
+import { RestaurantsResults } from "./RestaurantsResults/RestaurantsResults";
 
 export {
   Navbar,
@@ -17,5 +17,5 @@ export {
   LoginButtonStyles,
   PrimaryInput,
   SmallInput,
-  RestaurantsResult,
+  RestaurantsResults,
 };

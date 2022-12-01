@@ -51,7 +51,7 @@ export interface RestaurantData {
   };
 }
 
-export function RestaurantsResult() {
+export function RestaurantsResults() {
   const {
     latitude,
     longitude,
@@ -97,17 +97,14 @@ export function RestaurantsResult() {
               <Img className="card-img" />
               <Body>
                 <Title className="card-title"> {restaurant.name} </Title>
-                <P className="card-body"> Tagline, description, etc.</P>
                 <Details>
                   <Price className="card-price">
                     Price Level: {restaurant.price_level}
                   </Price>
                   <Rating className="card-rating">
-                    Rating:{restaurant.rating}
+                    Google Rating: {restaurant.rating}
                   </Rating>
-                  <Menu className="card-menu">
-                    <a href="menu_url">Menu</a>{" "}
-                  </Menu>
+
                   <Directions className="card-directions">
                     <a href="directions_url"></a>{" "}
                   </Directions>

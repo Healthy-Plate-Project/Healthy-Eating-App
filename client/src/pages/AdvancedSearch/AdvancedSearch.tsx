@@ -13,7 +13,7 @@ import { PriceIcon, LikeIcon, DirectionsIcon } from "../../assets/icons";
 import { Button } from "../../components/Button/ButtonStyles";
 import { PrimaryInput, SmallInput } from "../../components/Input/InputStyles";
 
-const AdvancedSearch = () => {
+export function AdvancedSearch() {
   // getting the event handlers from our custom hook
   const { onChange, onSubmit, values } = useForm(advancedSearchCallback);
   // a submit function that will execute upon form submission
@@ -106,5 +106,3 @@ const AdvancedSearch = () => {
     </AdvancedSearchWrapper>
   );
 };
-
-export default AdvancedSearch;

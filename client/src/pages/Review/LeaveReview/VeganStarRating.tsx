@@ -2,7 +2,7 @@ import React from "react";
 import goldStar from "../../../assets/images/gold-star.png";
 import whiteStar from "../../../assets/images/white-star.png";
 
-const VeganStarRating = (props: any) => {
+export function VeganStarRating(props: any) {
   function starRatingHandler(event: any) {
     event.preventDefault();
     props.setSelectedVeganStarRating(parseInt(event.target.id[0]));
@@ -49,5 +49,3 @@ const VeganStarRating = (props: any) => {
     </div>
   );
 };
-
-export default VeganStarRating;

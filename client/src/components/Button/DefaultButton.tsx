@@ -13,7 +13,7 @@ type ButtonProps = {
   data?: object;
 };
 
-export default function DefaultButton({
+export function DefaultButton({
   onClick,
   children,
   name,

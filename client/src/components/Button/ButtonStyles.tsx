@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import DefaultButton from "./DefaultButton";
+import { DefaultButton } from "./DefaultButton";
 import {
   CreateIcon,
   HomeIcon,
@@ -13,7 +13,7 @@ import {
   EditIcon,
 } from "../../assets/icons/index"; // const DeleteIcon = require("../../assets/icons/Delete_icon.svg") as string;
 
-const Button = styled(DefaultButton)`
+export const Button = styled(DefaultButton)`
   cursor: pointer;
   color: var(--white);
   background-color: var(--secondary);
@@ -57,7 +57,7 @@ const Button = styled(DefaultButton)`
   }
 `;
 
-const SearchButton = styled(Button)`
+export const SearchButton = styled(Button)`
   color: var(--light-600);
   background-color: var(--primary);
   transition: all 0.3s;
@@ -81,7 +81,7 @@ const SearchButton = styled(Button)`
   }
 `;
 
-const MenuButton = styled(Button)`
+export const MenuButton = styled(Button)`
   color: var(--light-600);
   background-color: var(--primary);
   transition: all 0.3s;
@@ -105,7 +105,7 @@ const MenuButton = styled(Button)`
   }
 `;
 
-const DangerButton = styled(Button)`
+export const DangerButton = styled(Button)`
   color: var(--light);
   background-color: var(--primary);
   transition: all 0.3s;
@@ -123,7 +123,7 @@ const DangerButton = styled(Button)`
   }
 `;
 
-const PillButton = styled(Button)`
+export const PillButton = styled(Button)`
   color: var(--light);
   background-color: var(--primary);
   transition: all 0.3s;
@@ -141,7 +141,7 @@ const PillButton = styled(Button)`
   }
 `;
 
-const LoginButtonStyles = styled(DefaultButton)`
+export const LoginButtonStyles = styled(DefaultButton)`
   background: linear-gradient(to right, #3b2b3b 0%, #5b4269d1 79%);
   text-transform: uppercase;
   letter-spacing: 0.2rem;
@@ -152,12 +152,3 @@ const LoginButtonStyles = styled(DefaultButton)`
   border-radius: 2rem;
   cursor: pointer;
 `;
-
-export {
-  Button,
-  SearchButton,
-  MenuButton,
-  DangerButton,
-  PillButton,
-  LoginButtonStyles,
-};

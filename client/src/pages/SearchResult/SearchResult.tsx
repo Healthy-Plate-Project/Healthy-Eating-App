@@ -35,7 +35,7 @@ export interface RestaurantData {
   };
 }
 
-export function Result() {
+export function Result({ currentUser }: any) {
   const { latitude, longitude, open_now, radius } = useParams();
 
   const [restaurantData, setRestaurantData] = useState([] as RestaurantData[]);
@@ -72,9 +72,8 @@ export function Result() {
           <h2>{place.price_level}</h2>
         </ItemDetail>
       </ItemStyled>
-    );}
-  );
+    );
+  });
 
   return <ResultStyled>{payloadList}</ResultStyled>;
-  
 }

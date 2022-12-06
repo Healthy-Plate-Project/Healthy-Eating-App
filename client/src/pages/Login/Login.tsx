@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 
 // styled components
 import {
@@ -7,21 +7,22 @@ import {
   InputContainer,
   ButtonContainer,
   SignUp,
+  LoginWith,
 } from "./LoginStyles";
 import { LoginInput } from "../../components/Input/InputStyles";
 
 // components
 import { Navigate } from "react-router-dom";
+import { apiServer } from "../../utils/helpers";
 
-function Login(props: any) {
+export function Login({ setCurrentUserEmail }: any) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [redirect, setRedirect] = useState(false);
 
-  const submit = async (e: Event) => {
+  async function login(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
-    fetch("/api/user/login", {
+    fetch(`${apiServer()}/api/user/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -30,10 +31,10 @@ function Login(props: any) {
         email,
       }),
     }).then((res) => {
-      props.setCurrentUserEmail(email);
+      setCurrentUserEmail(email);
       setRedirect(true);
     });
-  };
+  }
 
   if (redirect) {
     return <Navigate to="/" />;
@@ -41,27 +42,29 @@ function Login(props: any) {
 
   return (
     <MainContainer>
-      <WelcomeText>Sign in</WelcomeText>
-      <InputContainer>
-        <LoginInput
-          type="text"
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <LoginInput
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </InputContainer>
-      <ButtonContainer>
-        {/* <button className="login" /> */}
-        <SignUp>
-          <button>Sign Up</button>
-        </SignUp>
-      </ButtonContainer>
+      <form onSubmit={(e) => login(e)}>
+        <WelcomeText>Sign in</WelcomeText>
+        <InputContainer>
+          <LoginInput
+            type="text"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <LoginInput
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </InputContainer>
+        <ButtonContainer>
+          <LoginWith>
+            <button type="submit">Login</button>
+          </LoginWith>
+          <SignUp>
+            Don't have an account? <a href="sign-up">Sign Up</a>
+          </SignUp>
+        </ButtonContainer>
+      </form>
     </MainContainer>
   );
 }
-
-export default Login;

@@ -2,7 +2,7 @@
 import {
   HorizontalDivider,
   IconsContainer,
-  OAuthLoginWith
+  OAuthLoginWith,
 } from "./OAuthButtonStyles";
 
 // react icons
@@ -12,9 +12,9 @@ import { BsGoogle } from "react-icons/bs";
 
 // components
 
-import Icon from "../../components/Icon/Icon";
+import { Icon } from "../../components/Icon/Icon";
 
-export default function OAuthButtons() {
+export function OAuthButtons() {
   const FacebookBackground =
     "linear-gradient(to right, #0546A0 0%, #0546A0 40%, #663FB6 100%)";
   const InstagramBackground =
@@ -37,5 +37,5 @@ export default function OAuthButtons() {
         </Icon>
       </IconsContainer>
     </>
-  )
+  );
 }

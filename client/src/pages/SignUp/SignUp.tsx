@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 
 // styled-components
 import {
@@ -13,37 +13,38 @@ import {
 import { SignUpInput } from "../../components/Input/InputStyles";
 import { LoginButtonStyles } from "../../components/Button/ButtonStyles";
 import { Navigate } from "react-router-dom";
+import { apiServer } from "../../utils/helpers";
 
-function SignUp() {
+export function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [redirect, setRedirect] = useState(false);
 
-  const submit = async (e: Event) => {
+  async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    await fetch("/api/user/register", {
+    await fetch(`${apiServer()}/api/user/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        username,
-        email,
-        password,
-        first_name,
-        last_name,
+        username: username,
+        email: email,
+        password: password,
+        first_name: firstName,
+        last_name: lastName,
       }),
     });
     setRedirect(true);
-  };
+  }
 
   if (redirect) {
     return <Navigate to="/login" />;
   }
   return (
-    <form>
-      <MainContainer>
+    <MainContainer>
+      <form onSubmit={(e) => submit(e)}>
         <WelcomeText>Sign Up</WelcomeText>
         <InputContainer>
           <SignUpInput
@@ -78,9 +79,7 @@ function SignUp() {
         <Login>
           Have an account? <a href="login">Login</a>
         </Login>
-      </MainContainer>
-    </form>
+      </form>
+    </MainContainer>
   );
 }
-
-export default SignUp;

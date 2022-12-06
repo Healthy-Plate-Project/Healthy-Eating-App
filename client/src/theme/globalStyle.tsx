@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
 
 :root {
   //colors
@@ -131,5 +131,3 @@ p {
   color: var(--dark)
 }
 `;
-
-export default GlobalStyle;

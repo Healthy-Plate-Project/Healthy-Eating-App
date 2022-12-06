@@ -1,9 +1,9 @@
 import React from "react";
 import { ReviewsSeed } from "./ReviewsSeed";
-import ReviewsList from "./ReviewsList";
+import { ReviewsList } from "./ReviewsList";
 import { ReviewsListParent } from "./ReviewsListStyles";
 
-function ReviewListParent() {
+export function ReviewListParent({ currentUser }: any) {
   return (
     <ReviewsListParent>
       {ReviewsSeed.map((data: any) => {
@@ -12,5 +12,3 @@ function ReviewListParent() {
     </ReviewsListParent>
   );
 }
-
-export default ReviewListParent;

@@ -1,10 +1,10 @@
-const axios = require('axios');
+// const axios = require('axios');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const dotenv = require("dotenv");
 dotenv.config();
 const User = require('../models/User');
-const { userSeeds } = require('../seeds/userSeeds');
+// const { userSeeds } = require('../seeds/userSeeds');
 
 const MAX_AGE = 24 * 60 * 60 * 1000 // 1 day
 
@@ -16,8 +16,8 @@ const userController = {
     const user = new User({
       username: req.body.username,
       email: req.body.email,
-      first_name: req.body.firstName,
-      last_name: req.body.lastName,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
       password: hashedPassword,
     })
     const result = await user.save()
@@ -26,7 +26,7 @@ const userController = {
   },
 
   login: async function (req, res) {
-    const user = await User.findOne({ username: req.body.username });
+    const user = await User.findOne({ email: req.body.email });
     if (!user) {
       return res.status(404).send({
         message: "User not found"

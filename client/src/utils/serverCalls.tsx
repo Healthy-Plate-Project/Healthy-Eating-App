@@ -124,7 +124,7 @@ export async function getGooglePhoto(req: any) {
   }
 }
 
-export async function saveFavRestaurant(userId: string, placeId: string) {
+export async function saveFavRestaurantByUser(userId: string, placeId: string) {
   if (!apiFlag) {
     return undefined;
   }
@@ -138,7 +138,7 @@ export async function saveFavRestaurant(userId: string, placeId: string) {
   }
 }
 
-export async function getFavRestaurantsByUser(userId: string) {
+export async function getFavRestaurantByUser(userId: string) {
   if (!apiFlag) {
     return undefined;
   }
@@ -146,7 +146,7 @@ export async function getFavRestaurantsByUser(userId: string) {
     const res = await axios.get(
       `${apiServer()}/api/fav-restaurant/${userId}`
     );
-    return res;
+    return res.data;
   } catch (err) {
     console.log(err);
   }

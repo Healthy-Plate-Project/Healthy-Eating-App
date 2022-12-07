@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getRestaurant } from "../../utils/serverCalls";
+import {
+  deleteFavRestaurantByUser,
+  getRestaurant,
+  saveFavRestaurantByUser,
+} from "../../utils/serverCalls";
 import {
   H1,
   H3,
@@ -13,6 +17,12 @@ import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
 import dollarFilled from "../../assets/images/green-dollar.svg";
 import GooglePhoto from "../../components/Photo/Photo";
+
+interface Props {
+  // currentUser: any;
+  currentUserFavRestaurants: string[];
+  currentUser: string;
+}
 
 export interface SingleRestaurantData {
   name: string;
@@ -42,32 +52,41 @@ export interface SingleRestaurantData {
   };
 }
 
-export function SingleSearchResultPage() {
+export function SingleSearchResultPage(props: Props) {
   const { place_id } = useParams();
 
   const [restaurantData, setRestaurantData] = useState(
     {} as SingleRestaurantData
   );
+  const [isFavRestaurant, setIsFavRestaurant] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const data = await getRestaurant(place_id);
         setRestaurantData(data.result);
-
-        // TODO: add heart api later
+        if (place_id) {
+          if (props.currentUserFavRestaurants.includes(place_id)) {
+            setIsFavRestaurant(true);
+          }
+        }
       } catch (err) {
         console.log(err);
       }
     }
     fetchData();
-  }, [place_id]);
+  }, [place_id, props.currentUserFavRestaurants]);
+
+  async function saveFavRestaurant(place_id: string) {
+    await saveFavRestaurantByUser(props.currentUser, place_id);
+  }
+
+  async function deleteFavRestaurant(place_id: string) {
+    await deleteFavRestaurantByUser(props.currentUser, place_id);
+  }
 
   // look at this object in the console to see what data is available to use
   // console.log(restaurantData);
-
-  // default should be no, not favorited. use boolean type. True is selected.
-  const [heart, setHeart] = useState<boolean>(false);
 
   // dollar
   let dollarAPI = restaurantData.price_level;
@@ -91,8 +110,17 @@ export function SingleSearchResultPage() {
       <Wrapper>
         <H1>
           {restaurantData.name}
-          <span onClick={() => setHeart((prevState) => !prevState)}>
-            {heart ? (
+          <span
+            onClick={() =>
+              setIsFavRestaurant((prevState) => {
+                prevState
+                  ? deleteFavRestaurant(restaurantData.place_id)
+                  : saveFavRestaurant(restaurantData.place_id);
+                return !prevState;
+              })
+            }
+          >
+            {isFavRestaurant ? (
               <HeartIcon src={heartFilled} />
             ) : (
               <HeartIcon src={heartEmpty} />

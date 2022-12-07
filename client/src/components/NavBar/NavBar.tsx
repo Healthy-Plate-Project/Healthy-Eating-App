@@ -5,13 +5,13 @@ import {
   createReview,
   deleteFavRestaurantByUser,
   deleteReview,
-  getFavRestaurantsByUser,
+  getFavRestaurantByUser,
   getRestaurant,
   getRestaurants,
   getReview,
   getReviewsByRestaurant,
   getReviewsByUser,
-  saveFavRestaurant,
+  saveFavRestaurantByUser,
   updateReview,
 } from "../../utils/serverCalls";
 import { NavbarStyled, NavMenu, ButtonWrapper, StyledButton } from "./NavbarStyles";

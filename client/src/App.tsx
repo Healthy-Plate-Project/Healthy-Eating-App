@@ -14,6 +14,7 @@ import GlobalStyle from "./theme/globalStyle";
 import { Navbar } from "./components/NavBar/NavBar";
 import { SingleSearchResultPage } from "./pages/SearchResult/SingleSearchResult";
 import "./App.css";
+import { getFavRestaurantByUser } from "./utils/serverCalls";
 
 const App = () => {
   const [currentUserEmail, setCurrentUserEmail] = useState("");
@@ -27,6 +28,21 @@ const App = () => {
       setCurrentUserEmail(content.username);
     })();
   });
+
+  const currentUser = "638eb6583b28442a6a9c2d4f";
+  const [currentUserFavRestaurants, setCurrentUserFavRestaurants] = useState<string[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await getFavRestaurantByUser(currentUser);
+        setCurrentUserFavRestaurants(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
     <div className="app">
@@ -46,7 +62,12 @@ const App = () => {
           />
           <Route
             path="/single-result/:place_id"
-            element={<SingleSearchResultPage />}
+            element={
+              <SingleSearchResultPage
+                currentUser={currentUser}
+                currentUserFavRestaurants={currentUserFavRestaurants}
+              />
+            }
           />
           <Route path="review" element={<Review />} />
           <Route path="reviews" element={<ReviewsListParent />} />

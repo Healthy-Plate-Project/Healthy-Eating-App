@@ -2,7 +2,7 @@
 import {
   HorizontalDivider,
   IconsContainer,
-  OAuthLoginWith
+  OAuthLoginWith,
 } from "./OAuthButtonStyles";
 
 // react icons
@@ -37,5 +37,5 @@ export default function OAuthButtons() {
         </Icon>
       </IconsContainer>
     </>
-  )
+  );
 }

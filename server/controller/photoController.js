@@ -1,9 +1,9 @@
-const getTestAPI = require('../index');
+const getTestAPI = require("../index");
 
 const photoController = {
   getGooglePhoto: async function (req, res) {
     if (getTestAPI.testAPI) {
-      res.json("TESTPHOTO")
+      res.json("TESTPHOTO");
     } else {
       const max_height = req.body.max_height
         ? `&maxheight=${req.body.max_height}`
@@ -15,7 +15,7 @@ const photoController = {
       const url = `https://maps.googleapis.com/maps/api/place/photo?photo_reference=${req.body.photo_reference}${max_height}${max_width}&key=${api_key}`;
       res.json(url);
     }
-  }
-}
+  },
+};
 
 module.exports = photoController;

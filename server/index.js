@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001;
 const db = require("./config/connection");
 const app = express();
 
-exports.testAPI = false;
+exports.testAPI = true;
 
 // app.use(cookieParser());
 

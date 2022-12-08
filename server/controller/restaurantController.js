@@ -22,7 +22,7 @@ const restaurantsController = {
       const apiKey = process.env.GOOGLE_PLACES_APIKEY;
       const config = {
         method: "GET",
-        url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C${longitude}${radius}${keyword}${max_price}${min_price}${open_now}${type}&key=${apiKey}`,
+        url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C${longitude}${keyword}${max_price}${min_price}${radius}${open_now}${type}&key=${apiKey}`,
         headers: {},
       };
       axios(config)
@@ -35,6 +35,7 @@ const restaurantsController = {
         });
     }
   },
+
   getRestaurant: async function (req, res) {
     if (getTestAPI.testAPI) {
       res.json(testRestaurant);

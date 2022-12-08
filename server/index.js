@@ -13,6 +13,8 @@ const app = express();
 exports.testAPI = true;
 
 // app.use(cookieParser());
+
+// Express middleware
 app.use(express.urlencoded({ extended: false }));
 // app.use(bodyParser.json({ limit: "50mb" }));
 // app.use(

@@ -11,9 +11,10 @@ import Review from "./pages/Review/ReviewsList/SingleReview";
 import ReviewsListParent from "./pages/Review/ReviewsList/ReviewsListParent";
 
 import GlobalStyle from "./theme/globalStyle";
-import { Navbar } from "./components/NavBar/NavBar";
 import { SingleSearchResultPage } from "./pages/SearchResult/SingleSearchResult";
 import "./App.css";
+import { Navbar } from "./components/NavBar/NavBar";
+import { RestaurantsResults } from "./components/RestaurantsResults/RestaurantsResults";
 
 const App = () => {
   const [currentUserEmail, setCurrentUserEmail] = useState("");
@@ -60,6 +61,10 @@ const App = () => {
                 setCurrentUserEmail={setCurrentUserEmail}
               />
             }
+          />
+          <Route
+            path="/multiple-results/:latitude/:longitude/:keyword/:min_price/:max_price/:radius/:open_now"
+            element={<RestaurantsResults />}
           />
         </Routes>
       </BrowserRouter>

@@ -74,7 +74,9 @@ export function SignUp() {
           />
         </InputContainer>
         <ButtonContainer>
-          <LoginButtonStyles type="submit" content="Sign Up" name="signup" />
+          <LoginButtonStyles type="submit" content="Sign Up" name="signup">Sign Up
+          </LoginButtonStyles>
+          
         </ButtonContainer>
         <Login>
           Have an account? <a href="login">Login</a>

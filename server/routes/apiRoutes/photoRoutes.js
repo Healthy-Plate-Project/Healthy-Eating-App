@@ -1,7 +1,5 @@
 const router = require("express").Router();
-const {
-  getGooglePhoto
-} = require("../../controller/photoController");
+const { getGooglePhoto } = require("../../controller/photoController");
 
 router.route("/google").post(getGooglePhoto);
 

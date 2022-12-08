@@ -14,7 +14,12 @@ import {
   saveFavRestaurant,
   updateReview,
 } from "../../utils/serverCalls";
-import { NavbarStyled, NavMenu, ButtonWrapper, StyledButton } from "./NavbarStyles";
+import {
+  NavbarStyled,
+  NavMenu,
+  ButtonWrapper,
+  StyledButton,
+} from "./NavbarStyles";
 import { MenuButton } from "../../components/Button/ButtonStyles";
 import { GenerateDummyReviews } from "../../pages/Review/GenerateDummyReviews";
 
@@ -79,7 +84,6 @@ export function Navbar(props: any) {
     // const getRestaurantReviewsByRestaurant = await getReviewsByRestaurant(
     //   "ChIJJbvRDqpjUocRxTf5zYtwZ18"
     // );
-
     // console.log(getRestaurantReviewsByRestaurant);
     // console.log(getRestaurantReviewsByUser);
     // console.log(getRestaurantReview);
@@ -113,7 +117,6 @@ export function Navbar(props: any) {
       <Link to={"/single-result/ChIJn58N1B9gUocRpAXOXPbFcOo"}>
         Single Result
       </Link>
-
     </NavbarStyled>
   );
 }

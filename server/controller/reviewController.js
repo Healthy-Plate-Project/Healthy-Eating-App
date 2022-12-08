@@ -1,4 +1,4 @@
-const Review = require('../models/Review');
+const Review = require("../models/Review");
 
 const reviewController = {
   createReview: async function (req, res) {
@@ -13,8 +13,9 @@ const reviewController = {
     try {
       const data = await Review.findOneAndUpdate(
         { _id: req.params.reviewId },
-        req.body, 
-        { returnOriginal: false });
+        req.body,
+        { returnOriginal: false }
+      );
       res.json(data);
     } catch (error) {
       res.status(500).json(error);
@@ -24,7 +25,7 @@ const reviewController = {
     try {
       const data = await Review.findOneAndDelete({ _id: req.params.reviewId });
       res.json({
-        message: `Review ID# ${data._id} Deleted!`
+        message: `Review ID# ${data._id} Deleted!`,
       });
     } catch (error) {
       res.status(500).json(error);
@@ -54,6 +55,6 @@ const reviewController = {
       res.status(500).json(error);
     }
   },
-}
+};
 
 module.exports = reviewController;

@@ -10,11 +10,13 @@ import { Login } from "./pages/Login/Login";
 import { SingleReview } from "./pages/Review/ReviewsList/SingleReview";
 import { ReviewListParent } from "./pages/Review/ReviewsList/ReviewsListParent";
 
+
 import { GlobalStyle } from "./theme/globalStyle";
 import { Navbar } from "./components/NavBar/NavBar";
 import { SingleSearchResultPage } from "./pages/SearchResult/SingleSearchResult";
 import "./App.css";
 import { apiServer } from "./utils/helpers";
+
 
 export default function App() {
   const [currentUserEmail, setCurrentUserEmail] = useState("");
@@ -64,6 +66,10 @@ export default function App() {
           <Route
             path="login"
             element={<Login setCurrentUserEmail={setCurrentUserEmail} />}
+          />
+          <Route
+            path="/multiple-results/:latitude/:longitude/:keyword/:min_price/:max_price/:radius/:open_now"
+            element={<RestaurantsResults />}
           />
         </Routes>
       </BrowserRouter>

@@ -3,7 +3,7 @@ const {
   getUser,
   login,
   logout,
-  register
+  register,
 } = require("../../controller/userController");
 
 router.route("/get-user").post(getUser);

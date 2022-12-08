@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const HorizontalDivider = styled.hr`
 width: 90%;
 height: 0.3rem;
@@ -12,6 +13,7 @@ backdrop-filter: blur(25px);
 `;
 
 export const IconsContainer = styled.div`
+
   display: flex;
   justify-content: space-evenly;
   margin: 2rem 0 3rem 0;

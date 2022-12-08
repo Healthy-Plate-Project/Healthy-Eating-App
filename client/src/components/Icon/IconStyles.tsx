@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 interface IconProps {
   readonly background: string;
-};
+}
 
 export const StyledIcon = styled.div<IconProps>`
   height: 3.5rem;
@@ -19,3 +19,4 @@ export const StyledIcon = styled.div<IconProps>`
     height: 1.5rem;
   }
 `;
+

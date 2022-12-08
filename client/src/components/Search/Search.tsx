@@ -6,37 +6,37 @@ import { SearchButton } from "../Button/ButtonStyles";
 import { PrimaryInput, SmallInput } from "../Input/InputStyles";
 
 export default function Search() {
-  const [search, setSearch] = useState("" as string | undefined);
-
   // function to get the current location of user, uses GPS if on a mobile device
-  async function getCurrentPos() {
+  function getCurrentPos() {
     function success(position: GeolocationPosition) {
       const latitude = position.coords.latitude.toString();
       const longitude = position.coords.longitude.toString();
       const open_now = "true";
       const radius = convertMilesToMeters(25).toString();
-      let url = `results/${latitude}/${longitude}/${open_now}/${radius}`;
-      setSearch(url as string);
+      let url = `multiple-results/${latitude}/${longitude}/food/1/4/${radius}/${open_now}`;
+      routeChange(url);
     }
     function error() {
-      return "Error: Geolocation server is down";
+      navigate("error");
+      console.log("Error: Geolocation server is down");
     }
     if (!navigator.geolocation) {
-      return "Error: Geolocation is not supported by your browser";
+      navigate("error");
+      console.log("Error: Geolocation is not supported by your browser");
     } else {
       navigator.geolocation.getCurrentPosition(success, error);
     }
   }
 
   let navigate = useNavigate();
-  const routeChange = () => {
-    if (search) {
-      let path = `${search}`;
-      navigate(path);
+
+  function routeChange(url: string | undefined) {
+    if (url) {
+      navigate(url);
     } else {
-      console.log("ERROR");
+      console.log("Error: Invalid URL");
     }
-  };
+  }
 
   return (
     <SearchWrapper>
@@ -45,7 +45,7 @@ export default function Search() {
       <SearchButton>Search</SearchButton>
       <SearchButton
         name="current-location-search-button"
-        onClick={() => getCurrentPos().then(() => routeChange())}
+        onClick={() => getCurrentPos()}
       >
         GPS Location Search
       </SearchButton>

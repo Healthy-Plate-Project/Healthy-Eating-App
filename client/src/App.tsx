@@ -62,6 +62,7 @@ const App = () => {
               />
             }
           />
+          {/* let url = `multiple-results/${latitude}/${longitude}////${radius}/${open_now}`; */}
           <Route
             path="/multiple-results/:latitude/:longitude/:keyword/:min_price/:max_price/:radius/:open_now"
             element={<RestaurantsResults />}

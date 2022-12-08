@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { getRestaurants } from "../../utils/serverCalls";
+import GooglePhoto from "../Photo/Photo";
 
 import {
   CardStyled,
@@ -94,9 +95,16 @@ export function RestaurantsResults() {
         {restaurantsData.map((restaurant) => {
           return (
             <CardStyled key={restaurant.place_id}>
-              <Img className="card-img" />
+              <GooglePhoto
+                photo_reference={restaurant.photos[0].photo_reference}
+                max_height="100"
+                max_width="150"
+                alt={restaurant.name}
+              ></GooglePhoto>
               <Body>
-                <Title className="card-title"> {restaurant.name} </Title>
+                <a href={`/single-result/${restaurant.place_id}`}>
+                  <Title className="card-title"> {restaurant.name} </Title>
+                </a>
                 <Details>
                   <Price className="card-price">
                     Price Level: {restaurant.price_level}

@@ -3,10 +3,12 @@ import TitleStyled from "./TitleStyles";
 
 function HomeTitle() {
   return (
-    <TitleStyled className="title">
-      dragon <br />
-      fruit
-    </TitleStyled>
+    <>
+      <TitleStyled className="title">
+        dragon <br />
+        fruit
+      </TitleStyled>
+    </>
   );
 }
 

@@ -33,14 +33,7 @@ export interface RestaurantData {
   opening_hours: {
     weekday_text: [string];
   };
-  photos: [
-    {
-      height: number;
-      html_attributions: [string];
-      photo_reference: string;
-      width: number;
-    }
-  ];
+  photos: [RestaurantPhotos];
   special_diet_ratings?: {
     dairy_free?: number;
     gluten_free?: number;
@@ -49,6 +42,13 @@ export interface RestaurantData {
     vegan?: number;
     vegetarian?: number;
   };
+}
+
+export interface RestaurantPhotos {
+  height: number;
+  html_attributions: string;
+  photo_reference: string;
+  width: number;
 }
 
 export function RestaurantsResults() {

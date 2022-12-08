@@ -83,6 +83,7 @@ export const ButtonContainer = styled.div`
     font-weight: 700;
     font-size: 1rem;
     transition: all 0.5s;
+    cursor: pointer;
     &:active {
       background-color: #4f4f4f;
       box-shadow: 0px 5px 10px #696969;
@@ -96,6 +97,3 @@ export const LoginWith = styled.h5`
   cursor: pointer;
 `;
 
-export const SignUp = styled.h4`
-  cursor: pointer;
-`;

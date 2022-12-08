@@ -15,6 +15,7 @@ export const Dollar = styled.img`
 
 export const Wrapper = styled.div`
   text-align: left;
+  margin: auto 50%;
 `;
 
 export const HeartIcon = styled.img`
@@ -30,3 +31,7 @@ export const PriceIconStyled = styled.img`
   height: 20px;
   margin: 0 1px;
 `;
+
+export const FeaturedPhoto = styled.div`
+  height: 150px;
+`

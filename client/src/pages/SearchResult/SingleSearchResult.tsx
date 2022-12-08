@@ -8,6 +8,7 @@ import {
   Wrapper,
   PriceContainer,
   PriceIconStyled,
+  FeaturedPhoto,
 } from "./SingleSearchResultStyles";
 import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
@@ -99,12 +100,14 @@ export function SingleSearchResultPage() {
 
   return (
     <Wrapper>
+      
       <GooglePhoto
         photo_reference={restaurantData.photo_reference}
-        max_height="500"
-        max_width="500"
+        max_height="200"
+        max_width="200"
         alt={restaurantData.name}
       ></GooglePhoto>
+     
       <H1>
         {restaurantData.name}
         <span onClick={() => setHeart((prevState) => !prevState)}>

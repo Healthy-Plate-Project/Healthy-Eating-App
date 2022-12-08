@@ -27,5 +27,5 @@ export default function GooglePhoto({ photo_reference, max_height, max_width, al
     fetchData();
   }, [photo_reference, max_height, max_width]);
 
-  return <img src={photoURL} alt={alt} />;
+  return <img src={photoURL} alt={alt} height={max_height} width={max_width} />;
 }

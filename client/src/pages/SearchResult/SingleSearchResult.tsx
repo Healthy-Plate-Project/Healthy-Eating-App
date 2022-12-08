@@ -89,8 +89,8 @@ export function SingleSearchResultPage() {
       ? restaurantData.photos.map((photo, i) => (
           <GooglePhoto
             photo_reference={photo.photo_reference}
-            max_height="200"
-            max_width="200"
+            max_height="100"
+            max_width="auto"
             alt={`${restaurantData.name} - Photo# ${i + 1}`}
             key={`${restaurantData.name} - ${i}`}
           ></GooglePhoto>
@@ -104,7 +104,7 @@ export function SingleSearchResultPage() {
       <GooglePhoto
         photo_reference={restaurantData.photo_reference}
         max_height="200"
-        max_width="200"
+        max_width="auto"
         alt={restaurantData.name}
       ></GooglePhoto>
      

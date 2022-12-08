@@ -1,7 +1,7 @@
 const express = require("express");
 require("dotenv").config({ path: "../.env" });
 const cors = require("cors");
-const cookieParser = require('cookie-parser')
+const cookieParser = require("cookie-parser");
 const path = require("path");
 const routes = require("./routes");
 const router = require("express").Router();
@@ -10,7 +10,6 @@ const db = require("./config/connection");
 const app = express();
 
 exports.testAPI = true;
-
 
 app.use(cookieParser());
 

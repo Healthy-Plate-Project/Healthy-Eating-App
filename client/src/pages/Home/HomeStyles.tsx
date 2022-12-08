@@ -18,4 +18,3 @@ export const BackgroundImage = styled.img`
   /* filter: grayscale(0) invert(1) brightness(1) hue-rotate(0.5); */
   /* mix-blend-mode: darken; */
 `;
-

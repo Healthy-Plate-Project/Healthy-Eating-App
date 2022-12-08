@@ -1,12 +1,10 @@
-
 // const axios = require('axios');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
-const User = require('../models/User');
+const User = require("../models/User");
 // const { userSeeds } = require('../seeds/userSeeds');
-
 
 const MAX_AGE = 24 * 60 * 60 * 1000; // 1 day
 

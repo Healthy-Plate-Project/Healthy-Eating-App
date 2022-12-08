@@ -12,7 +12,7 @@ import {
 import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
 import dollarFilled from "../../assets/images/green-dollar.svg";
-import { GooglePhoto } from "../../components/Photo/GooglePhoto";
+import { GooglePhoto } from "../../components/Photo/Photo";
 
 export interface SingleRestaurantData {
   name: string;

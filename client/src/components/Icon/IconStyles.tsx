@@ -19,4 +19,3 @@ export const StyledIcon = styled.div<IconProps>`
     height: 1.5rem;
   }
 `;
-

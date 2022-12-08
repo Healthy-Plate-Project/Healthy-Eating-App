@@ -105,4 +105,4 @@ export function AdvancedSearch() {
       </Form>
     </AdvancedSearchWrapper>
   );
-};
+}

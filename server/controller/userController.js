@@ -55,7 +55,7 @@ const userController = {
       const claims = jwt.verify(cookie, process.env.ACCESS_TOKEN_SECRET);
       if (!claims) {
         return res.status(401).send({
-          message: "Unauthenticated"
+          message: "Unauthenticated: Missing Access Token Secret"
         })
       }
       const user = await User.findOne({ _id: claims._id });

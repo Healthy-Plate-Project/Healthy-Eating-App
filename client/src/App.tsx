@@ -17,29 +17,30 @@ import "./App.css";
 import { apiServer } from "./utils/helpers";
 
 export default function App() {
-  const [currentUserEmail, setCurrentUserEmail] = useState("");
-  const [currentUser, setCurrentUser] = useState("");
+  const [currentUser, setCurrentUser] = useState({});
+
   useEffect(() => {
-    (async () => {
-      const response = await fetch(`${apiServer()}/api/user/get-user`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-      });
-      const content = await response.json();
-      setCurrentUserEmail(content.email);
-      setCurrentUser(content);
-    })();
-  });
+    async function fetchData() {
+      try {
+        const response = await fetch(`${apiServer()}/api/user/get-user`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        });
+        const content = await response.json();
+        setCurrentUser(content);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
     <div className="app">
       <GlobalStyle />
       <BrowserRouter>
-        <Navbar
-          currentUserEmail={currentUserEmail}
-          setCurrentUserEmail={setCurrentUserEmail}
-        />
+        <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="advanced-search" element={<AdvancedSearch />} />
@@ -63,7 +64,12 @@ export default function App() {
           <Route path="sign-up" element={<SignUp />} />
           <Route
             path="login"
-            element={<Login setCurrentUserEmail={setCurrentUserEmail} />}
+            element={
+              <Login
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            }
           />
         </Routes>
       </BrowserRouter>

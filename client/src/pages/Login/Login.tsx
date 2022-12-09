@@ -15,7 +15,7 @@ import { LoginInput } from "../../components/Input/InputStyles";
 import { Navigate } from "react-router-dom";
 import { apiServer } from "../../utils/helpers";
 
-export function Login({ setCurrentUserEmail }: any) {
+export function Login({ setCurrentUser }: any) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [redirect, setRedirect] = useState(false);
@@ -31,7 +31,7 @@ export function Login({ setCurrentUserEmail }: any) {
         email,
       }),
     }).then((res) => {
-      setCurrentUserEmail(email);
+      setCurrentUser(email);
       setRedirect(true);
     });
   }

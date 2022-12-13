@@ -43,6 +43,7 @@ const userController = {
     });
     res.send({
       message: "Successful login",
+      id: user._id,
       username: user.username,
       email: user.email,
       first_name: user.first_name,
@@ -64,6 +65,8 @@ const userController = {
       const { password, ...data } = await user.toJSON();
 
       res.send({
+        message: "User found",
+        id: user._id,
         username: data.username,
         email: data.email,
         first_name: data.first_name,

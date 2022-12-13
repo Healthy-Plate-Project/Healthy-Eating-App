@@ -19,6 +19,7 @@ import { apiServer } from "./utils/helpers";
 
 export interface UserData {
   message: string;
+  id: string;
   username: string;
   email: string;
   first_name: string;

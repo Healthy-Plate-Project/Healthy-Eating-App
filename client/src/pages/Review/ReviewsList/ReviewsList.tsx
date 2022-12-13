@@ -1,7 +1,7 @@
 import React from "react";
 import { ReviewsWrapper, ReviewList } from "./ReviewsListStyles";
 
-function ReviewsList(props: any) {
+export function ReviewsList(props: any) {
   return (
     <ReviewsWrapper>
       <ReviewList>
@@ -18,5 +18,3 @@ function ReviewsList(props: any) {
     </ReviewsWrapper>
   );
 }
-
-export default ReviewsList;

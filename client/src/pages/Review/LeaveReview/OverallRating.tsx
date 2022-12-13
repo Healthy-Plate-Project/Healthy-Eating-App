@@ -2,7 +2,7 @@ import React from "react";
 import goldStar from "../../../assets/images/gold-star.png";
 import whiteStar from "../../../assets/images/white-star.png";
 
-const OverallStarRating = (props: any) => {
+export function OverallStarRating(props: any) {
   function starRatingHandler(event: any) {
     event.preventDefault();
     props.setSelectedOverallStarRating(parseInt(event.target.id[0]));
@@ -48,6 +48,4 @@ const OverallStarRating = (props: any) => {
       {renderOverallStars()}
     </div>
   );
-};
-
-export default OverallStarRating;
+}

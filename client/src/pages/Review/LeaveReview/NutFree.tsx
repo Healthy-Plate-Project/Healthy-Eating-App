@@ -2,7 +2,7 @@ import React from "react";
 import goldStar from "../../../assets/images/gold-star.png";
 import whiteStar from "../../../assets/images/white-star.png";
 
-const NutFreeStarRating = (props: any) => {
+export function NutFreeStarRating(props: any) {
   function starRatingHandler(event: any) {
     event.preventDefault();
     props.setSelectedNutFreeStarRating(parseInt(event.target.id[0]));
@@ -48,6 +48,4 @@ const NutFreeStarRating = (props: any) => {
       {renderNutFreeStars()}
     </div>
   );
-};
-
-export default NutFreeStarRating;
+}

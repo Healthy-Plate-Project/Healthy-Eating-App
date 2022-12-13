@@ -8,7 +8,7 @@ type PhotoProps = {
   alt?: string;
 };
 
-export default function GooglePhoto({
+export function GooglePhoto({
   photo_reference,
   max_height,
   max_width,

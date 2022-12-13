@@ -2,7 +2,7 @@ import React from "react";
 import goldStar from "../../../assets/images/gold-star.png";
 import whiteStar from "../../../assets/images/white-star.png";
 
-const PescatarianStarRating = (props: any) => {
+export function PescatarianStarRating(props: any) {
   function starRatingHandler(event: any) {
     event.preventDefault();
     props.setSelectedPescatarianStarRating(parseInt(event.target.id[0]));
@@ -48,6 +48,4 @@ const PescatarianStarRating = (props: any) => {
       {renderPescatarianStars()}
     </div>
   );
-};
-
-export default PescatarianStarRating;
+}

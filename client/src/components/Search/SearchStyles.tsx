@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SearchWrapper = styled.div`
+export const SearchWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -41,5 +41,3 @@ const SearchWrapper = styled.div`
     }
   } */
 `;
-
-export default SearchWrapper;

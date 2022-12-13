@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { apiServer, convertMilesToMeters } from "../../utils/helpers";
 import {
   createReview,
@@ -22,18 +22,26 @@ import {
 } from "./NavbarStyles";
 import { MenuButton } from "../../components/Button/ButtonStyles";
 import { GenerateDummyReviews } from "../../pages/Review/GenerateDummyReviews";
+import { UserData } from "../../App";
 
-export function Navbar({ currentUserEmail, setCurrentUserEmail }: any) {
+export function Navbar({ currentUser, setCurrentUser }: any) {
   const [isNavExpanded, setIsNavExpanded] = useState<boolean>(false);
 
   async function logout(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault();
-    await fetch(`${apiServer()}/api/user/logout`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-    });
-    setCurrentUserEmail("");
+    try {
+      const response = await fetch(`${apiServer()}/api/user/logout`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+      const content: UserData = await response.json();
+      if (content.message === "Successfully logged out") {
+        setCurrentUser({});
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async function testAPICalls() {
@@ -99,7 +107,7 @@ export function Navbar({ currentUserEmail, setCurrentUserEmail }: any) {
   }
 
   let logoutButton;
-  if (currentUserEmail === undefined) {
+  if (currentUser.username === undefined) {
     logoutButton = <Link to="login">Login</Link>;
   } else {
     logoutButton = (

@@ -25,18 +25,27 @@ export function SignUp() {
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    await fetch(`${apiServer()}/api/user/register`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: username,
-        email: email,
-        password: password,
-        first_name: firstName,
-        last_name: lastName,
-      }),
-    });
-    setRedirect(true);
+    try {
+      const response = await fetch(`${apiServer()}/api/user/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          password: password,
+          first_name: firstName,
+          last_name: lastName,
+        }),
+      });
+      const content = await response.json();
+      console.log(content);
+      if (content.message === "Successfully registered") {
+        setRedirect(true);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   if (redirect) {

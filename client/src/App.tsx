@@ -17,8 +17,16 @@ import { SingleSearchResultPage } from "./pages/SearchResult/SingleSearchResult"
 import "./App.css";
 import { apiServer } from "./utils/helpers";
 
+export interface UserData {
+  message: string;
+  username: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+}
+
 export default function App() {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({} as UserData);
 
   useEffect(() => {
     async function fetchData() {
@@ -28,7 +36,7 @@ export default function App() {
           headers: { "Content-Type": "application/json" },
           credentials: "include",
         });
-        const content = await response.json();
+        const content: UserData = await response.json();
         setCurrentUser(content);
       } catch (err) {
         console.log(err);

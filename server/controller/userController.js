@@ -1,10 +1,8 @@
-// const axios = require('axios');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
-const User = require('../models/User');
-// const { userSeeds } = require('../seeds/userSeeds');
+const User = require("../models/User");
 
 const MAX_AGE = 24 * 60 * 60 * 1000; // 1 day
 
@@ -21,7 +19,9 @@ const userController = {
     });
     const result = await user.save();
     const { password, ...data } = await result.toJSON(0);
-    res.send(data);
+    res.send({
+      message: "Successfully registered",
+    });
   },
 
   login: async function (req, res) {
@@ -37,13 +37,16 @@ const userController = {
       });
     }
     const token = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN_SECRET);
-
     res.cookie("jwt", token, {
       httpOnly: true,
       maxAge: MAX_AGE,
     });
     res.send({
       message: "Successful login",
+      username: user.username,
+      email: user.email,
+      first_name: user.first_name,
+      last_name: user.last_name,
     });
   },
 
@@ -53,14 +56,19 @@ const userController = {
       const claims = jwt.verify(cookie, process.env.ACCESS_TOKEN_SECRET);
       if (!claims) {
         return res.status(401).send({
-          message: "Unauthenticated: Missing Access Token Secret"
-        })
+          message: "Unauthenticated: Missing Access Token Secret",
+        });
       }
       const user = await User.findOne({ _id: claims._id });
 
       const { password, ...data } = await user.toJSON();
 
-      res.send(data);
+      res.send({
+        username: data.username,
+        email: data.email,
+        first_name: data.first_name,
+        last_name: data.last_name,
+      });
     } catch (err) {
       return res.status(401).send({
         message: "Unauthenticated",

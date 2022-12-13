@@ -96,4 +96,3 @@ export const ButtonContainer = styled.div`
 export const LoginWith = styled.h5`
   cursor: pointer;
 `;
-

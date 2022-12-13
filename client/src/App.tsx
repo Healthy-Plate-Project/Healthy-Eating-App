@@ -71,6 +71,10 @@ export default function App() {
               />
             }
           />
+          <Route
+            path="/multiple-results/:latitude/:longitude/:keyword/:min_price/:max_price/:radius/:open_now"
+            element={<RestaurantsResults />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

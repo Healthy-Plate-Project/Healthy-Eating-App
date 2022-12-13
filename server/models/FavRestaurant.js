@@ -20,8 +20,8 @@ const favRestaurantSchema = new Schema(
     },
     id: false,
   }
-)
+);
 
-const FavRestaurant = model("FavRestaurant", favRestaurantSchema)
+const FavRestaurant = model("FavRestaurant", favRestaurantSchema);
 
-module.exports = FavRestaurant
+module.exports = FavRestaurant;

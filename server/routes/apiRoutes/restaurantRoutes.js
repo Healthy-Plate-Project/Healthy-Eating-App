@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const {
   getRestaurants,
-  getRestaurant
+  getRestaurant,
 } = require("../../controller/restaurantController");
 
 router.route("/").post(getRestaurants);

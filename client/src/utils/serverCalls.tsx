@@ -143,16 +143,17 @@ export async function getFavRestaurantsByUser(userId: string) {
     return undefined;
   }
   try {
-    const res = await axios.get(
-      `${apiServer()}/api/fav-restaurant/${userId}`
-    );
+    const res = await axios.get(`${apiServer()}/api/fav-restaurant/${userId}`);
     return res;
   } catch (err) {
     console.log(err);
   }
 }
 
-export async function deleteFavRestaurantByUser(userId: string, placeId: string) {
+export async function deleteFavRestaurantByUser(
+  userId: string,
+  placeId: string
+) {
   if (!apiFlag) {
     return undefined;
   }

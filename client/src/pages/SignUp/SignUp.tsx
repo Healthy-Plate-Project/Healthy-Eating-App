@@ -43,8 +43,8 @@ export function SignUp() {
     return <Navigate to="/login" />;
   }
   return (
-    <MainContainer>
-      <form onSubmit={(e) => submit(e)}>
+    <form onSubmit={(e) => submit(e)}>
+      <MainContainer>
         <WelcomeText>Sign Up</WelcomeText>
         <InputContainer>
           <SignUpInput
@@ -74,12 +74,14 @@ export function SignUp() {
           />
         </InputContainer>
         <ButtonContainer>
-          <LoginButtonStyles type="submit" content="Sign Up" name="signup" />
+          <LoginButtonStyles type="submit" content="Sign Up" name="signup">
+            Sign Up
+          </LoginButtonStyles>
         </ButtonContainer>
         <Login>
           Have an account? <a href="login">Login</a>
         </Login>
-      </form>
-    </MainContainer>
+      </MainContainer>
+    </form>
   );
 }

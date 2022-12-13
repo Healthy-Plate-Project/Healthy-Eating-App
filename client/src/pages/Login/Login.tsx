@@ -6,7 +6,6 @@ import {
   WelcomeText,
   InputContainer,
   ButtonContainer,
-  SignUp,
   LoginWith,
 } from "./LoginStyles";
 import { LoginInput } from "../../components/Input/InputStyles";
@@ -41,8 +40,8 @@ export function Login({ setCurrentUser }: any) {
   }
 
   return (
+    <form onSubmit={(e) => login(e)}>
     <MainContainer>
-      <form onSubmit={(e) => login(e)}>
         <WelcomeText>Sign in</WelcomeText>
         <InputContainer>
           <LoginInput
@@ -60,11 +59,12 @@ export function Login({ setCurrentUser }: any) {
           <LoginWith>
             <button type="submit">Login</button>
           </LoginWith>
-          <SignUp>
+          </ButtonContainer>
+          <h4>
             Don't have an account? <a href="sign-up">Sign Up</a>
-          </SignUp>
-        </ButtonContainer>
-      </form>
+          </h4>
+       
     </MainContainer>
+    </form>
   );
 }

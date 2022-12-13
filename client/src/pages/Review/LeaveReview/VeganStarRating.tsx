@@ -48,4 +48,4 @@ export function VeganStarRating(props: any) {
       {renderVeganStars()}
     </div>
   );
-};
+}

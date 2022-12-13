@@ -9,6 +9,7 @@ import { NotFound } from "./pages/NotFound/NotFound";
 import { Login } from "./pages/Login/Login";
 import { SingleReview } from "./pages/Review/ReviewsList/SingleReview";
 import { ReviewListParent } from "./pages/Review/ReviewsList/ReviewsListParent";
+import { RestaurantsResults } from "./components/RestaurantsResults/RestaurantsResults";
 
 import { GlobalStyle } from "./theme/globalStyle";
 import { Navbar } from "./components/NavBar/NavBar";

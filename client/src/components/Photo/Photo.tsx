@@ -8,7 +8,12 @@ type PhotoProps = {
   alt?: string;
 };
 
-export function GooglePhoto({ photo_reference, max_height, max_width, alt }: PhotoProps) {
+export function GooglePhoto({
+  photo_reference,
+  max_height,
+  max_width,
+  alt,
+}: PhotoProps) {
   const [photoURL, setPhotoURL] = useState("");
   useEffect(() => {
     async function fetchData() {

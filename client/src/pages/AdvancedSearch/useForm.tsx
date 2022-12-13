@@ -16,4 +16,4 @@ export function useForm(callback: any, initialState = {}) {
     onSubmit,
     values,
   };
-};
+}

@@ -13,4 +13,4 @@ export function NotFound() {
       <Image src={empty} />
     </Wrapper>
   );
-};
+}

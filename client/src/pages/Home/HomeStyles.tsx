@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const HomeWrapper = styled.div`
+export const HomeWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +10,7 @@ const HomeWrapper = styled.div`
   margin: 0 auto;
 `;
 
-const BackgroundImage = styled.img`
+export const BackgroundImage = styled.img`
   /* position: absolute;
   z-index: 0;
   bottom: -1rem; */
@@ -18,5 +18,3 @@ const BackgroundImage = styled.img`
   /* filter: grayscale(0) invert(1) brightness(1) hue-rotate(0.5); */
   /* mix-blend-mode: darken; */
 `;
-
-export { HomeWrapper, BackgroundImage };

@@ -1,36 +1,55 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router";
-import Home from "./pages/Home";
-import SignUp from "./pages/SignUp/SignUp";
-import AdvancedSearch from "./pages/AdvancedSearch/AdvancedSearch";
+import { Home } from "./pages/Home";
+import { SignUp } from "./pages/SignUp/SignUp";
+import { AdvancedSearch } from "./pages/AdvancedSearch/AdvancedSearch";
 import { Result } from "./pages/SearchResult/SearchResult";
-import NotFound from "./pages/NotFound/NotFound";
-import Login from "./pages/Login/Login";
-import Review from "./pages/Review/ReviewsList/SingleReview";
-import ReviewsListParent from "./pages/Review/ReviewsList/ReviewsListParent";
+import { NotFound } from "./pages/NotFound/NotFound";
+import { Login } from "./pages/Login/Login";
+import { SingleReview } from "./pages/Review/ReviewsList/SingleReview";
+import { ReviewListParent } from "./pages/Review/ReviewsList/ReviewsListParent";
+import { RestaurantsResults } from "./components/RestaurantsResults/RestaurantsResults";
 
-import GlobalStyle from "./theme/globalStyle";
+import { GlobalStyle } from "./theme/globalStyle";
 import { Navbar } from "./components/NavBar/NavBar";
 import { SingleSearchResultPage } from "./pages/SearchResult/SingleSearchResult";
 import "./App.css";
 import { getFavRestaurantByUser } from "./utils/serverCalls";
+import { apiServer } from "./utils/helpers";
 
-const App = () => {
-  const [currentUserEmail, setCurrentUserEmail] = useState("");
+export interface UserData {
+  message: string;
+  id: string;
+  username: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+}
+
+export default function App() {
+  const [currentUser, setCurrentUser] = useState({} as UserData);
+
   useEffect(() => {
-    (async () => {
-      const response = await fetch("/api/user/user", {
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-      });
-      const content = await response.json();
-      setCurrentUserEmail(content.username);
-    })();
-  });
+    async function fetchData() {
+      try {
+        const response = await fetch(`${apiServer()}/api/user/get-user`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        });
+        const content: UserData = await response.json();
+        setCurrentUser(content);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchData();
+  }, []);
 
-  const currentUser = "638eb6583b28442a6a9c2d4f";
-  const [currentUserFavRestaurants, setCurrentUserFavRestaurants] = useState<string[]>([]);
+  const [currentUserFavRestaurants, setCurrentUserFavRestaurants] = useState<
+    string[]
+  >([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -48,17 +67,13 @@ const App = () => {
     <div className="app">
       <GlobalStyle />
       <BrowserRouter>
-        <Navbar
-          currentUserEmail={currentUserEmail}
-          setCurrentUserEmail={setCurrentUserEmail}
-        />
+        <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
         <Routes>
-          {/* <Route exact path="/" element={<App />} /> */}
           <Route path="/" element={<Home />} />
           <Route path="advanced-search" element={<AdvancedSearch />} />
           <Route
             path="/results/:latitude/:longitude/:open_now/:radius"
-            element={<Result />}
+            element={<Result currentUser={currentUser} />}
           />
           <Route
             path="/single-result/:place_id"
@@ -69,23 +84,23 @@ const App = () => {
               />
             }
           />
-          <Route path="review" element={<Review />} />
-          <Route path="reviews" element={<ReviewsListParent />} />
           <Route path="*" element={<NotFound />} />
           <Route path="sign-up" element={<SignUp />} />
           <Route
             path="login"
             element={
               <Login
-                currentUserEmail={currentUserEmail}
-                setCurrentUserEmail={setCurrentUserEmail}
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
               />
             }
+          />
+          <Route
+            path="/multiple-results/:latitude/:longitude/:keyword/:min_price/:max_price/:radius/:open_now"
+            element={<RestaurantsResults />}
           />
         </Routes>
       </BrowserRouter>
     </div>
   );
-};
-
-export default App;
+}

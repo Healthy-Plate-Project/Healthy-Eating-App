@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const MainContainer = styled.div`
+export const MainContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -53,11 +53,11 @@ const MainContainer = styled.div`
   }
 `;
 
-const WelcomeText = styled.h2`
+export const WelcomeText = styled.h2`
   margin: 3rem 0 2rem 0;
 `;
 
-const InputContainer = styled.div`
+export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -66,7 +66,7 @@ const InputContainer = styled.div`
   width: 100%;
 `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   margin: 1rem 0 2rem 0;
   width: 100%;
   display: flex;
@@ -83,6 +83,7 @@ const ButtonContainer = styled.div`
     font-weight: 700;
     font-size: 1rem;
     transition: all 0.5s;
+    cursor: pointer;
     &:active {
       background-color: #4f4f4f;
       box-shadow: 0px 5px 10px #696969;
@@ -92,12 +93,6 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const LoginWith = styled.h5`
+export const LoginWith = styled.h5`
   cursor: pointer;
 `;
-
-const SignUp = styled.h4`
-  cursor: pointer;
-`;
-
-export { MainContainer, InputContainer, WelcomeText, ButtonContainer, SignUp };

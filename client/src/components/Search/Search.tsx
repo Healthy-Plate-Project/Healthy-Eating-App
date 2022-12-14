@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import SearchWrapper from "./SearchStyles";
+import { SearchWrapper } from "./SearchStyles";
 import { convertMilesToMeters } from "../../utils/helpers";
 import { SearchButton } from "../Button/ButtonStyles";
 import { PrimaryInput, SmallInput } from "../Input/InputStyles";
 
-export default function Search() {
+export function Search() {
   const [search, setSearch] = useState("" as string | undefined);
 
   // function to get the current location of user, uses GPS if on a mobile device

@@ -8,7 +8,7 @@ type InputProps = {
   placeholder?: string;
 };
 
-export default function Input({
+export function DefaultInput({
   onChange,
   placeholder,
   className,

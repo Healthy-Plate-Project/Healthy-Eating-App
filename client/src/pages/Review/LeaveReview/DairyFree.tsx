@@ -2,7 +2,7 @@ import React from "react";
 import goldStar from "../../../assets/images/gold-star.png";
 import whiteStar from "../../../assets/images/white-star.png";
 
-const DairyFreeStarRating = (props: any) => {
+export function DairyFreeStarRating(props: any) {
   function starRatingHandler(event: any) {
     event.preventDefault();
     props.setSelectedDairyFreeStarRating(parseInt(event.target.id[0]));
@@ -48,6 +48,4 @@ const DairyFreeStarRating = (props: any) => {
       {renderDairyFreeStars()}
     </div>
   );
-};
-
-export default DairyFreeStarRating;
+}

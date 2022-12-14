@@ -1,13 +1,11 @@
 import React from "react";
-import TitleStyled from "./TitleStyles";
+import { TitleStyles } from "./TitleStyles";
 
-function HomeTitle() {
+export function HomeTitle() {
   return (
-    <TitleStyled className="title">
+    <TitleStyles className="title">
       dragon <br />
       fruit
-    </TitleStyled>
+    </TitleStyles>
   );
 }
-
-export default HomeTitle;

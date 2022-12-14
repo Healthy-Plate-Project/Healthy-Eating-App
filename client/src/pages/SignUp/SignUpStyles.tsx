@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const MainContainer = styled.div`
+export const MainContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -52,11 +52,11 @@ const MainContainer = styled.div`
   }
 `;
 
-const WelcomeText = styled.h2`
+export const WelcomeText = styled.h2`
   margin: 3rem 0 5rem 0;
 `;
 
-const InputContainer = styled.div`
+export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -66,7 +66,7 @@ const InputContainer = styled.div`
   margin: 3rem;
 `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   margin: 4rem 0 2rem 0;
   width: 100%;
   display: flex;
@@ -74,8 +74,6 @@ const ButtonContainer = styled.div`
   justify-content: center;
 `;
 
-const Login = styled.h4`
+export const Login = styled.h4`
   cursor: pointer;
 `;
-
-export { MainContainer, WelcomeText, InputContainer, ButtonContainer, Login };

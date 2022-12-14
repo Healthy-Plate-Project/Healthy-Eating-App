@@ -1,7 +1,7 @@
 import React from "react";
 import { ReviewsWrapper, ReviewList } from "./ReviewsListStyles";
 
-function SingleReview(props: any) {
+export function SingleReview(props: any) {
   return (
     <ReviewsWrapper>
       {/* <ReviewList> */}
@@ -20,5 +20,3 @@ function SingleReview(props: any) {
     </ReviewsWrapper>
   );
 }
-
-export default SingleReview;

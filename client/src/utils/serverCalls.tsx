@@ -152,7 +152,10 @@ export async function getFavRestaurantByUser(userId: string) {
   }
 }
 
-export async function deleteFavRestaurantByUser(userId: string, placeId: string) {
+export async function deleteFavRestaurantByUser(
+  userId: string,
+  placeId: string
+) {
   if (!apiFlag) {
     return undefined;
   }

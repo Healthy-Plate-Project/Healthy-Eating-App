@@ -4,10 +4,10 @@ import { TitleStyles } from "./TitleStyles";
 export function HomeTitle() {
   return (
     <>
-      <TitleStyled className="title">
+      <TitleStyles className="title">
         dragon <br />
         fruit
-      </TitleStyled>
+      </TitleStyles>
     </>
   );
 }

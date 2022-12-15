@@ -3,9 +3,11 @@ import { TitleStyles } from "./TitleStyles";
 
 export function HomeTitle() {
   return (
-    <TitleStyles className="title">
-      dragon <br />
-      fruit
-    </TitleStyles>
+    <>
+      <TitleStyled className="title">
+        dragon <br />
+        fruit
+      </TitleStyled>
+    </>
   );
 }

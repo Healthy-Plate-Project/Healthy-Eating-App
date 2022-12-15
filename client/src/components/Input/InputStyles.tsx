@@ -1,7 +1,7 @@
-import styled from "styled-components/macro";
-import DefaultInput from "./DefaultInput";
+import styled from "styled-components";
+import { DefaultInput } from "./DefaultInput";
 
-const PrimaryInput = styled(DefaultInput)`
+export const PrimaryInput = styled(DefaultInput)`
   /* outline: 3px var(--secondary-600) solid; */
   border-radius: 50px;
   border: none;
@@ -19,12 +19,12 @@ const PrimaryInput = styled(DefaultInput)`
   }
 `;
 
-const SmallInput = styled(PrimaryInput)`
+export const SmallInput = styled(PrimaryInput)`
   height: 2rem;
   font-size: 1rem;
 `;
 
-const LoginInput = styled.input`
+export const LoginInput = styled.input`
   background: rgba(255, 255, 255, 0.15);
   border-radius: 2rem;
   width: 80%;
@@ -49,8 +49,6 @@ const LoginInput = styled.input`
   }
 `;
 
-const SignUpInput = styled(LoginInput)`
+export const SignUpInput = styled(LoginInput)`
   margin: 0.5rem;
 `;
-
-export { PrimaryInput, SmallInput, LoginInput, SignUpInput };

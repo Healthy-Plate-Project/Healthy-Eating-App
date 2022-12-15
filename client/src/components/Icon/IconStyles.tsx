@@ -2,9 +2,9 @@ import styled from "styled-components/macro";
 
 interface IconProps {
   readonly background: string;
-};
+}
 
-const StyledIcon = styled.div<IconProps>`
+export const StyledIcon = styled.div<IconProps>`
   height: 3.5rem;
   width: 3.5rem;
   background: ${(props: any) => props.background};
@@ -19,5 +19,3 @@ const StyledIcon = styled.div<IconProps>`
     height: 1.5rem;
   }
 `;
-
-export default StyledIcon;

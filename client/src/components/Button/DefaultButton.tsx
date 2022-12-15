@@ -4,6 +4,8 @@ type ButtonProps = {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children?: React.ReactNode;
   name?: string;
+  className?: string;
+  id?: string;
   variant?: string;
   type?: string;
   content?: string;
@@ -11,7 +13,7 @@ type ButtonProps = {
   data?: object;
 };
 
-export default function DefaultButton({
+export function DefaultButton({
   onClick,
   children,
   name,
@@ -24,7 +26,7 @@ export default function DefaultButton({
 }: ButtonProps) {
   return (
     <>
-      <button className={`${variant}button`} onClick={onClick} {...rest}>
+      <button className={`${variant}-button`} onClick={onClick} {...rest}>
         {children}
       </button>
     </>

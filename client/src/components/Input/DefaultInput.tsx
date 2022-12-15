@@ -2,26 +2,26 @@ import React from "react";
 
 type InputProps = {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  name?: string;
+  className?: string;
   value?: string;
   required?: boolean;
+  placeholder?: string;
 };
 
-export default function Input({
+export function DefaultInput({
   onChange,
   placeholder,
-  name,
+  className,
   value,
   required,
   ...rest
 }: InputProps) {
   return (
     <input
-      placeholder={placeholder}
-      name={name}
-      value={value}
       onChange={onChange}
+      className={className}
+      value={value}
+      placeholder={placeholder}
       required={required}
       {...rest}
     />

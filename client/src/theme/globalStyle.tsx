@@ -1,13 +1,14 @@
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
 
 :root {
   //colors
   --primary: #ff7b7b;
-  --primary-400: #e57676;
+  --primary-400: #d87676;
   --primary-600:#FFC0C0;
   --secondary: #70faaf;
+  --secondary-200: #31bf71;
   --secondary-400: #44E78E;
   --secondary-600: #c0ffdc;
   --accent-one: #3f76a6;
@@ -33,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
 --lg: 2rem;
 --xl:2.5;
 
+background-color: var(--light);
 }
 
 * {
@@ -46,23 +48,30 @@ body {
   font-family: "Comfortaa", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--light);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-.App {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-  background-color: var(--light);
+.app {
+  width: clamp(400px, 100vw, 200px);
+  margin: 0 auto;
 }
 
 a {
-  cursor: default;
+  cursor: pointer;
+}
+
+a:visited {
+  color: var(--accent-one-600);
+}
+
+a:link {
+  color: var(--dark-400);
+  font-weight: bold;
+  text-decoration: none;
+  letter-spacing: 1px;
 }
 
 h1 {
@@ -97,6 +106,7 @@ p {
 }
 
 .title {
+  font-family: 'Comfortaa', sans-serif;
   font-weight: Bold;
   font-size: 5rem;
   line-height: 4.5rem;
@@ -108,6 +118,7 @@ p {
   font-weight: Medium;
   font-size: 1.5rem;
 }
+
 .pretitle {
   font-weight: Bold;
   font-size: 1.5rem;
@@ -120,5 +131,3 @@ p {
   color: var(--dark)
 }
 `;
-
-export default GlobalStyle;

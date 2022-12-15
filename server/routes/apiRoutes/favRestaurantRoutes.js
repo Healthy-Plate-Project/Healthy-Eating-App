@@ -5,10 +5,10 @@ const {
   deleteFavRestaurantByUser,
 } = require("../../controller/favRestaurantController");
 
-router.route("/").post(saveFavRestaurant);
+router.route("/:userId/:placeId").post(saveFavRestaurant);
 
-router.route("/user/:userId").get(getFavRestaurantsByUser);
+router.route("/:userId").get(getFavRestaurantsByUser);
 
-router.route("/user/:userId/:placeId").delete(deleteFavRestaurantByUser);
+router.route("/:userId/:placeId").delete(deleteFavRestaurantByUser);
 
 module.exports = router;

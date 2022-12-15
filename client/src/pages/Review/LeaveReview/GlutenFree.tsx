@@ -2,7 +2,7 @@ import React from "react";
 import goldStar from "../../../assets/images/gold-star.png";
 import whiteStar from "../../../assets/images/white-star.png";
 
-const GlutenFreeStarRating = (props: any) => {
+export function GlutenFreeStarRating(props: any) {
   function starRatingHandler(event: any) {
     event.preventDefault();
     props.setSelectedGlutenFreeStarRating(parseInt(event.target.id[0]));
@@ -48,6 +48,4 @@ const GlutenFreeStarRating = (props: any) => {
       {renderGlutenFreeStars()}
     </div>
   );
-};
-
-export default GlutenFreeStarRating;
+}

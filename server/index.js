@@ -1,8 +1,7 @@
 const express = require("express");
 require("dotenv").config({ path: "../.env" });
 const cors = require("cors");
-// const cookieParser = require('cookie-parser')
-// var bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const path = require("path");
 const routes = require("./routes");
 const router = require("express").Router();
@@ -12,23 +11,18 @@ const app = express();
 // Please change export.testAPI back to true after testing. Do not push false in the develop branch! Use this to test the real live API.
 exports.testAPI = true;
 
-// app.use(cookieParser());
+app.use(cookieParser());
+
+// Express middleware
 app.use(express.urlencoded({ extended: false }));
-// app.use(bodyParser.json({ limit: "50mb" }));
-// app.use(
-//   bodyParser.urlencoded({
-//     limit: "50mb",
-//     extended: true,
-//     parameterLimit: 50000,
-//   })
-// );
 app.use(express.json());
 app.use(
   cors({
     credentials: true,
     origin: [
       "http://localhost:3000",
-      "https://healthy-eating-project-359101.uc.r.appspot.com/",
+      "https://healthy-eating-project-359101.uc.r.appspot.com",
+      "https://dragon-fruit-app.herokuapp.com",
     ],
   })
 );

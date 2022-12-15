@@ -13,30 +13,29 @@ const reviewSchema = new Schema(
       required: true,
     },
     review_text: {
-      type: String
+      type: String,
     },
     overall_rating: {
-      type: Number
+      type: Number,
     },
     dairy_free_rating: {
-      type: Number
+      type: Number,
     },
     gluten_free_rating: {
-      type: Number
+      type: Number,
     },
     nut_free_rating: {
-      type: Number
+      type: Number,
     },
     pescatarian_rating: {
-      type: Number
+      type: Number,
     },
     vegan_rating: {
-      type: Number
+      type: Number,
     },
     vegatarian_rating: {
-      type: Number
+      type: Number,
     },
-
   },
   {
     toJSON: {
@@ -45,8 +44,8 @@ const reviewSchema = new Schema(
     },
     id: false,
   }
-)
+);
 
-const Review = model("Review", reviewSchema)
+const Review = model("Review", reviewSchema);
 
-module.exports = Review
+module.exports = Review;

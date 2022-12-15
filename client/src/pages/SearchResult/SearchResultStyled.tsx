@@ -1,13 +1,13 @@
 import styled from "styled-components/macro";
 
-const ResultStyled = styled.div`
+export const ResultStyled = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin: 1rem 0;
 `;
 
-const ItemStyled = styled.div`
+export const ItemStyled = styled.div`
   color: white;
   border: 1px white solid;
   padding: 1rem 1rem;
@@ -17,12 +17,10 @@ const ItemStyled = styled.div`
   /* background-color: aqua; */
 `;
 
-const ItemDetail = styled.div`
+export const ItemDetail = styled.div`
   display: flex;
   text-align: right;
   margin: 1rem;
   gap: 1rem;
   color: lightgrey;
 `;
-
-export { ResultStyled, ItemStyled, ItemDetail };

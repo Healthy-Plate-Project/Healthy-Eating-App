@@ -1,18 +1,16 @@
-import CreateIcon from "../../assets/icons/Create_icon.svg";
-import DeleteIcon from "../../assets/icons/Delete_icon.svg";
-import EditIcon from "../../assets/icons/Edit_icon.svg";
-import HomeIcon from "../../assets/icons/Home_icon.svg";
-import DirectionsIcon from "../../assets/icons/Directions_icon.svg";
-import LikeIcon from "../../assets/icons/Like_icon.svg";
-import PriceIcon from "../../assets/icons/Price_icon.svg";
-import SearchIcon from "../../assets/icons/Search_icon.svg";
-import StarIcon from "../../assets/icons/Star_icon.svg";
-import TimerIcon from "../../assets/icons/Timer_icon.svg";
+const CreateIcon = require("./Create_icon.svg") as string;
+const HomeIcon = require("./Home_icon.svg") as string;
+const DirectionsIcon = require("./Directions_icon.svg") as string;
+const LikeIcon = require("./Like_icon.svg") as string;
+const PriceIcon = require("./Price_icon.svg") as string;
+const SearchIcon = require("./Search_icon.svg") as string;
+const StarIcon = require("./Star_icon.svg") as string;
+const TimerIcon = require("./Timer_icon.svg") as string;
+const DeleteIcon = require("./Delete_icon.svg") as string;
+const EditIcon = require("./Edit_icon.svg") as string;
 
 export {
   CreateIcon,
-  DeleteIcon,
-  EditIcon,
   HomeIcon,
   DirectionsIcon,
   LikeIcon,
@@ -20,4 +18,6 @@ export {
   SearchIcon,
   StarIcon,
   TimerIcon,
+  DeleteIcon,
+  EditIcon,
 };

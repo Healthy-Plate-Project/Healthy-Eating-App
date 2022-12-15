@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import {
   deleteFavRestaurantByUser,
   getRestaurant,
@@ -16,13 +16,7 @@ import {
 import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
 import dollarFilled from "../../assets/images/green-dollar.svg";
-import GooglePhoto from "../../components/Photo/Photo";
-
-interface Props {
-  // currentUser: any;
-  currentUserFavRestaurants: string[];
-  currentUser: string;
-}
+import { GooglePhoto } from "../../components/Photo/Photo";
 
 export interface SingleRestaurantData {
   name: string;
@@ -52,48 +46,78 @@ export interface SingleRestaurantData {
   };
 }
 
-export function SingleSearchResultPage(props: Props) {
+export interface FavRestaurantData {
+  name: string;
+  place_id: string;
+  vicinity: string;
+  price_level?: number;
+}
+
+type SingleSearchResultPageProps = {
+  currentUser: {
+    id: string;
+    fav_restaurants?: [FavRestaurantData];
+  };
+  currentUserTrigger: boolean;
+  setCurrentUserTrigger: any;
+};
+
+export function SingleSearchResultPage({
+  currentUser,
+  currentUserTrigger,
+  setCurrentUserTrigger,
+}: SingleSearchResultPageProps) {
   const { place_id } = useParams();
 
   const [restaurantData, setRestaurantData] = useState(
     {} as SingleRestaurantData
   );
   const [isFavRestaurant, setIsFavRestaurant] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     async function fetchData() {
       try {
         const data = await getRestaurant(place_id);
         setRestaurantData(data.result);
-        if (place_id) {
-          if (props.currentUserFavRestaurants.includes(place_id)) {
-            setIsFavRestaurant(true);
-          }
-        }
       } catch (err) {
         console.log(err);
       }
     }
     fetchData();
-  }, [place_id, props.currentUserFavRestaurants]);
+  }, [place_id, currentUser]);
 
-  async function saveFavRestaurant(place_id: string) {
-    await saveFavRestaurantByUser(props.currentUser, place_id);
+  useEffect(() => {
+    function checkUserData() {
+      if (place_id && currentUser.fav_restaurants) {
+        for (let i = 0; i < currentUser.fav_restaurants.length; i++) {
+          const place = currentUser.fav_restaurants[i];
+          if (place.place_id === place_id) {
+            setIsFavRestaurant(true);
+            break;
+          }
+        }
+      }
+    }
+    checkUserData();
+  }, [location, restaurantData]);
+
+  async function saveFavRestaurant(data: FavRestaurantData) {
+    await saveFavRestaurantByUser(currentUser.id, data);
+    setCurrentUserTrigger(!currentUserTrigger);
   }
 
-  async function deleteFavRestaurant(place_id: string) {
-    await deleteFavRestaurantByUser(props.currentUser, place_id);
+  async function deleteFavRestaurant(data: FavRestaurantData) {
+    await deleteFavRestaurantByUser(currentUser.id, data);
+    setCurrentUserTrigger(!currentUserTrigger);
   }
 
   // look at this object in the console to see what data is available to use
   // console.log(restaurantData);
 
-  // dollar
-  let dollarAPI = restaurantData.price_level;
-
   function priceLevel() {
     const array = [];
-    for (let i = 1; i <= dollarAPI; i++) {
+    for (let i = 1; i <= restaurantData.price_level; i++) {
       array.push(<PriceIconStyled src={dollarFilled} />);
     }
     return array;
@@ -114,8 +138,18 @@ export function SingleSearchResultPage(props: Props) {
             onClick={() =>
               setIsFavRestaurant((prevState) => {
                 prevState
-                  ? deleteFavRestaurant(restaurantData.place_id)
-                  : saveFavRestaurant(restaurantData.place_id);
+                  ? deleteFavRestaurant({
+                      name: restaurantData.name,
+                      place_id: restaurantData.place_id,
+                      vicinity: restaurantData.vicinity,
+                      price_level: restaurantData.price_level,
+                    })
+                  : saveFavRestaurant({
+                      name: restaurantData.name,
+                      place_id: restaurantData.place_id,
+                      vicinity: restaurantData.vicinity,
+                      price_level: restaurantData.price_level,
+                    });
                 return !prevState;
               })
             }

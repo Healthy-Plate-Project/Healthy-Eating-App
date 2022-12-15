@@ -1,6 +1,4 @@
 import React, { FormEvent, useState } from "react";
-
-// styled-components
 import {
   MainContainer,
   WelcomeText,
@@ -8,20 +6,18 @@ import {
   ButtonContainer,
   Login,
 } from "./SignUpStyles";
-
-// components
 import { SignUpInput } from "../../components/Input/InputStyles";
 import { LoginButtonStyles } from "../../components/Button/ButtonStyles";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { apiServer } from "../../utils/helpers";
 
-export function SignUp() {
+export function SignUp({ setCurrentUser }: any) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [redirect, setRedirect] = useState(false);
+  const navigate = useNavigate();
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -41,16 +37,14 @@ export function SignUp() {
       const content = await response.json();
       console.log(content);
       if (content.message === "Successfully registered") {
-        setRedirect(true);
+        setCurrentUser(content);
+        navigate(-1);
       }
     } catch (err) {
       console.log(err);
     }
   }
 
-  if (redirect) {
-    return <Navigate to="/login" />;
-  }
   return (
     <form onSubmit={(e) => submit(e)}>
       <MainContainer>

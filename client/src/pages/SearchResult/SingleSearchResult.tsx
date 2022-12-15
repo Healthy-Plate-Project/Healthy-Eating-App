@@ -12,7 +12,7 @@ import {
 import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
 import dollarFilled from "../../assets/images/green-dollar.svg";
-import GooglePhoto from "../../components/Photo/Photo";
+import { GooglePhoto } from "../../components/Photo/Photo";
 
 export interface SingleRestaurantData {
   name: string;
@@ -42,7 +42,7 @@ export interface SingleRestaurantData {
   };
 }
 
-export function SingleSearchResultPage() {
+export function SingleSearchResultPage({ currentUser }: any) {
   const { place_id } = useParams();
 
   const [restaurantData, setRestaurantData] = useState(

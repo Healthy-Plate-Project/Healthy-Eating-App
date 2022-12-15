@@ -1,7 +1,7 @@
 import React from "react";
-import TitleStyled from "./TitleStyles";
+import { TitleStyles } from "./TitleStyles";
 
-function HomeTitle() {
+export function HomeTitle() {
   return (
     <>
       <TitleStyled className="title">
@@ -11,5 +11,3 @@ function HomeTitle() {
     </>
   );
 }
-
-export default HomeTitle;

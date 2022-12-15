@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { convertMilesToMeters } from "../../utils/helpers";
+import { Link, Navigate } from "react-router-dom";
+import { apiServer, convertMilesToMeters } from "../../utils/helpers";
 import {
   createReview,
   deleteFavRestaurantByUser,
@@ -22,18 +22,27 @@ import {
 } from "./NavbarStyles";
 import { MenuButton } from "../../components/Button/ButtonStyles";
 import { GenerateDummyReviews } from "../../pages/Review/GenerateDummyReviews";
+import { UserData } from "../../App";
 
-export function Navbar(props: any) {
+export function Navbar({ currentUser, setCurrentUser }: any) {
   const [isNavExpanded, setIsNavExpanded] = useState<boolean>(false);
 
-  const logout = async () => {
-    await fetch("/api/user/logout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-    });
-    props.setCurrentUserEmail("");
-  };
+  async function logout(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+    e.preventDefault();
+    try {
+      const response = await fetch(`${apiServer()}/api/user/logout`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+      const content: UserData = await response.json();
+      if (content.message === "Successfully logged out") {
+        setCurrentUser({});
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   async function testAPICalls() {
     // const getRestaurantsResults = await getRestaurants({
@@ -97,6 +106,17 @@ export function Navbar(props: any) {
     // console.log(deleteFavRestaurantByUserTest);
   }
 
+  let logoutButton;
+  if (currentUser.username === undefined) {
+    logoutButton = <Link to="login">Login</Link>;
+  } else {
+    logoutButton = (
+      <Link to="/" onClick={(e) => logout(e)}>
+        Logout
+      </Link>
+    );
+  }
+
   return (
     <NavbarStyled>
       <ButtonWrapper>
@@ -113,6 +133,7 @@ export function Navbar(props: any) {
       <Link to="results">Results</Link>
       <Link to="review">Review</Link>
       <Link to="reviews">Reviews</Link>
+      {logoutButton}
       <StyledButton onClick={() => testAPICalls()}>Test API</StyledButton>
       <Link to={"/single-result/ChIJn58N1B9gUocRpAXOXPbFcOo"}>
         Single Result

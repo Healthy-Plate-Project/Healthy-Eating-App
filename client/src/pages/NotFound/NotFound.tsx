@@ -3,7 +3,7 @@ import empty from "./../../assets/images/empty-plate-pexels-daniela-constantini-
 import { Wrapper } from "../Review/LeaveReview/ReviewStyles";
 import { Image } from "./NotFoundStyles";
 
-const NotFound = () => {
+export function NotFound() {
   return (
     <Wrapper>
       <h1>404 not found. </h1>
@@ -13,6 +13,4 @@ const NotFound = () => {
       <Image src={empty} />
     </Wrapper>
   );
-};
-
-export default NotFound;
+}

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import VeganStarRating from "./VeganStarRating";
+import { VeganStarRating } from "./VeganStarRating";
 import { Textarea, Wrapper } from "./ReviewStyles";
-import VegetarianStarRating from "./VegetarianStarRating";
-import PescatarianStarRating from "./PescatarianStarRating";
-import GlutenFreeStarRating from "./GlutenFree";
-import DairyFreeStarRating from "./DairyFree";
-import NutFreeStarRating from "./NutFree";
-import OverallStarRating from "./OverallRating";
+import { VegetarianStarRating } from "./VegetarianStarRating";
+import { PescatarianStarRating } from "./PescatarianStarRating";
+import { GlutenFreeStarRating } from "./GlutenFree";
+import { DairyFreeStarRating } from "./DairyFree";
+import { NutFreeStarRating } from "./NutFree";
+import { OverallStarRating } from "./OverallRating";
 
-const Review = () => {
+export function Review() {
   const [selectedVeganStarRating, setSelectedVeganStarRating] =
     useState<number>();
   const [selectedVegetarianStarRating, setSelectedVegetarianStarRating] =
@@ -73,6 +73,4 @@ const Review = () => {
       </div>
     </Wrapper>
   );
-};
-
-export default Review;
+}

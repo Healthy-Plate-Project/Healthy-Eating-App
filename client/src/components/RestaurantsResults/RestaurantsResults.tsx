@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { getRestaurants } from "../../utils/serverCalls";
-import GooglePhoto from "../Photo/Photo";
+import { GooglePhoto } from "../Photo/Photo";
 
 import {
   CardStyled,

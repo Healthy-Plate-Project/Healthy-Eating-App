@@ -69,9 +69,6 @@ export function SingleSearchResultPage() {
     fetchData();
   }, [place_id]);
 
-  // look at this object in the console to see what data is available to use
-  // console.log(restaurantData);
-
   // default should be no, not favorited. use boolean type. True is selected.
   const [heart, setHeart] = useState<boolean>(false);
 

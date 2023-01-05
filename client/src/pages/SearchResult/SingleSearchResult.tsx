@@ -134,11 +134,10 @@ export function SingleSearchResultPage({ currentUser }: any) {
         <hr />
         {renderRestaurantPhotos()}
       </div>
-      <div>
-        <H3>User Reviews</H3>
-        <hr />
+     
+        <h3>User Reviews</h3>
         <button>Write Review</button>
-      </div>
+   
     </Wrapper>
   );
 }

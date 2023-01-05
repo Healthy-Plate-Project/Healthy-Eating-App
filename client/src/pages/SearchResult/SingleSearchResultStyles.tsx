@@ -14,8 +14,13 @@ export const Dollar = styled.img`
 `;
 
 export const Wrapper = styled.div`
-  text-align: left;
-  margin: auto 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: clamp(290px, 100%, 600px);
+  height: 100%;
+  margin: 0 auto;
 `;
 
 export const HeartIcon = styled.img`

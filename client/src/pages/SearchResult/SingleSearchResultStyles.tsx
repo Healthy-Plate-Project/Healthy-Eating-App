@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 export const H1 = styled.h1`
   margin: 20px 0;
@@ -14,7 +14,13 @@ export const Dollar = styled.img`
 `;
 
 export const Wrapper = styled.div`
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: clamp(290px, 100%, 600px);
+  height: 100%;
+  margin: 0 auto;
 `;
 
 export const HeartIcon = styled.img`
@@ -29,4 +35,8 @@ export const PriceContainer = styled.div`
 export const PriceIconStyled = styled.img`
   height: 20px;
   margin: 0 1px;
+`;
+
+export const FeaturedPhoto = styled.div`
+  height: 150px;
 `;

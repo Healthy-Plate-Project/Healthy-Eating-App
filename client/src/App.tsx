@@ -16,6 +16,7 @@ import { Navbar } from "./components/NavBar/NavBar";
 import { SingleSearchResultPage } from "./pages/SearchResult/SingleSearchResult";
 import "./App.css";
 import { apiServer } from "./utils/helpers";
+import { FavRestaurantsResults } from "./components/FavoriteRestaurantsResults/FavoriteRestaurantsResults";
 
 export interface UserData {
   message: string;
@@ -84,6 +85,10 @@ export default function App() {
           <Route
             path="/multiple-results/:latitude/:longitude/:keyword/:min_price/:max_price/:radius/:open_now"
             element={<RestaurantsResults />}
+          />
+          <Route
+            path="/fav-results/:userId"
+            element={<FavRestaurantsResults />}
           />
         </Routes>
       </BrowserRouter>

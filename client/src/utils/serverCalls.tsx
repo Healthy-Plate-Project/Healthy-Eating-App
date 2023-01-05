@@ -138,7 +138,7 @@ export async function saveFavRestaurant(userId: string, placeId: string) {
   }
 }
 
-export async function getFavRestaurantsByUser(userId: string) {
+export async function getFavRestaurantsByUser(userId: any) {
   if (!apiFlag) {
     return undefined;
   }

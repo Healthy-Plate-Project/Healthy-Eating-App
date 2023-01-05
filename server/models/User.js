@@ -29,6 +29,29 @@ const userSchema = new Schema({
     trim: true,
     required: true,
   },
+  fav_restaurants: {
+    type: [
+      {
+        name: {
+          type: String,
+          trim: true,
+        },
+        place_id: {
+          type: String,
+          trim: true,
+          required: true,
+          unique: true,
+        },
+        vicinity: {
+          type: String,
+          trim: true,
+        },
+        price_level: {
+          type: Number,
+        },
+      },
+    ],
+  },
 });
 
 const User = model("User", userSchema);

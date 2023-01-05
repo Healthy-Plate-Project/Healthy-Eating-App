@@ -11,14 +11,14 @@ import {
 import { LoginInput } from "../../components/Input/InputStyles";
 
 // components
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { apiServer } from "../../utils/helpers";
 import { UserData } from "../../App";
 
 export function Login({ setCurrentUser }: any) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [redirect, setRedirect] = useState(false);
+  const navigate = useNavigate();
 
   async function login(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -34,14 +34,10 @@ export function Login({ setCurrentUser }: any) {
       });
       const content: UserData = await response.json();
       setCurrentUser(content);
-      setRedirect(true);
+      navigate(-1);
     } catch (err) {
       console.log(err);
     }
-  }
-
-  if (redirect) {
-    return <Navigate to="/" />;
   }
 
   return (

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getRestaurant } from "../../utils/serverCalls";
+import { useLocation, useParams } from "react-router-dom";
+import {
+  deleteFavRestaurantByUser,
+  getRestaurant,
+  saveFavRestaurantByUser,
+} from "../../utils/serverCalls";
 import {
   H1,
   H3,
@@ -42,39 +46,78 @@ export interface SingleRestaurantData {
   };
 }
 
-export function SingleSearchResultPage({ currentUser }: any) {
+export interface FavRestaurantData {
+  name: string;
+  place_id: string;
+  vicinity: string;
+  price_level?: number;
+}
+
+type SingleSearchResultPageProps = {
+  currentUser: {
+    id: string;
+    fav_restaurants?: [FavRestaurantData];
+  };
+  currentUserTrigger: boolean;
+  setCurrentUserTrigger: any;
+};
+
+export function SingleSearchResultPage({
+  currentUser,
+  currentUserTrigger,
+  setCurrentUserTrigger,
+}: SingleSearchResultPageProps) {
   const { place_id } = useParams();
 
   const [restaurantData, setRestaurantData] = useState(
     {} as SingleRestaurantData
   );
+  const [isFavRestaurant, setIsFavRestaurant] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     async function fetchData() {
       try {
         const data = await getRestaurant(place_id);
         setRestaurantData(data.result);
-
-        // TODO: add heart api later
       } catch (err) {
         console.log(err);
       }
     }
     fetchData();
-  }, [place_id]);
+  }, [place_id, currentUser]);
+
+  useEffect(() => {
+    function checkUserData() {
+      if (place_id && currentUser.fav_restaurants) {
+        for (let i = 0; i < currentUser.fav_restaurants.length; i++) {
+          const place = currentUser.fav_restaurants[i];
+          if (place.place_id === place_id) {
+            setIsFavRestaurant(true);
+            break;
+          }
+        }
+      }
+    }
+    checkUserData();
+  }, [location, restaurantData]);
+
+  async function saveFavRestaurant(data: FavRestaurantData) {
+    await saveFavRestaurantByUser(currentUser.id, data);
+    setCurrentUserTrigger(!currentUserTrigger);
+  }
+
+  async function deleteFavRestaurant(data: FavRestaurantData) {
+    await deleteFavRestaurantByUser(currentUser.id, data);
+    setCurrentUserTrigger(!currentUserTrigger);
+  }
 
   // look at this object in the console to see what data is available to use
   // console.log(restaurantData);
 
-  // default should be no, not favorited. use boolean type. True is selected.
-  const [heart, setHeart] = useState<boolean>(false);
-
-  // dollar
-  let dollarAPI = restaurantData.price_level;
-
   function priceLevel() {
     const array = [];
-    for (let i = 1; i <= dollarAPI; i++) {
+    for (let i = 1; i <= restaurantData.price_level; i++) {
       array.push(<PriceIconStyled src={dollarFilled} />);
     }
     return array;
@@ -91,8 +134,27 @@ export function SingleSearchResultPage({ currentUser }: any) {
       <Wrapper>
         <H1>
           {restaurantData.name}
-          <span onClick={() => setHeart((prevState) => !prevState)}>
-            {heart ? (
+          <span
+            onClick={() =>
+              setIsFavRestaurant((prevState) => {
+                prevState
+                  ? deleteFavRestaurant({
+                      name: restaurantData.name,
+                      place_id: restaurantData.place_id,
+                      vicinity: restaurantData.vicinity,
+                      price_level: restaurantData.price_level,
+                    })
+                  : saveFavRestaurant({
+                      name: restaurantData.name,
+                      place_id: restaurantData.place_id,
+                      vicinity: restaurantData.vicinity,
+                      price_level: restaurantData.price_level,
+                    });
+                return !prevState;
+              })
+            }
+          >
+            {isFavRestaurant ? (
               <HeartIcon src={heartFilled} />
             ) : (
               <HeartIcon src={heartEmpty} />

@@ -13,22 +13,27 @@ import { RestaurantsResults } from "./components/RestaurantsResults/RestaurantsR
 
 import { GlobalStyle } from "./theme/globalStyle";
 import { Navbar } from "./components/NavBar/NavBar";
-import { SingleSearchResultPage } from "./pages/SearchResult/SingleSearchResult";
+import {
+  FavRestaurantData,
+  SingleSearchResultPage,
+} from "./pages/SearchResult/SingleSearchResult";
 import "./App.css";
 import { apiServer } from "./utils/helpers";
 import { FavRestaurantsResults } from "./components/FavoriteRestaurantsResults/FavoriteRestaurantsResults";
 
 export interface UserData {
-  message: string;
   id: string;
   username: string;
   email: string;
   first_name: string;
   last_name: string;
+  message?: string;
+  fav_restaurants?: [FavRestaurantData];
 }
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({} as UserData);
+  const [currentUserTrigger, setCurrentUserTrigger] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -45,7 +50,7 @@ export default function App() {
       }
     }
     fetchData();
-  }, []);
+  }, [currentUserTrigger]);
 
   return (
     <div className="app">
@@ -61,18 +66,19 @@ export default function App() {
           />
           <Route
             path="/single-result/:place_id"
-            element={<SingleSearchResultPage currentUser={currentUser} />}
-          />
-          <Route
-            path="review"
-            element={<SingleReview currentUser={currentUser} />}
-          />
-          <Route
-            path="reviews"
-            element={<ReviewListParent currentUser={currentUser} />}
+            element={
+              <SingleSearchResultPage
+                currentUser={currentUser}
+                currentUserTrigger={currentUserTrigger}
+                setCurrentUserTrigger={setCurrentUserTrigger}
+              />
+            }
           />
           <Route path="*" element={<NotFound />} />
-          <Route path="sign-up" element={<SignUp />} />
+          <Route
+            path="sign-up"
+            element={<SignUp setCurrentUser={setCurrentUser} />}
+          />
           <Route
             path="login"
             element={

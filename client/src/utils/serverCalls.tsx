@@ -124,13 +124,14 @@ export async function getGooglePhoto(req: any) {
   }
 }
 
-export async function saveFavRestaurant(userId: string, placeId: string) {
+export async function saveFavRestaurantByUser(userId: string, placeData: any) {
   if (!apiFlag) {
     return undefined;
   }
   try {
     const res = await axios.post(
-      `${apiServer()}/api/fav-restaurant/${userId}/${placeId}`
+      `${apiServer()}/api/user/fav/save/${userId}`,
+      placeData
     );
     return res;
   } catch (err) {
@@ -152,14 +153,15 @@ export async function getFavRestaurantsByUser(userId: any) {
 
 export async function deleteFavRestaurantByUser(
   userId: string,
-  placeId: string
+  placeData: any
 ) {
   if (!apiFlag) {
     return undefined;
   }
   try {
-    const res = await axios.delete(
-      `${apiServer()}/api/fav-restaurant/${userId}/${placeId}`
+    const res = await axios.post(
+      `${apiServer()}/api/user/fav/delete/${userId}`,
+      placeData
     );
     return res;
   } catch (err) {

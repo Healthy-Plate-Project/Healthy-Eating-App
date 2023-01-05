@@ -5,13 +5,12 @@ import {
   createReview,
   deleteFavRestaurantByUser,
   deleteReview,
-  getFavRestaurantsByUser,
   getRestaurant,
   getRestaurants,
   getReview,
   getReviewsByRestaurant,
   getReviewsByUser,
-  saveFavRestaurant,
+  saveFavRestaurantByUser,
   updateReview,
 } from "../../utils/serverCalls";
 import {
@@ -38,6 +37,7 @@ export function Navbar({ currentUser, setCurrentUser }: any) {
       const content: UserData = await response.json();
       if (content.message === "Successfully logged out") {
         setCurrentUser({});
+        window.location.reload();
       }
     } catch (err) {
       console.log(err);
@@ -106,11 +106,11 @@ export function Navbar({ currentUser, setCurrentUser }: any) {
     // console.log(deleteFavRestaurantByUserTest);
   }
 
-  let logoutButton;
+  let loginLogoutButton;
   if (currentUser.username === undefined) {
-    logoutButton = <Link to="login">Login</Link>;
+    loginLogoutButton = <Link to="login">Login</Link>;
   } else {
-    logoutButton = (
+    loginLogoutButton = (
       <Link to="/" onClick={(e) => logout(e)}>
         Logout
       </Link>
@@ -133,7 +133,7 @@ export function Navbar({ currentUser, setCurrentUser }: any) {
       <Link to="results">Results</Link>
       <Link to="review">Review</Link>
       <Link to="reviews">Reviews</Link>
-      {logoutButton}
+      {loginLogoutButton}
       <StyledButton onClick={() => testAPICalls()}>Test API</StyledButton>
       <Link to={"/single-result/ChIJn58N1B9gUocRpAXOXPbFcOo"}>
         Single Result

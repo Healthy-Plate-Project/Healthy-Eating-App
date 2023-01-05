@@ -18,9 +18,14 @@ const userController = {
       password: hashedPassword,
     });
     const result = await user.save();
-    const { password, ...data } = await result.toJSON(0);
+    const { password, ...data } = result.toJSON(0);
     res.send({
       message: "Successfully registered",
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      first_name: user.first_name,
+      last_name: user.last_name,
     });
   },
 
@@ -48,6 +53,7 @@ const userController = {
       email: user.email,
       first_name: user.first_name,
       last_name: user.last_name,
+      fav_restaurants: user.fav_restaurants,
     });
   },
 
@@ -62,7 +68,7 @@ const userController = {
       }
       const user = await User.findOne({ _id: claims._id });
 
-      const { password, ...data } = await user.toJSON();
+      const { password, ...data } = user.toJSON();
 
       res.send({
         message: "User found",
@@ -71,6 +77,7 @@ const userController = {
         email: data.email,
         first_name: data.first_name,
         last_name: data.last_name,
+        fav_restaurants: data.fav_restaurants,
       });
     } catch (err) {
       return res.status(401).send({
@@ -84,6 +91,62 @@ const userController = {
     res.send({
       message: "Successfully logged out",
     });
+  },
+
+  saveFavRestaurantByUser: async function (req, res) {
+    try {
+      const check = await User.findOne({
+        _id: req.params.userId,
+      });
+      let loopBoolean = false;
+      for (let i = 0; i < check.fav_restaurants.length; i++) {
+        const place = check.fav_restaurants[i];
+        if (place.place_id === req.body.place_id) {
+          res.send({
+            message: "User already has restuarant favorited",
+          });
+          loopBoolean = true;
+          break;
+        }
+      }
+      if (!loopBoolean) {
+        const update = await User.updateOne(
+          { _id: req.params.userId },
+          { $push: { fav_restaurants: req.body } }
+        );
+        res.json(update);
+      }
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
+
+  deleteFavRestaurantByUser: async function (req, res) {
+    try {
+      const check = await User.findOne({
+        _id: req.params.userId,
+      });
+      let loopBoolean = false;
+      for (let i = 0; i < check.fav_restaurants.length; i++) {
+        const place = check.fav_restaurants[i];
+        if (place.place_id === req.body.place_id) {
+          const update = await User.updateOne(
+            { _id: req.params.userId },
+            { $pull: { fav_restaurants: { place_id: req.body.place_id } } }
+          );
+          res.json(update);
+          loopBoolean = true;
+          break;
+        }
+      }
+      if (!loopBoolean) {
+        res.send({
+          message: "User does not already have restaurant favorited",
+        });
+      }
+    } catch (error) {
+      res.status(500).json(error);
+    }
   },
 };
 

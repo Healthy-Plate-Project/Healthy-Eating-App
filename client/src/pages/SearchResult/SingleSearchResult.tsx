@@ -17,6 +17,7 @@ import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
 import dollarFilled from "../../assets/images/green-dollar.svg";
 import { GooglePhoto } from "../../components/Photo/Photo";
+import { FavRestaurantData } from "../../App";
 
 export interface SingleRestaurantData {
   name: string;
@@ -44,13 +45,6 @@ export interface SingleRestaurantData {
     vegan?: number;
     vegetarian?: number;
   };
-}
-
-export interface FavRestaurantData {
-  name: string;
-  place_id: string;
-  vicinity: string;
-  price_level?: number;
 }
 
 type SingleSearchResultPageProps = {

@@ -13,10 +13,7 @@ import { RestaurantsResults } from "./components/RestaurantsResults/RestaurantsR
 
 import { GlobalStyle } from "./theme/globalStyle";
 import { Navbar } from "./components/NavBar/NavBar";
-import {
-  FavRestaurantData,
-  SingleSearchResultPage,
-} from "./pages/SearchResult/SingleSearchResult";
+import { SingleSearchResultPage } from "./pages/SearchResult/SingleSearchResult";
 import "./App.css";
 import { apiServer } from "./utils/helpers";
 import { FavRestaurantsResults } from "./components/FavoriteRestaurantsResults/FavoriteRestaurantsResults";
@@ -29,6 +26,13 @@ export interface UserData {
   last_name: string;
   message?: string;
   fav_restaurants?: [FavRestaurantData];
+}
+
+export interface FavRestaurantData {
+  name: string;
+  place_id: string;
+  vicinity: string;
+  price_level?: number;
 }
 
 export default function App() {
@@ -93,8 +97,8 @@ export default function App() {
             element={<RestaurantsResults />}
           />
           <Route
-            path="/fav-results/:userId"
-            element={<FavRestaurantsResults />}
+            path="fav-results"
+            element={<FavRestaurantsResults currentUser={currentUser} />}
           />
         </Routes>
       </BrowserRouter>

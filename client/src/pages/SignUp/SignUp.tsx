@@ -35,9 +35,7 @@ export function SignUp({ setCurrentUser }: any) {
         }),
       });
       const content = await response.json();
-      console.log(content);
       if (content.message === "Successfully registered") {
-        setCurrentUser(content);
         navigate(-1);
       }
     } catch (err) {

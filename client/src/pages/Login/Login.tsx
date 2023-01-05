@@ -12,26 +12,37 @@ import { LoginInput } from "../../components/Input/InputStyles";
 
 // components
 import { useNavigate } from "react-router-dom";
-import { apiServer } from "../../utils/helpers";
+import { apiServer, isEmail } from "../../utils/helpers";
 import { UserData } from "../../App";
 
 export function Login({ setCurrentUser }: any) {
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const navigate = useNavigate();
 
   async function login(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
-      const response = await fetch(`${apiServer()}/api/user/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          password,
-          email,
-        }),
-      });
+      let response;
+      isEmail(usernameOrEmail)
+        ? (response = await fetch(`${apiServer()}/api/user/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({
+              password: password,
+              email: usernameOrEmail,
+            }),
+          }))
+        : (response = await fetch(`${apiServer()}/api/user/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({
+              password: password,
+              username: usernameOrEmail,
+            }),
+          }));
       const content: UserData = await response.json();
       setCurrentUser(content);
       navigate(-1);
@@ -47,8 +58,8 @@ export function Login({ setCurrentUser }: any) {
         <InputContainer>
           <LoginInput
             type="text"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Username or Email"
+            onChange={(e) => setUsernameOrEmail(e.target.value)}
           />
           <LoginInput
             type="password"

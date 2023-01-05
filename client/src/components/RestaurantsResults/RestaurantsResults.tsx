@@ -16,7 +16,7 @@ import {
   Directions,
 } from "./RestaurantsResultsStyles";
 
-export interface RestaurantData {
+interface RestaurantData {
   name: string;
   place_id: string;
   geometry: {
@@ -45,7 +45,7 @@ export interface RestaurantData {
   };
 }
 
-export interface RestaurantPhotos {
+interface RestaurantPhotos {
   height: number;
   html_attributions: string;
   photo_reference: string;

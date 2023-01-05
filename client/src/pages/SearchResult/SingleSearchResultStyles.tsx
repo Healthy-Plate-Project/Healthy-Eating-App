@@ -34,4 +34,4 @@ export const PriceIconStyled = styled.img`
 
 export const FeaturedPhoto = styled.div`
   height: 150px;
-`
+`;

@@ -97,14 +97,13 @@ export function SingleSearchResultPage({ currentUser }: any) {
 
   return (
     <Wrapper>
-      
       <GooglePhoto
         photo_reference={restaurantData.photo_reference}
         max_height="200"
         max_width="auto"
         alt={restaurantData.name}
       ></GooglePhoto>
-     
+
       <H1>
         {restaurantData.name}
         <span onClick={() => setHeart((prevState) => !prevState)}>

@@ -127,7 +127,9 @@ export function Navbar({ currentUser, setCurrentUser }: any) {
           }}
         ></MenuButton>
       </ButtonWrapper>
-
+<details>
+  <summary>Menu</summary>
+  <p>
       <Link to="/">Home</Link>
       <Link to="advanced-search">Advanced Search</Link>
       <Link to="results">Results</Link>
@@ -138,6 +140,8 @@ export function Navbar({ currentUser, setCurrentUser }: any) {
       <Link to={"/single-result/ChIJn58N1B9gUocRpAXOXPbFcOo"}>
         Single Result
       </Link>
+      </p>
+      </details>
     </NavbarStyled>
   );
 }

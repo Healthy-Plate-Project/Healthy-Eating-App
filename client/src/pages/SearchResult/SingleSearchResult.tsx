@@ -18,7 +18,7 @@ import heartFilled from "../../assets/images/heart-filled.svg";
 import dollarFilled from "../../assets/images/green-dollar.svg";
 import { GooglePhoto } from "../../components/Photo/Photo";
 
-export interface SingleRestaurantData {
+interface SingleRestaurantData {
   name: string;
   place_id: string;
   geometry: {
@@ -36,6 +36,7 @@ export interface SingleRestaurantData {
   opening_hours: {
     weekday_text: [string];
   };
+  photos: [RestaurantPhotos];
   special_diet_ratings?: {
     dairy_free?: number;
     gluten_free?: number;
@@ -44,6 +45,13 @@ export interface SingleRestaurantData {
     vegan?: number;
     vegetarian?: number;
   };
+}
+
+interface RestaurantPhotos {
+  height: number;
+  html_attributions: string;
+  photo_reference: string;
+  width: number;
 }
 
 export interface FavRestaurantData {
@@ -71,6 +79,9 @@ export function SingleSearchResultPage({
 
   const [restaurantData, setRestaurantData] = useState(
     {} as SingleRestaurantData
+  );
+  const [restaurantPhoto, setRestaurantPhoto] = useState(
+    {} as RestaurantPhotos
   );
   const [isFavRestaurant, setIsFavRestaurant] = useState(false);
   const location = useLocation();
@@ -102,6 +113,15 @@ export function SingleSearchResultPage({
     checkUserData();
   }, [location, restaurantData]);
 
+  useEffect(() => {
+    function checkPhotos() {
+      if (restaurantData.photos) {
+        setRestaurantPhoto(restaurantData.photos[0]);
+      }
+    }
+    checkPhotos();
+  }, [restaurantData]);
+
   async function saveFavRestaurant(data: FavRestaurantData) {
     await saveFavRestaurantByUser(currentUser.id, data);
     setCurrentUserTrigger(!currentUserTrigger);
@@ -126,10 +146,10 @@ export function SingleSearchResultPage({
   return (
     <>
       <GooglePhoto
-        photo_reference="AeJbb3c-bgyYnUUax8v4YhTdizGrze2zoTIi1t8p624sCqGNL5miCczS2411Vtwmk6TOanPRSuMI7v0TNA9nqAUgO5jd-TzceKD2w7winlJ7yaKlqZ1dCnfcJP9Qi6RqOAcrcYZpQbjx4aIveUeSQ5tCqMaQFFSn7pYiyH21bldC_oB75p50"
+        photo_reference={restaurantPhoto.photo_reference}
         max_height="500"
         max_width="500"
-        alt="Test Photo"
+        alt={restaurantData.name}
       ></GooglePhoto>
       <Wrapper>
         <H1>

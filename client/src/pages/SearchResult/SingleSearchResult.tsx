@@ -1,51 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
-  deleteFavRestaurantByUser,
   getRestaurant,
-  saveFavRestaurantByUser,
 } from "../../utils/serverCalls";
 import {
   H1,
   H3,
-  HeartIcon,
   Wrapper,
   PriceContainer,
   PriceIconStyled,
 } from "./SingleSearchResultStyles";
-import heartEmpty from "../../assets/images/heart-empty.svg";
-import heartFilled from "../../assets/images/heart-filled.svg";
 import dollarFilled from "../../assets/images/green-dollar.svg";
 import { GooglePhoto } from "../../components/Photo/Photo";
-import { FavRestaurantData } from "../../App";
-
-export interface SingleRestaurantData {
-  name: string;
-  place_id: string;
-  geometry: {
-    location: {
-      lat: number;
-      lng: number;
-    };
-  };
-  vicinity: string;
-  formatted_phone_number: string;
-  price_level: number;
-  rating: number;
-  url: string;
-  website: string;
-  opening_hours: {
-    weekday_text: [string];
-  };
-  special_diet_ratings?: {
-    dairy_free?: number;
-    gluten_free?: number;
-    nut_free?: number;
-    pescatarian?: number;
-    vegan?: number;
-    vegetarian?: number;
-  };
-}
+import {
+  FavRestaurantData,
+  SingleGoogleResultData,
+} from "../../utils/globalInterfaces";
+import { FavoriteIcon } from "../../components/FavoriteIcon/FavoriteIcon";
 
 type SingleSearchResultPageProps = {
   currentUser: {
@@ -64,10 +35,8 @@ export function SingleSearchResultPage({
   const { place_id } = useParams();
 
   const [restaurantData, setRestaurantData] = useState(
-    {} as SingleRestaurantData
+    {} as SingleGoogleResultData
   );
-  const [isFavRestaurant, setIsFavRestaurant] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
     async function fetchData() {
@@ -80,31 +49,6 @@ export function SingleSearchResultPage({
     }
     fetchData();
   }, [place_id, currentUser]);
-
-  useEffect(() => {
-    function checkUserData() {
-      if (place_id && currentUser.fav_restaurants) {
-        for (let i = 0; i < currentUser.fav_restaurants.length; i++) {
-          const place = currentUser.fav_restaurants[i];
-          if (place.place_id === place_id) {
-            setIsFavRestaurant(true);
-            break;
-          }
-        }
-      }
-    }
-    checkUserData();
-  }, [location, restaurantData]);
-
-  async function saveFavRestaurant(data: FavRestaurantData) {
-    await saveFavRestaurantByUser(currentUser.id, data);
-    setCurrentUserTrigger(!currentUserTrigger);
-  }
-
-  async function deleteFavRestaurant(data: FavRestaurantData) {
-    await deleteFavRestaurantByUser(currentUser.id, data);
-    setCurrentUserTrigger(!currentUserTrigger);
-  }
 
   // look at this object in the console to see what data is available to use
   // console.log(restaurantData);
@@ -128,32 +72,12 @@ export function SingleSearchResultPage({
       <Wrapper>
         <H1>
           {restaurantData.name}
-          <span
-            onClick={() =>
-              setIsFavRestaurant((prevState) => {
-                prevState
-                  ? deleteFavRestaurant({
-                      name: restaurantData.name,
-                      place_id: restaurantData.place_id,
-                      vicinity: restaurantData.vicinity,
-                      price_level: restaurantData.price_level,
-                    })
-                  : saveFavRestaurant({
-                      name: restaurantData.name,
-                      place_id: restaurantData.place_id,
-                      vicinity: restaurantData.vicinity,
-                      price_level: restaurantData.price_level,
-                    });
-                return !prevState;
-              })
-            }
-          >
-            {isFavRestaurant ? (
-              <HeartIcon src={heartFilled} />
-            ) : (
-              <HeartIcon src={heartEmpty} />
-            )}
-          </span>
+          <FavoriteIcon
+            singleRestaurantData={restaurantData}
+            currentUser={currentUser}
+            currentUserTrigger={currentUserTrigger}
+            setCurrentUserTrigger={setCurrentUserTrigger}
+          ></FavoriteIcon>
         </H1>
         <PriceContainer>{priceLevel()}</PriceContainer>
         <p>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { FavRestaurantData, UserData } from "../../App";
-// import { GooglePhoto } from "../Photo/Photo";
+import { FavRestaurantData } from "../../utils/globalInterfaces";
+import { FavoriteIcon } from "../FavoriteIcon/FavoriteIcon";
+import { GooglePhoto } from "../Photo/Photo";
 
 import {
   CardStyled,
@@ -8,8 +9,8 @@ import {
   Title,
   Details,
   Price,
-  Rating,
   Directions,
+  Rating,
 } from "./FavRestaurantsResultsStyles";
 
 type FavRestaurantResultsProps = {
@@ -17,10 +18,14 @@ type FavRestaurantResultsProps = {
     id: string;
     fav_restaurants?: [FavRestaurantData];
   };
+  currentUserTrigger: boolean;
+  setCurrentUserTrigger: any;
 };
 
 export function FavRestaurantsResults({
   currentUser,
+  currentUserTrigger,
+  setCurrentUserTrigger,
 }: FavRestaurantResultsProps) {
   const [favRestaurants, setFavRestaurants] = useState(
     [] as FavRestaurantData[]
@@ -41,12 +46,12 @@ export function FavRestaurantsResults({
         {favRestaurants.map((restaurant: FavRestaurantData, i) => {
           return (
             <CardStyled key={`${restaurant.place_id}-${i}`}>
-              {/* <GooglePhoto
-                photo_reference={restaurant.photos[0].photo_reference}
+              <GooglePhoto
+                photo_reference={restaurant.photo}
                 max_height="100"
                 max_width="150"
                 alt={restaurant.name}
-              ></GooglePhoto> */}
+              ></GooglePhoto>
               <Body>
                 <a href={`/single-result/${restaurant.place_id}`}>
                   <Title className="card-title"> {restaurant.name} </Title>
@@ -55,14 +60,20 @@ export function FavRestaurantsResults({
                   <Price className="card-price">
                     Price Level: {restaurant.price_level}
                   </Price>
-                  {/* <Rating className="card-rating">
+                  <Rating className="card-rating">
                     Google Rating: {restaurant.rating}
-                  </Rating> */}
+                  </Rating>
 
                   <Directions className="card-directions">
                     <a href="directions_url"></a>{" "}
                   </Directions>
                 </Details>
+                <FavoriteIcon
+                  favRestaurantData={restaurant}
+                  currentUser={currentUser}
+                  currentUserTrigger={currentUserTrigger}
+                  setCurrentUserTrigger={setCurrentUserTrigger}
+                ></FavoriteIcon>
               </Body>
             </CardStyled>
           );

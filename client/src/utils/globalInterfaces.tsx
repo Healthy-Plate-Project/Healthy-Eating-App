@@ -6,6 +6,7 @@ export interface UserData {
   last_name: string;
   message?: string;
   fav_restaurants?: [FavRestaurantData];
+  reviews?: [ReviewData];
 }
 
 export interface SingleGoogleResultData {
@@ -66,6 +67,17 @@ export interface FavRestaurantData {
   rating: number;
   types: [string];
   vicinity: string;
+}
+
+export interface ReviewData {
+  place_id: string;
+  star_ratings: [StarRating];
+  review_text: string;
+}
+
+export interface StarRating {
+  name: string;
+  rating_number: number;
 }
 
 export interface GoogleResultPhoto {

@@ -15,6 +15,7 @@ import { apiServer } from "./utils/helpers";
 import { FavRestaurantsResults } from "./components/FavoriteRestaurantsResults/FavoriteRestaurantsResults";
 import { UserData } from "./utils/globalInterfaces";
 import { MulitpleSearchResultsPage } from "./components/RestaurantsResults/MulitpleSearchResults";
+import { CreateReview } from "./pages/Review/LeaveReview/CreateReview";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({} as UserData);
@@ -88,6 +89,10 @@ export default function App() {
                 setCurrentUserTrigger={setCurrentUserTrigger}
               />
             }
+          />
+          <Route
+            path="/create-review/:place_id"
+            element={<CreateReview currentUser={currentUser} />}
           />
         </Routes>
       </BrowserRouter>

@@ -17,3 +17,13 @@ export function convertMetersToMiles(meters: number) {
 export function convertMilesToMeters(miles: number) {
   return miles * 1609.344;
 }
+
+export const STAR_RATING_NAMES = [
+  "Overall",
+  "Vegan",
+  "Vegetarian",
+  "Pescatarian",
+  "Gluten Free",
+  "Dairy Free",
+  "Nut Free",
+];

@@ -7,8 +7,26 @@ import { GlutenFreeStarRating } from "./GlutenFree";
 import { DairyFreeStarRating } from "./DairyFree";
 import { NutFreeStarRating } from "./NutFree";
 import { OverallStarRating } from "./OverallRating";
+import { FavRestaurantData, ReviewData } from "../../../utils/globalInterfaces";
+import { StarRating } from "../../../components/StarRating/StarRating";
+import { STAR_RATING_NAMES } from "../../../utils/helpers";
 
-export function Review() {
+type CreateReviewProps = {
+  currentUser: {
+    id: string;
+    star_ratings: [ReviewData];
+  };
+  currentUserTrigger: boolean;
+  setCurrentUserTrigger: any;
+};
+
+
+export function CreateReview({
+  currentUser,
+  currentUserTrigger,
+  setCurrentUserTrigger,
+}: CreateReviewProps) {
+
   const [selectedVeganStarRating, setSelectedVeganStarRating] =
     useState<number>();
   const [selectedVegetarianStarRating, setSelectedVegetarianStarRating] =
@@ -23,11 +41,19 @@ export function Review() {
     useState<number>();
   const [selectedOverallStarRating, setSelectedOverallStarRating] =
     useState<number>();
+  
+  // STAR_RATING_NAMES;
 
   return (
     <Wrapper>
       <div>
         <h1>Review for Business Name Placeholder</h1>
+        <StarRating
+          currentUser={currentUser}
+          currentUserTrigger={currentUserTrigger}
+          setCurrentUserTrigger={setCurrentUserTrigger}
+          ratingName={ratingName}
+        ></StarRating>
         <form>
           <h3>What is your overall rating for this restaurant?</h3>
           <OverallStarRating

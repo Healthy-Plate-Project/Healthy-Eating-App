@@ -52,6 +52,35 @@ const userSchema = new Schema({
       },
     ],
   },
+  reviews: {
+    type: [
+      {
+        place_id: {
+          type: String,
+          trim: true,
+          required: true,
+          unique: true,
+        },
+        star_ratings: {
+          type: [
+            {
+              name: {
+                type: String,
+                required: true,
+              },
+              rating_name: {
+                type: Number,
+                required: true,
+              }
+            }
+          ]
+        },
+        review_text: {
+          type: String
+        },
+      },
+    ],
+  },
 });
 
 const User = model("User", userSchema);

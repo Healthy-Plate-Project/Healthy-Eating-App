@@ -1,58 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
+import { GooglePhoto } from "../../components/Photo/Photo";
+import {
+  FavRestaurantData,
+  MultipleGoogleResultData,
+} from "../../utils/globalInterfaces";
 import { getRestaurants } from "../../utils/serverCalls";
-import { GooglePhoto } from "../Photo/Photo";
-
 import {
   CardStyled,
-  Img,
   Body,
   Title,
-  P,
   Details,
   Price,
   Rating,
-  Menu,
   Directions,
-} from "./RestaurantsResultsStyles";
+} from "./MulitpleSearchResultsStyles";
 
-interface RestaurantData {
-  name: string;
-  place_id: string;
-  geometry: {
-    location: {
-      lat: number;
-      lng: number;
-    };
+type MulitpleSearchResultsPageProps = {
+  currentUser: {
+    id: string;
+    fav_restaurants?: [FavRestaurantData];
   };
-  vicinity: string;
-  formatted_phone_number: string;
-  price_level: number;
-  rating: number;
-  url: string;
-  website: string;
-  opening_hours: {
-    weekday_text: [string];
-  };
-  photos: [RestaurantPhotos];
-  special_diet_ratings?: {
-    dairy_free?: number;
-    gluten_free?: number;
-    nut_free?: number;
-    pescatarian?: number;
-    vegan?: number;
-    vegetarian?: number;
-  };
-}
-
-interface RestaurantPhotos {
-  height: number;
-  html_attributions: string;
-  photo_reference: string;
-  width: number;
-}
-
-export function RestaurantsResults() {
+  currentUserTrigger: boolean;
+  setCurrentUserTrigger: any;
+};
+export function MulitpleSearchResultsPage({
+  currentUser,
+  currentUserTrigger,
+  setCurrentUserTrigger,
+}: MulitpleSearchResultsPageProps) {
   const {
     latitude,
     longitude,
@@ -62,11 +39,9 @@ export function RestaurantsResults() {
     radius,
     open_now,
   } = useParams();
-
   const [restaurantsData, setRestaurantsData] = useState(
-    [] as RestaurantData[]
+    [] as MultipleGoogleResultData[]
   );
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -79,7 +54,6 @@ export function RestaurantsResults() {
           radius,
           open_now,
         };
-
         let data = await getRestaurants(payload);
         setRestaurantsData(data.results);
       } catch (err) {
@@ -88,7 +62,6 @@ export function RestaurantsResults() {
     }
     fetchData();
   }, []);
-
   return (
     <div>
       <ul>
@@ -112,11 +85,16 @@ export function RestaurantsResults() {
                   <Rating className="card-rating">
                     Google Rating: {restaurant.rating}
                   </Rating>
-
                   <Directions className="card-directions">
                     <a href="directions_url"></a>{" "}
                   </Directions>
                 </Details>
+                <FavoriteIcon
+                  multipleRestaurantData={restaurant}
+                  currentUser={currentUser}
+                  currentUserTrigger={currentUserTrigger}
+                  setCurrentUserTrigger={setCurrentUserTrigger}
+                ></FavoriteIcon>
               </Body>
             </CardStyled>
           );

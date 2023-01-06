@@ -1,65 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import {
-  deleteFavRestaurantByUser,
-  getRestaurant,
-  saveFavRestaurantByUser,
-} from "../../utils/serverCalls";
+import { useParams } from "react-router-dom";
+import { getRestaurant } from "../../utils/serverCalls";
 import {
   H1,
   H3,
-  HeartIcon,
   Wrapper,
   PriceContainer,
   PriceIconStyled,
 } from "./SingleSearchResultStyles";
-import heartEmpty from "../../assets/images/heart-empty.svg";
-import heartFilled from "../../assets/images/heart-filled.svg";
 import dollarFilled from "../../assets/images/green-dollar.svg";
 import { GooglePhoto } from "../../components/Photo/Photo";
-
-interface SingleRestaurantData {
-  name: string;
-  place_id: string;
-  geometry: {
-    location: {
-      lat: number;
-      lng: number;
-    };
-  };
-  vicinity: string;
-  formatted_phone_number: string;
-  price_level: number;
-  rating: number;
-  url: string;
-  website: string;
-  opening_hours: {
-    weekday_text: [string];
-  };
-  photos: [RestaurantPhotos];
-  special_diet_ratings?: {
-    dairy_free?: number;
-    gluten_free?: number;
-    nut_free?: number;
-    pescatarian?: number;
-    vegan?: number;
-    vegetarian?: number;
-  };
-}
-
-interface RestaurantPhotos {
-  height: number;
-  html_attributions: string;
-  photo_reference: string;
-  width: number;
-}
-
-export interface FavRestaurantData {
-  name: string;
-  place_id: string;
-  vicinity: string;
-  price_level?: number;
-}
+import {
+  FavRestaurantData,
+  SingleGoogleResultData,
+} from "../../utils/globalInterfaces";
+import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
 
 type SingleSearchResultPageProps = {
   currentUser: {
@@ -69,23 +24,15 @@ type SingleSearchResultPageProps = {
   currentUserTrigger: boolean;
   setCurrentUserTrigger: any;
 };
-
 export function SingleSearchResultPage({
   currentUser,
   currentUserTrigger,
   setCurrentUserTrigger,
 }: SingleSearchResultPageProps) {
   const { place_id } = useParams();
-
   const [restaurantData, setRestaurantData] = useState(
-    {} as SingleRestaurantData
+    {} as SingleGoogleResultData
   );
-  const [restaurantPhoto, setRestaurantPhoto] = useState(
-    {} as RestaurantPhotos
-  );
-  const [isFavRestaurant, setIsFavRestaurant] = useState(false);
-  const location = useLocation();
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -97,44 +44,8 @@ export function SingleSearchResultPage({
     }
     fetchData();
   }, [place_id, currentUser]);
-
-  useEffect(() => {
-    function checkUserData() {
-      if (place_id && currentUser.fav_restaurants) {
-        for (let i = 0; i < currentUser.fav_restaurants.length; i++) {
-          const place = currentUser.fav_restaurants[i];
-          if (place.place_id === place_id) {
-            setIsFavRestaurant(true);
-            break;
-          }
-        }
-      }
-    }
-    checkUserData();
-  }, [location, restaurantData]);
-
-  useEffect(() => {
-    function checkPhotos() {
-      if (restaurantData.photos) {
-        setRestaurantPhoto(restaurantData.photos[0]);
-      }
-    }
-    checkPhotos();
-  }, [restaurantData]);
-
-  async function saveFavRestaurant(data: FavRestaurantData) {
-    await saveFavRestaurantByUser(currentUser.id, data);
-    setCurrentUserTrigger(!currentUserTrigger);
-  }
-
-  async function deleteFavRestaurant(data: FavRestaurantData) {
-    await deleteFavRestaurantByUser(currentUser.id, data);
-    setCurrentUserTrigger(!currentUserTrigger);
-  }
-
   // look at this object in the console to see what data is available to use
   // console.log(restaurantData);
-
   function priceLevel() {
     const array = [];
     for (let i = 1; i <= restaurantData.price_level; i++) {
@@ -142,44 +53,23 @@ export function SingleSearchResultPage({
     }
     return array;
   }
-
   return (
     <>
       <GooglePhoto
-        photo_reference={restaurantPhoto.photo_reference}
+        photo_reference="AeJbb3c-bgyYnUUax8v4YhTdizGrze2zoTIi1t8p624sCqGNL5miCczS2411Vtwmk6TOanPRSuMI7v0TNA9nqAUgO5jd-TzceKD2w7winlJ7yaKlqZ1dCnfcJP9Qi6RqOAcrcYZpQbjx4aIveUeSQ5tCqMaQFFSn7pYiyH21bldC_oB75p50"
         max_height="500"
         max_width="500"
-        alt={restaurantData.name}
+        alt="Test Photo"
       ></GooglePhoto>
       <Wrapper>
         <H1>
           {restaurantData.name}
-          <span
-            onClick={() =>
-              setIsFavRestaurant((prevState) => {
-                prevState
-                  ? deleteFavRestaurant({
-                      name: restaurantData.name,
-                      place_id: restaurantData.place_id,
-                      vicinity: restaurantData.vicinity,
-                      price_level: restaurantData.price_level,
-                    })
-                  : saveFavRestaurant({
-                      name: restaurantData.name,
-                      place_id: restaurantData.place_id,
-                      vicinity: restaurantData.vicinity,
-                      price_level: restaurantData.price_level,
-                    });
-                return !prevState;
-              })
-            }
-          >
-            {isFavRestaurant ? (
-              <HeartIcon src={heartFilled} />
-            ) : (
-              <HeartIcon src={heartEmpty} />
-            )}
-          </span>
+          <FavoriteIcon
+            singleRestaurantData={restaurantData}
+            currentUser={currentUser}
+            currentUserTrigger={currentUserTrigger}
+            setCurrentUserTrigger={setCurrentUserTrigger}
+          ></FavoriteIcon>
         </H1>
         <PriceContainer>{priceLevel()}</PriceContainer>
         <p>

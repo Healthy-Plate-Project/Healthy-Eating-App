@@ -141,15 +141,14 @@ export async function saveFavRestaurantByUser(userId: string, placeData: any) {
 
 export async function deleteFavRestaurantByUser(
   userId: string,
-  placeData: any
+  placeId: string
 ) {
   if (!apiFlag) {
     return undefined;
   }
   try {
     const res = await axios.post(
-      `${apiServer()}/api/user/fav/delete/${userId}`,
-      placeData
+      `${apiServer()}/api/user/fav/delete/${userId}/${placeId}`
     );
     return res;
   } catch (err) {

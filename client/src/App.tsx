@@ -4,36 +4,20 @@ import { Routes, Route } from "react-router";
 import { Home } from "./pages/Home";
 import { SignUp } from "./pages/SignUp/SignUp";
 import { AdvancedSearch } from "./pages/AdvancedSearch/AdvancedSearch";
-import { Result } from "./pages/SearchResult/SearchResult";
 import { NotFound } from "./pages/NotFound/NotFound";
 import { Login } from "./pages/Login/Login";
-import { SingleReview } from "./pages/Review/ReviewsList/SingleReview";
-import { ReviewListParent } from "./pages/Review/ReviewsList/ReviewsListParent";
-import { RestaurantsResults } from "./components/RestaurantsResults/RestaurantsResults";
-
 import { GlobalStyle } from "./theme/globalStyle";
 import { Navbar } from "./components/NavBar/NavBar";
-import {
-  FavRestaurantData,
-  SingleSearchResultPage,
-} from "./pages/SearchResult/SingleSearchResult";
+import { SingleSearchResultPage } from "./pages/SearchResult/SingleSearchResult";
 import "./App.css";
 import { apiServer } from "./utils/helpers";
-
-export interface UserData {
-  id: string;
-  username: string;
-  email: string;
-  first_name: string;
-  last_name: string;
-  message?: string;
-  fav_restaurants?: [FavRestaurantData];
-}
+import { FavRestaurantsResults } from "./pages/SearchResult/FavoriteRestaurantsResults";
+import { MulitpleSearchResultsPage } from "./pages/SearchResult/MultipleSearchResults";
+import { UserData } from "./utils/globalInterfaces";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({} as UserData);
   const [currentUserTrigger, setCurrentUserTrigger] = useState(false);
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -50,7 +34,6 @@ export default function App() {
     }
     fetchData();
   }, [currentUserTrigger]);
-
   return (
     <div className="app">
       <GlobalStyle />
@@ -59,10 +42,6 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="advanced-search" element={<AdvancedSearch />} />
-          <Route
-            path="/results/:latitude/:longitude/:open_now/:radius"
-            element={<Result currentUser={currentUser} />}
-          />
           <Route
             path="/single-result/:place_id"
             element={
@@ -89,7 +68,23 @@ export default function App() {
           />
           <Route
             path="/multiple-results/:latitude/:longitude/:keyword/:min_price/:max_price/:radius/:open_now"
-            element={<RestaurantsResults />}
+            element={
+              <MulitpleSearchResultsPage
+                currentUser={currentUser}
+                currentUserTrigger={currentUserTrigger}
+                setCurrentUserTrigger={setCurrentUserTrigger}
+              />
+            }
+          />
+          <Route
+            path="favorites"
+            element={
+              <FavRestaurantsResults
+                currentUser={currentUser}
+                currentUserTrigger={currentUserTrigger}
+                setCurrentUserTrigger={setCurrentUserTrigger}
+              />
+            }
           />
         </Routes>
       </BrowserRouter>

@@ -1,37 +1,58 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import {
-  FavRestaurantData,
-  MultipleGoogleResultData,
-} from "../../utils/globalInterfaces";
 import { getRestaurants } from "../../utils/serverCalls";
-import { FavoriteIcon } from "../FavoriteIcon/FavoriteIcon";
 import { GooglePhoto } from "../Photo/Photo";
 
 import {
   CardStyled,
+  Img,
   Body,
   Title,
+  P,
   Details,
   Price,
   Rating,
+  Menu,
   Directions,
-} from "./MulitpleSearchResultsStyles";
+} from "./RestaurantsResultsStyles";
 
-type MulitpleSearchResultsPageProps = {
-  currentUser: {
-    id: string;
-    fav_restaurants?: [FavRestaurantData];
+export interface RestaurantData {
+  name: string;
+  place_id: string;
+  geometry: {
+    location: {
+      lat: number;
+      lng: number;
+    };
   };
-  currentUserTrigger: boolean;
-  setCurrentUserTrigger: any;
-};
+  vicinity: string;
+  formatted_phone_number: string;
+  price_level: number;
+  rating: number;
+  url: string;
+  website: string;
+  opening_hours: {
+    weekday_text: [string];
+  };
+  photos: [RestaurantPhotos];
+  special_diet_ratings?: {
+    dairy_free?: number;
+    gluten_free?: number;
+    nut_free?: number;
+    pescatarian?: number;
+    vegan?: number;
+    vegetarian?: number;
+  };
+}
 
-export function MulitpleSearchResultsPage({
-  currentUser,
-  currentUserTrigger,
-  setCurrentUserTrigger,
-}: MulitpleSearchResultsPageProps) {
+export interface RestaurantPhotos {
+  height: number;
+  html_attributions: string;
+  photo_reference: string;
+  width: number;
+}
+
+export function RestaurantsResults() {
   const {
     latitude,
     longitude,
@@ -43,7 +64,7 @@ export function MulitpleSearchResultsPage({
   } = useParams();
 
   const [restaurantsData, setRestaurantsData] = useState(
-    [] as MultipleGoogleResultData[]
+    [] as RestaurantData[]
   );
 
   useEffect(() => {
@@ -96,12 +117,6 @@ export function MulitpleSearchResultsPage({
                     <a href="directions_url"></a>{" "}
                   </Directions>
                 </Details>
-                <FavoriteIcon
-                  multipleRestaurantData={restaurant}
-                  currentUser={currentUser}
-                  currentUserTrigger={currentUserTrigger}
-                  setCurrentUserTrigger={setCurrentUserTrigger}
-                ></FavoriteIcon>
               </Body>
             </CardStyled>
           );

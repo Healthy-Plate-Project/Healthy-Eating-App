@@ -13,7 +13,7 @@ import { LoginInput } from "../../components/Input/InputStyles";
 // components
 import { useNavigate } from "react-router-dom";
 import { apiServer } from "../../utils/helpers";
-import { UserData } from "../../utils/globalInterfaces";
+import { UserData } from "../../App";
 
 export function Login({ setCurrentUser }: any) {
   const [password, setPassword] = useState("");

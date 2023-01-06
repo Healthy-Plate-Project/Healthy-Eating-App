@@ -18,6 +18,6 @@ router.route("/register").post(register);
 
 router.route("/fav/save/:userId").post(saveFavRestaurantByUser);
 
-router.route("/fav/delete/:userId/:placeId").post(deleteFavRestaurantByUser);
+router.route("/fav/delete/:userId").post(deleteFavRestaurantByUser);
 
 module.exports = router;

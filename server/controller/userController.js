@@ -95,26 +95,27 @@ const userController = {
 
   saveFavRestaurantByUser: async function (req, res) {
     try {
-      const { userId } = req.params;
-      const user = await User.findOne({ _id: userId });
-      const { place_id } = req.body;
-
-      // Check if the user already has the restaurant favorited
-      const isFavorited = user.fav_restaurants.some(
-        (place) => place.place_id === place_id
-      );
-      if (isFavorited) {
-        return res.send({
-          message: "User already has restuarant favorited",
-        });
+      const check = await User.findOne({
+        _id: req.params.userId,
+      });
+      let loopBoolean = false;
+      for (let i = 0; i < check.fav_restaurants.length; i++) {
+        const place = check.fav_restaurants[i];
+        if (place.place_id === req.body.place_id) {
+          res.send({
+            message: "User already has restuarant favorited",
+          });
+          loopBoolean = true;
+          break;
+        }
       }
-
-      // Add the favorited restaurant
-      const update = await User.updateOne(
-        { _id: userId },
-        { $push: { fav_restaurants: req.body } }
-      );
-      res.json(update);
+      if (!loopBoolean) {
+        const update = await User.updateOne(
+          { _id: req.params.userId },
+          { $push: { fav_restaurants: req.body } }
+        );
+        res.json(update);
+      }
     } catch (error) {
       res.status(500).json(error);
     }
@@ -122,25 +123,27 @@ const userController = {
 
   deleteFavRestaurantByUser: async function (req, res) {
     try {
-      const { userId, placeId } = req.params;
-      const user = await User.findOne({ _id: userId });
-
-      // Check if the user has the restaurant favorited
-      const isFavorited = user.fav_restaurants.some(
-        (place) => place.place_id === placeId
-      );
-      if (!isFavorited) {
-        return res.send({
+      const check = await User.findOne({
+        _id: req.params.userId,
+      });
+      let loopBoolean = false;
+      for (let i = 0; i < check.fav_restaurants.length; i++) {
+        const place = check.fav_restaurants[i];
+        if (place.place_id === req.body.place_id) {
+          const update = await User.updateOne(
+            { _id: req.params.userId },
+            { $pull: { fav_restaurants: { place_id: req.body.place_id } } }
+          );
+          res.json(update);
+          loopBoolean = true;
+          break;
+        }
+      }
+      if (!loopBoolean) {
+        res.send({
           message: "User does not already have restaurant favorited",
         });
       }
-
-      // Remove the favorited restaurant
-      const update = await User.updateOne(
-        { _id: userId },
-        { $pull: { fav_restaurants: { place_id: placeId } } }
-      );
-      res.json(update);
     } catch (error) {
       res.status(500).json(error);
     }

@@ -71,7 +71,7 @@ export interface FavRestaurantData {
 
 export interface ReviewData {
   place_id: string;
-  star_ratings: [StarRating];
+  ratings: [StarRating];
   review_text: string;
 }
 

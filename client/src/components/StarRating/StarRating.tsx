@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
 import goldStar from "../../../assets/images/gold-star.png";
 import whiteStar from "../../../assets/images/white-star.png";
-import { ReviewData } from "../../utils/globalInterfaces";
+import { StarRating } from "../../utils/globalInterfaces";
 
 type StarRatingProps = {
-  currentUser: {
-    id: string;
-    reviews: [ReviewData];
-  };
+  currentUserId: string;
+  starRating: StarRating;
   currentUserTrigger: boolean;
   setCurrentUserTrigger: any;
 };
 
 export function StarRating({
-  currentUser,
+  currentUserId,
+  starRating,
   currentUserTrigger,
   setCurrentUserTrigger,
-  ratingName
 }: StarRatingProps) {
 
   function starRatingHandler(event: any) {
@@ -50,11 +48,11 @@ export function StarRating({
   }
 
 
-  function renderOverallStars() {
+  function renderStars() {
     const array = [];
     for (let i = 1; i <= 5; i++) {
-      const id = `${i.toString()}-Overall-star-id`;
-      const alt = `${i.toString()}-Overall-Star-Rating`;
+      const id = `${i.toString()}-${ratingName}-star-id`;
+      const alt = `${i.toString()}-${ratingName}-Star-Rating`;
       if (i <= props.selectedOverallStarRating) {
         array.push(
           <img
@@ -86,8 +84,8 @@ export function StarRating({
 
   return (
     <>
-      <h4>Overall Rating</h4>
-      {renderOverallStars()}
+      <h4>{ratingName} Rating</h4>
+      {renderStars()}
     </>
   );
 }

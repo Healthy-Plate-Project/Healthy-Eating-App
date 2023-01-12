@@ -20,7 +20,6 @@ export function GooglePhoto({
   onClick,
   id,
 }: PhotoProps) {
-
   const [photoURL, setPhotoURL] = useState("");
 
   useEffect(() => {
@@ -48,6 +47,7 @@ export function GooglePhoto({
         height={max_height}
         width={max_width}
         className={className}
+        id={id}
       />
     </div>
   );

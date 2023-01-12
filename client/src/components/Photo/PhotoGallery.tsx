@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { GooglePhoto } from "./Photo";
-import { PhotoGalleryStyled } from "./PhotoGalleryStyles";
+import { PhotoGalleryStyled } from "../../pages/SearchResult/PhotoGalleryStyles";
 import { RestaurantPhoto } from "../../pages/SearchResult/SingleSearchResult";
 
 type PhotoGalleryProps = {
@@ -78,7 +78,7 @@ export function PhotoGallery({ photoArray }: PhotoGalleryProps) {
             );
           })}
 
-          {/* {lightboxDisplay ? (
+          {lightboxDisplay ? (
             <div id="lightbox" onClick={hideLightBox}>
               <button onClick={showPrev}>⭠</button>
               <GooglePhoto
@@ -92,7 +92,7 @@ export function PhotoGallery({ photoArray }: PhotoGalleryProps) {
             </div>
           ) : (
             ""
-          )} */}
+          )}
         </div>
       </PhotoGalleryStyled>
     </>

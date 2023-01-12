@@ -6,9 +6,9 @@ type PhotoProps = {
   max_height?: string;
   max_width?: string;
   alt?: string;
-  // className?: string;
-  // onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  // id?: string;
+  className?: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  id?: string;
 };
 
 export function GooglePhoto({
@@ -16,11 +16,13 @@ export function GooglePhoto({
   max_height,
   max_width,
   alt,
-  // className,
-  // onClick,
-  // id,
+  className,
+  onClick,
+  id,
 }: PhotoProps) {
+
   const [photoURL, setPhotoURL] = useState("");
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -38,5 +40,15 @@ export function GooglePhoto({
     fetchData();
   }, [photo_reference]);
 
-  return <img src={photoURL} alt={alt} height={max_height} width={max_width}/>;
+  return (
+    <div onClick={onClick}>
+      <img
+        src={photoURL}
+        alt={alt}
+        height={max_height}
+        width={max_width}
+        className={className}
+      />
+    </div>
+  );
 }

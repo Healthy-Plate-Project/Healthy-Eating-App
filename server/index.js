@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3001;
 const db = require("./config/connection");
 const app = express();
 // Please change export.testAPI back to true after testing. Do not push false in the develop branch! Use this to test the real live API.
-exports.testAPI = true;
+exports.testAPI = false;
 
 app.use(cookieParser());
 

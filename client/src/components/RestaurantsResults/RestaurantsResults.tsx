@@ -44,7 +44,7 @@ export interface RestaurantData {
   };
 }
 
-export interface RestaurantPhotos {
+interface RestaurantPhotos {
   height: number;
   html_attributions: string;
   photo_reference: string;

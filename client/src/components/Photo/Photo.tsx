@@ -40,15 +40,16 @@ export function GooglePhoto({
   }, [photo_reference]);
 
   return (
-    <div onClick={onClick}>
+    <button onClick={onClick}>
       <img
         src={photoURL}
         alt={alt}
-        height={max_height}
+        height="auto"
+        // {max_height}
         width={max_width}
         className={className}
         id={id}
       />
-    </div>
+    </button>
   );
 }

@@ -124,7 +124,8 @@ export function SingleSearchResultPage({
             setCurrentUserTrigger={setCurrentUserTrigger}
           ></FavoriteIcon>
         </H1>
-        <PriceContainer>{priceLevel()}</PriceContainer>
+        {/* no overload matches this call error with priceLevel() */}
+        {/* <PriceContainer>{priceLevel()}</PriceContainer> */}
         <p>
           <a href={restaurantData.url} rel="noreferrer" target="_blank">
             {restaurantData.vicinity}

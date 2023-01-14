@@ -66,7 +66,7 @@ const userSchema = new Schema({
         },
         types: {
           type: [String],
-        }
+        },
       },
     ],
   },

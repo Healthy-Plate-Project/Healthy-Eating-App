@@ -1,12 +1,10 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 export const H1 = styled.h1`
-  margin: 20px 0;
+  /* margin: 20px 0; */
 `;
 
-export const H3 = styled.h3`
-  margin: 15px 0;
-`;
+export const H3 = styled.h3``;
 
 export const Dollar = styled.img`
   margin: 0 1px;
@@ -14,7 +12,11 @@ export const Dollar = styled.img`
 `;
 
 export const Wrapper = styled.div`
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
 `;
 
 export const HeartIcon = styled.img`
@@ -29,4 +31,8 @@ export const PriceContainer = styled.div`
 export const PriceIconStyled = styled.img`
   height: 20px;
   margin: 0 1px;
+`;
+
+export const FeaturedPhoto = styled.div`
+  height: 150px;
 `;

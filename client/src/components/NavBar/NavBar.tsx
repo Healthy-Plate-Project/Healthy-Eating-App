@@ -44,11 +44,16 @@ export function Navbar({ currentUser, setCurrentUser }: any) {
           }}
         ></MenuButton>
       </ButtonWrapper>
-      <Link to="/">Home</Link>
-      <Link to="advanced-search">Advanced Search</Link>
-      <Link to="review">Review</Link>
-      <Link to="reviews">Reviews</Link>
-      {loginLogoutButton}
+      <details>
+        <summary>Menu</summary>
+        <p>
+          <Link to="/">Home</Link>
+          <Link to="advanced-search">Advanced Search</Link>
+          <Link to="review">Review</Link>
+          <Link to="reviews">Reviews</Link>
+          {loginLogoutButton}
+        </p>
+      </details>
     </NavbarStyled>
   );
 }

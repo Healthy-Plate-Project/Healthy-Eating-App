@@ -67,7 +67,7 @@ export function FavoriteIcon({
                 lat: restaurantData.geometry.location.lat,
                 lng: restaurantData.geometry.location.lng,
                 name: restaurantData.name,
-                photo: restaurantData.photos[0].photo_reference,
+                photo_reference: restaurantData.photos[0].photo_reference,
                 place_id: restaurantData.place_id,
                 price_level: restaurantData.price_level,
                 rating: restaurantData.rating,

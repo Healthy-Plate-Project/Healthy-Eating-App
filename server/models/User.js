@@ -49,6 +49,24 @@ const userSchema = new Schema({
         price_level: {
           type: Number,
         },
+        lat: {
+          type: Number,
+          trim: true,
+        },
+        lng: {
+          type: Number,
+          trim: true,
+        },
+        photo_reference: {
+          type: String,
+          trim: true,
+        },
+        rating: {
+          type: Number,
+        },
+        types: {
+          type: [String],
+        },
       },
     ],
   },

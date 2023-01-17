@@ -108,13 +108,16 @@ export function SingleSearchResultPage({
 
   return (
     <>
-      <GooglePhoto
-        photo_reference={photoArray[0]}
-        max_height="200"
-        max_width="400"
-        alt={restaurantData.name}
-      ></GooglePhoto>
       <Wrapper>
+        {/* <div id="top-photo">
+          <GooglePhoto
+            photo_reference={photoArray[0]}
+            max_height="500"
+            max_width="500"
+            alt={restaurantData.name}
+          ></GooglePhoto>
+        </div> */}
+
         <H1>
           {restaurantData.name}
           <FavoriteIcon
@@ -135,13 +138,13 @@ export function SingleSearchResultPage({
         <p>Google Rating: {restaurantData.rating}</p>
         <p>Healthy App Rating:</p>
         <p>
-          Restaurant Website URL:{" "}
+          {/* Restaurant Website URL:{" "}
           <a href={restaurantData.website} rel="noreferrer" target="_blank">
             {restaurantData.website}
-          </a>
+          </a> */}
         </p>
         <div>
-          <H3>Photos</H3>
+          {/* <H3>Photos</H3> */}
           <hr />
           <PhotoGalleryStyled>
             <div id="photo-gallery-wrapper">
@@ -151,8 +154,8 @@ export function SingleSearchResultPage({
                     className="photo-card"
                     onClick={() => showPhoto(photo)}
                     photo_reference={photo}
-                    max_width="500"
-                    max_height="500"
+                    max_width="290"
+                    max_height="290"
                     alt="Test Photos"
                     key={photo}
                   ></GooglePhoto>

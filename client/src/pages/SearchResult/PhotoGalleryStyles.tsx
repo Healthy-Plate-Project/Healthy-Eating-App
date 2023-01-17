@@ -6,18 +6,23 @@ export const PhotoGalleryStyled = styled.div`
     font-family: "Roboto", sans-serif;
   }
 
+  //not in use?
   .image-card {
     width: 30vw;
     height: 30vw;
     object-fit: cover;
+    background-color: blue; // for testing where is this being used?
   }
 
+  // the enlarged image when clicked
   #lightbox-img {
-    height: 80vh;
+    height: auto;
     max-width: 90vw;
     object-fit: cover;
+    margin: 0 auto;
   }
 
+  // gray out background when photo enlarged
   #lightbox {
     z-index: 1;
     position: fixed;
@@ -31,33 +36,19 @@ export const PhotoGalleryStyled = styled.div`
     justify-content: space-between;
   }
 
-  /*Completely optional styling that has nothing to do with the lightbox*/
-  button {
-    color: white;
-    border: 2px solid #a167da;
-    background-color: #a167da;
-    font-size: 1.2rem;
-  }
-
-  a {
-    color: #7a4baa;
-  }
-
-  h1 {
-    color: #7a4baa;
-  }
-
-  p {
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
-  }
+  /*Other Lightbox styles*/
 
   img:hover,
   button:hover {
     cursor: pointer;
   }
+  button {
+    border-width: 0;
+    border-style: none;
+    border-color: none;
+  }
 
-  body {
-    background-color: rgba(196, 155, 237, 0.45);
+  #top-photo {
+    width: 100%;
   }
 `;

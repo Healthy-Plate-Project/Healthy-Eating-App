@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
 
 export const HeartIcon = styled.img`
   margin: 0 10px;
-  height: 35px;
+  height: 20px;
 `;
 
 export const PriceContainer = styled.div`

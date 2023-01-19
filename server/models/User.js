@@ -49,6 +49,9 @@ const userSchema = new Schema({
         price_level: {
           type: Number,
         },
+        photo_reference: {
+          type: String,
+        },
       },
     ],
   },

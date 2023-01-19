@@ -167,7 +167,7 @@ export function SingleSearchResultPage({
                   <button onClick={showPrev}>⭠</button>
                   <GooglePhoto
                     id="lightbox-img"
-                    className="photo-card"
+                    // className="photo-card"
                     photo_reference={photoToShow}
                     max_width="800"
                     max_height="800"

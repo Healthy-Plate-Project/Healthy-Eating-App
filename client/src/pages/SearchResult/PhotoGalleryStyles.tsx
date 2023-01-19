@@ -6,8 +6,8 @@ export const PhotoGalleryStyled = styled.div`
     font-family: "Roboto", sans-serif;
   }
 
-  //not in use?
-  .image-card {
+  // test
+  .photo-card {
     width: 30vw;
     height: 30vw;
     object-fit: cover;
@@ -33,7 +33,7 @@ export const PhotoGalleryStyled = styled.div`
     background-color: rgba(255, 255, 255, 0.5);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   /*Other Lightbox styles*/
@@ -46,6 +46,8 @@ export const PhotoGalleryStyled = styled.div`
     border-width: 0;
     border-style: none;
     border-color: none;
+    margin: 0;
+    padding: 0;
   }
 
   #top-photo {

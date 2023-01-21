@@ -52,6 +52,18 @@ const userSchema = new Schema({
         photo_reference: {
           type: String,
         },
+        lat: {
+          type: Number,
+        },
+        lng: {
+          type: Number,
+        },
+        rating: {
+          type: Number,
+        },
+        types: {
+          type: String,
+        },
       },
     ],
   },

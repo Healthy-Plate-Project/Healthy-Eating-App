@@ -45,8 +45,8 @@ export function FavRestaurantsResults({
             <CardStyled key={`${restaurant.place_id}-${i}`}>
               <GooglePhoto
                 photo_reference={restaurant.photo}
-                max_height="100"
-                max_width="150"
+                max_height="200"
+                max_width="200"
                 alt={restaurant.name}
               ></GooglePhoto>
               <Body>
@@ -63,13 +63,13 @@ export function FavRestaurantsResults({
                   <Directions className="card-directions">
                     <a href="directions_url"></a>{" "}
                   </Directions>
+                  <FavoriteIcon
+                    favRestaurantData={restaurant}
+                    currentUser={currentUser}
+                    currentUserTrigger={currentUserTrigger}
+                    setCurrentUserTrigger={setCurrentUserTrigger}
+                  ></FavoriteIcon>
                 </Details>
-                <FavoriteIcon
-                  favRestaurantData={restaurant}
-                  currentUser={currentUser}
-                  currentUserTrigger={currentUserTrigger}
-                  setCurrentUserTrigger={setCurrentUserTrigger}
-                ></FavoriteIcon>
               </Body>
             </CardStyled>
           );

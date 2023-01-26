@@ -11,11 +11,11 @@ import { GlobalStyle } from "./theme/globalStyle";
 import { Navbar } from "./components/NavBar/NavBar";
 import { SingleSearchResultPage } from "./pages/SearchResult/SingleSearchResult";
 import "./App.css";
-import { apiServer } from "./utils/helpers";
 import { FavRestaurantsResults } from "./components/FavoriteRestaurantsResults/FavoriteRestaurantsResults";
 import { UserData } from "./utils/globalInterfaces";
 import { MulitpleSearchResultsPage } from "./components/RestaurantsResults/MulitpleSearchResults";
-import { CreateReview } from "./pages/Review/LeaveReview/CreateReview";
+import { apiCall, API } from "./utils/serverCalls";
+// import { CreateReview } from "./pages/Review/LeaveReview/CreateReview";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({} as UserData);
@@ -24,13 +24,8 @@ export default function App() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`${apiServer()}/api/user/get-user`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-        });
-        const content: UserData = await response.json();
-        setCurrentUser(content);
+        const data: any = await apiCall(API.getUser, {}, true);
+        setCurrentUser(data);
       } catch (err) {
         console.log(err);
       }
@@ -90,10 +85,10 @@ export default function App() {
               />
             }
           />
-          <Route
+          {/* <Route
             path="/create-review/:place_id"
             element={<CreateReview currentUser={currentUser} />}
-          />
+          /> */}
         </Routes>
       </BrowserRouter>
     </div>

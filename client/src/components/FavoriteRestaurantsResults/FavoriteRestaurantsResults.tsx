@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FavRestaurantData } from "../../utils/globalInterfaces";
+import { FavRestaurantData, UserData } from "../../utils/globalInterfaces";
 import { FavoriteIcon } from "../FavoriteIcon/FavoriteIcon";
 import { GooglePhoto } from "../Photo/Photo";
 
@@ -14,10 +14,7 @@ import {
 } from "./FavRestaurantsResultsStyles";
 
 type FavRestaurantResultsProps = {
-  currentUser: {
-    id: string;
-    fav_restaurants?: [FavRestaurantData];
-  };
+  currentUser: UserData;
   currentUserTrigger: boolean;
   setCurrentUserTrigger: any;
 };
@@ -47,7 +44,7 @@ export function FavRestaurantsResults({
           return (
             <CardStyled key={`${restaurant.place_id}-${i}`}>
               <GooglePhoto
-                photo_reference={restaurant.photo}
+                photo_reference={restaurant.photo_reference}
                 max_height="100"
                 max_width="150"
                 alt={restaurant.name}

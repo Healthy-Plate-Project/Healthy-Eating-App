@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  createReview,
+  postReview,
   updateReview,
   deleteReview,
   getReview,
@@ -8,16 +8,16 @@ const {
   getReviewsByRestaurant,
 } = require("../../controller/reviewController");
 
-router.route("/").post(createReview);
+router.route("/post").post(postReview);
 
-router.route("/:reviewId").put(updateReview);
+router.route("/put").post(updateReview);
 
-router.route("/:reviewId").delete(deleteReview);
+router.route("/delete").post(deleteReview);
 
-router.route("/:reviewId").get(getReview);
+router.route("/get").post(getReview);
 
-router.route("/user/:userId").get(getReviewsByUser);
+router.route("/user/get").post(getReviewsByUser);
 
-router.route("/restaurant/:placeId").get(getReviewsByRestaurant);
+router.route("/restaurant/get").post(getReviewsByRestaurant);
 
 module.exports = router;

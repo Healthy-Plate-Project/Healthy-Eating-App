@@ -1,12 +1,24 @@
 export interface UserData {
-  id: string;
-  username: string;
+  _id: string;
+  username?: string;
   email: string;
-  first_name: string;
-  last_name: string;
+  first_name?: string;
+  last_name?: string;
   message?: string;
   fav_restaurants?: [FavRestaurantData];
   reviews?: [ReviewData];
+  created_at?: Date;
+  updated_at?: Date;
+}
+
+export interface ReviewsByUser {
+  user_id: string;
+  reviews: [ReviewData];
+}
+
+export interface ReviewsByRestaurant {
+  place_id: string;
+  reviews: [ReviewData];
 }
 
 export interface SingleGoogleResultData {
@@ -58,26 +70,31 @@ export interface MultipleGoogleResultData {
 }
 
 export interface FavRestaurantData {
+  name: string;
+  place_id: string;
+  vicinity: string;
+  price_level: number;
   lat: number;
   lng: number;
-  name: string;
-  photo: string;
-  place_id: string;
-  price_level: number;
+  photo_reference: string;
   rating: number;
   types: [string];
-  vicinity: string;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 export interface ReviewData {
+  user_id: string;
   place_id: string;
-  ratings: [StarRating];
-  review_text: string;
+  star_ratings?: [StarRating];
+  review_text?: string;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 export interface StarRating {
   name: string;
-  rating_number: number;
+  star_rating: number;
 }
 
 export interface GoogleResultPhoto {

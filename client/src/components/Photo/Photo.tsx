@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getGooglePhoto } from "../../utils/serverCalls";
+import { apiCall, API } from "../../utils/serverCalls";
+import GoogleTestPhoto from "../../utils/TestPhotos/GoogleTestPhoto.jpg";
 
 type PhotoProps = {
   photo_reference: string;
@@ -18,13 +19,13 @@ export function GooglePhoto({
   useEffect(() => {
     async function fetchData() {
       try {
-        const payload = {
-          photo_reference: photo_reference,
-          max_height: max_height,
-          max_width: max_width,
+        const body = {
+          photo_reference,
+          max_height,
+          max_width,
         };
-        const response = await getGooglePhoto(payload);
-        setPhotoURL(response!);
+        const url = await apiCall(API.getGooglePhoto, body);
+        setPhotoURL(url === "TESTPHOTO" ? GoogleTestPhoto : url);
       } catch (err) {
         console.log(err);
       }

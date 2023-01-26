@@ -3,21 +3,21 @@ const {
   getUser,
   login,
   logout,
-  register,
-  saveFavRestaurantByUser,
+  signup,
+  postFavRestaurantByUser,
   deleteFavRestaurantByUser,
 } = require("../../controller/userController");
 
-router.route("/get-user").post(getUser);
+router.route("/get").post(getUser);
 
 router.route("/login").post(login);
 
 router.route("/logout").post(logout);
 
-router.route("/register").post(register);
+router.route("/signup").post(signup);
 
-router.route("/fav/save/:userId").post(saveFavRestaurantByUser);
+router.route("/fav/post").post(postFavRestaurantByUser);
 
-router.route("/fav/delete/:userId/:placeId").post(deleteFavRestaurantByUser);
+router.route("/fav/delete").post(deleteFavRestaurantByUser);
 
 module.exports = router;

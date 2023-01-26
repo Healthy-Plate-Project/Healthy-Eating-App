@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { apiServer } from "../../utils/helpers";
 import { NavbarStyled, ButtonWrapper } from "./NavbarStyles";
 import { MenuButton } from "../../components/Button/ButtonStyles";
 import { UserData } from "../../utils/globalInterfaces";
+import { API, apiCall } from "../../utils/serverCalls";
 
-export function Navbar({ currentUser, setCurrentUser }: any) {
+type NavbarPageProps = {
+  currentUser: UserData;
+  setCurrentUser: any;
+};
+
+export function Navbar({ currentUser, setCurrentUser }: NavbarPageProps) {
   const [isNavExpanded, setIsNavExpanded] = useState<boolean>(false);
 
   async function logout(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault();
     try {
-      const response = await fetch(`${apiServer()}/api/user/logout`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-      });
-      const content: UserData = await response.json();
-      if (content.message === "Successfully logged out") {
+      const data = await apiCall(API.logout, {}, true);
+      if (data.message === "Successfully logged out") {
         setCurrentUser({});
         window.location.reload();
       }

@@ -3,83 +3,98 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 const User = require("../models/User");
+const Restaurant = require("../models/Restaurant");
+const Review = require("../models/Review");
 
 const MAX_AGE = 24 * 60 * 60 * 1000; // 1 day
 
 const userController = {
-  register: async function (req, res) {
+  signup: async function (req, res) {
+    const { username, email, first_name, last_name, password } = req.body;
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    const hashedPassword = await bcrypt.hash(password, salt);
     const user = new User({
-      username: req.body.username,
-      email: req.body.email,
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
+      username,
+      email,
+      first_name,
+      last_name,
       password: hashedPassword,
     });
-    const result = await user.save();
-    const { password, ...data } = result.toJSON(0);
-    res.send({
-      message: "Successfully registered",
+    await user.save();
+    const data = {
       id: user._id,
-      username: user.username,
-      email: user.email,
-      first_name: user.first_name,
-      last_name: user.last_name,
+      username,
+      email,
+      first_name,
+      last_name,
+    };
+    res.json({
+      message: "Successfully signed up",
+      ...data,
     });
   },
 
   login: async function (req, res) {
-    const user = await User.findOne({ email: req.body.email });
-    if (!user) {
-      return res.status(404).send({
-        message: "User not found",
+    try {
+      const { email, username, password } = req.body;
+      const user = await User.findOne({ $or: [{ email }, { username }] });
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      const isValidPassword = await bcrypt.compare(password, user.password);
+      if (!isValidPassword) {
+        return res.status(400).json({ message: "Invalid password" });
+      }
+      const token = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN_SECRET);
+      res.cookie("jwt", token, { httpOnly: true, maxAge: MAX_AGE });
+      const [fav_restaurants, reviews] = await Promise.all([
+        Restaurant.find({ place_id: { $in: user.fav_restaurants } }),
+        Review.find({ _id: { $in: user.reviews } })
+      ]);
+      res.status(200).json({
+        message: "Successful login",
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        fav_restaurants,
+        reviews
       });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Internal server error" });
     }
-    if (!(await bcrypt.compare(req.body.password, user.password))) {
-      return res.status(400).send({
-        message: "Invalid password",
-      });
-    }
-    const token = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN_SECRET);
-    res.cookie("jwt", token, {
-      httpOnly: true,
-      maxAge: MAX_AGE,
-    });
-    res.send({
-      message: "Successful login",
-      id: user._id,
-      username: user.username,
-      email: user.email,
-      first_name: user.first_name,
-      last_name: user.last_name,
-      fav_restaurants: user.fav_restaurants,
-    });
   },
 
   getUser: async function (req, res) {
     try {
       const cookie = req.cookies["jwt"];
+      if (!cookie) {
+        return res
+          .status(401)
+          .send({ message: "Unauthenticated: Missing jwt Cookie" });
+      }
       const claims = jwt.verify(cookie, process.env.ACCESS_TOKEN_SECRET);
       if (!claims) {
-        return res.status(401).send({
-          message: "Unauthenticated: Missing Access Token Secret",
-        });
+        return res
+          .status(401)
+          .send({ message: "Unauthenticated: Missing Access Token Secret" });
       }
       const user = await User.findOne({ _id: claims._id });
-
+      if (!user) {
+        return res.status(404).send({ message: "User not found" });
+      }
       const { password, ...data } = user.toJSON();
-
-      res.send({
-        message: "User found",
-        id: user._id,
-        username: data.username,
-        email: data.email,
-        first_name: data.first_name,
-        last_name: data.last_name,
-        fav_restaurants: data.fav_restaurants,
-      });
+      const fav_restaurants =
+        (await Restaurant.find({ place_id: { $in: user.fav_restaurants } })) ||
+        [];
+      const reviews = (await Review.find({ user_id: user._id })) || [];
+      res
+        .status(200)
+        .json({ message: "User found", ...data, fav_restaurants, reviews });
     } catch (err) {
+      console.log(err);
       return res.status(401).send({
         message: "Unauthenticated",
       });
@@ -88,33 +103,31 @@ const userController = {
 
   logout: async function (req, res) {
     res.cookie("jwt", "", { maxAge: 0 });
-    res.send({
+    res.status(200).json({
       message: "Successfully logged out",
     });
   },
 
-  saveFavRestaurantByUser: async function (req, res) {
+  postFavRestaurantByUser: async function (req, res) {
     try {
-      const { userId } = req.params;
-      const user = await User.findOne({ _id: userId });
+      const { user_id } = req.body;
+      const user = await User.findOne({ _id: user_id });
+      if (!user) return res.status(404).send({ message: "User not found" });
       const { place_id } = req.body;
-
-      // Check if the user already has the restaurant favorited
-      const isFavorited = user.fav_restaurants.some(
-        (place) => place.place_id === place_id
-      );
-      if (isFavorited) {
-        return res.send({
-          message: "User already has restuarant favorited",
-        });
+      if (user.fav_restaurants.some((place) => place.place_id === place_id)) {
+        return res
+          .status(404)
+          .send({ message: "User already has restaurant favorited" });
       }
-
-      // Add the favorited restaurant
+      let restaurant = await Restaurant.findOne({ place_id: place_id });
+      if (!restaurant) {
+        restaurant = await Restaurant.create(req.body);
+      }
       const update = await User.updateOne(
-        { _id: userId },
-        { $push: { fav_restaurants: req.body } }
+        { _id: user_id },
+        { $push: { fav_restaurants: place_id } }
       );
-      res.json(update);
+      res.status(200).json(update);
     } catch (error) {
       res.status(500).json(error);
     }
@@ -122,25 +135,19 @@ const userController = {
 
   deleteFavRestaurantByUser: async function (req, res) {
     try {
-      const { userId, placeId } = req.params;
-      const user = await User.findOne({ _id: userId });
-
-      // Check if the user has the restaurant favorited
-      const isFavorited = user.fav_restaurants.some(
-        (place) => place.place_id === placeId
-      );
-      if (!isFavorited) {
-        return res.send({
-          message: "User does not already have restaurant favorited",
+      const { user_id, place_id } = req.body;
+      const user = await User.findOne({ _id: user_id });
+      if (!user) return res.status(404).send({ message: "User not found" });
+      if (!user.fav_restaurants.some((place) => place === place_id)) {
+        return res.status(404).send({
+          message: "User does not have restaurant favorited",
         });
       }
-
-      // Remove the favorited restaurant
       const update = await User.updateOne(
-        { _id: userId },
-        { $pull: { fav_restaurants: { place_id: placeId } } }
+        { _id: user_id },
+        { $pull: { fav_restaurants: place_id } }
       );
-      res.json(update);
+      res.status(200).json(update);
     } catch (error) {
       res.status(500).json(error);
     }

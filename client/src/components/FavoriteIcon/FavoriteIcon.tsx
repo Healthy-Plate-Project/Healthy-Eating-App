@@ -4,11 +4,9 @@ import {
   FavRestaurantData,
   MultipleGoogleResultData,
   SingleGoogleResultData,
+  UserData,
 } from "../../utils/globalInterfaces";
-import {
-  saveFavRestaurantByUser,
-  deleteFavRestaurantByUser,
-} from "../../utils/serverCalls";
+import { apiCall, API } from "../../utils/serverCalls";
 import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
 
@@ -16,10 +14,7 @@ type FavoriteIconProps = {
   singleRestaurantData?: SingleGoogleResultData;
   multipleRestaurantData?: MultipleGoogleResultData;
   favRestaurantData?: FavRestaurantData;
-  currentUser: {
-    id: string;
-    fav_restaurants?: [FavRestaurantData];
-  };
+  currentUser: UserData;
   currentUserTrigger: boolean;
   setCurrentUserTrigger: any;
 };
@@ -49,12 +44,19 @@ export function FavoriteIcon({
   }, []);
 
   async function saveFavRestaurant(data: FavRestaurantData) {
-    await saveFavRestaurantByUser(currentUser.id, data);
+    const body = {
+      user_id: currentUser._id,
+      ...data,
+    };
+    await await apiCall(API.postFavRestaurantByUser, body);
     setCurrentUserTrigger(!currentUserTrigger);
   }
 
   async function deleteFavRestaurant(place_id: string) {
-    await deleteFavRestaurantByUser(currentUser.id, place_id);
+    await apiCall(API.deleteFavRestaurantByUser, {
+      user_id: currentUser._id,
+      place_id,
+    });
     setCurrentUserTrigger(!currentUserTrigger);
   }
   return (
@@ -70,7 +72,7 @@ export function FavoriteIcon({
                 lat: restaurantData.geometry.location.lat,
                 lng: restaurantData.geometry.location.lng,
                 name: restaurantData.name,
-                photo: restaurantData.photos[0].photo_reference,
+                photo_reference: restaurantData.photos[0].photo_reference,
                 place_id: restaurantData.place_id,
                 price_level: restaurantData.price_level,
                 rating: restaurantData.rating,

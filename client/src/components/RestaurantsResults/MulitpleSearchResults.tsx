@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import {
-  FavRestaurantData,
   MultipleGoogleResultData,
+  UserData,
 } from "../../utils/globalInterfaces";
-import { getRestaurants } from "../../utils/serverCalls";
+import { apiCall, API } from "../../utils/serverCalls";
 import { FavoriteIcon } from "../FavoriteIcon/FavoriteIcon";
 import { GooglePhoto } from "../Photo/Photo";
 
@@ -19,10 +19,7 @@ import {
 } from "./MulitpleSearchResultsStyles";
 
 type MulitpleSearchResultsPageProps = {
-  currentUser: {
-    id: string;
-    fav_restaurants?: [FavRestaurantData];
-  };
+  currentUser: UserData;
   currentUserTrigger: boolean;
   setCurrentUserTrigger: any;
 };
@@ -49,7 +46,7 @@ export function MulitpleSearchResultsPage({
   useEffect(() => {
     async function fetchData() {
       try {
-        let payload = {
+        const body = {
           latitude,
           longitude,
           keyword,
@@ -58,9 +55,8 @@ export function MulitpleSearchResultsPage({
           radius,
           open_now,
         };
-
-        let data = await getRestaurants(payload);
-        setRestaurantsData(data.results);
+        const data = await apiCall(API.getRestaurants, body);
+        data ? setRestaurantsData(data) : setRestaurantsData([]);
       } catch (err) {
         console.log(err);
       }

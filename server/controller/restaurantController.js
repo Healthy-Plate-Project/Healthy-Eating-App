@@ -1,11 +1,12 @@
 const axios = require("axios");
 const { testRestaurant, testRestaurants } = require("../seeds/testSeeds");
 const getTestAPI = require("../index");
+const Restaurant = require("../models/Restaurant");
 
 const restaurantsController = {
-  getRestaurants: async function (req, res) {
+  getGoogleRestaurants: async function (req, res) {
     if (getTestAPI.testAPI) {
-      res.json(testRestaurants);
+      res.json(testRestaurants.results);
     } else {
       const latitude = req.body.latitude;
       const longitude = req.body.longitude;
@@ -27,7 +28,7 @@ const restaurantsController = {
       };
       axios(config)
         .then(function (response) {
-          res.json(response.data);
+          res.json(response.data.results);
         })
         .catch(function (error) {
           console.log(error);
@@ -36,24 +37,90 @@ const restaurantsController = {
     }
   },
 
-  getRestaurant: async function (req, res) {
+  getGoogleRestaurant: async function (req, res) {
     if (getTestAPI.testAPI) {
       res.json(testRestaurant);
     } else {
       const api_key = process.env.GOOGLE_PLACES_APIKEY;
       const config = {
         method: "GET",
-        url: `https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.params.placeId}&key=${api_key}`,
+        url: `https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.body.place_id}&key=${api_key}`,
         headers: {},
       };
       axios(config)
         .then(function (response) {
-          res.json(response.data);
+          res.json(response.data.result);
         })
         .catch(function (error) {
           console.log(error);
           res(error);
         });
+    }
+  },
+
+  getSavedRestaurant: async function (req, res) {
+    try {
+      const restaurant = await Restaurant.findOne({
+        place_id: req.body.place_id,
+      });
+      restaurant
+        ? res.json({ data: restaurant })
+        : res.json({
+            message: `Restaurant ID# ${req.body.place_id} Not Found!`,
+          });
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
+  postSavedRestaurant: async function (req, res) {
+    try {
+      const restaurant = await Restaurant.findOne({
+        place_id: req.body.place_id,
+      });
+      restaurant
+        ? res.json({ data: restaurant })
+        : res.json({ data: await Restaurant.create(req.body) });
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
+  updateSavedRestaurant: async function (req, res) {
+    try {
+      const restaurant = await Restaurant.findOne({
+        place_id: req.body.place_id,
+      });
+      if (!restaurant) {
+        return res.status(404).json({
+          message: `Restaurant ID# ${req.body.place_id} Not Found!`,
+        });
+      }
+      await Restaurant.findOneAndUpdate(
+        { place_id: req.body.place_id },
+        req.body
+      );
+      res.status(200).json({
+        message: `Restaurant ID# ${req.body.place_id} updated!`,
+      });
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
+  deleteSavedRestaurant: async function (req, res) {
+    try {
+      const restaurant = await Restaurant.findOneAndDelete({
+        place_id: req.body.place_id,
+      });
+      if (!restaurant) {
+        res.status(404).json({
+          message: `Restaurant ID# ${req.body.place_id} Not Found!`,
+        });
+      } else {
+        res.status(200).json({
+          message: `Restaurant ID# ${req.body.place_id} Deleted!`,
+        });
+      }
+    } catch (error) {
+      res.status(500).json(error);
     }
   },
 };

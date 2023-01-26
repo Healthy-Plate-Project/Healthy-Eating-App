@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  getRestaurant,
-} from "../../utils/serverCalls";
+import { apiCall, API } from "../../utils/serverCalls";
 import {
   H1,
   H3,
@@ -12,17 +10,11 @@ import {
 } from "./SingleSearchResultStyles";
 import dollarFilled from "../../assets/images/green-dollar.svg";
 import { GooglePhoto } from "../../components/Photo/Photo";
-import {
-  FavRestaurantData,
-  SingleGoogleResultData,
-} from "../../utils/globalInterfaces";
+import { SingleGoogleResultData, UserData } from "../../utils/globalInterfaces";
 import { FavoriteIcon } from "../../components/FavoriteIcon/FavoriteIcon";
 
 type SingleSearchResultPageProps = {
-  currentUser: {
-    id: string;
-    fav_restaurants?: [FavRestaurantData];
-  };
+  currentUser: UserData;
   currentUserTrigger: boolean;
   setCurrentUserTrigger: any;
 };
@@ -41,17 +33,14 @@ export function SingleSearchResultPage({
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await getRestaurant(place_id);
-        setRestaurantData(data.result);
+        const data = await apiCall(API.getRestaurant, { place_id });
+        setRestaurantData(data);
       } catch (err) {
         console.log(err);
       }
     }
     fetchData();
   }, [place_id, currentUser]);
-
-  // look at this object in the console to see what data is available to use
-  // console.log(restaurantData);
 
   function priceLevel() {
     const array = [];

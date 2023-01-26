@@ -57,7 +57,7 @@ export interface FavRestaurantData {
   lat: number;
   lng: number;
   name: string;
-  photo: string;
+  photo_reference: string;
   place_id: string;
   price_level: number;
   rating: number;

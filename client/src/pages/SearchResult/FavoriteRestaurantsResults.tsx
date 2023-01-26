@@ -44,7 +44,7 @@ export function FavRestaurantsResults({
           return (
             <CardStyled key={`${restaurant.place_id}-${i}`}>
               <GooglePhoto
-                photo_reference={restaurant.photo}
+                photo_reference={restaurant.photo_reference}
                 max_height="200"
                 max_width="200"
                 alt={restaurant.name}

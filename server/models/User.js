@@ -62,7 +62,7 @@ const userSchema = new Schema({
           type: Number,
         },
         types: {
-          type: String,
+          type: [String],
         },
       },
     ],

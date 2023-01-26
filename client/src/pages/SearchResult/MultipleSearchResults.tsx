@@ -88,13 +88,13 @@ export function MulitpleSearchResultsPage({
                   <Directions className="card-directions">
                     <a href="directions_url"></a>{" "}
                   </Directions>
+                  <FavoriteIcon
+                    multipleRestaurantData={restaurant}
+                    currentUser={currentUser}
+                    currentUserTrigger={currentUserTrigger}
+                    setCurrentUserTrigger={setCurrentUserTrigger}
+                  ></FavoriteIcon>
                 </Details>
-                <FavoriteIcon
-                  multipleRestaurantData={restaurant}
-                  currentUser={currentUser}
-                  currentUserTrigger={currentUserTrigger}
-                  setCurrentUserTrigger={setCurrentUserTrigger}
-                ></FavoriteIcon>
               </Body>
             </CardStyled>
           );

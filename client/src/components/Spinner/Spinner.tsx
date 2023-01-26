@@ -1,5 +1,17 @@
 import React from "react";
 
+export function RelativeSpinner() {
+  return (
+    <div data-title="dot-windmill">
+      <div className="stage">
+        <div className="dot-windmill">
+          <style>{SPINNER_CSS}</style>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function FullPageSpinner() {
   return (
     <div className="snippet" data-title="dot-windmill">

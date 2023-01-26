@@ -15,6 +15,7 @@ import {
   SingleGoogleResultData,
 } from "../../utils/globalInterfaces";
 import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
+import { FullPageSpinner } from "../../components/Spinner/Spinner";
 
 type SingleSearchResultPageProps = {
   currentUser: {
@@ -38,6 +39,7 @@ export function SingleSearchResultPage({
       try {
         const data = await getRestaurant(place_id);
         setRestaurantData(data.result);
+        setSpinner(false);
       } catch (err) {
         console.log(err);
       }
@@ -52,6 +54,10 @@ export function SingleSearchResultPage({
       array.push(<PriceIconStyled src={dollarFilled} />);
     }
     return array;
+  }
+  const [spinner, setSpinner] = useState(true);
+  if (spinner) {
+    return <FullPageSpinner />;
   }
   return (
     <>

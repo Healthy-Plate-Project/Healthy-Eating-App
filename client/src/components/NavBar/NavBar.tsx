@@ -49,7 +49,6 @@ export function Navbar({ currentUser, setCurrentUser }: NavbarPageProps) {
       </ButtonWrapper>
       <Link to="/">Home</Link>
       <Link to="advanced-search">Advanced Search</Link>
-      <Link to="review">Review</Link>
       <Link to="reviews">Reviews</Link>
       {loginLogoutButton}
     </NavbarStyled>

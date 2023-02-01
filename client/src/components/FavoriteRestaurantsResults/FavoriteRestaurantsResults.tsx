@@ -61,6 +61,10 @@ export function FavRestaurantsResults({
                     Google Rating: {restaurant.rating}
                   </Rating>
 
+                  <a href={`/create-review/${restaurant.place_id}`}>
+                    <p className="card-title">Leave Review</p>
+                  </a>
+
                   <Directions className="card-directions">
                     <a href="directions_url"></a>{" "}
                   </Directions>

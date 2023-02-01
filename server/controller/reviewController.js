@@ -36,8 +36,10 @@ const reviewController = {
           message: `Review ID# ${review._id} updated!`,
         });
       }
-      await Review.create(req.body);
-      res.status(200).json({ message: `Review created!` });
+      const newReview = await Review.create(req.body);
+      if (newReview) {
+        res.status(200).json({ message: `Review created!` });
+      }
     } catch (error) {
       res.status(500).json(error);
     }

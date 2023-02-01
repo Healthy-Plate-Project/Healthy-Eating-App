@@ -90,7 +90,9 @@ export function SingleSearchResultPage({
         <div>
           <H3>User Reviews</H3>
           <hr />
-          <button>Write Review</button>
+          <a href={`/create-review/${restaurantData.place_id}`}>
+            <p className="card-title">Create Review</p>
+          </a>
         </div>
       </Wrapper>
     </>

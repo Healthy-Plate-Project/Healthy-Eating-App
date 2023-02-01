@@ -33,7 +33,7 @@ export function SignUp({ setCurrentUser }: any) {
       const { message, ...userData } = await apiCall(API.signup, body, true);
       if (message === "Successfully signed up") {
         setCurrentUser(userData);
-        navigate(-1);
+        navigate("/login");
       }
     } catch (err) {
       console.log(err);

@@ -37,7 +37,7 @@ export function Login({ setCurrentUser }: any) {
               true
             )
       );
-      navigate(-1);
+      navigate("/");
     } catch (err) {
       console.log(err);
     }

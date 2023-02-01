@@ -45,11 +45,14 @@ const userController = {
       if (!isValidPassword) {
         return res.status(400).json({ message: "Invalid password" });
       }
-      const token = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN_SECRET);
+      const token = jwt.sign(
+        { _id: user._id },
+        process.env.ACCESS_TOKEN_SECRET
+      );
       res.cookie("jwt", token, { httpOnly: true, maxAge: MAX_AGE });
       const [fav_restaurants, reviews] = await Promise.all([
         Restaurant.find({ place_id: { $in: user.fav_restaurants } }),
-        Review.find({ _id: { $in: user.reviews } })
+        Review.find({ _id: { $in: user.reviews } }),
       ]);
       res.status(200).json({
         message: "Successful login",
@@ -59,7 +62,7 @@ const userController = {
         first_name: user.first_name,
         last_name: user.last_name,
         fav_restaurants,
-        reviews
+        reviews,
       });
     } catch (err) {
       console.log(err);

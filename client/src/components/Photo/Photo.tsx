@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getGooglePhoto } from "../../utils/serverCalls";
+import { RelativeSpinner } from "../Spinner/Spinner";
 
 type PhotoProps = {
   photo_reference: string;
@@ -25,6 +26,7 @@ export function GooglePhoto({
         };
         const response = await getGooglePhoto(payload);
         setPhotoURL(response!);
+        setSpinner(false);
       } catch (err) {
         console.log(err);
       }
@@ -32,5 +34,9 @@ export function GooglePhoto({
     fetchData();
   }, [photo_reference, max_height, max_width]);
 
+  const [spinner, setSpinner] = useState(true);
+  if (spinner) {
+    return <RelativeSpinner />;
+  }
   return <img src={photoURL} alt={alt} />;
 }

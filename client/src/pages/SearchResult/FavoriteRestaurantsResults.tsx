@@ -11,6 +11,7 @@ import {
   Rating,
 } from "./MulitpleSearchResultsStyles";
 import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
+import { FullPageSpinner } from "../../components/Spinner/Spinner";
 
 type FavRestaurantResultsProps = {
   currentUser: {
@@ -33,10 +34,15 @@ export function FavRestaurantsResults({
     function checkUserData() {
       if (currentUser.fav_restaurants) {
         setFavRestaurants(currentUser.fav_restaurants);
+        setSpinner(false);
       }
     }
     checkUserData();
   }, [currentUser]);
+  const [spinner, setSpinner] = useState(true);
+  if (spinner) {
+    return <FullPageSpinner />;
+  }
   return (
     <div>
       <ul>

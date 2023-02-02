@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
 import { GooglePhoto } from "../../components/Photo/Photo";
+import { FullPageSpinner } from "../../components/Spinner/Spinner";
 import {
   FavRestaurantData,
   MultipleGoogleResultData,
@@ -56,12 +57,17 @@ export function MulitpleSearchResultsPage({
         };
         let data = await getRestaurants(payload);
         setRestaurantsData(data.results);
+        setSpinner(false);
       } catch (err) {
         console.log(err);
       }
     }
     fetchData();
   }, []);
+  const [spinner, setSpinner] = useState(true);
+  if (spinner) {
+    return <FullPageSpinner />;
+  }
   return (
     <div>
       <ul>

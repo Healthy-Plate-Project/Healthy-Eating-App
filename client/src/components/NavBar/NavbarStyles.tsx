@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
 export const NavbarStyled = styled.nav`
-  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  width: 75%;
   color: var(--primary-600);
   padding: 0;
-  margin: 0;
+  margin: 4rem;
 `;
 
 export const ButtonWrapper = styled.div`

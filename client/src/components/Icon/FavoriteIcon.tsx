@@ -28,7 +28,6 @@ export function FavoriteIcon({
   setCurrentUserTrigger,
 }: FavoriteIconProps) {
   const [isFavRestaurant, setIsFavRestaurant] = useState(false);
-
   useEffect(() => {
     function checkUserData() {
       const restaurantData =
@@ -42,16 +41,16 @@ export function FavoriteIcon({
     }
     checkUserData();
   }, []);
-
   async function saveFavRestaurant(data: FavRestaurantData) {
     const body = {
       user_id: currentUser._id,
       ...data,
     };
-    await await apiCall(API.postFavRestaurantByUser, body);
-    setCurrentUserTrigger(!currentUserTrigger);
+    const response = await apiCall(API.postFavRestaurantByUser, body);
+    response
+      ? setCurrentUserTrigger(!currentUserTrigger)
+      : alert("Favorting restaurant failed.");
   }
-
   async function deleteFavRestaurant(place_id: string) {
     await apiCall(API.deleteFavRestaurantByUser, {
       user_id: currentUser._id,
@@ -83,6 +82,7 @@ export function FavoriteIcon({
           } else if (favRestaurantData) {
             deleteFavRestaurant(favRestaurantData.place_id);
           }
+          // TODO add error handling
           return !prevState;
         })
       }

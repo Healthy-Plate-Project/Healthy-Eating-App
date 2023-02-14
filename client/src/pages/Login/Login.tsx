@@ -1,5 +1,4 @@
 import React, { FormEvent, useState } from "react";
-
 // styled components
 import {
   MainContainer,
@@ -9,18 +8,15 @@ import {
   LoginWith,
 } from "./LoginStyles";
 import { LoginInput } from "../../components/Input/InputStyles";
-
 // components
 import { useNavigate } from "react-router-dom";
 import { isEmail } from "../../utils/helpers";
-import { UserData } from "../../utils/globalInterfaces";
 import { apiCall, API } from "../../utils/serverCalls";
 
 export function Login({ setCurrentUser }: any) {
   const [password, setPassword] = useState("");
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const navigate = useNavigate();
-
   async function login(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
@@ -42,7 +38,6 @@ export function Login({ setCurrentUser }: any) {
       console.log(err);
     }
   }
-
   return (
     <form onSubmit={(e) => login(e)}>
       <MainContainer>

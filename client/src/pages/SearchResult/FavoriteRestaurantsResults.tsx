@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FavRestaurantData, UserData } from "../../utils/globalInterfaces";
-import { FavoriteIcon } from "../FavoriteIcon/FavoriteIcon";
-import { GooglePhoto } from "../Photo/Photo";
-
+import { GooglePhoto } from "../../components/Photo/Photo";
 import {
   CardStyled,
   Body,
@@ -11,7 +9,9 @@ import {
   Price,
   Directions,
   Rating,
-} from "./FavRestaurantsResultsStyles";
+} from "./MulitpleSearchResultsStyles";
+import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
+import { FullPageSpinner } from "../../components/Spinner/Spinner";
 
 type FavRestaurantResultsProps = {
   currentUser: UserData;
@@ -27,16 +27,19 @@ export function FavRestaurantsResults({
   const [favRestaurants, setFavRestaurants] = useState(
     [] as FavRestaurantData[]
   );
-
   useEffect(() => {
     function checkUserData() {
       if (currentUser.fav_restaurants) {
         setFavRestaurants(currentUser.fav_restaurants);
+        setSpinner(false);
       }
     }
     checkUserData();
   }, [currentUser]);
-
+  const [spinner, setSpinner] = useState(true);
+  if (spinner) {
+    return <FullPageSpinner />;
+  }
   return (
     <div>
       <ul>
@@ -45,8 +48,8 @@ export function FavRestaurantsResults({
             <CardStyled key={`${restaurant.place_id}-${i}`}>
               <GooglePhoto
                 photo_reference={restaurant.photo_reference}
-                max_height="100"
-                max_width="150"
+                max_height="200"
+                max_width="200"
                 alt={restaurant.name}
               ></GooglePhoto>
               <Body>
@@ -60,21 +63,19 @@ export function FavRestaurantsResults({
                   <Rating className="card-rating">
                     Google Rating: {restaurant.rating}
                   </Rating>
-
-                  <a href={`/create-review/${restaurant.place_id}`}>
-                    <p className="card-title">Leave Review</p>
-                  </a>
-
                   <Directions className="card-directions">
                     <a href="directions_url"></a>{" "}
                   </Directions>
+                  <FavoriteIcon
+                    favRestaurantData={restaurant}
+                    currentUser={currentUser}
+                    currentUserTrigger={currentUserTrigger}
+                    setCurrentUserTrigger={setCurrentUserTrigger}
+                  ></FavoriteIcon>
+                  <a href={`/create-review/${restaurant.place_id}`}>
+                    <p className="card-title">Create Review</p>
+                  </a>
                 </Details>
-                <FavoriteIcon
-                  favRestaurantData={restaurant}
-                  currentUser={currentUser}
-                  currentUserTrigger={currentUserTrigger}
-                  setCurrentUserTrigger={setCurrentUserTrigger}
-                ></FavoriteIcon>
               </Body>
             </CardStyled>
           );

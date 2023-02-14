@@ -6,21 +6,19 @@ import { SignUp } from "./pages/SignUp/SignUp";
 import { AdvancedSearch } from "./pages/AdvancedSearch/AdvancedSearch";
 import { NotFound } from "./pages/NotFound/NotFound";
 import { Login } from "./pages/Login/Login";
-
 import { GlobalStyle } from "./theme/globalStyle";
 import { Navbar } from "./components/NavBar/NavBar";
 import { SingleSearchResultPage } from "./pages/SearchResult/SingleSearchResult";
 import "./App.css";
-import { FavRestaurantsResults } from "./components/FavoriteRestaurantsResults/FavoriteRestaurantsResults";
 import { UserData } from "./utils/globalInterfaces";
-import { MulitpleSearchResultsPage } from "./components/RestaurantsResults/MulitpleSearchResults";
 import { apiCall, API } from "./utils/serverCalls";
 import { CreateReview } from "./pages/Review/LeaveReview/CreateReview";
+import { FavRestaurantsResults } from "./pages/SearchResult/FavoriteRestaurantsResults";
+import { MulitpleSearchResultsPage } from "./pages/SearchResult/MultipleSearchResults";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({} as UserData);
   const [currentUserTrigger, setCurrentUserTrigger] = useState(false);
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -32,7 +30,6 @@ export default function App() {
     }
     fetchData();
   }, [currentUserTrigger]);
-
   return (
     <div className="app">
       <GlobalStyle />

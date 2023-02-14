@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
+import { GooglePhoto } from "../../components/Photo/Photo";
+import { FullPageSpinner } from "../../components/Spinner/Spinner";
 import {
   MultipleGoogleResultData,
   UserData,
 } from "../../utils/globalInterfaces";
-import { apiCall, API } from "../../utils/serverCalls";
-import { FavoriteIcon } from "../FavoriteIcon/FavoriteIcon";
-import { GooglePhoto } from "../Photo/Photo";
-
+import { API, apiCall } from "../../utils/serverCalls";
 import {
   CardStyled,
   Body,
@@ -23,7 +23,6 @@ type MulitpleSearchResultsPageProps = {
   currentUserTrigger: boolean;
   setCurrentUserTrigger: any;
 };
-
 export function MulitpleSearchResultsPage({
   currentUser,
   currentUserTrigger,
@@ -38,11 +37,9 @@ export function MulitpleSearchResultsPage({
     radius,
     open_now,
   } = useParams();
-
   const [restaurantsData, setRestaurantsData] = useState(
     [] as MultipleGoogleResultData[]
   );
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -56,14 +53,18 @@ export function MulitpleSearchResultsPage({
           open_now,
         };
         const data = await apiCall(API.getRestaurants, body);
-        data ? setRestaurantsData(data) : setRestaurantsData([]);
+        setRestaurantsData(data);
+        setSpinner(false);
       } catch (err) {
         console.log(err);
       }
     }
     fetchData();
   }, []);
-
+  const [spinner, setSpinner] = useState(true);
+  if (spinner) {
+    return <FullPageSpinner />;
+  }
   return (
     <div>
       <ul>
@@ -87,21 +88,19 @@ export function MulitpleSearchResultsPage({
                   <Rating className="card-rating">
                     Google Rating: {restaurant.rating}
                   </Rating>
-
-                  <a href={`/create-review/${restaurant.place_id}`}>
-                    <p className="card-title">Leave Review</p>
-                  </a>
-
                   <Directions className="card-directions">
                     <a href="directions_url"></a>{" "}
                   </Directions>
+                  <FavoriteIcon
+                    multipleRestaurantData={restaurant}
+                    currentUser={currentUser}
+                    currentUserTrigger={currentUserTrigger}
+                    setCurrentUserTrigger={setCurrentUserTrigger}
+                  ></FavoriteIcon>
+                  <a href={`/create-review/${restaurant.place_id}`}>
+                    <p className="card-title">Create Review</p>
+                  </a>
                 </Details>
-                <FavoriteIcon
-                  multipleRestaurantData={restaurant}
-                  currentUser={currentUser}
-                  currentUserTrigger={currentUserTrigger}
-                  setCurrentUserTrigger={setCurrentUserTrigger}
-                ></FavoriteIcon>
               </Body>
             </CardStyled>
           );

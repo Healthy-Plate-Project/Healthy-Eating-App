@@ -1,4 +1,3 @@
-// export {};
 import React, { FormEvent, useEffect, useState } from "react";
 import { Textarea, Wrapper } from "./ReviewStyles";
 import {
@@ -143,10 +142,10 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
   return (
     <>
       <GooglePhoto
-        photo_reference="AeJbb3c-bgyYnUUax8v4YhTdizGrze2zoTIi1t8p624sCqGNL5miCczS2411Vtwmk6TOanPRSuMI7v0TNA9nqAUgO5jd-TzceKD2w7winlJ7yaKlqZ1dCnfcJP9Qi6RqOAcrcYZpQbjx4aIveUeSQ5tCqMaQFFSn7pYiyH21bldC_oB75p50"
-        max_height="500"
-        max_width="500"
-        alt="Test Photo"
+        photo_reference={restaurantData.photos[0].photo_reference}
+        max_height="200"
+        max_width="200"
+        alt={restaurantData.name}
       ></GooglePhoto>
       <Wrapper>
         <div>

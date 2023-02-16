@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { apiServer } from "../../utils/helpers";
-import { NavbarStyled, ButtonWrapper } from "./NavbarStyles";
-import { MenuButton } from "../../components/Button/ButtonStyles";
+import { NavbarStyled } from "./NavbarStyles";
+import { NavButton } from "./NavButton";
+
 import { UserData } from "../../utils/globalInterfaces";
+interface Props {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}
 
 export function Navbar({ currentUser, setCurrentUser }: any) {
-  const [isNavExpanded, setIsNavExpanded] = useState<boolean>(false);
+  const [open, setOpen] = React.useState(false);
   async function logout(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault();
     try {
@@ -32,23 +37,20 @@ export function Navbar({ currentUser, setCurrentUser }: any) {
       </Link>
     </>
   ) : (
-    <Link to="login">Login</Link>
+    <Link to="login" onClick={() => setOpen(!open)}>
+      Login
+    </Link>
   );
   return (
-    <NavbarStyled>
-      <ButtonWrapper>
-        <MenuButton
-          className="menu-button"
-          onClick={() => {
-            setIsNavExpanded(!isNavExpanded);
-          }}
-        ></MenuButton>
-      </ButtonWrapper>
-      <Link to="/">Home</Link>
-      <Link to="advanced-search">Advanced Search</Link>
-      <Link to="review">Review</Link>
-      <Link to="reviews">Reviews</Link>
-      {loginLogoutButton}
-    </NavbarStyled>
+    <>
+      <NavButton open={open} setOpen={setOpen} />
+      <NavbarStyled open={open} onClick={() => setOpen(!open)}>
+        <Link to="/">Home</Link>
+        <Link to="advanced-search">Advanced Search</Link>
+        <Link to="review">Review</Link>
+        <Link to="reviews">Reviews</Link>
+        {loginLogoutButton}
+      </NavbarStyled>
+    </>
   );
 }

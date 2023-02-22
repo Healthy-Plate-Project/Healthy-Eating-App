@@ -16,7 +16,9 @@ import {
   SingleGoogleResultData,
 } from "../../utils/globalInterfaces";
 import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
-import { PhotoGalleryStyled } from "./PhotoGalleryStyles";
+import { GalleryStyled } from "../../components/Photo/PhotoGalleryStyles";
+import { Gallery } from "../../components/Photo/Gallery";
+import { PriceLevel } from "../../components/Icon/PriceLevel";
 
 type SingleSearchResultPageProps = {
   currentUser: {
@@ -51,13 +53,6 @@ export function SingleSearchResultPage({
     fetchData();
   }, [place_id, currentUser]);
 
-  function priceLevel() {
-    const array = [];
-    for (let i = 1; i <= restaurantData.price_level; i++) {
-      array.push(<PriceIconStyled src={dollarFilled} />);
-    }
-  }
-
   function buildPhotoArray(array: GoogleResultPhoto[]) {
     let tempArray: string[] = [];
     if (Array.isArray(array)) {
@@ -67,44 +62,6 @@ export function SingleSearchResultPage({
     }
     setPhotoArray(tempArray);
   }
-
-  const [photoToShow, setPhotoToShow] = useState("");
-  const [lightboxDisplay, setLightboxDisplay] = useState(false);
-
-  //function to show a specific photo in the lightbox, amd make lightbox visible
-  const showPhoto = (photo: string) => {
-    setPhotoToShow(photo);
-    setLightboxDisplay(true);
-  };
-
-  //hide lightbox
-  const hideLightBox = () => {
-    setLightboxDisplay(false);
-  };
-
-  //show next photo in lightbox
-  const showNext = (e: any) => {
-    e.stopPropagation();
-    let currentIndex = photoArray.indexOf(photoToShow);
-    if (currentIndex >= photoArray.length - 1) {
-      setLightboxDisplay(false);
-    } else {
-      let nextPhoto = photoArray[currentIndex + 1];
-      setPhotoToShow(nextPhoto);
-    }
-  };
-
-  //show previous photo in lightbox
-  const showPrev = (e: any) => {
-    e.stopPropagation();
-    let currentIndex = photoArray.indexOf(photoToShow);
-    if (currentIndex <= 0) {
-      setLightboxDisplay(false);
-    } else {
-      let nextPhoto = photoArray[currentIndex - 1];
-      setPhotoToShow(nextPhoto);
-    }
-  };
 
   return (
     <>
@@ -128,7 +85,7 @@ export function SingleSearchResultPage({
           ></FavoriteIcon>
         </H1>
         {/* no overload matches this call error with priceLevel() */}
-        {/* <PriceContainer>{priceLevel()}</PriceContainer> */}
+        <PriceLevel priceLevel={restaurantData.price_level}></PriceLevel>
         <p>
           <a href={restaurantData.url} rel="noreferrer" target="_blank">
             {restaurantData.vicinity}
@@ -146,40 +103,7 @@ export function SingleSearchResultPage({
         <div>
           {/* <H3>Photos</H3> */}
           <hr />
-          <PhotoGalleryStyled>
-            <div id="photo-gallery-wrapper">
-              {photoArray.map((photo: string) => {
-                return (
-                  <GooglePhoto
-                    className="photo-card"
-                    onClick={() => showPhoto(photo)}
-                    photo_reference={photo}
-                    max_width="290"
-                    max_height="290"
-                    alt="Test Photos"
-                    key={photo}
-                  ></GooglePhoto>
-                );
-              })}
-
-              {lightboxDisplay ? (
-                <div id="lightbox" onClick={hideLightBox}>
-                  <button onClick={showPrev}>⭠</button>
-                  <GooglePhoto
-                    id="lightbox-img"
-                    // className="photo-card"
-                    photo_reference={photoToShow}
-                    max_width="800"
-                    max_height="800"
-                    alt="Test Photos"
-                  ></GooglePhoto>
-                  <button onClick={showNext}>⭢</button>
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
-          </PhotoGalleryStyled>
+          <Gallery photoArray={photoArray}></Gallery>
         </div>
         <div>
           <H3>User Reviews</H3>

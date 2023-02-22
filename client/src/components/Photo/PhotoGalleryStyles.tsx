@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 
-export const PhotoGalleryStyled = styled.div`
+export const GalleryStyled = styled.div`
   #photo-gallery-wrapper {
     text-align: center;
     font-family: "Roboto", sans-serif;
@@ -11,7 +11,6 @@ export const PhotoGalleryStyled = styled.div`
     width: 30vw;
     height: 30vw;
     object-fit: cover;
-    background-color: blue; // for testing where is this being used?
   }
 
   // the enlarged image when clicked

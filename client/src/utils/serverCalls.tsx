@@ -208,6 +208,7 @@ export const API = {
   // returns the UserData object that was updated
 };
 
+// Change this to false if you want to turn off api calls for testing
 const apiFlag = true;
 
 export async function apiCall(url: string, body: any, credentials?: boolean) {

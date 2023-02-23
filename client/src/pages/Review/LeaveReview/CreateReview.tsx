@@ -11,6 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { API, apiCall } from "../../../utils/serverCalls";
 import { GooglePhoto } from "../../../components/Photo/Photo";
 import { STAR_RATING_NAMES } from "../../../utils/helpers";
+import { FullPageSpinner } from "../../../components/Spinner/Spinner";
 
 type CreateReviewProps = {
   currentUser: UserData;
@@ -32,6 +33,7 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
       try {
         const data = await apiCall(API.getRestaurant, { place_id });
         setRestaurantData(data);
+        setSpinner(false)
       } catch (err) {
         console.log(err);
       }
@@ -139,6 +141,11 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
     }
   }
 
+  const [spinner, setSpinner] = useState(true);
+  if (spinner) {
+    return <FullPageSpinner />;
+  }
+  
   return (
     <>
       <GooglePhoto

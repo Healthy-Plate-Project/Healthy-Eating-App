@@ -23,3 +23,13 @@ export function isEmail(str: string): boolean {
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return emailRegex.test(str);
 }
+
+export const STAR_RATING_NAMES = [
+  "Overall",
+  "Vegan",
+  "Vegetarian",
+  "Pescatarian",
+  "Gluten Free",
+  "Dairy Free",
+  "Nut Free",
+];

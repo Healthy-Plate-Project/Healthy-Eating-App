@@ -4,10 +4,10 @@ import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
 import { GooglePhoto } from "../../components/Photo/Photo";
 import { FullPageSpinner } from "../../components/Spinner/Spinner";
 import {
-  FavRestaurantData,
   MultipleGoogleResultData,
+  UserData,
 } from "../../utils/globalInterfaces";
-import { getRestaurants } from "../../utils/serverCalls";
+import { API, apiCall } from "../../utils/serverCalls";
 import {
   CardStyled,
   Body,
@@ -19,10 +19,7 @@ import {
 } from "./MulitpleSearchResultsStyles";
 
 type MulitpleSearchResultsPageProps = {
-  currentUser: {
-    id: string;
-    fav_restaurants?: [FavRestaurantData];
-  };
+  currentUser: UserData;
   currentUserTrigger: boolean;
   setCurrentUserTrigger: any;
 };
@@ -46,7 +43,7 @@ export function MulitpleSearchResultsPage({
   useEffect(() => {
     async function fetchData() {
       try {
-        let payload = {
+        const body = {
           latitude,
           longitude,
           keyword,
@@ -55,8 +52,8 @@ export function MulitpleSearchResultsPage({
           radius,
           open_now,
         };
-        let data = await getRestaurants(payload);
-        setRestaurantsData(data.results);
+        const data = await apiCall(API.getRestaurants, body);
+        setRestaurantsData(data);
         setSpinner(false);
       } catch (err) {
         console.log(err);
@@ -100,6 +97,9 @@ export function MulitpleSearchResultsPage({
                     currentUserTrigger={currentUserTrigger}
                     setCurrentUserTrigger={setCurrentUserTrigger}
                   ></FavoriteIcon>
+                  <a href={`/create-review/${restaurant.place_id}`}>
+                    <p className="card-title">Create Review</p>
+                  </a>
                 </Details>
               </Body>
             </CardStyled>

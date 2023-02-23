@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FavRestaurantData } from "../../utils/globalInterfaces";
+import { FavRestaurantData, UserData } from "../../utils/globalInterfaces";
 import { GooglePhoto } from "../../components/Photo/Photo";
 import {
   CardStyled,
@@ -14,10 +14,7 @@ import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
 import { FullPageSpinner } from "../../components/Spinner/Spinner";
 
 type FavRestaurantResultsProps = {
-  currentUser: {
-    id: string;
-    fav_restaurants?: [FavRestaurantData];
-  };
+  currentUser: UserData;
   currentUserTrigger: boolean;
   setCurrentUserTrigger: any;
 };
@@ -75,6 +72,9 @@ export function FavRestaurantsResults({
                     currentUserTrigger={currentUserTrigger}
                     setCurrentUserTrigger={setCurrentUserTrigger}
                   ></FavoriteIcon>
+                  <a href={`/create-review/${restaurant.place_id}`}>
+                    <p className="card-title">Create Review</p>
+                  </a>
                 </Details>
               </Body>
             </CardStyled>

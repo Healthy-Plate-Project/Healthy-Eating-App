@@ -21,7 +21,8 @@
     "lint": "tslint -p .",
     "gcp-build": "cd client && tsc -p .",
     "deploy": "gcloud app deploy",
-    "pretty": "prettier --write \"./**/*.{tsx,css,js,json}\""
+    "pretty": "prettier --write \"./**/*.{tsx,css,js,json}\"",
+    "serverOnly": "cd server && npm start"
   },
   "repository": {
     "type": "git",

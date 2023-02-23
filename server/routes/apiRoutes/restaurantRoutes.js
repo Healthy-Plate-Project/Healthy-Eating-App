@@ -1,11 +1,23 @@
 const router = require("express").Router();
 const {
-  getRestaurants,
-  getRestaurant,
+  getGoogleRestaurants,
+  getGoogleRestaurant,
+  getSavedRestaurant,
+  postSavedRestaurant,
+  updateSavedRestaurant,
+  deleteSavedRestaurant,
 } = require("../../controller/restaurantController");
 
-router.route("/").post(getRestaurants);
+router.route("/google/get/multiple").post(getGoogleRestaurants);
 
-router.route("/:placeId").post(getRestaurant);
+router.route("/google/get/single").post(getGoogleRestaurant);
+
+router.route("/saved/get").post(getSavedRestaurant);
+
+router.route("/saved/post").post(postSavedRestaurant);
+
+router.route("/saved/put").post(updateSavedRestaurant);
+
+router.route("/saved/delete").post(deleteSavedRestaurant);
 
 module.exports = router;

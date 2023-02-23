@@ -1,49 +1,32 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, mongoose } = require("mongoose");
 
 const reviewSchema = new Schema(
   {
-    place_id: {
-      type: String,
-      trim: true,
-      required: true,
-    },
     user_id: {
       type: String,
-      trim: true,
       required: true,
+    },
+    place_id: {
+      type: String,
+      required: true,
+    },
+    star_ratings: {
+      type: [
+        {
+          name: {
+            type: String,
+          },
+          star_rating: {
+            type: Number,
+          },
+        },
+      ],
     },
     review_text: {
       type: String,
     },
-    overall_rating: {
-      type: Number,
-    },
-    dairy_free_rating: {
-      type: Number,
-    },
-    gluten_free_rating: {
-      type: Number,
-    },
-    nut_free_rating: {
-      type: Number,
-    },
-    pescatarian_rating: {
-      type: Number,
-    },
-    vegan_rating: {
-      type: Number,
-    },
-    vegatarian_rating: {
-      type: Number,
-    },
   },
-  {
-    toJSON: {
-      virtuals: true,
-      getters: true,
-    },
-    id: false,
-  }
+  { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
 
 const Review = model("Review", reviewSchema);

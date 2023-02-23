@@ -9,7 +9,8 @@ import {
 import { SignUpInput } from "../../components/Input/InputStyles";
 import { LoginButtonStyles } from "../../components/Button/ButtonStyles";
 import { useNavigate } from "react-router-dom";
-import { apiServer } from "../../utils/helpers";
+import { UserData } from "../../utils/globalInterfaces";
+import { apiCall, API } from "../../utils/serverCalls";
 
 export function SignUp({ setCurrentUser }: any) {
   const [username, setUsername] = useState("");
@@ -22,21 +23,17 @@ export function SignUp({ setCurrentUser }: any) {
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
-      const response = await fetch(`${apiServer()}/api/user/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          username: username,
-          email: email,
-          password: password,
-          first_name: firstName,
-          last_name: lastName,
-        }),
-      });
-      const content = await response.json();
-      if (content.message === "Successfully registered") {
-        navigate(-1);
+      const body = {
+        username,
+        email,
+        password,
+        first_name: firstName,
+        last_name: lastName,
+      };
+      const { message, ...userData } = await apiCall(API.signup, body, true);
+      if (message === "Successfully signed up") {
+        setCurrentUser(userData);
+        navigate("/login");
       }
     } catch (err) {
       console.log(err);

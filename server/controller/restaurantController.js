@@ -56,8 +56,8 @@ const restaurantsController = {
       restaurant
         ? res.json({ data: restaurant })
         : res.json({
-          message: `Restaurant ID# ${req.body.place_id} Not Found!`,
-        });
+            message: `Restaurant ID# ${req.body.place_id} Not Found!`,
+          });
     } catch (error) {
       res.status(500).json(error);
     }

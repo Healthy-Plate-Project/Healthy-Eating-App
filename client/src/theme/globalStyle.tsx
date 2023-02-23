@@ -63,12 +63,9 @@ a {
   cursor: pointer;
 }
 
-a:visited {
-  color: var(--accent-one-600);
-}
 
 a:link {
-  color: var(--dark-400);
+
   font-weight: bold;
   text-decoration: none;
   letter-spacing: 1px;

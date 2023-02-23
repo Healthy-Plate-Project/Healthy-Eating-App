@@ -84,7 +84,17 @@ export const API = {
   postReview: "review/post",
   // body = {
   //   user_id: string, **REQUIRED**
-  //   place_id: string, **REQUIRED**
+  //   restaurant: object, **REQUIRED** {
+  //     name: string, **OPTIONAL**
+  //     place_id: string, **REQUIRED**
+  //     vicinity: string, **OPTIONAL**
+  //     price_level: number, between 1 and 4, **OPTIONAL**
+  //     lat: number, **OPTIONAL**
+  //     lng: number, **OPTIONAL**
+  //     photo_reference: string, **OPTIONAL**
+  //     rating: number, between 1 and 5, **OPTIONAL**
+  //     types: array of strings, like "mexican", "sushi", **OPTIONAL**
+  //   }
   //   star_ratings: array of objects **OPTIONAL** = [{
   //     name: string, **OPTIONAL**
   //     rating: number, between 1 and 5, **OPTIONAL**

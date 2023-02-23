@@ -33,7 +33,7 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
       try {
         const data = await apiCall(API.getRestaurant, { place_id });
         setRestaurantData(data);
-        setSpinner(false)
+        setSpinner(false);
       } catch (err) {
         console.log(err);
       }
@@ -115,7 +115,17 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
     try {
       const body = {
         user_id: currentUser._id,
-        place_id: restaurantData.place_id,
+        restaurant: {
+          lat: restaurantData.geometry.location.lat,
+          lng: restaurantData.geometry.location.lng,
+          name: restaurantData.name,
+          photo_reference: restaurantData.photos[0].photo_reference,
+          place_id: restaurantData.place_id,
+          price_level: restaurantData.price_level,
+          rating: restaurantData.rating,
+          types: [...restaurantData.types],
+          vicinity: restaurantData.vicinity,
+        },
         star_ratings: selectedStarRatings,
         review_text: reviewText,
       };
@@ -145,7 +155,7 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
   if (spinner) {
     return <FullPageSpinner />;
   }
-  
+
   return (
     <>
       <GooglePhoto

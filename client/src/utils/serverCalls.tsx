@@ -216,14 +216,6 @@ export const API = {
   // }
   // const data = await apiCall(API.deleteFavRestaurantByUser, { user_id, place_id });
   // returns the UserData object that was updated
-
-  // --------------------------------------------------------------------------------------------
-  getChatResponse: "chatgpt/get",
-  // body = {
-  //   message: string, **REQUIRED**
-  // }
-  // const data = await apiCall(API.getChatResponse, { message });
-  // returns an object with a message property
 };
 
 // Change this to false if you want to turn off api calls for testing

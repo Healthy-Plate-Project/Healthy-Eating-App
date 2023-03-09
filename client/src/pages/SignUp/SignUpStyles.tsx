@@ -3,52 +3,44 @@ import styled from "styled-components";
 export const MainContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   height: 80vh;
   width: 30vw;
-  margin-top: 2rem;
+  margin: 0 auto;
   padding-top: 2rem;
-  background: rgba(48, 48, 48, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(48, 48, 48, 0.37);
-  backdrop-filter: blur(8.5px);
-  -webkit-backdrop-filter: blur(8.5px);
+  /* background: rgba(48, 48, 48, 0.15); */
+
   border-radius: 10px;
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 0.4rem;
+
   @media only screen and (max-width: 320px) {
-    width: 80vw;
+    width: 100vw;
     height: 90vh;
-    hr {
-      margin-bottom: 0.3rem;
-    }
-    h4 {
-      font-size: small;
-    }
   }
   @media only screen and (min-width: 360px) {
-    width: 80vw;
+    width: 100vw;
     height: 90vh;
-    h4 {
-      font-size: small;
-    }
   }
   @media only screen and (min-width: 411px) {
-    width: 80vw;
+    width: 70vw;
     height: 90vh;
   }
 
   @media only screen and (min-width: 768px) {
-    width: 80vw;
-    height: 80vh;
+    width: 60vw;
+    height: 90vh;
+    margin: 0 auto;
   }
   @media only screen and (min-width: 1024px) {
-    width: 70vw;
-    height: 50vh;
+    width: 40vw;
+    height: 90vh;
   }
   @media only screen and (min-width: 1280px) {
-    width: 30vw;
-    height: 80vh;
+    width: 40vw;
+    height: 90vh;
   }
 `;
 
@@ -74,6 +66,8 @@ export const ButtonContainer = styled.div`
   justify-content: center;
 `;
 
-export const Login = styled.h4`
+export const Login = styled.p`
   cursor: pointer;
+  color: var(--dark);
+  font-size: var(--xs);
 `;

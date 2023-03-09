@@ -2,17 +2,17 @@ import styled from "styled-components";
 import { DefaultInput } from "./DefaultInput";
 
 export const PrimaryInput = styled(DefaultInput)`
-  /* outline: 3px var(--secondary-600) solid; */
   border-radius: 50px;
   border: none;
   height: 3rem;
-  color: var(--dark-600);
-  background-color: var(--light-600);
+  color: white;
+  background-color: white;
   font-size: 1.5rem;
   padding: 0 0.8rem;
+
   &:focus {
-    background-color: var(--accent-two);
-    outline: none;
+    background-color: var(--dark);
+    outline: 0.3rem var(--secondary) solid;
   }
   ::placeholder {
     color: var(--dark-800);
@@ -20,32 +20,28 @@ export const PrimaryInput = styled(DefaultInput)`
 `;
 
 export const SmallInput = styled(PrimaryInput)`
-  height: 2rem;
+  height: 3rem;
   font-size: 1rem;
 `;
 
 export const LoginInput = styled.input`
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--secondary);
   border-radius: 2rem;
   width: 80%;
   height: 3rem;
   padding: 1rem;
   border: none;
   outline: none;
-  color: white;
   font-size: 1rem;
   font-weight: bold;
+  /* text-transform: uppercase; */
   &:focus {
-    display: inline-block;
-    box-shadow: 0 8px 32px 0 rgba(49, 48, 49, 0.562);
-    backdrop-filter: blur(12rem);
-    border-radius: 2rem;
-    border: none;
+    outline: 0.3rem var(--secondary) solid;
+    transition: 0.25s;
+    transition-timing-function: ease-in-out;
+    transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
   }
   &::placeholder {
-    color: var(--light);
-    font-weight: 100;
-    font-size: 1rem;
   }
 `;
 

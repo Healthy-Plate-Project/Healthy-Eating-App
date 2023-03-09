@@ -9,7 +9,7 @@ interface Props {
 export const NavButton: React.FC<Props> = ({ setOpen, open }) => {
   return (
     <StyledNavButton open={open} onClick={() => setOpen(!open)}>
-      menu
+      Menu
     </StyledNavButton>
   );
 };

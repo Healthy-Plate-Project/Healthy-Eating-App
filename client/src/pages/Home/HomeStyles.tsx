@@ -11,10 +11,6 @@ export const HomeWrapper = styled.div`
 `;
 
 export const BackgroundImage = styled.img`
-  /* position: absolute;
-  z-index: 0;
-  bottom: -1rem; */
   width: clamp(290px, 100%, 400px);
-  /* filter: grayscale(0) invert(1) brightness(1) hue-rotate(0.5); */
-  /* mix-blend-mode: darken; */
+  mix-blend-mode: darken;
 `;

@@ -21,7 +21,7 @@ export const StyledNavButton = styled.button<Props>`
   border-radius: 1rem;
   padding: 0.6rem;
   transition: all 0.5s ease-in-out;
-  position: absolute;
-  top: 90vh;
+  position: sticky;
+  bottom: 2rem;
   right: 2rem;
 `;

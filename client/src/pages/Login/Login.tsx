@@ -5,7 +5,7 @@ import {
   WelcomeText,
   InputContainer,
   ButtonContainer,
-  LoginWith,
+  // LoginWith,
 } from "./LoginStyles";
 import { LoginInput } from "../../components/Input/InputStyles";
 // components
@@ -39,7 +39,7 @@ export function Login({ setCurrentUser }: any) {
   return (
     <form onSubmit={(e) => login(e)}>
       <MainContainer>
-        <WelcomeText>Sign in</WelcomeText>
+        <WelcomeText>Log In</WelcomeText>
         <InputContainer>
           <LoginInput
             type="text"
@@ -52,13 +52,12 @@ export function Login({ setCurrentUser }: any) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </InputContainer>
-        <ButtonContainer>
-          <LoginWith>
-            <button type="submit">Login</button>
-          </LoginWith>
-        </ButtonContainer>
+        <ButtonContainer type="submit">Login</ButtonContainer>
         <h4>
-          Don't have an account? <a href="sign-up">Sign Up</a>
+          Don't have an account?{" "}
+          <a href="sign-up" className="sign-up">
+            Sign Up
+          </a>
         </h4>
       </MainContainer>
     </form>

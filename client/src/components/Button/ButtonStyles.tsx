@@ -142,9 +142,8 @@ export const PillButton = styled(Button)`
 `;
 
 export const LoginButtonStyles = styled(DefaultButton)`
-  background: linear-gradient(to right, #3b2b3b 0%, #5b4269d1 79%);
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
+  background-color: var(--primary);
+  font-size: var(--sm);
   width: 65%;
   height: 3rem;
   border: none;

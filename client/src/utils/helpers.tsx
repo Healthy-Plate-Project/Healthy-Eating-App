@@ -33,3 +33,12 @@ export const STAR_RATING_NAMES = [
   "Dairy Free",
   "Nut Free",
 ];
+
+export const REVIEW_TONES = [
+  "Funny",
+  "Sassy",
+  "Angry",
+  "Excited",
+  "Happy",
+  "Sad",
+]

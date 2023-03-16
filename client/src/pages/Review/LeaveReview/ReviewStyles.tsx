@@ -3,7 +3,7 @@ import styled from "styled-components";
 /*paragraph input on forms*/
 export const Textarea = styled.textarea`
   width: 100%;
-  height: 50px;
+  height: 500px;
 `;
 
 export const Wrapper = styled.div`

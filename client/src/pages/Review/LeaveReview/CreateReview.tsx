@@ -4,14 +4,16 @@ import {
   SingleGoogleResultData,
   UserData,
   StarRating,
+  QuestionStarRating,
 } from "../../../utils/globalInterfaces";
 import goldStar from "../../../assets/images/gold-star.png";
 import whiteStar from "../../../assets/images/white-star.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { API, apiCall } from "../../../utils/serverCalls";
 import { GooglePhoto } from "../../../components/Photo/Photo";
-import { STAR_RATING_NAMES } from "../../../utils/helpers";
+import { REVIEW_TONES, STAR_RATING_NAMES } from "../../../utils/helpers";
 import { FullPageSpinner } from "../../../components/Spinner/Spinner";
+import { Button } from "../../../components/Button/ButtonStyles";
 
 type CreateReviewProps = {
   currentUser: UserData;
@@ -25,21 +27,52 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
   const [selectedStarRatings, setSelectedStarRatings] = useState(
     [] as StarRating[]
   );
+  const [selectedQuestionStarRatings, setSelectedQuestionStarRatings] =
+    useState([] as QuestionStarRating[]);
+  const [questions, setQuestions] = useState([] as string[]);
   const [reviewText, setReviewText] = useState("");
+  const [tone, setTone] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
       try {
+        setSpinner(true);
         const data = await apiCall(API.getRestaurant, { place_id });
         setRestaurantData(data);
-        setSpinner(false);
+        getQuestions(data);
       } catch (err) {
         console.log(err);
       }
     }
     fetchData();
-  }, [currentUser]);
+  }, []);
+
+  async function getQuestions(data: SingleGoogleResultData) {
+    const prompt = `Give me a list of 5 funny questions to rate a restaurant located at ${data.vicinity} called ${data.name}`;
+    const questionResponse = await apiCall(API.getChatResponse, {
+      message: prompt,
+    });
+    setQuestions(extractQuestions(questionResponse.content));
+    setSpinner(false);
+  }
+
+  async function getInitialReview() {
+    setSpinner(true);
+    const prompt = `Write me a review in about 200 words and in a ${tone} tone for a restaurant located at ${
+      restaurantData.vicinity
+    } called ${
+      restaurantData.name
+    } with the following 1-5 ratings in answer to the following questions without talking about the questions or the ratings:
+    ${selectedQuestionStarRatings.map(
+      (rating) => `${rating.question}: Star Rating - ${rating.star_rating}`
+    )}`;
+    const promptResponse = await apiCall(API.getChatResponse, {
+      message: prompt,
+    });
+    setReviewText(promptResponse.content);
+    setSpinner(false);
+  }
 
   useEffect(() => {
     async function checkUserReview() {
@@ -59,7 +92,7 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
       return null;
     }
     checkUserReview();
-  }, [currentUser, restaurantData.place_id]);
+  }, []);
 
   function starRatingHandler(diet: string, i: number) {
     let updatedRatings = [...selectedStarRatings];
@@ -110,9 +143,49 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
     });
   }
 
+  function questionStarRatingHandler(question: string, i: number) {
+    let updatedRatings = [...selectedQuestionStarRatings];
+    let ratingIndex = updatedRatings.findIndex(
+      (rating) => rating.question === question
+    );
+    if (ratingIndex === -1) {
+      updatedRatings.push({ question: question, star_rating: i });
+    } else {
+      updatedRatings[ratingIndex].star_rating = i;
+    }
+    setSelectedQuestionStarRatings(updatedRatings);
+  }
+
+  function renderQuestionStars(question: string) {
+    let starRating = 0;
+    const selectedQuestionStarRating = selectedQuestionStarRatings.find(
+      (rating) => rating.question === question
+    );
+    if (selectedQuestionStarRating) {
+      starRating = selectedQuestionStarRating.star_rating;
+    }
+    return Array.from({ length: 5 }, (_, i) => {
+      const id = `${i + 1}-${question}-star-id`;
+      const alt = `${i + 1}-${question}-Star-Rating`;
+      const src = i < starRating ? goldStar : whiteStar;
+      return (
+        <img
+          className="stars"
+          src={src}
+          alt={alt}
+          aria-label={alt}
+          key={id}
+          id={id}
+          onClick={() => questionStarRatingHandler(question, i + 1)}
+        />
+      );
+    });
+  }
+
   async function saveReviewHandler(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
+      setSpinner(true);
       const body = {
         user_id: currentUser._id,
         restaurant: {
@@ -126,11 +199,14 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
           types: [...restaurantData.types],
           vicinity: restaurantData.vicinity,
         },
-        star_ratings: selectedStarRatings,
+        // star_ratings: selectedStarRatings,
+        question_star_ratings: selectedQuestionStarRatings,
+        tone: tone,
         review_text: reviewText,
       };
       const data = await apiCall(API.postReview, body);
       if (data) {
+        setSpinner(false);
         navigate("/");
       }
     } catch (err) {
@@ -149,6 +225,19 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
     ) {
       return <p>You have already reviewed this restaurant!</p>;
     }
+  }
+
+  function extractQuestions(str: string): string[] {
+    const regex = /\d+\.\s(.+?)\?(\s|$)/g;
+    const questions: string[] = [];
+
+    let match;
+    while ((match = regex.exec(str))) {
+      const question = match[1].trim();
+      questions.push(question);
+    }
+
+    return questions;
   }
 
   const [spinner, setSpinner] = useState(true);
@@ -172,7 +261,7 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
               <h4>Google Rating</h4>
               {restaurantData.rating}
             </div>
-            <h3>Rate this restaurant based on the special diet:</h3>
+            {/* <h3>Rate this restaurant based on the special diet:</h3>
             {alreadyReviewed()}
             {STAR_RATING_NAMES.map((diet) => {
               return (
@@ -182,8 +271,37 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
                   <br></br>
                 </>
               );
+            })} */}
+            <br></br>
+            {questions.map((question) => {
+              return (
+                <>
+                  <label key={`${question}-label`}>{question}</label>
+                  <br></br>
+                  {renderQuestionStars(question)}
+                  <br></br>
+                </>
+              );
             })}
-            <h3>How was your experience?</h3>
+            <br></br>
+            <select onChange={(e) => setTone(e.target.value)}>
+              {REVIEW_TONES.map((tone) => {
+                return (
+                  <option key={tone} value={tone}>
+                    {tone}
+                  </option>
+                );
+              })}
+            </select>
+            <br></br>
+            <Button
+              type="button"
+              onClick={() => {
+                getInitialReview();
+              }}
+            >
+              Generate Review
+            </Button>
             <Textarea
               name="review"
               id="review"

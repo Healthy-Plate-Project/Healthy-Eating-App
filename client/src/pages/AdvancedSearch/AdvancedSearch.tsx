@@ -9,11 +9,9 @@ import {
   Distance,
   Form,
 } from "./AdvancedSearchStyles";
-import { PriceIcon, LikeIcon, DirectionsIcon } from "../../assets/icons";
+import { PriceIcon } from "../../assets/icons";
 import { Button } from "../../components/Button/ButtonStyles";
 import { PrimaryInput, SmallInput } from "../../components/Input/InputStyles";
-import { API, apiCall } from "../../utils/serverCalls";
-import { FullPageSpinner } from "../../components/Spinner/Spinner";
 
 export function AdvancedSearch() {
   // getting the event handlers from our custom hook
@@ -23,14 +21,6 @@ export function AdvancedSearch() {
     console.log(values);
   }
 
-  const [response, setResponse] = useState("");
-  console.log(response);
-  const [messageInput, setMessageInput] = useState("");
-
-  const [spinner, setSpinner] = useState(false);
-  if (spinner) {
-    return <FullPageSpinner />;
-  }
   return (
     <>
       <AdvancedSearchWrapper>
@@ -120,23 +110,6 @@ export function AdvancedSearch() {
           </fieldset>
         </Form>
       </AdvancedSearchWrapper>
-
-      <input onChange={(e) => setMessageInput(e.target.value)}></input>
-      <br></br>
-      <Button
-        type="button"
-        onClick={async () => {
-          setSpinner(true);
-          const test = await apiCall(API.getChatResponse, {
-            message: messageInput,
-          });
-          setResponse(test.content);
-          setSpinner(false);
-        }}
-      >
-        Test Chat GPT
-      </Button>
-      {response && <p>{response}</p>}
     </>
   );
 }

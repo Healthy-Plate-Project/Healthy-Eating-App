@@ -97,6 +97,11 @@ export interface StarRating {
   star_rating: number;
 }
 
+export interface QuestionStarRating {
+  question: string;
+  star_rating: number;
+}
+
 export interface GoogleResultPhoto {
   photo_reference: string;
   height: number;

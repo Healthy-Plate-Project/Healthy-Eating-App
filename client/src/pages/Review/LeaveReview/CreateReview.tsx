@@ -33,15 +33,14 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
   const [reviewText, setReviewText] = useState("");
   const [experience, setExperience] = useState("");
   const [tone, setTone] = useState("");
+  const [customTone, setCustomTone] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
       try {
-        setSpinner(true);
         const data = await apiCall(API.getRestaurant, { place_id });
         setRestaurantData(data);
-        getQuestions(data);
       } catch (err) {
         console.log(err);
       }
@@ -83,10 +82,28 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
           const review = currentUser.reviews.find(
             (review) => review.place_id === restaurantData.place_id
           );
-          if (review && review.review_text && review.star_ratings) {
+          if (
+            review &&
+            review.review_text &&
+            review.star_ratings &&
+            review.question_star_ratings
+          ) {
             setReviewText(review.review_text);
-            setSelectedStarRatings(review.star_ratings);
+            if (review.star_ratings.length > 0) {
+              setSelectedStarRatings(review.star_ratings);
+              setSpinner(false);
+            }
+            if (review.question_star_ratings.length > 0) {
+              setSelectedQuestionStarRatings(review.question_star_ratings);
+              setSpinner(false);
+            } else {
+              getQuestions(restaurantData);
+            }
+          } else {
+            getQuestions(restaurantData);
           }
+        } else if (currentUser) {
+          getQuestions(restaurantData);
         }
       } catch (err) {
         console.log(err);
@@ -201,11 +218,12 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
           types: [...restaurantData.types],
           vicinity: restaurantData.vicinity,
         },
-        // star_ratings: selectedStarRatings,
+        star_ratings: selectedStarRatings,
         question_star_ratings: selectedQuestionStarRatings,
-        tone: tone,
+        tone: customTone ? customTone : tone,
         review_text: reviewText,
       };
+      console.log(body);
       const data = await apiCall(API.postReview, body);
       if (data) {
         setSpinner(false);
@@ -294,7 +312,21 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
                   </option>
                 );
               })}
+              <option key="Custom" value="Custom">
+                Custom
+              </option>
             </select>
+            <br></br>
+            {tone === "Custom" && (
+              <>
+                <label>Custom Tone</label>
+                <br></br>
+                <input
+                  type="text"
+                  onChange={(e) => setCustomTone(e.target.value)}
+                />
+              </>
+            )}
             <br></br>
             Write about your experience:
             <ExperienceTextarea

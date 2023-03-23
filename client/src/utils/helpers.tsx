@@ -41,4 +41,4 @@ export const REVIEW_TONES = [
   "Excited",
   "Happy",
   "Sad",
-]
+];

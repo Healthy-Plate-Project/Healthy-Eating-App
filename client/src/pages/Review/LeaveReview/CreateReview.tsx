@@ -1,5 +1,5 @@
 import React, { FormEvent, useEffect, useState } from "react";
-import { Textarea, Wrapper } from "./ReviewStyles";
+import { ExperienceTextarea, ReviewTextarea, Wrapper } from "./ReviewStyles";
 import {
   SingleGoogleResultData,
   UserData,
@@ -31,6 +31,7 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
     useState([] as QuestionStarRating[]);
   const [questions, setQuestions] = useState([] as string[]);
   const [reviewText, setReviewText] = useState("");
+  const [experience, setExperience] = useState("");
   const [tone, setTone] = useState("");
   const navigate = useNavigate();
 
@@ -63,10 +64,11 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
       restaurantData.vicinity
     } called ${
       restaurantData.name
-    } with the following 1-5 ratings in answer to the following questions without talking about the questions or the ratings:
+    } with the following 1-5 ratings in answer to the following questions without mentioning the questions or the ratings themselves:
     ${selectedQuestionStarRatings.map(
       (rating) => `${rating.question}: Star Rating - ${rating.star_rating}`
-    )}`;
+    )}.
+    This review needs to also be based on the following experience: ${experience}`;
     const promptResponse = await apiCall(API.getChatResponse, {
       message: prompt,
     });
@@ -261,7 +263,7 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
               <h4>Google Rating</h4>
               {restaurantData.rating}
             </div>
-            {/* <h3>Rate this restaurant based on the special diet:</h3>
+            <h3>Rate this restaurant based on the special diet:</h3>
             {alreadyReviewed()}
             {STAR_RATING_NAMES.map((diet) => {
               return (
@@ -271,7 +273,7 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
                   <br></br>
                 </>
               );
-            })} */}
+            })}
             <br></br>
             {questions.map((question) => {
               return (
@@ -294,6 +296,16 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
               })}
             </select>
             <br></br>
+            Write about your experience:
+            <ExperienceTextarea
+              name="experience"
+              id="experience"
+              aria-label="experience"
+              key="experience-textarea"
+              value={experience}
+              onChange={(e) => setExperience(e.target.value)}
+            ></ExperienceTextarea>
+            <br></br>
             <Button
               type="button"
               onClick={() => {
@@ -302,14 +314,14 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
             >
               Generate Review
             </Button>
-            <Textarea
+            <ReviewTextarea
               name="review"
               id="review"
               aria-label="review"
               key="review-textarea"
               value={reviewText}
               onChange={(e) => setReviewText(e.target.value)}
-            ></Textarea>
+            ></ReviewTextarea>
             <button type="submit">Submit</button>
           </form>
         </div>

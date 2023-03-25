@@ -30,15 +30,15 @@ app.use(routes);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 
-  app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
-  });
+  // app.get('/login', (req, res) => {
+  //   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  // });
 
-  app.get("/multiple-results/*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/build/index.html"));
-  });
+  // app.get("/multiple-results/*", (req, res) => {
+  //   res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  // });
 
-  router.get("*", (req, res) => {
+  app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
   });
 }

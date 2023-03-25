@@ -12,6 +12,7 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "seeds": "cd server && node seeds/index.js && cd ..",
     "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "demoDeploy": "npm run build && gcloud app deploy demo.yaml",
     "create-env": "printenv > .env",

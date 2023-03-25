@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter } from "react-router-dom";
-import { Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { SignUp } from "./pages/SignUp/SignUp";
 import { AdvancedSearch } from "./pages/AdvancedSearch/AdvancedSearch";

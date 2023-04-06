@@ -88,9 +88,13 @@ export interface ReviewRestaurantData {
   place_id: string;
   vicinity: string;
   price_level: number;
-  lat: number;
-  lng: number;
-  photo_reference: string;
+  geometry: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
+  photos: GoogleResultPhoto[];
   rating: number;
   types: [string];
   review: ReviewData;
@@ -102,6 +106,7 @@ export interface ReviewData {
   place_id: string;
   star_ratings?: StarRating[];
   question_star_ratings?: QuestionStarRating[];
+  tone?: string;
   review_text?: string;
   _id: string;
 }

@@ -5,7 +5,7 @@ const userRoutes = require("./userRoutes");
 const reviewRoutes = require("./reviewRoutes");
 const photoRoutes = require("./photoRoutes");
 const locationRoutes = require("./locationRoutes");
-chatGPTRoutes = require("./chatGPTRoutes");
+const chatGPTRoutes = require("./chatGPTRoutes");
 
 router.use("/restaurant", restaurantRoutes);
 router.use("/review", reviewRoutes);

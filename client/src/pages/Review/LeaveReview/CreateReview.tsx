@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { ExperienceTextarea, ReviewTextarea, Wrapper } from "./ReviewStyles";
 import {
   SingleGoogleResultData,
@@ -14,12 +14,19 @@ import { GooglePhoto } from "../../../components/Photo/Photo";
 import { REVIEW_TONES, STAR_RATING_NAMES } from "../../../utils/helpers";
 import { FullPageSpinner } from "../../../components/Spinner/Spinner";
 import { Button } from "../../../components/Button/ButtonStyles";
+import { FavoriteIcon } from "../../../components/Icon/FavoriteIcon";
 
 type CreateReviewProps = {
   currentUser: UserData;
+  currentUserTrigger: boolean;
+  setCurrentUserTrigger: any;
 };
 
-export function CreateReview({ currentUser }: CreateReviewProps) {
+export function CreateReview({
+  currentUser,
+  currentUserTrigger,
+  setCurrentUserTrigger,
+}: CreateReviewProps) {
   const { place_id } = useParams();
   const [restaurantData, setRestaurantData] = useState(
     {} as SingleGoogleResultData
@@ -29,31 +36,79 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
   );
   const [selectedQuestionStarRatings, setSelectedQuestionStarRatings] =
     useState([] as QuestionStarRating[]);
-  const [questions, setQuestions] = useState([] as string[]);
   const [reviewText, setReviewText] = useState("");
   const [experience, setExperience] = useState("");
   const [tone, setTone] = useState("");
   const [customTone, setCustomTone] = useState("");
   const navigate = useNavigate();
+  const hasFetchedQuestions = useRef(false);
 
   useEffect(() => {
+    let isMounted = true;
+
     async function fetchData() {
       try {
         const data = await apiCall(API.getRestaurant, { place_id });
         setRestaurantData(data);
+        if (Object.keys(currentUser).length > 0 && currentUser.reviews) {
+          const review = currentUser.reviews.find(
+            (review) => review.place_id === data.place_id
+          );
+          if (review) {
+            review.tone && setTone(review.tone);
+            review.review_text && setReviewText(review.review_text);
+            review.star_ratings && setSelectedStarRatings(review.star_ratings);
+            if (review.question_star_ratings) {
+              let questionStarRatings = [] as QuestionStarRating[];
+              review.question_star_ratings.map((question) => {
+                questionStarRatings.push({
+                  question: question.question,
+                  star_rating: question.star_rating,
+                });
+              });
+              setSelectedQuestionStarRatings(
+                questionStarRatings as QuestionStarRating[]
+              );
+            } else {
+              if (!hasFetchedQuestions.current) {
+                getQuestions(data);
+                hasFetchedQuestions.current = true;
+              }
+            }
+            setSpinner(false);
+          } else {
+            if (!hasFetchedQuestions.current) {
+              getQuestions(data);
+              hasFetchedQuestions.current = true;
+            }
+          }
+        } else if (
+          Object.keys(currentUser).length > 0 &&
+          !currentUser.reviews
+        ) {
+          if (!hasFetchedQuestions.current) {
+            getQuestions(data);
+            hasFetchedQuestions.current = true;
+          }
+        }
       } catch (err) {
         console.log(err);
       }
     }
-    fetchData();
-  }, []);
+    if (isMounted) {
+      fetchData();
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, [currentUser]);
 
   async function getQuestions(data: SingleGoogleResultData) {
     const prompt = `Give me a list of 5 funny questions to rate a restaurant located at ${data.vicinity} called ${data.name}`;
     const questionResponse = await apiCall(API.getChatResponse, {
       message: prompt,
     });
-    setQuestions(extractQuestions(questionResponse.content));
+    setSelectedQuestionStarRatings(extractQuestions(questionResponse.content));
     setSpinner(false);
   }
 
@@ -74,44 +129,6 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
     setReviewText(promptResponse.content);
     setSpinner(false);
   }
-
-  useEffect(() => {
-    async function checkUserReview() {
-      try {
-        if (currentUser && currentUser.reviews) {
-          const review = currentUser.reviews.find(
-            (review) => review.place_id === restaurantData.place_id
-          );
-          if (
-            review &&
-            review.review_text &&
-            review.star_ratings &&
-            review.question_star_ratings
-          ) {
-            setReviewText(review.review_text);
-            if (review.star_ratings.length > 0) {
-              setSelectedStarRatings(review.star_ratings);
-              setSpinner(false);
-            }
-            if (review.question_star_ratings.length > 0) {
-              setSelectedQuestionStarRatings(review.question_star_ratings);
-              setSpinner(false);
-            } else {
-              getQuestions(restaurantData);
-            }
-          } else {
-            getQuestions(restaurantData);
-          }
-        } else if (currentUser) {
-          getQuestions(restaurantData);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-      return null;
-    }
-    checkUserReview();
-  }, []);
 
   function starRatingHandler(diet: string, i: number) {
     let updatedRatings = [...selectedStarRatings];
@@ -223,7 +240,6 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
         tone: customTone ? customTone : tone,
         review_text: reviewText,
       };
-      console.log(body);
       const data = await apiCall(API.postReview, body);
       if (data) {
         setSpinner(false);
@@ -247,16 +263,17 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
     }
   }
 
-  function extractQuestions(str: string): string[] {
+  function extractQuestions(str: string): QuestionStarRating[] {
     const regex = /\d+\.\s(.+?)\?(\s|$)/g;
-    const questions: string[] = [];
-
+    const questions: QuestionStarRating[] = [];
     let match;
     while ((match = regex.exec(str))) {
       const question = match[1].trim();
-      questions.push(question);
+      questions.push({
+        question: question,
+        star_rating: 0,
+      });
     }
-
     return questions;
   }
 
@@ -276,6 +293,12 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
       <Wrapper>
         <div>
           <h1>{restaurantData.name}</h1>
+          <FavoriteIcon
+            singleRestaurantData={restaurantData}
+            currentUser={currentUser}
+            currentUserTrigger={currentUserTrigger}
+            setCurrentUserTrigger={setCurrentUserTrigger}
+          ></FavoriteIcon>
           <form onSubmit={(e) => saveReviewHandler(e)}>
             <div>
               <h4>Google Rating</h4>
@@ -293,16 +316,26 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
               );
             })}
             <br></br>
-            {questions.map((question) => {
+            {selectedQuestionStarRatings.map((question) => {
               return (
                 <>
-                  <label key={`${question}-label`}>{question}</label>
+                  <label key={`${question}-label`}>{question.question}</label>
                   <br></br>
-                  {renderQuestionStars(question)}
+                  {renderQuestionStars(question.question)}
                   <br></br>
                 </>
               );
             })}
+            <br></br>
+            <Button
+              type="button"
+              onClick={() => {
+                setSpinner(true);
+                getQuestions(restaurantData);
+              }}
+            >
+              Regenerate Questions
+            </Button>
             <br></br>
             <select onChange={(e) => setTone(e.target.value)}>
               {REVIEW_TONES.map((tone) => {
@@ -354,7 +387,7 @@ export function CreateReview({ currentUser }: CreateReviewProps) {
               value={reviewText}
               onChange={(e) => setReviewText(e.target.value)}
             ></ReviewTextarea>
-            <button type="submit">Submit</button>
+            <Button type="submit">Submit</Button>
           </form>
         </div>
       </Wrapper>

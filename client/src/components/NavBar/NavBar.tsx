@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { NavbarStyled } from "./NavbarStyles";
 import { NavButton } from "./NavButton";
 
@@ -18,6 +18,7 @@ interface Props {
 
 export function Navbar({ currentUser, setCurrentUser }: NavbarPageProps) {
   const [open, setOpen] = useState(false);
+  let navigate = useNavigate();
 
   async function logout(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault();
@@ -25,7 +26,7 @@ export function Navbar({ currentUser, setCurrentUser }: NavbarPageProps) {
       const data = await apiCall(API.logout, {}, true);
       if (data.message === "Successfully logged out") {
         setCurrentUser({});
-        window.location.reload();
+        navigate("/");
       }
     } catch (err) {
       console.log(err);

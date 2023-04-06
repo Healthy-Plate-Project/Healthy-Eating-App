@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { apiCall, API } from "../../utils/serverCalls";
 import {
   H1,
@@ -13,6 +13,7 @@ import { GooglePhoto } from "../../components/Photo/Photo";
 import { SingleGoogleResultData, UserData } from "../../utils/globalInterfaces";
 import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
 import { FullPageSpinner } from "../../components/Spinner/Spinner";
+import { Button } from "../../components/Button/ButtonStyles";
 
 type SingleSearchResultPageProps = {
   currentUser: UserData;
@@ -28,6 +29,7 @@ export function SingleSearchResultPage({
   const [restaurantData, setRestaurantData] = useState(
     {} as SingleGoogleResultData
   );
+  let navigate = useNavigate();
   useEffect(() => {
     async function fetchData() {
       try {
@@ -92,10 +94,15 @@ export function SingleSearchResultPage({
         <div>
           <H3>User Reviews</H3>
           <hr />
-          <a href={`/create-review/${restaurantData.place_id}`}>
-            <p className="card-title">Create Review</p>
-          </a>
         </div>
+        <Button
+          type="button"
+          onClick={() => {
+            navigate(`/create-review/${restaurantData.place_id}`);
+          }}
+        >
+          Create Review
+        </Button>
       </Wrapper>
     </>
   );

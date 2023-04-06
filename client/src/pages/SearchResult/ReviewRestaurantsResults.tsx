@@ -19,6 +19,7 @@ import { FullPageSpinner } from "../../components/Spinner/Spinner";
 import { API, apiCall } from "../../utils/serverCalls";
 import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
 import { Button } from "../../components/Button/ButtonStyles";
+import { useNavigate } from "react-router-dom";
 
 type ReviewRestaurantResultsProps = {
   currentUser: UserData;
@@ -34,6 +35,7 @@ export function ReviewRestaurantsResults({
   const [reviewRestaurants, setReviewRestaurants] = useState(
     [] as ReviewRestaurantData[]
   );
+  let navigate = useNavigate();
 
   useEffect(() => {
     async function checkUserData() {
@@ -57,9 +59,20 @@ export function ReviewRestaurantsResults({
             place_id: data.place_id,
             vicinity: data.vicinity,
             price_level: data.price_level,
-            lat: data.geometry.location.lat,
-            lng: data.geometry.location.lng,
-            photo_reference: data.photos[0].photo_reference,
+            geometry: {
+              location: {
+                lat: data.geometry.location.lat,
+                lng: data.geometry.location.lng,
+              },
+            },
+            photos: [
+              {
+                photo_reference: data.photos[0].photo_reference,
+                height: data.photos[0].height,
+                html_attributions: data.photos[0].html_attributions,
+                width: data.photos[0].width,
+              },
+            ],
             rating: data.rating,
             types: data.types,
             review: {
@@ -77,6 +90,7 @@ export function ReviewRestaurantsResults({
                   star_rating: rating.star_rating,
                 };
               }),
+              tone: review.tone,
               review_text: review.review_text,
               _id: review._id,
             },
@@ -143,7 +157,7 @@ export function ReviewRestaurantsResults({
             <>
               <CardStyled key={`${restaurant.place_id}-${i}`}>
                 <GooglePhoto
-                  photo_reference={restaurant.photo_reference}
+                  photo_reference={restaurant.photos[0].photo_reference}
                   max_height="200"
                   max_width="200"
                   alt={restaurant.name}
@@ -163,14 +177,11 @@ export function ReviewRestaurantsResults({
                       <a href="directions_url"></a>{" "}
                     </Directions>
                     <FavoriteIcon
-                      favRestaurantData={restaurant}
+                      reviewRestaurantData={restaurant}
                       currentUser={currentUser}
                       currentUserTrigger={currentUserTrigger}
                       setCurrentUserTrigger={setCurrentUserTrigger}
                     ></FavoriteIcon>
-                    <a href={`/create-review/${restaurant.place_id}`}>
-                      <p className="card-title">Change Review</p>
-                    </a>
                   </Details>
                 </Body>
               </CardStyled>
@@ -180,6 +191,15 @@ export function ReviewRestaurantsResults({
               {renderStarRatings(star_ratings)}
               <h3>Question Star Ratings:</h3>
               {renderQuestionStarRatings(question_star_ratings)}
+              <Button
+                type="button"
+                onClick={() => {
+                  navigate(`/create-review/${restaurant.place_id}`);
+                }}
+              >
+                Update Review
+              </Button>
+              <br></br>
               <Button
                 type="button"
                 onClick={() => {

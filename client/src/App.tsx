@@ -95,7 +95,13 @@ export default function App() {
           />
           <Route
             path="/create-review/:place_id"
-            element={<CreateReview currentUser={currentUser} />}
+            element={
+              <CreateReview
+                currentUser={currentUser}
+                currentUserTrigger={currentUserTrigger}
+                setCurrentUserTrigger={setCurrentUserTrigger}
+              />
+            }
           />
         </Routes>
       </BrowserRouter>

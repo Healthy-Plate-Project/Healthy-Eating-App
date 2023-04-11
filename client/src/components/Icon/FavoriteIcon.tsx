@@ -3,17 +3,20 @@ import { HeartIcon } from "../../pages/SearchResult/SingleSearchResultStyles";
 import {
   FavRestaurantData,
   MultipleGoogleResultData,
+  ReviewRestaurantData,
   SingleGoogleResultData,
   UserData,
 } from "../../utils/globalInterfaces";
 import { apiCall, API } from "../../utils/serverCalls";
 import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
+import { RelativeSpinner } from "../Spinner/Spinner";
 
 type FavoriteIconProps = {
   singleRestaurantData?: SingleGoogleResultData;
   multipleRestaurantData?: MultipleGoogleResultData;
   favRestaurantData?: FavRestaurantData;
+  reviewRestaurantData?: ReviewRestaurantData;
   currentUser: UserData;
   currentUserTrigger: boolean;
   setCurrentUserTrigger: any;
@@ -23,6 +26,7 @@ export function FavoriteIcon({
   singleRestaurantData,
   multipleRestaurantData,
   favRestaurantData,
+  reviewRestaurantData,
   currentUser,
   currentUserTrigger,
   setCurrentUserTrigger,
@@ -31,12 +35,16 @@ export function FavoriteIcon({
   useEffect(() => {
     function checkUserData() {
       const restaurantData =
-        singleRestaurantData || multipleRestaurantData || favRestaurantData;
+        singleRestaurantData ||
+        multipleRestaurantData ||
+        favRestaurantData ||
+        reviewRestaurantData;
       if (restaurantData && currentUser.fav_restaurants) {
         const isFavRestaurant = currentUser.fav_restaurants.some(
           (place) => place.place_id === restaurantData.place_id
         );
         setIsFavRestaurant(isFavRestaurant);
+        setSpinner(false);
       }
     }
     checkUserData();
@@ -58,11 +66,17 @@ export function FavoriteIcon({
     });
     setCurrentUserTrigger(!currentUserTrigger);
   }
+  const [spinner, setSpinner] = useState(true);
+  if (spinner) return <RelativeSpinner />;
   return (
     <span
-      onClick={() =>
+      onClick={() => {
+        setSpinner(true);
         setIsFavRestaurant((prevState) => {
-          const restaurantData = singleRestaurantData || multipleRestaurantData;
+          const restaurantData =
+            singleRestaurantData ||
+            multipleRestaurantData ||
+            reviewRestaurantData;
           if (restaurantData) {
             if (prevState) {
               deleteFavRestaurant(restaurantData.place_id);
@@ -84,8 +98,9 @@ export function FavoriteIcon({
           }
           // TODO add error handling
           return !prevState;
-        })
-      }
+        });
+        setSpinner(false);
+      }}
     >
       {isFavRestaurant ? (
         <HeartIcon src={heartFilled} />

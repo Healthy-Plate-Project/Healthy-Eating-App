@@ -52,7 +52,7 @@ const userController = {
       res.cookie("jwt", token, { httpOnly: true, maxAge: MAX_AGE });
       const [fav_restaurants, reviews] = await Promise.all([
         Restaurant.find({ place_id: { $in: user.fav_restaurants } }),
-        Review.find({ _id: { $in: user.reviews } }),
+        Review.find({ user_id: user._id }),
       ]);
       res.status(200).json({
         message: "Successful login",

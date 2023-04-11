@@ -32,7 +32,14 @@ const reviewController = {
         place_id: req.body.restaurant.place_id,
       });
       if (review) {
-        await Review.findOneAndUpdate({ _id: review._id }, req.body);
+        await Review.findOneAndUpdate(
+          { _id: review._id },
+          {
+            star_ratings: req.body.star_ratings,
+            question_star_ratings: req.body.question_star_ratings,
+            review_text: req.body.review_text,
+          }
+        );
         return res.status(200).json({
           message: `Review ID# ${review._id} updated!`,
         });
@@ -41,6 +48,7 @@ const reviewController = {
         user_id: req.body.user_id,
         place_id: req.body.restaurant.place_id,
         star_ratings: req.body.star_ratings,
+        question_star_ratings: req.body.question_star_ratings,
         review_text: req.body.review_text,
       });
       if (newReview) {

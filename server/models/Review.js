@@ -22,6 +22,21 @@ const reviewSchema = new Schema(
         },
       ],
     },
+    question_star_ratings: {
+      type: [
+        {
+          question: {
+            type: String,
+          },
+          star_rating: {
+            type: Number,
+          },
+        },
+      ],
+    },
+    tone: {
+      type: String,
+    },
     review_text: {
       type: String,
     },

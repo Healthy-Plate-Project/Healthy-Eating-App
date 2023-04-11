@@ -14,6 +14,7 @@ import { apiCall, API } from "./utils/serverCalls";
 import { CreateReview } from "./pages/Review/LeaveReview/CreateReview";
 import { FavRestaurantsResults } from "./pages/SearchResult/FavoriteRestaurantsResults";
 import { MulitpleSearchResultsPage } from "./pages/SearchResult/MultipleSearchResults";
+import { ReviewRestaurantsResults } from "./pages/SearchResult/ReviewRestaurantsResults";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({} as UserData);
@@ -82,8 +83,24 @@ export default function App() {
             }
           />
           <Route
+            path="reviews"
+            element={
+              <ReviewRestaurantsResults
+                currentUser={currentUser}
+                currentUserTrigger={currentUserTrigger}
+                setCurrentUserTrigger={setCurrentUserTrigger}
+              />
+            }
+          />
+          <Route
             path="/create-review/:place_id"
-            element={<CreateReview currentUser={currentUser} />}
+            element={
+              <CreateReview
+                currentUser={currentUser}
+                currentUserTrigger={currentUserTrigger}
+                setCurrentUserTrigger={setCurrentUserTrigger}
+              />
+            }
           />
         </Routes>
       </BrowserRouter>

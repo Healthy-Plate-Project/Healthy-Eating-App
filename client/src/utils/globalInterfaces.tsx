@@ -83,17 +83,41 @@ export interface FavRestaurantData {
   updated_at?: Date;
 }
 
+export interface ReviewRestaurantData {
+  name: string;
+  place_id: string;
+  vicinity: string;
+  price_level: number;
+  geometry: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
+  photos: GoogleResultPhoto[];
+  rating: number;
+  types: [string];
+  review: ReviewData;
+  _id: string;
+}
+
 export interface ReviewData {
   user_id: string;
   place_id: string;
-  star_ratings?: [StarRating];
+  star_ratings?: StarRating[];
+  question_star_ratings?: QuestionStarRating[];
+  tone?: string;
   review_text?: string;
-  created_at?: Date;
-  updated_at?: Date;
+  _id: string;
 }
 
 export interface StarRating {
   name: string;
+  star_rating: number;
+}
+
+export interface QuestionStarRating {
+  question: string;
   star_rating: number;
 }
 

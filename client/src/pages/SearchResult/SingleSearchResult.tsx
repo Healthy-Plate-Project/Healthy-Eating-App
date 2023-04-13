@@ -15,6 +15,7 @@ import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
 import { FullPageSpinner } from "../../components/Spinner/Spinner";
 import { Button } from "../../components/Button/ButtonStyles";
 
+
 type SingleSearchResultPageProps = {
   currentUser: UserData;
   currentUserTrigger: boolean;
@@ -75,6 +76,7 @@ export function SingleSearchResultPage({
         <PriceContainer>{priceLevel()}</PriceContainer>
         <p>
           <a href={restaurantData.url} rel="noreferrer" target="_blank">
+          <span className="material-symbols-outlined">location_on</span>
             {restaurantData.vicinity}
           </a>
         </p>

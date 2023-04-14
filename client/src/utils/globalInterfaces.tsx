@@ -5,7 +5,7 @@ export interface UserData {
   first_name?: string;
   last_name?: string;
   message?: string;
-  fav_restaurants?: [FavRestaurantData];
+  fav_restaurants?: [Restaurant];
   reviews?: [ReviewData];
   created_at?: Date;
   updated_at?: Date;
@@ -19,6 +19,37 @@ export interface ReviewsByUser {
 export interface ReviewsByRestaurant {
   place_id: string;
   reviews: [ReviewData];
+}
+
+export interface Restaurant {
+  name: string;
+  place_id: string;
+  business_status?: string;
+  formatted_address?: string;
+  formatted_phone_number?: string;
+  geometry?: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
+  opening_hours?: {
+    open_now: true;
+    weekday_text?: [string];
+  };
+  photos: [GoogleResultPhoto];
+  price_level?: number;
+  rating?: number;
+  types?: [string];
+  url?: string;
+  user_ratings_total?: number;
+  vicinity?: string;
+  website?: string;
+  created_at?: Date;
+  updated_at?: Date;
+  review?: ReviewData;
+  reviews?: [GoogleResultReview];
+  _id?: string;
 }
 
 export interface SingleGoogleResultData {
@@ -124,7 +155,7 @@ export interface QuestionStarRating {
 export interface GoogleResultPhoto {
   photo_reference: string;
   height: number;
-  html_attributions: string;
+  html_attributions: [string];
   width: number;
 }
 

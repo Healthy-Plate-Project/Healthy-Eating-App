@@ -5,6 +5,7 @@ const restaurantSchema = new Schema(
     name: {
       type: String,
       trim: true,
+      required: true,
     },
     place_id: {
       type: String,
@@ -12,30 +13,60 @@ const restaurantSchema = new Schema(
       required: true,
       unique: true,
     },
-    vicinity: {
+    formatted_address: {
       type: String,
-      trim: true,
     },
+    formatted_phone_number: {
+      type: String,
+    },
+    geometry: {
+      location: {
+        lat: {
+          type: Number,
+        },
+        lng: {
+          type: Number,
+        },
+      },
+    },
+    opening_hours: {
+      open_now: {
+        type: Boolean,
+      },
+      weekday_text: [String]
+    },
+    photos: [
+      {
+        photo_reference: {
+          type: String,
+        },
+        height: {
+          type: Number,
+        },
+        html_attributions: [String],
+        width: {
+          type: Number,
+        },
+      }
+    ],
     price_level: {
       type: Number,
-    },
-    lat: {
-      type: Number,
-      trim: true,
-    },
-    lng: {
-      type: Number,
-      trim: true,
-    },
-    photo_reference: {
-      type: String,
-      trim: true,
     },
     rating: {
       type: Number,
     },
-    types: {
-      type: [String],
+    types: [String],
+    url: {
+      type: String,
+    },
+    user_ratings_total: {
+      type: Number,
+    },
+    vicinity: {
+      type: String,
+    },
+    website: {
+      type: String,
     },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }

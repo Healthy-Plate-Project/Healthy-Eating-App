@@ -3,6 +3,7 @@ import { HeartIcon } from "../../pages/SearchResult/SingleSearchResultStyles";
 import {
   FavRestaurantData,
   MultipleGoogleResultData,
+  Restaurant,
   ReviewRestaurantData,
   SingleGoogleResultData,
   UserData,
@@ -13,6 +14,7 @@ import heartFilled from "../../assets/images/heart-filled.svg";
 import { RelativeSpinner } from "../Spinner/Spinner";
 
 type FavoriteIconProps = {
+  restaurant?: Restaurant;
   singleRestaurantData?: SingleGoogleResultData;
   multipleRestaurantData?: MultipleGoogleResultData;
   favRestaurantData?: FavRestaurantData;
@@ -23,6 +25,7 @@ type FavoriteIconProps = {
 };
 
 export function FavoriteIcon({
+  restaurant,
   singleRestaurantData,
   multipleRestaurantData,
   favRestaurantData,
@@ -34,14 +37,9 @@ export function FavoriteIcon({
   const [isFavRestaurant, setIsFavRestaurant] = useState(false);
   useEffect(() => {
     function checkUserData() {
-      const restaurantData =
-        singleRestaurantData ||
-        multipleRestaurantData ||
-        favRestaurantData ||
-        reviewRestaurantData;
-      if (restaurantData && currentUser.fav_restaurants) {
+      if (restaurant && currentUser.fav_restaurants) {
         const isFavRestaurant = currentUser.fav_restaurants.some(
-          (place) => place.place_id === restaurantData.place_id
+          (place) => place.place_id === restaurant.place_id
         );
         setIsFavRestaurant(isFavRestaurant);
         setSpinner(false);
@@ -49,11 +47,12 @@ export function FavoriteIcon({
     }
     checkUserData();
   }, []);
-  async function saveFavRestaurant(data: FavRestaurantData) {
+  async function saveFavRestaurant(data: Restaurant) {
     const body = {
       user_id: currentUser._id,
-      ...data,
+      restaurant: { ...data },
     };
+    console.log(body)
     const response = await apiCall(API.postFavRestaurantByUser, body);
     response
       ? setCurrentUserTrigger(!currentUserTrigger)
@@ -73,28 +72,12 @@ export function FavoriteIcon({
       onClick={() => {
         setSpinner(true);
         setIsFavRestaurant((prevState) => {
-          const restaurantData =
-            singleRestaurantData ||
-            multipleRestaurantData ||
-            reviewRestaurantData;
-          if (restaurantData) {
+          if (restaurant) {
             if (prevState) {
-              deleteFavRestaurant(restaurantData.place_id);
+              deleteFavRestaurant(restaurant.place_id);
             } else {
-              saveFavRestaurant({
-                lat: restaurantData.geometry.location.lat,
-                lng: restaurantData.geometry.location.lng,
-                name: restaurantData.name,
-                photo_reference: restaurantData.photos[0].photo_reference,
-                place_id: restaurantData.place_id,
-                price_level: restaurantData.price_level,
-                rating: restaurantData.rating,
-                types: [...restaurantData.types],
-                vicinity: restaurantData.vicinity,
-              });
+              saveFavRestaurant(restaurant);
             }
-          } else if (favRestaurantData) {
-            deleteFavRestaurant(favRestaurantData.place_id);
           }
           // TODO add error handling
           return !prevState;

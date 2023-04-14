@@ -84,17 +84,7 @@ export const API = {
   postReview: "review/post",
   // body = {
   //   user_id: string, **REQUIRED**
-  //   restaurant: object, **REQUIRED** {
-  //     name: string, **OPTIONAL**
-  //     place_id: string, **REQUIRED**
-  //     vicinity: string, **OPTIONAL**
-  //     price_level: number, between 1 and 4, **OPTIONAL**
-  //     lat: number, **OPTIONAL**
-  //     lng: number, **OPTIONAL**
-  //     photo_reference: string, **OPTIONAL**
-  //     rating: number, between 1 and 5, **OPTIONAL**
-  //     types: array of strings, like "mexican", "sushi", **OPTIONAL**
-  //   }
+  //   restaurant: Restaurant, **REQUIRED**
   //   star_ratings: array of objects **OPTIONAL** = [{
   //     name: string, **OPTIONAL**
   //     rating: number, between 1 and 5, **OPTIONAL**
@@ -153,33 +143,13 @@ export const API = {
 
   // --------------------------------------------------------------------------------------------
   postSavedRestaurant: "restaurant/saved/post",
-  // body = {
-  //   name: string, **OPTIONAL**
-  //   place_id: string, **REQUIRED**
-  //   vicinity: string, **OPTIONAL**
-  //   price_level: number, between 1 and 4, **OPTIONAL**
-  //   lat: number, **OPTIONAL**
-  //   lng: number, **OPTIONAL**
-  //   photo_reference: string, **OPTIONAL**
-  //   rating: number, between 1 and 5, **OPTIONAL**
-  //   types: array of strings, like "mexican", "sushi", **OPTIONAL**
-  // }
+  // body = restaurant: Restaurant, **REQUIRED**
   // const data = await apiCall(API.postSavedRestaurant, body);
   // returns the restaurant object that was saved
 
   // --------------------------------------------------------------------------------------------
   updateSavedRestaurant: "restaurant/saved/put",
-  // body = {
-  //   name: string, **OPTIONAL**
-  //   place_id: string, **REQUIRED**
-  //   vicinity: string, **OPTIONAL**
-  //   price_level: number, between 1 and 4, **OPTIONAL**
-  //   lat: number, **OPTIONAL**
-  //   lng: number, **OPTIONAL**
-  //   photo_reference: string, **OPTIONAL**
-  //   rating: number, between 1 and 5, **OPTIONAL**
-  //   types: array of strings, like "mexican", "sushi", **OPTIONAL**
-  // }
+  // body = restaurant: Restaurant, **REQUIRED**
   // const data = await apiCall(API.updateSavedRestaurant, body);
   // returns an object with message saying it has updated the restaurant
 
@@ -195,15 +165,7 @@ export const API = {
   postFavRestaurantByUser: "user/fav/post",
   // body = {
   //   user_id: string, **REQUIRED**
-  //   name: string, **OPTIONAL**
-  //   place_id: string, **REQUIRED**
-  //   vicinity: string, **OPTIONAL**
-  //   price_level: number, between 1 and 4, **OPTIONAL**
-  //   lat: number, **OPTIONAL**
-  //   lng: number, **OPTIONAL**
-  //   photo_reference: string, **OPTIONAL**
-  //   rating: number, between 1 and 5, **OPTIONAL**
-  //   types: array of strings, like "mexican", "sushi", **OPTIONAL**
+  //   restaurant: Restaurant, **REQUIRED**
   // }
   // const data = await apiCall(API.postFavRestaurantByUser, body);
   // returns the UserData object that was saved

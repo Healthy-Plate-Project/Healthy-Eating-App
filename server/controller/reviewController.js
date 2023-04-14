@@ -21,15 +21,16 @@ const reviewController = {
     try {
       const user = await User.findOne({ _id: req.body.user_id });
       if (!user) return res.status(404).send({ message: "User not found" });
+      const restaurantData = req.body.restaurant;
       let restaurant = await Restaurant.findOne({
-        place_id: req.body.restaurant.place_id,
+        place_id: restaurantData.place_id,
       });
       if (!restaurant) {
-        restaurant = await Restaurant.create(req.body.restaurant);
+        restaurant = await Restaurant.create(restaurantData);
       }
       const review = await Review.findOne({
         user_id: req.body.user_id,
-        place_id: req.body.restaurant.place_id,
+        place_id: restaurantData.place_id,
       });
       if (review) {
         await Review.findOneAndUpdate(
@@ -46,7 +47,7 @@ const reviewController = {
       }
       const newReview = await Review.create({
         user_id: req.body.user_id,
-        place_id: req.body.restaurant.place_id,
+        place_id: restaurantData.place_id,
         star_ratings: req.body.star_ratings,
         question_star_ratings: req.body.question_star_ratings,
         review_text: req.body.review_text,

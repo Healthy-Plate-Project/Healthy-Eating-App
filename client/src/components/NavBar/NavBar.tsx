@@ -35,6 +35,7 @@ export function Navbar({ currentUser, setCurrentUser }: NavbarPageProps) {
 
   const loginLogoutButton = currentUser.username ? (
     <>
+      <Link to="reviews">Reviews</Link>
       <Link to="favorites">Favorites</Link>
       <Link to="/" onClick={(e) => logout(e)}>
         Logout
@@ -52,7 +53,6 @@ export function Navbar({ currentUser, setCurrentUser }: NavbarPageProps) {
       <NavbarStyled open={open} onClick={() => setOpen(!open)}>
         <Link to="/">Home</Link>
         <Link to="advanced-search">Advanced Search</Link>
-        <Link to="reviews">Reviews</Link>
         {loginLogoutButton}
       </NavbarStyled>
     </>

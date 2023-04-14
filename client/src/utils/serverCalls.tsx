@@ -73,6 +73,14 @@ export const API = {
   // returns a google photo url string to use as the src of an img tag
 
   // --------------------------------------------------------------------------------------------
+  getGoogleLocation: "location/google/get",
+  // body = {
+  //   address: string, **REQUIRED**
+  // }
+  // const data = await apiCall(API.getGoogleLocation, { address });
+  // returns a google location object
+
+  // --------------------------------------------------------------------------------------------
   getReview: "review/get",
   // body = {
   //   _id: string, **REQUIRED**

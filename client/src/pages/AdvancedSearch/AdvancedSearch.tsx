@@ -8,7 +8,12 @@ import {
   Distance,
   DistanceSlider,
 } from "./AdvancedSearchStyles";
-import { GreenCheckIcon, GreyCheckIcon, PriceIcon, PriceIconFilled } from "../../assets/icons";
+import {
+  GreenCheckIcon,
+  GreyCheckIcon,
+  PriceIcon,
+  PriceIconFilled,
+} from "../../assets/icons";
 import { Button } from "../../components/Button/ButtonStyles";
 import { PrimaryInput, SmallInput } from "../../components/Input/InputStyles";
 import { convertMilesToMeters } from "../../utils/helpers";
@@ -133,7 +138,7 @@ export function AdvancedSearch() {
     console.log("Error: Geolocation server is down");
   }
 
-  async function getLocation(){
+  async function getLocation() {
     if (!navigator.geolocation) {
       navigate("error");
       console.log("Error: Geolocation is not supported by your browser");
@@ -151,8 +156,8 @@ export function AdvancedSearch() {
   function handleAdvancedSearch(location: Geolocation) {
     let url: string;
     url = `/multiple-results/${location.lat}/${location.lng}/${keyword}/${
-          priceSelection.min
-        }/${priceSelection.max}/${convertMilesToMeters(distance)}/${openNow}`;
+      priceSelection.min
+    }/${priceSelection.max}/${convertMilesToMeters(distance)}/${openNow}`;
     routeChange(url);
   }
 

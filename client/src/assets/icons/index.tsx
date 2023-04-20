@@ -11,4 +11,3 @@ export const DeleteIcon = require("./Delete_icon.svg") as string;
 export const EditIcon = require("./Edit_icon.svg") as string;
 export const GreyCheckIcon = require("./Grey_check_icon.svg") as string;
 export const GreenCheckIcon = require("./Green_check_icon.svg") as string;
-

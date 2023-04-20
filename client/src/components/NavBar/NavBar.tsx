@@ -33,19 +33,20 @@ export function Navbar({ currentUser, setCurrentUser }: NavbarPageProps) {
     }
   }
 
-  const loginLogoutButton = currentUser.username ? (
-    <>
-      <Link to="reviews">Reviews</Link>
-      <Link to="favorites">Favorites</Link>
-      <Link to="/" onClick={(e) => logout(e)}>
-        Logout
+  const loginLogoutButton =
+    currentUser && currentUser.username ? (
+      <>
+        <Link to="reviews">Reviews</Link>
+        <Link to="favorites">Favorites</Link>
+        <Link to="/" onClick={(e) => logout(e)}>
+          Logout
+        </Link>
+      </>
+    ) : (
+      <Link to="login" onClick={() => setOpen(!open)}>
+        Login
       </Link>
-    </>
-  ) : (
-    <Link to="login" onClick={() => setOpen(!open)}>
-      Login
-    </Link>
-  );
+    );
 
   return (
     <>

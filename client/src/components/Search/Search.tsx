@@ -33,11 +33,7 @@ export function Search() {
   let navigate = useNavigate();
 
   function routeChange(url: string | undefined) {
-    if (url) {
-      navigate(url);
-    } else {
-      console.log("Error: Invalid URL");
-    }
+    url ? navigate(url) : console.log("Error: Invalid URL");
   }
 
   return (

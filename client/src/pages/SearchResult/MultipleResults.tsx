@@ -12,6 +12,7 @@ import {
   Price,
   Rating,
 } from "./MulitpleSearchResultsStyles";
+import { apiCall, API } from "../../utils/serverCalls";
 
 type MulitpleResultsProps = {
   restaurants: Restaurant[];
@@ -28,6 +29,54 @@ export function MulitpleResults({
 }: MulitpleResultsProps) {
   let navigate = useNavigate();
 
+  function isResturantReviewed(restaurantPlaceId: string) {
+    if (!currentUser.reviews) return;
+    return currentUser.reviews.find(
+      (review) => review.place_id === restaurantPlaceId
+    );
+  }
+
+  async function deleteReview(_id: string) {
+    try {
+      await apiCall(API.deleteReview, { _id });
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  function renderReviewButtons(restaurant: Restaurant) {
+    const review = isResturantReviewed(restaurant.place_id);
+    return (
+      <>
+        <Button
+          type="button"
+          onClick={() => {
+            if (!currentUser._id) {
+              navigate("/login");
+              return;
+            }
+            navigate(`/create-review/${restaurant.place_id}`);
+          }}
+        >
+          {review ? "Update " : "Create "}
+          Review
+        </Button>
+        <br></br>
+        {review && restaurant._id && (
+          <Button
+            type="button"
+            onClick={async () => {
+              await deleteReview(review._id);
+            }}
+          >
+            Delete Review
+          </Button>
+        )}
+      </>
+    );
+  }
+
   return (
     <div>
       <ul>
@@ -35,12 +84,14 @@ export function MulitpleResults({
           return (
             <div key={restaurant.place_id}>
               <CardStyled>
-                <GooglePhoto
-                  photo_reference={restaurant.photos[0].photo_reference}
-                  max_height="100"
-                  max_width="150"
-                  alt={restaurant.name}
-                ></GooglePhoto>
+                {restaurant.photos && restaurant.photos[0] && (
+                  <GooglePhoto
+                    photo_reference={restaurant.photos[0].photo_reference}
+                    max_height="100"
+                    max_width="150"
+                    alt={restaurant.name}
+                  />
+                )}
                 <Body>
                   <a href={`/single-result/${restaurant.place_id}`}>
                     <Title className="card-title"> {restaurant.name} </Title>
@@ -61,14 +112,7 @@ export function MulitpleResults({
                   </Details>
                 </Body>
               </CardStyled>
-              <Button
-                type="button"
-                onClick={() => {
-                  navigate(`/create-review/${restaurant.place_id}`);
-                }}
-              >
-                Create Review
-              </Button>
+              {renderReviewButtons(restaurant)}
             </div>
           );
         })}

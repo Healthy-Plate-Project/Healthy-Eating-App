@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const {
   postReview,
-  updateReview,
   deleteReview,
   getReview,
   getReviewsByUser,
@@ -9,8 +8,6 @@ const {
 } = require("../../controller/reviewController");
 
 router.route("/post").post(postReview);
-
-router.route("/put").post(updateReview);
 
 router.route("/delete").post(deleteReview);
 

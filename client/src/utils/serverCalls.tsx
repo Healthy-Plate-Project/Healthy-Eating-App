@@ -95,21 +95,6 @@ export const API = {
   // returns an object with message, if review already exists, it will return a message saying it has updated the review
 
   // --------------------------------------------------------------------------------------------
-  updateReview: "review/update",
-  // body = {
-  //   _id: string, **REQUIRED**
-  //   user_id: string, **REQUIRED**
-  //   place_id: string, **REQUIRED**
-  //   star_ratings: array of objects **OPTIONAL** [{
-  //     name: string, **OPTIONAL**
-  //     rating: number, between 1 and 5, **OPTIONAL**
-  //   }]
-  //   review_text: string, **OPTIONAL**
-  // }
-  // const data = await apiCall(API.updateReview, body);
-  // returns an object with message saying it has updated the review
-
-  // --------------------------------------------------------------------------------------------
   deleteReview: "review/delete",
   // body = {
   //   _id: string, **REQUIRED**

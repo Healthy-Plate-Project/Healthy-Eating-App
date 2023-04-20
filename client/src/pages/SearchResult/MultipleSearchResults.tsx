@@ -25,6 +25,7 @@ export function MulitpleSearchResultsPage({
     open_now,
   } = useParams();
   const [restaurantsData, setRestaurantsData] = useState([] as Restaurant[]);
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -38,26 +39,7 @@ export function MulitpleSearchResultsPage({
           open_now,
         };
         const data = await apiCall(API.getRestaurants, body);
-        const restaurants = data.map((restaurant: any) => {
-          return {
-            name: restaurant.name,
-            place_id: restaurant.place_id,
-            business_status: restaurant.business_status,
-            geometry: {
-              location: {
-                lat: restaurant.geometry.location.lat,
-                lng: restaurant.geometry.location.lng,
-              },
-            },
-            opening_hours: restaurant.opening_hours,
-            photos: restaurant.photos,
-            price_level: restaurant.price_level,
-            rating: restaurant.rating,
-            types: restaurant.types,
-            user_ratings_total: restaurant.user_ratings_total,
-            vicinity: restaurant.vicinity,
-          };
-        });
+        const restaurants = data.map((restaurant: Restaurant) => restaurant);
         setRestaurantsData(restaurants);
         setSpinner(false);
       } catch (err) {
@@ -66,16 +48,21 @@ export function MulitpleSearchResultsPage({
     }
     fetchData();
   }, []);
+
   const [spinner, setSpinner] = useState(true);
   if (spinner) {
     return <FullPageSpinner />;
   }
+
   return (
-    <MulitpleResults
-      restaurants={restaurantsData}
-      currentUser={currentUser}
-      currentUserTrigger={currentUserTrigger}
-      setCurrentUserTrigger={setCurrentUserTrigger}
-    ></MulitpleResults>
+    <>
+      <h3>Search Results</h3>
+      <MulitpleResults
+        restaurants={restaurantsData}
+        currentUser={currentUser}
+        currentUserTrigger={currentUserTrigger}
+        setCurrentUserTrigger={setCurrentUserTrigger}
+      ></MulitpleResults>
+    </>
   );
 }

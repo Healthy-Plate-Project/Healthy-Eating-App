@@ -1,24 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { HeartIcon } from "../../pages/SearchResult/SingleSearchResultStyles";
-import {
-  FavRestaurantData,
-  MultipleGoogleResultData,
-  Restaurant,
-  ReviewRestaurantData,
-  SingleGoogleResultData,
-  UserData,
-} from "../../utils/globalInterfaces";
+import { Restaurant, UserData } from "../../utils/globalInterfaces";
 import { apiCall, API } from "../../utils/serverCalls";
 import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
 import { RelativeSpinner } from "../Spinner/Spinner";
+import { BuildRestaurantObject } from "../../utils/helpers";
+import { useNavigate } from "react-router-dom";
 
 type FavoriteIconProps = {
   restaurant?: Restaurant;
-  singleRestaurantData?: SingleGoogleResultData;
-  multipleRestaurantData?: MultipleGoogleResultData;
-  favRestaurantData?: FavRestaurantData;
-  reviewRestaurantData?: ReviewRestaurantData;
   currentUser: UserData;
   currentUserTrigger: boolean;
   setCurrentUserTrigger: any;
@@ -26,15 +17,13 @@ type FavoriteIconProps = {
 
 export function FavoriteIcon({
   restaurant,
-  singleRestaurantData,
-  multipleRestaurantData,
-  favRestaurantData,
-  reviewRestaurantData,
   currentUser,
   currentUserTrigger,
   setCurrentUserTrigger,
 }: FavoriteIconProps) {
   const [isFavRestaurant, setIsFavRestaurant] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
     function checkUserData() {
       if (restaurant && currentUser.fav_restaurants) {
@@ -42,22 +31,25 @@ export function FavoriteIcon({
           (place) => place.place_id === restaurant.place_id
         );
         setIsFavRestaurant(isFavRestaurant);
-        setSpinner(false);
       }
+      setSpinner(false);
     }
     checkUserData();
   }, []);
-  async function saveFavRestaurant(data: Restaurant) {
+
+  async function saveFavRestaurant() {
+    if (!restaurant) return;
+    const restaurantData = BuildRestaurantObject(restaurant);
     const body = {
       user_id: currentUser._id,
-      restaurant: { ...data },
+      restaurant: restaurantData,
     };
-    console.log(body)
     const response = await apiCall(API.postFavRestaurantByUser, body);
     response
       ? setCurrentUserTrigger(!currentUserTrigger)
       : alert("Favorting restaurant failed.");
   }
+
   async function deleteFavRestaurant(place_id: string) {
     await apiCall(API.deleteFavRestaurantByUser, {
       user_id: currentUser._id,
@@ -65,18 +57,24 @@ export function FavoriteIcon({
     });
     setCurrentUserTrigger(!currentUserTrigger);
   }
+
   const [spinner, setSpinner] = useState(true);
   if (spinner) return <RelativeSpinner />;
+
   return (
     <span
       onClick={() => {
+        if (!currentUser._id) {
+          navigate("/login");
+          return;
+        };
         setSpinner(true);
         setIsFavRestaurant((prevState) => {
           if (restaurant) {
             if (prevState) {
               deleteFavRestaurant(restaurant.place_id);
             } else {
-              saveFavRestaurant(restaurant);
+              saveFavRestaurant();
             }
           }
           // TODO add error handling

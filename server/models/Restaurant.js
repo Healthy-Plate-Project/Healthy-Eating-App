@@ -33,7 +33,7 @@ const restaurantSchema = new Schema(
       open_now: {
         type: Boolean,
       },
-      weekday_text: [String]
+      weekday_text: [String],
     },
     photos: [
       {
@@ -43,11 +43,13 @@ const restaurantSchema = new Schema(
         height: {
           type: Number,
         },
-        html_attributions: [String],
+        html_attributions: {
+          type: String,
+        },
         width: {
           type: Number,
         },
-      }
+      },
     ],
     price_level: {
       type: Number,

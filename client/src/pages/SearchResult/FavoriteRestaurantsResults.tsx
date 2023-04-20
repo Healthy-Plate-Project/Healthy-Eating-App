@@ -24,16 +24,21 @@ export function FavRestaurantsResults({
     }
     checkUserData();
   }, [currentUser]);
+
   const [spinner, setSpinner] = useState(true);
   if (spinner) {
     return <FullPageSpinner />;
   }
+
   return (
-    <MulitpleResults
-      restaurants={favRestaurants}
-      currentUser={currentUser}
-      currentUserTrigger={currentUserTrigger}
-      setCurrentUserTrigger={setCurrentUserTrigger}
-    ></MulitpleResults>
+    <>
+      <h3>Favorite Restaurants</h3>
+      <MulitpleResults
+        restaurants={favRestaurants}
+        currentUser={currentUser}
+        currentUserTrigger={currentUserTrigger}
+        setCurrentUserTrigger={setCurrentUserTrigger}
+      ></MulitpleResults>
+    </>
   );
 }

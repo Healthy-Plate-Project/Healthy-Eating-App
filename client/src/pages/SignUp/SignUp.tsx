@@ -9,7 +9,6 @@ import {
 import { SignUpInput } from "../../components/Input/InputStyles";
 import { LoginButtonStyles } from "../../components/Button/ButtonStyles";
 import { useNavigate } from "react-router-dom";
-import { UserData } from "../../utils/globalInterfaces";
 import { apiCall, API } from "../../utils/serverCalls";
 
 export function SignUp({ setCurrentUser }: any) {

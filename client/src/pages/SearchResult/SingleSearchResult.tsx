@@ -10,7 +10,7 @@ import {
 } from "./SingleSearchResultStyles";
 import dollarFilled from "../../assets/images/green-dollar.svg";
 import { GooglePhoto } from "../../components/Photo/Photo";
-import { SingleGoogleResultData, UserData } from "../../utils/globalInterfaces";
+import { Restaurant, UserData } from "../../utils/globalInterfaces";
 import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
 import { FullPageSpinner } from "../../components/Spinner/Spinner";
 import { Button } from "../../components/Button/ButtonStyles";
@@ -26,9 +26,7 @@ export function SingleSearchResultPage({
   setCurrentUserTrigger,
 }: SingleSearchResultPageProps) {
   const { place_id } = useParams();
-  const [restaurantData, setRestaurantData] = useState(
-    {} as SingleGoogleResultData
-  );
+  const [restaurantData, setRestaurantData] = useState({} as Restaurant);
   let navigate = useNavigate();
   useEffect(() => {
     async function fetchData() {
@@ -45,6 +43,7 @@ export function SingleSearchResultPage({
 
   function priceLevel() {
     const array = [];
+    if (!restaurantData.price_level) return;
     for (let i = 1; i <= restaurantData.price_level; i++) {
       array.push(<PriceIconStyled src={dollarFilled} />);
     }
@@ -56,17 +55,19 @@ export function SingleSearchResultPage({
   }
   return (
     <>
-      <GooglePhoto
-        photo_reference={restaurantData.photos[0].photo_reference}
-        max_height="200"
-        max_width="200"
-        alt={restaurantData.name}
-      ></GooglePhoto>
+      {restaurantData.photos && restaurantData.photos[0] && (
+        <GooglePhoto
+          photo_reference={restaurantData.photos[0].photo_reference}
+          max_height="200"
+          max_width="200"
+          alt={restaurantData.name}
+        />
+      )}
       <Wrapper>
         <H1>
           {restaurantData.name}
           <FavoriteIcon
-            singleRestaurantData={restaurantData}
+            restaurant={restaurantData}
             currentUser={currentUser}
             currentUserTrigger={currentUserTrigger}
             setCurrentUserTrigger={setCurrentUserTrigger}

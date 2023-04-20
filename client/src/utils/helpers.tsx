@@ -17,7 +17,7 @@ export function convertMetersToMiles(meters: number) {
 }
 
 export function convertMilesToMeters(miles: number) {
-  return miles * 1609.344;
+  return Math.round(miles * 1609.344);
 }
 
 export function isEmail(str: string): boolean {

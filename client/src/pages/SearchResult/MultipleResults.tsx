@@ -13,6 +13,8 @@ import {
   Rating,
 } from "./MulitpleSearchResultsStyles";
 import { apiCall, API } from "../../utils/serverCalls";
+import mascot from "../Home/Images/mascot_color_no_outline.svg";
+import { BackgroundImage } from "../Home/HomeStyles";
 
 type MulitpleResultsProps = {
   restaurants: Restaurant[];
@@ -28,6 +30,7 @@ export function MulitpleResults({
   setCurrentUserTrigger,
 }: MulitpleResultsProps) {
   let navigate = useNavigate();
+  const zeroResults = restaurants.length === 0;
 
   function isResturantReviewed(restaurantPlaceId: string) {
     if (!currentUser.reviews) return;
@@ -79,6 +82,12 @@ export function MulitpleResults({
 
   return (
     <div>
+      {zeroResults && (
+        <>
+          <h1>No Results Found</h1>
+          <BackgroundImage src={mascot} />
+        </>
+      )}
       <ul>
         {restaurants.map((restaurant) => {
           return (

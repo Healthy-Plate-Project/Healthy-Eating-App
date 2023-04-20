@@ -1,3 +1,5 @@
+import { GoogleResultPhoto, Restaurant } from "./globalInterfaces";
+
 export function apiServer() {
   const url = window.location.href;
   const slice = url.slice(0, 21);
@@ -42,3 +44,33 @@ export const REVIEW_TONES = [
   "Happy",
   "Sad",
 ];
+
+export function BuildRestaurantObject(restaurantData: Restaurant): Restaurant {
+  // TODO - better error handling here
+  if (!restaurantData.geometry) return {} as Restaurant;
+  return {
+    name: restaurantData.name,
+    place_id: restaurantData.place_id,
+    business_status: restaurantData.business_status,
+    formatted_address: restaurantData.formatted_address,
+    formatted_phone_number: restaurantData.formatted_phone_number,
+    geometry: {
+      location: {
+        lat: restaurantData.geometry.location.lat,
+        lng: restaurantData.geometry.location.lng,
+      },
+    },
+    photos: [
+      {
+        photo_reference: restaurantData.photos[0].photo_reference,
+      } as GoogleResultPhoto,
+    ],
+    price_level: restaurantData.price_level,
+    rating: restaurantData.rating,
+    types: restaurantData.types,
+    url: restaurantData.url,
+    website: restaurantData.website,
+    vicinity: restaurantData.vicinity,
+    user_ratings_total: restaurantData.user_ratings_total,
+  };
+}

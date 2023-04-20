@@ -1,17 +1,22 @@
 import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { ExperienceTextarea, ReviewTextarea, Wrapper } from "./ReviewStyles";
 import {
-  SingleGoogleResultData,
   UserData,
   StarRating,
   QuestionStarRating,
+  Restaurant,
+  ReviewData,
 } from "../../../utils/globalInterfaces";
 import goldStar from "../../../assets/images/gold-star.png";
 import whiteStar from "../../../assets/images/white-star.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { API, apiCall } from "../../../utils/serverCalls";
 import { GooglePhoto } from "../../../components/Photo/Photo";
-import { REVIEW_TONES, STAR_RATING_NAMES } from "../../../utils/helpers";
+import {
+  BuildRestaurantObject,
+  REVIEW_TONES,
+  STAR_RATING_NAMES,
+} from "../../../utils/helpers";
 import { FullPageSpinner } from "../../../components/Spinner/Spinner";
 import { Button } from "../../../components/Button/ButtonStyles";
 import { FavoriteIcon } from "../../../components/Icon/FavoriteIcon";
@@ -28,9 +33,7 @@ export function CreateReview({
   setCurrentUserTrigger,
 }: CreateReviewProps) {
   const { place_id } = useParams();
-  const [restaurantData, setRestaurantData] = useState(
-    {} as SingleGoogleResultData
-  );
+  const [restaurant, setRestaurant] = useState({} as Restaurant);
   const [selectedStarRatings, setSelectedStarRatings] = useState(
     [] as StarRating[]
   );
@@ -45,11 +48,10 @@ export function CreateReview({
 
   useEffect(() => {
     let isMounted = true;
-
     async function fetchData() {
       try {
         const data = await apiCall(API.getRestaurant, { place_id });
-        setRestaurantData(data);
+        setRestaurant(data);
         if (Object.keys(currentUser).length > 0 && currentUser.reviews) {
           const review = currentUser.reviews.find(
             (review) => review.place_id === data.place_id
@@ -103,7 +105,7 @@ export function CreateReview({
     };
   }, [currentUser]);
 
-  async function getQuestions(data: SingleGoogleResultData) {
+  async function getQuestions(data: Restaurant) {
     const prompt = `Give me a list of 5 funny questions to rate a restaurant located at ${data.vicinity} called ${data.name}`;
     const questionResponse = await apiCall(API.getChatResponse, {
       message: prompt,
@@ -115,9 +117,9 @@ export function CreateReview({
   async function getInitialReview() {
     setSpinner(true);
     const prompt = `Write me a review in about 200 words and in a ${tone} tone for a restaurant located at ${
-      restaurantData.vicinity
+      restaurant.vicinity
     } called ${
-      restaurantData.name
+      restaurant.name
     } with the following 1-5 ratings in answer to the following questions without mentioning the questions or the ratings themselves:
     ${selectedQuestionStarRatings.map(
       (rating) => `${rating.question}: Star Rating - ${rating.star_rating}`
@@ -222,27 +224,22 @@ export function CreateReview({
     e.preventDefault();
     try {
       setSpinner(true);
+      const restaurantData = BuildRestaurantObject(restaurant);
       const body = {
-        user_id: currentUser._id,
-        restaurant: {
-          lat: restaurantData.geometry.location.lat,
-          lng: restaurantData.geometry.location.lng,
-          name: restaurantData.name,
-          photo_reference: restaurantData.photos[0].photo_reference,
-          place_id: restaurantData.place_id,
-          price_level: restaurantData.price_level,
-          rating: restaurantData.rating,
-          types: [...restaurantData.types],
-          vicinity: restaurantData.vicinity,
-        },
-        star_ratings: selectedStarRatings,
-        question_star_ratings: selectedQuestionStarRatings,
-        tone: customTone ? customTone : tone,
-        review_text: reviewText,
+        restaurant: restaurantData,
+        review: {
+          user_id: currentUser._id,
+          place_id: restaurant.place_id,
+          star_ratings: selectedStarRatings,
+          question_star_ratings: selectedQuestionStarRatings,
+          tone: customTone ? customTone : tone,
+          review_text: reviewText,
+        } as ReviewData,
       };
       const data = await apiCall(API.postReview, body);
       if (data) {
         setSpinner(false);
+        setCurrentUserTrigger(!currentUserTrigger);
         navigate("/");
       }
     } catch (err) {
@@ -256,7 +253,7 @@ export function CreateReview({
     }
     if (
       currentUser.reviews.find(
-        (review) => review.place_id === restaurantData.place_id
+        (review) => review.place_id === restaurant.place_id
       )
     ) {
       return <p>You have already reviewed this restaurant!</p>;
@@ -284,17 +281,19 @@ export function CreateReview({
 
   return (
     <>
-      <GooglePhoto
-        photo_reference={restaurantData.photos[0].photo_reference}
-        max_height="200"
-        max_width="200"
-        alt={restaurantData.name}
-      ></GooglePhoto>
+      {restaurant.photos && restaurant.photos[0] && (
+        <GooglePhoto
+          photo_reference={restaurant.photos[0].photo_reference}
+          max_height="200"
+          max_width="200"
+          alt={restaurant.name}
+        />
+      )}
       <Wrapper>
         <div>
-          <h1>{restaurantData.name}</h1>
+          <h1>{restaurant.name}</h1>
           <FavoriteIcon
-            singleRestaurantData={restaurantData}
+            restaurant={restaurant}
             currentUser={currentUser}
             currentUserTrigger={currentUserTrigger}
             setCurrentUserTrigger={setCurrentUserTrigger}
@@ -302,7 +301,7 @@ export function CreateReview({
           <form onSubmit={(e) => saveReviewHandler(e)}>
             <div>
               <h4>Google Rating</h4>
-              {restaurantData.rating}
+              {restaurant.rating}
             </div>
             <h3>Rate this restaurant based on the special diet:</h3>
             {alreadyReviewed()}
@@ -331,7 +330,7 @@ export function CreateReview({
               type="button"
               onClick={() => {
                 setSpinner(true);
-                getQuestions(restaurantData);
+                getQuestions(restaurant);
               }}
             >
               Regenerate Questions

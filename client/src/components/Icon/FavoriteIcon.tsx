@@ -1,64 +1,55 @@
 import React, { useEffect, useState } from "react";
 import { HeartIcon } from "../../pages/SearchResult/SingleSearchResultStyles";
-import {
-  FavRestaurantData,
-  MultipleGoogleResultData,
-  ReviewRestaurantData,
-  SingleGoogleResultData,
-  UserData,
-} from "../../utils/globalInterfaces";
+import { Restaurant, UserData } from "../../utils/globalInterfaces";
 import { apiCall, API } from "../../utils/serverCalls";
 import heartEmpty from "../../assets/images/heart-empty.svg";
 import heartFilled from "../../assets/images/heart-filled.svg";
 import { RelativeSpinner } from "../Spinner/Spinner";
+import { BuildRestaurantObject } from "../../utils/helpers";
+import { useNavigate } from "react-router-dom";
 
 type FavoriteIconProps = {
-  singleRestaurantData?: SingleGoogleResultData;
-  multipleRestaurantData?: MultipleGoogleResultData;
-  favRestaurantData?: FavRestaurantData;
-  reviewRestaurantData?: ReviewRestaurantData;
+  restaurant?: Restaurant;
   currentUser: UserData;
   currentUserTrigger: boolean;
   setCurrentUserTrigger: any;
 };
 
 export function FavoriteIcon({
-  singleRestaurantData,
-  multipleRestaurantData,
-  favRestaurantData,
-  reviewRestaurantData,
+  restaurant,
   currentUser,
   currentUserTrigger,
   setCurrentUserTrigger,
 }: FavoriteIconProps) {
   const [isFavRestaurant, setIsFavRestaurant] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
     function checkUserData() {
-      const restaurantData =
-        singleRestaurantData ||
-        multipleRestaurantData ||
-        favRestaurantData ||
-        reviewRestaurantData;
-      if (restaurantData && currentUser.fav_restaurants) {
+      if (restaurant && currentUser.fav_restaurants) {
         const isFavRestaurant = currentUser.fav_restaurants.some(
-          (place) => place.place_id === restaurantData.place_id
+          (place) => place.place_id === restaurant.place_id
         );
         setIsFavRestaurant(isFavRestaurant);
-        setSpinner(false);
       }
+      setSpinner(false);
     }
     checkUserData();
   }, []);
-  async function saveFavRestaurant(data: FavRestaurantData) {
+
+  async function saveFavRestaurant() {
+    if (!restaurant) return;
+    const restaurantData = BuildRestaurantObject(restaurant);
     const body = {
       user_id: currentUser._id,
-      ...data,
+      restaurant: restaurantData,
     };
     const response = await apiCall(API.postFavRestaurantByUser, body);
     response
       ? setCurrentUserTrigger(!currentUserTrigger)
       : alert("Favorting restaurant failed.");
   }
+
   async function deleteFavRestaurant(place_id: string) {
     await apiCall(API.deleteFavRestaurantByUser, {
       user_id: currentUser._id,
@@ -66,35 +57,25 @@ export function FavoriteIcon({
     });
     setCurrentUserTrigger(!currentUserTrigger);
   }
+
   const [spinner, setSpinner] = useState(true);
   if (spinner) return <RelativeSpinner />;
+
   return (
     <span
       onClick={() => {
+        if (!currentUser._id) {
+          navigate("/login");
+          return;
+        };
         setSpinner(true);
         setIsFavRestaurant((prevState) => {
-          const restaurantData =
-            singleRestaurantData ||
-            multipleRestaurantData ||
-            reviewRestaurantData;
-          if (restaurantData) {
+          if (restaurant) {
             if (prevState) {
-              deleteFavRestaurant(restaurantData.place_id);
+              deleteFavRestaurant(restaurant.place_id);
             } else {
-              saveFavRestaurant({
-                lat: restaurantData.geometry.location.lat,
-                lng: restaurantData.geometry.location.lng,
-                name: restaurantData.name,
-                photo_reference: restaurantData.photos[0].photo_reference,
-                place_id: restaurantData.place_id,
-                price_level: restaurantData.price_level,
-                rating: restaurantData.rating,
-                types: [...restaurantData.types],
-                vicinity: restaurantData.vicinity,
-              });
+              saveFavRestaurant();
             }
-          } else if (favRestaurantData) {
-            deleteFavRestaurant(favRestaurantData.place_id);
           }
           // TODO add error handling
           return !prevState;

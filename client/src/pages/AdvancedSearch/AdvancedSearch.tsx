@@ -31,11 +31,13 @@ interface Geolocation {
   lng: number;
 }
 
+const MaxDistance = 31;
+
 export function AdvancedSearch() {
   const [keyword, setKeyword] = useState("");
   const [useCurrentLocation, setUseCurrentLocation] = useState(false);
   const [locationInput, setLocationInput] = useState("");
-  const [distance, setDistance] = useState(0);
+  const [distance, setDistance] = useState(MaxDistance);
   const [distanceSlider, setDistanceSlider] = useState(4);
   const [priceSelection, setPriceSelection] = useState({
     min: undefined,
@@ -46,13 +48,13 @@ export function AdvancedSearch() {
   let navigate = useNavigate();
 
   function renderDistance() {
-    const DistanceNumbers = [1, 5, 10, 20, 0];
+    const DistanceNumbers = [1, 5, 10, 20, MaxDistance];
     const MAX = 4;
     const backgroundSize = {
       backgroundSize: `${(distanceSlider * 100) / MAX}% 100%`,
     };
     const distanceText =
-      distance === 0
+      distance === MaxDistance
         ? "Any"
         : distance === 1
         ? `${distance} mile`
@@ -139,17 +141,21 @@ export function AdvancedSearch() {
   }
 
   async function getLocation() {
-    if (!navigator.geolocation) {
-      navigate("error");
-      console.log("Error: Geolocation is not supported by your browser");
-    } else if (!useCurrentLocation) {
-      const data = await apiCall(API.getGoogleLocation, { locationInput });
+    if (locationInput) {
+      const data = await apiCall(API.getGoogleLocation, {
+        address: locationInput,
+      });
       handleAdvancedSearch(data);
     } else {
-      navigator.geolocation.getCurrentPosition(
-        geolocationSuccess,
-        geolocationSuccessError
-      );
+      if (!navigator.geolocation) {
+        navigate("error");
+        console.log("Error: Geolocation is not supported by your browser");
+      } else {
+        navigator.geolocation.getCurrentPosition(
+          geolocationSuccess,
+          geolocationSuccessError
+        );
+      }
     }
   }
 
@@ -182,7 +188,14 @@ export function AdvancedSearch() {
           </Keyword>
 
           <Location>
-            <a onClick={() => setUseCurrentLocation(!useCurrentLocation)}>
+            <a
+              onClick={() =>
+                setUseCurrentLocation((prevUseCurrentLocation) => {
+                  if (prevUseCurrentLocation) setLocationInput("");
+                  return !prevUseCurrentLocation;
+                })
+              }
+            >
               <h2>Use Current Location</h2>
               <img src={useCurrentLocation ? GreenCheckIcon : GreyCheckIcon} />
             </a>

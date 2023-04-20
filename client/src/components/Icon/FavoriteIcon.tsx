@@ -67,7 +67,7 @@ export function FavoriteIcon({
         if (!currentUser._id) {
           navigate("/login");
           return;
-        };
+        }
         setSpinner(true);
         setIsFavRestaurant((prevState) => {
           if (restaurant) {

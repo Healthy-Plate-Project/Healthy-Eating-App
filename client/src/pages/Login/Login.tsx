@@ -32,7 +32,7 @@ export function Login({ setCurrentUser }: any) {
           ));
       if (response.username) {
         setCurrentUser(response);
-        navigate("/");
+        navigate("/profile");
       } else {
         setError(true);
         return;

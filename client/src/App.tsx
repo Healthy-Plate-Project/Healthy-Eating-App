@@ -15,6 +15,7 @@ import { CreateReview } from "./pages/Review/LeaveReview/CreateReview";
 import { FavRestaurantsResults } from "./pages/SearchResult/FavoriteRestaurantsResults";
 import { MulitpleSearchResultsPage } from "./pages/SearchResult/MultipleSearchResults";
 import { ReviewRestaurantsResults } from "./pages/SearchResult/ReviewRestaurantsResults";
+import { Profile } from "./pages/Profile/Profile";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({} as UserData);
@@ -101,6 +102,10 @@ export default function App() {
                 setCurrentUserTrigger={setCurrentUserTrigger}
               />
             }
+          />
+          <Route
+            path="profile"
+            element={<Profile currentUser={currentUser} />}
           />
         </Routes>
       </BrowserRouter>

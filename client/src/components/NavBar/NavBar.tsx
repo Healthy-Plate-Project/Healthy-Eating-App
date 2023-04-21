@@ -36,6 +36,7 @@ export function Navbar({ currentUser, setCurrentUser }: NavbarPageProps) {
   const loginLogoutButton =
     currentUser && currentUser.username ? (
       <>
+        <Link to="profile">Profile</Link>
         <Link to="reviews">Reviews</Link>
         <Link to="favorites">Favorites</Link>
         <Link to="/" onClick={(e) => logout(e)}>

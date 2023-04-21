@@ -53,7 +53,7 @@ export function Login({ setCurrentUser }: any) {
         <LoginInput
           type="text"
           placeholder="Username or Email"
-          onChange={(e) => setUsernameOrEmail(e.target.value)}
+          onChange={(e) => setUsernameOrEmail(e.target.value.toLowerCase())}
           onKeyDown={(e) => handleKeyPress(e)}
         />
         <LoginInput

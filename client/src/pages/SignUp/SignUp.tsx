@@ -47,7 +47,7 @@ export function SignUp({ setCurrentUser }: any) {
           <SignUpInput
             type="text"
             placeholder="Username"
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value.toLowerCase())}
           />
           <SignUpInput
             type="text"
@@ -62,7 +62,7 @@ export function SignUp({ setCurrentUser }: any) {
           <SignUpInput
             type="email"
             placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value.toLowerCase())}
           />
           <SignUpInput
             type="password"

@@ -6,21 +6,15 @@ export const CardStyled = styled.article`
   border: 1px white solid;
   border-radius: 10px;
   margin-top: 25px;
-`;
-
-export const Img = styled.img`
-  width: clamp(20px, 10vw, 150px);
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px 0 0 10px;
-  background-color: red;
+  margin-bottom: 10px;
+  height: 121px;
 `;
 
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 0.3rem;
+  gap: 0.5rem;
   width: 100%;
   padding: 0.5rem;
 `;
@@ -28,7 +22,7 @@ export const Body = styled.div`
 export const Title = styled.div`
   font-family: "Comfortaa", sans-serif;
   font-weight: Medium;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-align: left;
 `;
 
@@ -45,22 +39,37 @@ export const P = styled.p`
 
 export const Details = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 0.2rem;
   text-align: left;
 `;
 
 export const Price = styled.div`
   font-size: 0.8rem;
+  width: 3.8rem;
+  display: flex;
+  align-items: center;
 `;
 
 export const Rating = styled.div`
   font-size: 0.8rem;
+  cursor: auto;
 `;
 
-export const Menu = styled.div`
-  font-size: 0.8rem;
+export const Favorite = styled.div`
+  margin-left: auto;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 `;
 
-export const Directions = styled.div`
-  font-size: 0.8rem;
+export const Directions = styled.span`
+  height: 20px;
+  width: 1.4rem;
+  cursor: pointer;
+`;
+
+export const Review = styled.span`
+  height: 20px;
+  width: 1.4rem;
+  cursor: pointer;
 `;

@@ -17,16 +17,37 @@ export const Wrapper = styled.div`
   text-align: left;
 `;
 
-export const HeartIcon = styled.img`
-  margin: 0 10px;
-  height: 20px;
-`;
-
 export const PriceContainer = styled.div`
   margin-bottom: 5px;
 `;
 
-export const PriceIconStyled = styled.img`
+export const Star = styled.img`
+  height: 25px;
+`;
+
+export const Review = styled.span`
   height: 20px;
-  margin: 0 1px;
+  width: 1.4rem;
+  cursor: pointer;
+`;
+
+export const Rating = styled.div`
+  font-size: 0.8rem;
+  cursor: auto;
+`;
+
+export const ReviewPhoto = styled.img`
+  height: 2.5rem;
+`;
+
+export const Directions = styled.span`
+  height: 20px;
+  width: 1.4rem;
+  cursor: pointer;
+`;
+
+export const Call = styled.span`
+  height: 20px;
+  width: 1.4rem;
+  cursor: pointer;
 `;

@@ -24,4 +24,5 @@ export const StyledNavButton = styled.button<Props>`
   position: fixed;
   bottom: 2rem;
   right: 2rem;
+  cursor: pointer;
 `;

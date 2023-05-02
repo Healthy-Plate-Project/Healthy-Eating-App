@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { HeartIcon } from "../../pages/SearchResult/SingleSearchResultStyles";
 import { Restaurant, UserData } from "../../utils/globalInterfaces";
 import { apiCall, API } from "../../utils/serverCalls";
 import heartEmpty from "../../assets/images/heart-empty.svg";
@@ -7,6 +6,7 @@ import heartFilled from "../../assets/images/heart-filled.svg";
 import { RelativeSpinner } from "../Spinner/Spinner";
 import { BuildRestaurantObject } from "../../utils/helpers";
 import { useNavigate } from "react-router-dom";
+import { HeartIcon } from "./IconStyles";
 
 type FavoriteIconProps = {
   restaurant?: Restaurant;
@@ -62,7 +62,7 @@ export function FavoriteIcon({
   if (spinner) return <RelativeSpinner />;
 
   return (
-    <span
+    <div
       onClick={() => {
         if (!currentUser._id) {
           navigate("/login");
@@ -83,11 +83,13 @@ export function FavoriteIcon({
         setSpinner(false);
       }}
     >
-      {isFavRestaurant ? (
-        <HeartIcon src={heartFilled} />
+      {restaurant && isFavRestaurant ? (
+        <HeartIcon src={heartFilled} title={`Unfavorite ${restaurant.name}`} />
       ) : (
-        <HeartIcon src={heartEmpty} />
+        restaurant && (
+          <HeartIcon src={heartEmpty} title={`Favorite ${restaurant.name}`} />
+        )
       )}
-    </span>
+    </div>
   );
 }

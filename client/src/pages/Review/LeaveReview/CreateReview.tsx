@@ -1,5 +1,10 @@
 import React, { FormEvent, useEffect, useRef, useState } from "react";
-import { ExperienceTextarea, ReviewTextarea, Wrapper } from "./ReviewStyles";
+import {
+  ExperienceTextarea,
+  ReviewTextarea,
+  Star,
+  Wrapper,
+} from "./ReviewStyles";
 import {
   UserData,
   StarRating,
@@ -168,7 +173,7 @@ export function CreateReview({
       const alt = `${i + 1}-${diet}-Star-Rating`;
       const src = i < starRating ? goldStar : whiteStar;
       return (
-        <img
+        <Star
           className="stars"
           src={src}
           alt={alt}
@@ -207,7 +212,7 @@ export function CreateReview({
       const alt = `${i + 1}-${question}-Star-Rating`;
       const src = i < starRating ? goldStar : whiteStar;
       return (
-        <img
+        <Star
           className="stars"
           src={src}
           alt={alt}
@@ -256,7 +261,12 @@ export function CreateReview({
         (review) => review.place_id === restaurant.place_id
       )
     ) {
-      return <p>You have already reviewed this restaurant!</p>;
+      return (
+        <>
+          <p>You have already reviewed this restaurant!</p>
+          <br></br>
+        </>
+      );
     }
   }
 
@@ -287,6 +297,8 @@ export function CreateReview({
           max_height="200"
           max_width="200"
           alt={restaurant.name}
+          place_id={restaurant.place_id}
+          name={restaurant.name}
         />
       )}
       <Wrapper>

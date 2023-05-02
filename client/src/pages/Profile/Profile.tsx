@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "../../components/Button/ButtonStyles";
 import { UserData } from "../../utils/globalInterfaces";
 import { useNavigate } from "react-router-dom";
+import { Header } from "../../components/Header/Header";
 
 type ProfileProps = {
   currentUser: UserData;
@@ -33,6 +34,7 @@ export function Profile({ currentUser }: ProfileProps) {
 
   return (
     <>
+      {Header()}
       <h3>Welcome {currentUser.first_name}!</h3>
       <Button
         type="button"

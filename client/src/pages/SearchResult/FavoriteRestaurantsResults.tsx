@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Restaurant, UserData } from "../../utils/globalInterfaces";
 import { FullPageSpinner } from "../../components/Spinner/Spinner";
 import { MulitpleResults } from "./MultipleResults";
+import { Header } from "../../components/Header/Header";
 
 type FavRestaurantResultsProps = {
   currentUser: UserData;
@@ -32,6 +33,7 @@ export function FavRestaurantsResults({
 
   return (
     <>
+      {Header()}
       <h3>Favorite Restaurants</h3>
       <MulitpleResults
         restaurants={favRestaurants}

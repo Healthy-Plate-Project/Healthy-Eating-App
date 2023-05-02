@@ -17,6 +17,7 @@ import { Restaurant, UserData } from "../../utils/globalInterfaces";
 import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
 import { FullPageSpinner } from "../../components/Spinner/Spinner";
 import { priceLevel, renderRatingStars } from "../../utils/helpers";
+import { Header } from "../../components/Header/Header";
 
 type SingleSearchResultPageProps = {
   currentUser: UserData;
@@ -101,6 +102,7 @@ export function SingleSearchResultPage({
   }
   return (
     <>
+      {Header()}
       {restaurant.photos && restaurant.photos[0] && (
         <GooglePhoto
           photo_reference={restaurant.photos[0].photo_reference}

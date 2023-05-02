@@ -3,6 +3,7 @@ import { Restaurant, UserData } from "../../utils/globalInterfaces";
 import { FullPageSpinner } from "../../components/Spinner/Spinner";
 import { API, apiCall } from "../../utils/serverCalls";
 import { MulitpleResults } from "./MultipleResults";
+import { Header } from "../../components/Header/Header";
 
 type ReviewRestaurantResultsProps = {
   currentUser: UserData;
@@ -48,6 +49,7 @@ export function ReviewRestaurantsResults({
   }
   return (
     <>
+      {Header()}
       <h3>Reviewed Restaurants</h3>
       <MulitpleResults
         restaurants={reviewedRestaurants}

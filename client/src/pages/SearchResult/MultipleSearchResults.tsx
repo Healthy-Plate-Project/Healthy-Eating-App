@@ -4,6 +4,7 @@ import { FullPageSpinner } from "../../components/Spinner/Spinner";
 import { Restaurant, UserData } from "../../utils/globalInterfaces";
 import { API, apiCall } from "../../utils/serverCalls";
 import { MulitpleResults } from "./MultipleResults";
+import { Header } from "../../components/Header/Header";
 
 type MulitpleSearchResultsPageProps = {
   currentUser: UserData;
@@ -56,6 +57,7 @@ export function MulitpleSearchResultsPage({
 
   return (
     <>
+      {Header()}
       <h3>Search Results</h3>
       <MulitpleResults
         restaurants={restaurantsData}

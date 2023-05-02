@@ -19,6 +19,7 @@ import { PrimaryInput, SmallInput } from "../../components/Input/InputStyles";
 import { convertMilesToMeters } from "../../utils/helpers";
 import { useNavigate } from "react-router-dom";
 import { API, apiCall } from "../../utils/serverCalls";
+import { Header } from "../../components/Header/Header";
 
 interface PriceSelection {
   min: number | undefined;
@@ -173,6 +174,7 @@ export function AdvancedSearch() {
 
   return (
     <>
+      {Header()}
       <AdvancedSearchWrapper>
         <fieldset>
           <legend>

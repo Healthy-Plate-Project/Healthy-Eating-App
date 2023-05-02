@@ -25,6 +25,7 @@ import {
 import { FullPageSpinner } from "../../../components/Spinner/Spinner";
 import { Button } from "../../../components/Button/ButtonStyles";
 import { FavoriteIcon } from "../../../components/Icon/FavoriteIcon";
+import { Header } from "../../../components/Header/Header";
 
 type CreateReviewProps = {
   currentUser: UserData;
@@ -291,6 +292,7 @@ export function CreateReview({
 
   return (
     <>
+      {Header()}
       {restaurant.photos && restaurant.photos[0] && (
         <GooglePhoto
           photo_reference={restaurant.photos[0].photo_reference}

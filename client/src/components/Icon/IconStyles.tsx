@@ -19,3 +19,9 @@ export const StyledIcon = styled.div<IconProps>`
     height: 1.5rem;
   }
 `;
+
+export const HeartIcon = styled.img`
+  margin: 0px;
+  height: 20px;
+  cursor: pointer;
+`;

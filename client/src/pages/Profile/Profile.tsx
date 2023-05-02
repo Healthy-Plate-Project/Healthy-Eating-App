@@ -42,6 +42,7 @@ export function Profile({ currentUser }: ProfileProps) {
       >
         {getReviewButtonLabel()}
       </Button>
+      <br></br>
       <Button
         type="button"
         onClick={() => {

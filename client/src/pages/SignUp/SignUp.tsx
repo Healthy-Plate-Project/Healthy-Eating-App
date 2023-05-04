@@ -11,6 +11,8 @@ import { LoginButtonStyles } from "../../components/Button/ButtonStyles";
 import { useNavigate } from "react-router-dom";
 import { apiCall, API } from "../../utils/serverCalls";
 import { Header } from "../../components/Header/Header";
+import { Modal } from "../../components/Modal/Modal";
+import { useModal } from "../../hooks/useModal";
 
 export function SignUp({ setCurrentUser }: any) {
   const [username, setUsername] = useState("");
@@ -19,6 +21,15 @@ export function SignUp({ setCurrentUser }: any) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const navigate = useNavigate();
+  const {
+    isOpen,
+    title,
+    content,
+    confirmButtonText,
+    closeButtonText,
+    onConfirm,
+    openModal,
+  } = useModal();
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -33,7 +44,13 @@ export function SignUp({ setCurrentUser }: any) {
       const { message, ...userData } = await apiCall(API.signup, body, true);
       if (message === "Successfully signed up") {
         setCurrentUser(userData);
-        navigate("/login");
+        openModal(
+          "All Set!",
+          "You have successfulyl signed up for DragonFruit, continue to login",
+          "Login",
+          "",
+          () => navigate("/login")
+        );
       }
     } catch (err) {
       console.log(err);
@@ -42,6 +59,14 @@ export function SignUp({ setCurrentUser }: any) {
 
   return (
     <>
+      <Modal
+        isOpen={isOpen}
+        title={title}
+        content={content}
+        confirmButtonText={confirmButtonText}
+        closeButtonText={closeButtonText}
+        onConfirm={onConfirm}
+      />
       {Header()}
       <form onSubmit={(e) => submit(e)}>
         <MainContainer>

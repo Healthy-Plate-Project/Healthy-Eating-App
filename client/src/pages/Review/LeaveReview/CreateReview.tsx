@@ -26,6 +26,8 @@ import { FullPageSpinner } from "../../../components/Spinner/Spinner";
 import { Button } from "../../../components/Button/ButtonStyles";
 import { FavoriteIcon } from "../../../components/Icon/FavoriteIcon";
 import { Header } from "../../../components/Header/Header";
+import { Modal } from "../../../components/Modal/Modal";
+import { useModal } from "../../../hooks/useModal";
 
 type CreateReviewProps = {
   currentUser: UserData;
@@ -51,6 +53,14 @@ export function CreateReview({
   const [customTone, setCustomTone] = useState("");
   const navigate = useNavigate();
   const hasFetchedQuestions = useRef(false);
+  const {
+    isOpen,
+    title,
+    content,
+    closeButtonText,
+    openModal,
+    closeModal,
+  } = useModal();
 
   useEffect(() => {
     let isMounted = true;
@@ -122,7 +132,7 @@ export function CreateReview({
 
   async function getInitialReview() {
     setSpinner(true);
-    const prompt = `Write me a review in about 200 words and in a ${tone} tone for a restaurant located at ${
+    const prompt = `Write me a review in about 100 words and in a ${tone} tone for a restaurant located at ${
       restaurant.vicinity
     } called ${
       restaurant.name
@@ -245,8 +255,7 @@ export function CreateReview({
       const data = await apiCall(API.postReview, body);
       if (data) {
         setSpinner(false);
-        setCurrentUserTrigger(!currentUserTrigger);
-        navigate("/");
+        openModal("Submitted", "Thank you for your review!", "", "Continue");
       }
     } catch (err) {
       console.log(err);
@@ -292,6 +301,17 @@ export function CreateReview({
 
   return (
     <>
+      <Modal
+        isOpen={isOpen}
+        title={title}
+        content={content}
+        closeButtonText={closeButtonText}
+        onClose={() => {
+          closeModal();
+          setCurrentUserTrigger(!currentUserTrigger);
+          navigate("/");
+        }}
+      />
       {Header()}
       {restaurant.photos && restaurant.photos[0] && (
         <GooglePhoto

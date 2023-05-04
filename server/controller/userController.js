@@ -11,6 +11,10 @@ const MAX_AGE = 24 * 60 * 60 * 1000; // 1 day
 const userController = {
   signup: async function (req, res) {
     const { username, email, first_name, last_name, password } = req.body;
+    const userCheck = await User.findOne({ $or: [{ email }, { username }] });
+    if (userCheck) {
+      return res.status(404).json({ message: "User already exists" });
+    }
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const user = new User({

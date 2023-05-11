@@ -4,8 +4,13 @@ import { SearchWrapper } from "./SearchStyles";
 import { convertMilesToMeters } from "../../utils/helpers";
 import { SearchButton } from "../Button/ButtonStyles";
 import { PrimaryInput } from "../Input/InputStyles";
+import { Modal } from "../Modal/Modal";
+import { useModal } from "../../hooks/useModal";
 
 export function Search() {
+  const { isOpen, title, content, closeButtonText, closeModal, openModal } =
+    useModal();
+
   const [keyword, setKeyword] = useState("");
 
   // function to get the current location of user, uses GPS if on a mobile device
@@ -26,7 +31,9 @@ export function Search() {
       navigate("error");
       console.log("Error: Geolocation is not supported by your browser");
     } else {
-      navigator.geolocation.getCurrentPosition(success, error);
+      keyword === ""
+        ? openModal("Error", "Please include a keyword", "", "Go back")
+        : navigator.geolocation.getCurrentPosition(success, error);
     }
   }
 
@@ -43,23 +50,32 @@ export function Search() {
   }
 
   return (
-    <SearchWrapper>
-      <div
-        onKeyDown={(e) => {
-          handleKeyPress(e);
-        }}
-      >
-        <PrimaryInput
-          placeholder="Keyword"
-          onChange={(e) => setKeyword(e.target.value)}
-        />
-      </div>
-      <SearchButton
-        name="current-location-search-button"
-        onClick={() => getCurrentPos()}
-      >
-        Search
-      </SearchButton>
-    </SearchWrapper>
+    <>
+      <Modal
+        isOpen={isOpen}
+        title={title}
+        content={content}
+        closeButtonText={closeButtonText}
+        onClose={closeModal}
+      />
+      <SearchWrapper>
+        <div
+          onKeyDown={(e) => {
+            handleKeyPress(e);
+          }}
+        >
+          <PrimaryInput
+            placeholder="Keyword"
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+        </div>
+        <SearchButton
+          name="current-location-search-button"
+          onClick={() => getCurrentPos()}
+        >
+          Search
+        </SearchButton>
+      </SearchWrapper>
+    </>
   );
 }

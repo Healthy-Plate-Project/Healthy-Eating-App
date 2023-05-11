@@ -1,5 +1,6 @@
 const axios = require("axios");
 const Restaurant = require("../models/Restaurant");
+const Review = require("../models/Review");
 
 const restaurantsController = {
   getGoogleRestaurants: async function (req, res) {
@@ -22,12 +23,38 @@ const restaurantsController = {
       headers: {},
     };
     axios(config)
-      .then(function (response) {
-        res.json(response.data.results);
+      .then(async function (response) {
+        const restaurantsPromises = response.data.results.map(async (restaurant) => {
+          const restaurantData = await Restaurant.findOne({
+            place_id: restaurant.place_id,
+          });
+          if (!restaurantData) {
+            return {
+              error: true,
+              message: "Restaurant not found",
+            };
+          }
+          const reviews = await Review.find({ place_id: restaurant.place_id });
+          if (!reviews) {
+            return {
+              error: true,
+              message: `No reviews found for place_id: ${restaurant.place_id}`,
+            };
+          }
+          return { ...restaurant, dragonReviews: reviews };
+        });
+        const restaurants = await Promise.all(restaurantsPromises);
+        const filteredRestaurants = restaurants.filter(
+          (restaurant) => !restaurant.error
+        );
+        if (filteredRestaurants.length === 0) {
+          return res.status(404).send({ message: "No valid restaurants found" });
+        }
+        res.json(filteredRestaurants);
       })
       .catch(function (error) {
         console.log(error);
-        res(error);
+        res.status(500).send({ message: "Internal server error" });
       });
   },
 
@@ -39,8 +66,19 @@ const restaurantsController = {
       headers: {},
     };
     axios(config)
-      .then(function (response) {
-        res.json(response.data.result);
+      .then(async function (response) {
+        const restaurant = await Restaurant.findOne({
+          place_id: response.data.result.place_id,
+        });
+        if (!restaurant)
+          return res.status(404).send({ message: "Restaurant not found" });
+        const reviews = await Review.find({ place_id: response.data.result.place_id });
+        if (!reviews) {
+          return res.status(404).send({
+            message: `No reviews found for place_id: ${response.data.result.place_id}`,
+          });
+        }
+        res.json({ ...response.data.result, dragonReviews: reviews });
       })
       .catch(function (error) {
         console.log(error);
@@ -56,8 +94,8 @@ const restaurantsController = {
       restaurant
         ? res.json({ data: restaurant })
         : res.json({
-            message: `Restaurant ID# ${req.body.place_id} Not Found!`,
-          });
+          message: `Restaurant ID# ${req.body.place_id} Not Found!`,
+        });
     } catch (error) {
       res.status(500).json(error);
     }

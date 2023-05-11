@@ -49,6 +49,7 @@ export interface Restaurant {
   updated_at?: Date;
   review?: ReviewData;
   reviews?: [GoogleResultReview];
+  dragonReviews?: [ReviewData];
   _id?: string;
 }
 

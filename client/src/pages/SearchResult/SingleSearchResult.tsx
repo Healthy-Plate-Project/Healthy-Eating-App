@@ -16,8 +16,14 @@ import { GooglePhoto } from "../../components/Photo/Photo";
 import { Restaurant, UserData } from "../../utils/globalInterfaces";
 import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
 import { FullPageSpinner } from "../../components/Spinner/Spinner";
-import { priceLevel, renderRatingStars } from "../../utils/helpers";
+import {
+  averageReviewDataStarRating,
+  priceLevel,
+  renderRatingStars,
+} from "../../utils/helpers";
 import { Header } from "../../components/Header/Header";
+import { useModal } from "../../hooks/useModal";
+import { Modal } from "../../components/Modal/Modal";
 
 type SingleSearchResultPageProps = {
   currentUser: UserData;
@@ -32,6 +38,17 @@ export function SingleSearchResultPage({
   const { place_id } = useParams();
   const [restaurant, setRestaurant] = useState({} as Restaurant);
   let navigate = useNavigate();
+  const {
+    isOpen,
+    title,
+    content,
+    confirmButtonText,
+    closeButtonText,
+    onConfirm,
+    openModal,
+    closeModal,
+  } = useModal();
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -80,8 +97,14 @@ export function SingleSearchResultPage({
           <Review
             title={`Delete Your Review for ${restaurant.name}`}
             className="material-symbols-outlined"
-            onClick={async () => {
-              await deleteReview(review._id);
+            onClick={() => {
+              openModal(
+                "",
+                "Are you sure you want to delete this review?",
+                "Yes",
+                "Cancel",
+                () => deleteReview(review._id)
+              );
             }}
           >
             delete_forever
@@ -102,6 +125,15 @@ export function SingleSearchResultPage({
   }
   return (
     <>
+      <Modal
+        isOpen={isOpen}
+        title={title}
+        content={content}
+        confirmButtonText={confirmButtonText}
+        closeButtonText={closeButtonText}
+        onConfirm={onConfirm}
+        onClose={closeModal}
+      />
       {Header()}
       {restaurant.photos && restaurant.photos[0] && (
         <GooglePhoto
@@ -149,17 +181,53 @@ export function SingleSearchResultPage({
             href={formatPhoneNumber(restaurant.formatted_phone_number)}
             rel="noreferrer"
             target="_blank"
+            title={`Call ${restaurant.name}`}
           >
             <p>{restaurant.formatted_phone_number}</p>
             <Call className="material-symbols-outlined">call</Call>
           </a>
         )}
-        <a href={restaurant.website} rel="noreferrer" target="_blank">
+        <a
+          href={restaurant.website}
+          rel="noreferrer"
+          target="_blank"
+          title={`Go to the ${restaurant.name} website`}
+        >
           <p>Website</p>
         </a>
         <div>
           <H3>Photos</H3>
           <hr />
+        </div>
+        <div>
+          <div>
+            {restaurant.dragonReviews && restaurant.name && (
+              <>
+                <p>Healthy App Ratings:</p>
+                <p>Average Rating:</p>
+                <Rating className="card-rating">
+                  {renderRatingStars(
+                    averageReviewDataStarRating(restaurant.dragonReviews),
+                    ""
+                  )}
+                </Rating>
+                <p>Total # of Reviews: {restaurant.dragonReviews.length}</p>
+              </>
+            )}
+          </div>
+          <hr />
+          <ul>
+            {restaurant.dragonReviews &&
+              restaurant.dragonReviews.map((review) => (
+                <>
+                  <p>{review.user_id}</p>
+                  {renderRatingStars(review.star_ratings, review.user_id)}
+                  <br></br>
+                  {review.review_text}
+                  <hr />
+                </>
+              ))}
+          </ul>
         </div>
         <div>
           <H3>Google User Reviews</H3>
@@ -199,9 +267,6 @@ export function SingleSearchResultPage({
                 </>
               ))}
           </ul>
-        </div>
-        <div>
-          <p>Healthy App Ratings:</p>
         </div>
       </Wrapper>
     </>

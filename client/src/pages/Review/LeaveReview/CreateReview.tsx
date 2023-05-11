@@ -53,14 +53,8 @@ export function CreateReview({
   const [customTone, setCustomTone] = useState("");
   const navigate = useNavigate();
   const hasFetchedQuestions = useRef(false);
-  const {
-    isOpen,
-    title,
-    content,
-    closeButtonText,
-    openModal,
-    closeModal,
-  } = useModal();
+  const { isOpen, title, content, closeButtonText, openModal, closeModal } =
+    useModal();
 
   useEffect(() => {
     let isMounted = true;

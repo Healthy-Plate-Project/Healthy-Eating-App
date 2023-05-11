@@ -1,5 +1,5 @@
 import React from "react";
-import { GoogleResultPhoto, Restaurant } from "./globalInterfaces";
+import { GoogleResultPhoto, Restaurant, ReviewData, StarRating } from "./globalInterfaces";
 import { PriceIconStyled, Star } from "./helpersStyles";
 import goldStar from "../assets/images/gold-star.png";
 import halfGoldStar from "../assets/images/half-gold-star.png";
@@ -80,14 +80,43 @@ export function BuildRestaurantObject(restaurantData: Restaurant): Restaurant {
   };
 }
 
+export function averageStarRating(star_ratings: StarRating[]): number {
+  const sum = star_ratings.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.star_rating,
+    0
+  );
+  return sum / star_ratings.length;
+}
+
+export function averageReviewDataStarRating(review_datas: ReviewData[]): number {
+  let ratings = review_datas.map(review_data => {
+    if(!review_data.star_ratings) return 0;
+    const sum = review_data.star_ratings.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.star_rating,
+      0
+    );
+    return sum / review_data.star_ratings.length;
+  })
+  const sum = ratings.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  );
+  return sum / ratings.length;
+}
+
 export function renderRatingStars(
-  star_rating: number,
+  star_rating: number | StarRating[] | undefined,
   restaurant_name: string
 ) {
+  let rating: number = 0;
   if (!star_rating) {
     return [];
+  } else if (typeof star_rating === "number") {
+    rating = star_rating;
+  } else if (Array.isArray(star_rating)) {
+    averageStarRating(star_rating)
   }
-  const roundedStarRating = Math.round(star_rating * 2) / 2;
+  const roundedStarRating = Math.round(rating * 2) / 2;
   const integerPart = Math.floor(roundedStarRating);
   const hasHalfStar = roundedStarRating % 1 !== 0;
   const stars = [...Array(5)].map((_, i) => {

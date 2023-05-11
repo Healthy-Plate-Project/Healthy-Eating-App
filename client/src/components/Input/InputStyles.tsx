@@ -5,18 +5,15 @@ export const PrimaryInput = styled(DefaultInput)`
   border-radius: 50px;
   border: none;
   height: 3rem;
-  color: white;
+  color: var(--dark-800);
   background-color: white;
   font-size: 1.5rem;
   padding: 0 0.8rem;
 
   &:focus {
-    background-color: var(--dark);
     outline: 0.3rem var(--secondary) solid;
   }
-  ::placeholder {
-    color: var(--dark-800);
-  }
+
 `;
 
 export const SmallInput = styled(PrimaryInput)`

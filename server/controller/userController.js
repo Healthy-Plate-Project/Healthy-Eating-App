@@ -11,6 +11,10 @@ const MAX_AGE = 24 * 60 * 60 * 1000; // 1 day
 const userController = {
   signup: async function (req, res) {
     const { username, email, first_name, last_name, password } = req.body;
+    const userCheck = await User.findOne({ $or: [{ email }, { username }] });
+    if (userCheck) {
+      return res.status(404).json({ message: "User already exists" });
+    }
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const user = new User({
@@ -116,15 +120,16 @@ const userController = {
       const { user_id } = req.body;
       const user = await User.findOne({ _id: user_id });
       if (!user) return res.status(404).send({ message: "User not found" });
-      const { place_id } = req.body;
+      const { restaurant } = req.body;
+      const { place_id } = restaurant;
       if (user.fav_restaurants.some((place) => place.place_id === place_id)) {
         return res
           .status(404)
           .send({ message: "User already has restaurant favorited" });
       }
-      let restaurant = await Restaurant.findOne({ place_id: place_id });
-      if (!restaurant) {
-        restaurant = await Restaurant.create(req.body);
+      let restaurantData = await Restaurant.findOne({ place_id: place_id });
+      if (!restaurantData) {
+        restaurantData = await Restaurant.create(restaurant);
       }
       const update = await User.updateOne(
         { _id: user_id },

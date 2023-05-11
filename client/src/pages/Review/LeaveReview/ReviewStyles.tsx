@@ -22,3 +22,8 @@ export const Wrapper = styled.div`
     margin: 15px 0;
   }
 `;
+
+export const Star = styled.img`
+  height: 25px;
+  cursor: pointer;
+`;

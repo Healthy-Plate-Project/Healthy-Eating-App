@@ -33,19 +33,27 @@ export function Search() {
   let navigate = useNavigate();
 
   function routeChange(url: string | undefined) {
-    if (url) {
-      navigate(url);
-    } else {
-      console.log("Error: Invalid URL");
+    url ? navigate(url) : console.log("Error: Invalid URL");
+  }
+
+  function handleKeyPress(event: React.KeyboardEvent<HTMLDivElement>) {
+    if (event.key === "Enter") {
+      getCurrentPos();
     }
   }
 
   return (
     <SearchWrapper>
-      <PrimaryInput
-        placeholder="Keyword"
-        onChange={(e) => setKeyword(e.target.value)}
-      />
+      <div
+        onKeyDown={(e) => {
+          handleKeyPress(e);
+        }}
+      >
+        <PrimaryInput
+          placeholder="Keyword"
+          onChange={(e) => setKeyword(e.target.value)}
+        />
+      </div>
       <SearchButton
         name="current-location-search-button"
         onClick={() => getCurrentPos()}

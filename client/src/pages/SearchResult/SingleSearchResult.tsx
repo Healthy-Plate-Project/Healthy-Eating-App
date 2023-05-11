@@ -16,8 +16,9 @@ import { GooglePhoto } from "../../components/Photo/Photo";
 import { Restaurant, UserData } from "../../utils/globalInterfaces";
 import { FavoriteIcon } from "../../components/Icon/FavoriteIcon";
 import { FullPageSpinner } from "../../components/Spinner/Spinner";
-import { priceLevel, renderRatingStars } from "../../utils/helpers";
+import { Button } from "../../components/Button/ButtonStyles";
 import { Header } from "../../components/Header/Header";
+import { priceLevel, renderRatingStars } from "../../utils/helpers";
 
 type SingleSearchResultPageProps = {
   currentUser: UserData;

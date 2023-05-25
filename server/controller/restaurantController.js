@@ -30,27 +30,23 @@ const restaurantsController = {
               place_id: restaurant.place_id,
             });
             if (!restaurantData) {
-              return {
-                error: true,
-                message: "Restaurant not found",
-              };
+              return restaurant;
             }
             const reviews = await Review.find({
               place_id: restaurant.place_id,
             });
             if (!reviews) {
-              return {
-                error: true,
-                message: `No reviews found for place_id: ${restaurant.place_id}`,
-              };
+              return restaurant;
             }
             return { ...restaurant, dragonReviews: reviews };
           }
         );
         const restaurants = await Promise.all(restaurantsPromises);
+
         const filteredRestaurants = restaurants.filter(
           (restaurant) => !restaurant.error
         );
+
         if (filteredRestaurants.length === 0) {
           return res
             .status(404)

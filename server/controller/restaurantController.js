@@ -6,7 +6,7 @@ const restaurantsController = {
   getGoogleRestaurants: async function (req, res) {
     const latitude = req.body.latitude;
     const longitude = req.body.longitude;
-    const type = "$type=restaurant";
+    const type = "&type=restaurant";
     const radius = req.body.radius ? `&radius=${req.body.radius}` : "";
     const keyword = req.body.keyword ? `&keyword=${req.body.keyword}` : "";
     const max_price = req.body.max_price
@@ -24,31 +24,37 @@ const restaurantsController = {
     };
     axios(config)
       .then(async function (response) {
-        const restaurantsPromises = response.data.results.map(async (restaurant) => {
-          const restaurantData = await Restaurant.findOne({
-            place_id: restaurant.place_id,
-          });
-          if (!restaurantData) {
-            return {
-              error: true,
-              message: "Restaurant not found",
-            };
+        const restaurantsPromises = response.data.results.map(
+          async (restaurant) => {
+            const restaurantData = await Restaurant.findOne({
+              place_id: restaurant.place_id,
+            });
+            if (!restaurantData) {
+              return {
+                error: true,
+                message: "Restaurant not found",
+              };
+            }
+            const reviews = await Review.find({
+              place_id: restaurant.place_id,
+            });
+            if (!reviews) {
+              return {
+                error: true,
+                message: `No reviews found for place_id: ${restaurant.place_id}`,
+              };
+            }
+            return { ...restaurant, dragonReviews: reviews };
           }
-          const reviews = await Review.find({ place_id: restaurant.place_id });
-          if (!reviews) {
-            return {
-              error: true,
-              message: `No reviews found for place_id: ${restaurant.place_id}`,
-            };
-          }
-          return { ...restaurant, dragonReviews: reviews };
-        });
+        );
         const restaurants = await Promise.all(restaurantsPromises);
         const filteredRestaurants = restaurants.filter(
           (restaurant) => !restaurant.error
         );
         if (filteredRestaurants.length === 0) {
-          return res.status(404).send({ message: "No valid restaurants found" });
+          return res
+            .status(404)
+            .send({ message: "No valid restaurants found" });
         }
         res.json(filteredRestaurants);
       })
@@ -72,7 +78,9 @@ const restaurantsController = {
         });
         if (!restaurant)
           return res.status(404).send({ message: "Restaurant not found" });
-        const reviews = await Review.find({ place_id: response.data.result.place_id });
+        const reviews = await Review.find({
+          place_id: response.data.result.place_id,
+        });
         if (!reviews) {
           return res.status(404).send({
             message: `No reviews found for place_id: ${response.data.result.place_id}`,
@@ -94,8 +102,8 @@ const restaurantsController = {
       restaurant
         ? res.json({ data: restaurant })
         : res.json({
-          message: `Restaurant ID# ${req.body.place_id} Not Found!`,
-        });
+            message: `Restaurant ID# ${req.body.place_id} Not Found!`,
+          });
     } catch (error) {
       res.status(500).json(error);
     }

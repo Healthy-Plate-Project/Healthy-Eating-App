@@ -13,7 +13,6 @@ export const PrimaryInput = styled(DefaultInput)`
   &:focus {
     outline: 0.3rem var(--secondary) solid;
   }
-
 `;
 
 export const SmallInput = styled(PrimaryInput)`

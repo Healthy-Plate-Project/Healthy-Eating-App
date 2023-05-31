@@ -20,6 +20,7 @@ import { convertMilesToMeters } from "../../utils/helpers";
 import { useNavigate } from "react-router-dom";
 import { API, apiCall } from "../../utils/serverCalls";
 import { Header } from "../../components/Header/Header";
+import { ButtonWrapper } from "./AdvancedSearchStyles";
 
 interface PriceSelection {
   min: number | undefined;
@@ -62,7 +63,7 @@ export function AdvancedSearch() {
         : `${distance} miles`;
     return (
       <Distance>
-        <h2>Distance</h2>
+        <h3>Distance</h3>
         {distanceText}
         <br></br>
         <DistanceSlider>
@@ -178,14 +179,14 @@ export function AdvancedSearch() {
       <AdvancedSearchWrapper>
         <fieldset>
           <legend>
-            <h3>Advanced Search</h3>
+            <h2>Advanced Search</h2>
           </legend>
           <Keyword>
-            <h2>Keyword</h2>
+            <h3>Keyword</h3>
             <PrimaryInput
               onChange={(event) => setKeyword(event.target.value)}
               className="keyword-input keyword"
-              placeholder="vegan, thai, burgers, etc."
+              placeholder="vegan, thai, burger..."
             />
           </Keyword>
 
@@ -198,13 +199,13 @@ export function AdvancedSearch() {
                 })
               }
             >
-              <h2>Use Current Location</h2>
+              <h3>Use Current Location</h3>
               <img src={useCurrentLocation ? GreenCheckIcon : GreyCheckIcon} />
             </a>
           </Location>
           {useCurrentLocation ? null : (
             <Location>
-              <h2>Custom Location</h2>
+              <h3>Custom Location</h3>
               <SmallInput
                 onChange={(event) => setLocationInput(event.target.value)}
                 className="location-input location"
@@ -216,19 +217,21 @@ export function AdvancedSearch() {
           {renderDistance()}
 
           <Price>
-            <h2>Price</h2>
+            <h3>Price</h3>
             {renderPriceSelection()}
           </Price>
 
           <Open>
             <a onClick={() => setOpenNow(!openNow)}>
-              <h2>Open Now</h2>
+              <h3>Open Now</h3>
               <img src={openNow ? GreenCheckIcon : GreyCheckIcon} />
             </a>
           </Open>
-          <Button type="button" onClick={() => getLocation()}>
-            Search
-          </Button>
+          <ButtonWrapper>
+            <Button type="button" onClick={() => getLocation()}>
+              Search
+            </Button>
+          </ButtonWrapper>
         </fieldset>
       </AdvancedSearchWrapper>
     </>

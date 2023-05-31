@@ -14,7 +14,15 @@ export const Dollar = styled.img`
 `;
 
 export const Wrapper = styled.div`
-  text-align: left;
+  background-color: #c7f7f7;
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const NameAndIcons = styled.div`
+  background-color: #c7f7f7;
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 export const PriceContainer = styled.div`

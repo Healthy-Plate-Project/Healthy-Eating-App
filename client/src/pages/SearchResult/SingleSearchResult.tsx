@@ -5,6 +5,7 @@ import {
   H1,
   H3,
   Wrapper,
+  NameAndIcons,
   PriceContainer,
   Review,
   Rating,
@@ -24,6 +25,7 @@ import {
 import { Header } from "../../components/Header/Header";
 import { useModal } from "../../hooks/useModal";
 import { Modal } from "../../components/Modal/Modal";
+import { BodyWrapper } from "../../components/Body/BodyWrapper";
 
 type SingleSearchResultPageProps = {
   currentUser: UserData;
@@ -145,37 +147,44 @@ export function SingleSearchResultPage({
         />
       )}
       <Wrapper>
-        <H1>
-          {restaurant.name}
-          <FavoriteIcon
-            restaurant={restaurant}
-            currentUser={currentUser}
-            currentUserTrigger={currentUserTrigger}
-            setCurrentUserTrigger={setCurrentUserTrigger}
-          ></FavoriteIcon>
-        </H1>
-        {restaurant.price_level && (
-          <PriceContainer>{priceLevel(restaurant.price_level)}</PriceContainer>
-        )}
-        {renderReviewButtons(restaurant)}
-        {restaurant.geometry &&
-          restaurant.geometry.location.lat &&
-          restaurant.geometry.location.lng &&
-          restaurant.place_id && (
-            <a
-              title={`Get directions to ${restaurant.name}`}
-              href={`https://www.google.com/maps/search/?api=1&
+        <NameAndIcons>
+          <H1>
+            {restaurant.name}
+            <FavoriteIcon
+              restaurant={restaurant}
+              currentUser={currentUser}
+              currentUserTrigger={currentUserTrigger}
+              setCurrentUserTrigger={setCurrentUserTrigger}
+            ></FavoriteIcon>
+          </H1>
+          {restaurant.price_level && (
+            <PriceContainer>
+              {priceLevel(restaurant.price_level)}
+            </PriceContainer>
+          )}
+          {renderReviewButtons(restaurant)}
+          {restaurant.geometry &&
+            restaurant.geometry.location.lat &&
+            restaurant.geometry.location.lng &&
+            restaurant.place_id && (
+              <a
+                title={`Get directions to ${restaurant.name}`}
+                href={`https://www.google.com/maps/search/?api=1&
                           query=${restaurant.geometry.location.lat}
                           %2C${restaurant.geometry.location.lng}
                           &query_place_id=${restaurant.place_id}
                         `}
-            >
-              <p>{restaurant.vicinity}</p>
-              <Directions className="material-symbols-outlined">
-                location_on
-              </Directions>
-            </a>
-          )}
+              >
+                {" "}
+                <p>{restaurant.formatted_phone_number}</p>
+                <Call className="material-symbols-outlined">call</Call>
+                <p>{restaurant.vicinity}</p>
+                <Directions className="material-symbols-outlined">
+                  location_on
+                </Directions>
+              </a>
+            )}
+        </NameAndIcons>
         {restaurant.formatted_phone_number && (
           <a
             href={formatPhoneNumber(restaurant.formatted_phone_number)}
@@ -183,8 +192,8 @@ export function SingleSearchResultPage({
             target="_blank"
             title={`Call ${restaurant.name}`}
           >
-            <p>{restaurant.formatted_phone_number}</p>
-            <Call className="material-symbols-outlined">call</Call>
+            {/* <p>{restaurant.formatted_phone_number}</p>
+            <Call className="material-symbols-outlined">call</Call> */}
           </a>
         )}
         <a

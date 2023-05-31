@@ -1,27 +1,47 @@
 import styled from "styled-components";
 
 export const AdvancedSearchWrapper = styled.div`
+  /* accent-color: var(--accent-one); */
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  accent-color: var(--accent-one);
+  margin: 10% 0 0;
+  text-align: center;
+
+  fieldset {
+    /* background-color: var(--secondary-200); */
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  legend {
+    /* border-bottom: 4px var(--primary-600) solid; */
+    padding: 0.5rem 0rem 1rem;
+    /* border-radius: 8px; */
+    margin: 3rem 0;
+  }
 
   input {
+    background-color: #f0f5ff;
     border-radius: 50px;
-    border: none;
-    height: 2rem;
-    background-color: white;
     font-family: "Montserrat", sans-serif;
     font-size: 1rem;
-    padding: 0 0 0 1rem;
+    text-align: center;
+    height: 2.2rem;
 
     &::placeholder {
-      color: #555555;
-      font-weight: 100;
-      font-size: 0.8rem;
+      color: #6a6a6a;
+      font-weight: 300;
+      font-size: 1rem;
     }
   }
+`;
+
+export const ButtonWrapper = styled.div`
+  margin: 0 auto 2rem;
 `;
 
 export const Form = styled.form`
@@ -33,19 +53,19 @@ export const Form = styled.form`
 `;
 
 export const Keyword = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 0.5rem;
+  justify-content: center;
 `;
 
 export const Location = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 0.5rem;
+  justify-content: center;
   cursor: pointer;
   img {
     width: 2rem;
@@ -53,16 +73,18 @@ export const Location = styled.div`
 `;
 
 export const Distance = styled.div`
+  display: flex;
   align-items: center;
-  gap: 0.3rem;
+  justify-content: space-between;
+  gap: 1rem;
 `;
 
 export const Price = styled.div`
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
   gap: 0.5rem;
+  justify-content: center;
 
   img {
     cursor: pointer;
@@ -71,12 +93,13 @@ export const Price = styled.div`
 `;
 
 export const Open = styled.div`
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
   gap: 0.5rem;
+  justify-content: center;
   cursor: pointer;
+
   img {
     width: 2rem;
   }
@@ -85,11 +108,11 @@ export const Open = styled.div`
 export const DistanceSlider = styled.div`
   input[type="range"] {
     -webkit-appearance: none;
-    height: 7px;
     background: var(--light-grey);
     border-radius: 5px;
     background-image: linear-gradient(var(--secondary), var(--secondary));
     background-repeat: no-repeat;
+    height: 7px;
     padding: 0;
   }
 

@@ -7,7 +7,7 @@ export const HomeWrapper = styled.div`
   align-items: center;
   width: clamp(290px, 100%, 600px);
   height: 100%;
-  margin: 0 auto;
+  margin: 30% auto;
 `;
 
 export const BackgroundImage = styled.img`

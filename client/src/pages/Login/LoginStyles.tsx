@@ -45,6 +45,18 @@ export const ButtonContainer = styled.button`
   }
 `;
 
+export const PasswordField = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
+
+export const Icon = styled.div`
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+`;
+
 // export const LoginWith = styled.h5`
 //   cursor: pointer;
 // `;

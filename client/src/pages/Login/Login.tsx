@@ -4,17 +4,21 @@ import {
   WelcomeText,
   InputContainer,
   ButtonContainer,
+  Icon,
+  PasswordField,
 } from "./LoginStyles";
 import { LoginInput } from "../../components/Input/InputStyles";
 import { useNavigate } from "react-router-dom";
 import { isEmail } from "../../utils/helpers";
 import { apiCall, API } from "../../utils/serverCalls";
 import { Header } from "../../components/Header/Header";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import icons from react-icons
 
 export function Login({ setCurrentUser }: any) {
   const [password, setPassword] = useState("");
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [error, setError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   async function login() {
@@ -59,12 +63,17 @@ export function Login({ setCurrentUser }: any) {
             onChange={(e) => setUsernameOrEmail(e.target.value.toLowerCase())}
             onKeyDown={(e) => handleKeyPress(e)}
           />
-          <LoginInput
-            type="password"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-            onKeyDown={(e) => handleKeyPress(e)}
-          />
+          <PasswordField>
+            <LoginInput
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={(e) => handleKeyPress(e)}
+            />
+            <Icon onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </Icon>
+          </PasswordField>
         </InputContainer>
         {error ? (
           <h4>
